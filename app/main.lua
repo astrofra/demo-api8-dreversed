@@ -22,43 +22,43 @@ hg.AddAssetsFolder('assets_compiled')
 hg.InputInit()
 hg.WindowSystemInit()
 
-res_x, res_y = 1280, 720
-win = hg.RenderInit('Physics Test', res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X)
+local res_x, res_y = 1280, 720
+local win = hg.RenderInit('Physics Test', res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X)
 
-pipeline = hg.CreateForwardPipeline(2048)
-res = hg.PipelineResources()
+local pipeline = hg.CreateForwardPipeline(2048)
+local res = hg.PipelineResources()
 
 -- physics debug
-vtx_line_layout = hg.VertexLayoutPosFloatColorUInt8()
-line_shader = hg.LoadProgramFromAssets("shaders/pos_rgb")
+local vtx_line_layout = hg.VertexLayoutPosFloatColorUInt8()
+local line_shader = hg.LoadProgramFromAssets("shaders/pos_rgb")
 
 -- create material
-pbr_shader = hg.LoadPipelineProgramRefFromAssets('core/shader/pbr.hps', res, hg.GetForwardPipelineInfo())
-mat_grey = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(1, 1, 1), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.5, 0.05))
+local pbr_shader = hg.LoadPipelineProgramRefFromAssets('core/shader/pbr.hps', res, hg.GetForwardPipelineInfo())
+local mat_grey = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(1, 1, 1), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.5, 0.05))
 
 -- create models
-vtx_layout = hg.VertexLayoutPosFloatNormUInt8()
+local vtx_layout = hg.VertexLayoutPosFloatNormUInt8()
 
 -- cube
-cube_size =  hg.Vec3(1, 1, 1)
-cube_ref = res:AddModel('cube', hg.CreateCubeModel(vtx_layout, cube_size.x, cube_size.y, cube_size.z))
+local cube_size =  hg.Vec3(1, 1, 1)
+local cube_ref = res:AddModel('cube', hg.CreateCubeModel(vtx_layout, cube_size.x, cube_size.y, cube_size.z))
 
 -- ground
-ground_size = hg.Vec3(50, 0.05, 50)
-ground_ref = res:AddModel('ground', hg.CreateCubeModel(vtx_layout, ground_size.x, ground_size.y, ground_size.z))
+local ground_size = hg.Vec3(50, 0.05, 50)
+local ground_ref = res:AddModel('ground', hg.CreateCubeModel(vtx_layout, ground_size.x, ground_size.y, ground_size.z))
 
 -- setup the scene
-scene = hg.Scene()
+local scene = hg.Scene()
 
-cam_mat = hg.TransformationMat4(hg.Vec3(0, 6, -15.5) * 2.0, hg.Vec3(hg.Deg(15), 0, 0))
-cam = hg.CreateCamera(scene, cam_mat, 0.01, 1000, hg.Deg(30))
-view_matrix = hg.InverseFast(cam_mat)
-c = cam:GetCamera()
-projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
+local cam_mat = hg.TransformationMat4(hg.Vec3(0, 6, -15.5) * 2.0, hg.Vec3(hg.Deg(15), 0, 0))
+local cam = hg.CreateCamera(scene, cam_mat, 0.01, 1000, hg.Deg(30))
+local view_matrix = hg.InverseFast(cam_mat)
+local c = cam:GetCamera()
+local projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
 
 scene:SetCurrentCamera(cam)	
 
-lgt = hg.CreateLinearLight(scene, hg.TransformationMat4(hg.Vec3(0, 0, 0), hg.Vec3(hg.Deg(30), hg.Deg(30), 0)), hg.Color(1, 1, 1), hg.Color(1, 1, 1), 10, hg.LST_Map, 0.001, hg.Vec4(20, 34, 55, 70))
+local lgt = hg.CreateLinearLight(scene, hg.TransformationMat4(hg.Vec3(0, 0, 0), hg.Vec3(hg.Deg(30), hg.Deg(30), 0)), hg.Color(1, 1, 1), hg.Color(1, 1, 1), 10, hg.LST_Map, 0.001, hg.Vec4(20, 34, 55, 70))
 
 -- chair_node, _ = hg.CreateInstanceFromAssets(scene, hg.TranslationMat4(hg.Vec3(0, 1, 0)), "chair/chair.scn", res, hg.GetForwardPipelineInfo())
 
@@ -66,29 +66,30 @@ for i = 1, 200 do
     hg.CreateInstanceFromAssets(scene, hg.TranslationMat4(hg.Vec3(0, 1 + i * 5, 0)), "chair/chair.scn", res, hg.GetForwardPipelineInfo())
 end
 
-floor, rb_floor = CreatePhysicCubeEx(scene, ground_size, hg.TranslationMat4(hg.Vec3(0, -0.005, 0)), ground_ref, {mat_grey}, hg.RBT_Static, 0)
+local floor, rb_floor = CreatePhysicCubeEx(scene, ground_size, hg.TranslationMat4(hg.Vec3(0, -0.005, 0)), ground_ref, {mat_grey}, hg.RBT_Static, 0)
 rb_floor:SetRestitution(1)
 
 -- scene physics
-physics = hg.SceneBullet3Physics()
+local physics = hg.SceneBullet3Physics()
 physics:SceneCreatePhysicsFromAssets(scene)
-physics_step = hg.time_from_sec_f(1 / 60)
-dt_frame_step = hg.time_from_sec_f(1 / 60)
+local physics_step = hg.time_from_sec_f(1 / 60)
+local dt_frame_step = hg.time_from_sec_f(1 / 60)
 
-clocks = hg.SceneClocks()
+local clocks = hg.SceneClocks()
 
 -- description
 hg.SetLogLevel(hg.LL_Normal)
 print(">>> Description:\n>>> Drop vertically 200 chairs, made of 6 collision boxes each")
 
 -- main loop
-keyboard = hg.Keyboard()
+local keyboard = hg.Keyboard()
 
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     keyboard:Update()
 
     -- physics:NodeWake(chair_node)
-    view_id = 0
+    local view_id = 0
+    local pass_id
     hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)
     view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
 
