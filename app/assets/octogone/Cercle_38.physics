@@ -1,0 +1,10 @@
+{
+	"collision": {
+		"input": [{
+			"geometry": "octogone/Cercle_38.geo",
+			"matrix": [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+			"type": "triangle"
+		}],
+		"type": "tree"
+	}
+}

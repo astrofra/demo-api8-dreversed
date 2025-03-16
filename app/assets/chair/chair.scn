@@ -1,0 +1,263 @@
+{
+	"canvas": {
+		"clear_color": true,
+		"clear_z": true,
+		"color": [
+			0,
+			0,
+			0,
+			255
+		]
+	},
+	"collisions": [
+		{
+			"mass": 1.0,
+			"path": "",
+			"pos": [
+				0.8999999761581421,
+				0.8999999761581421,
+				0.10000000149011612
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				0.20000000298023224,
+				0.20000000298023224,
+				1.7999999523162842
+			],
+			"type": "cube"
+		},
+		{
+			"mass": 1.0,
+			"path": "",
+			"pos": [
+				0.8999999761581421,
+				-0.8999999761581421,
+				0.10000000149011612
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				0.20000000298023224,
+				0.20000000298023224,
+				1.7999999523162842
+			],
+			"type": "cube"
+		},
+		{
+			"mass": 1.0,
+			"path": "",
+			"pos": [
+				-0.8999999761581421,
+				-0.8999999761581421,
+				0.10000000149011612
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				0.20000000298023224,
+				0.20000000298023224,
+				1.7999999523162842
+			],
+			"type": "cube"
+		},
+		{
+			"mass": 1.0,
+			"path": "",
+			"pos": [
+				-0.8999999761581421,
+				0.8999999761581421,
+				0.10000000149011612
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				0.20000000298023224,
+				0.20000000298023224,
+				1.7999999523162842
+			],
+			"type": "cube"
+		},
+		{
+			"mass": 1.0,
+			"path": "",
+			"pos": [
+				0.0,
+				0.0,
+				-0.8999999761581421
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				2.0,
+				2.0,
+				0.20000000298023224
+			],
+			"type": "cube"
+		},
+		{
+			"mass": 1.0,
+			"path": "",
+			"pos": [
+				0.0,
+				0.8999999761581421,
+				-2.5
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.6399999856948853,
+				0.20000000298023224,
+				3.0
+			],
+			"type": "cube"
+		}
+	],
+	"environment": {
+		"ambient": [
+			0,
+			0,
+			0,
+			255
+		],
+		"brdf_map": "core/pbr/brdf.dds",
+		"current_camera": null,
+		"fog_color": [
+			255,
+			255,
+			255,
+			255
+		],
+		"fog_far": 0.0,
+		"fog_near": 0.0,
+		"probe": {
+			"irradiance_map": "core/pbr/probe.hdr.irradiance",
+			"parallax": 0.0,
+			"pos": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"radiance_map": "core/pbr/probe.hdr.radiance",
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"type": "sphere"
+		}
+	},
+	"key_values": null,
+	"nodes": [
+		{
+			"collisions": [
+				{
+					"idx": 0
+				},
+				{
+					"idx": 1
+				},
+				{
+					"idx": 2
+				},
+				{
+					"idx": 3
+				},
+				{
+					"idx": 4
+				},
+				{
+					"idx": 5
+				}
+			],
+			"components": [
+				0,
+				4294967295,
+				0,
+				4294967295,
+				0
+			],
+			"disabled": false,
+			"idx": 4,
+			"name": "Cube.001"
+		}
+	],
+	"objects": [
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "dummy_mat"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "chair/Cube.001_46.geo"
+		}
+	],
+	"rigid_bodies": [
+		{
+			"angular_damping": 0.0,
+			"friction": 0.49803924560546875,
+			"linear_damping": 0.0,
+			"restitution": 0.0,
+			"rolling_friction": 0.0,
+			"type": "dynamic"
+		}
+	],
+	"transforms": [
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"rot": [
+				89.9999771118164,
+				180.0,
+				180.0
+			],
+			"scl": [
+				1.0,
+				1.0,
+				1.0
+			]
+		}
+	]
+}

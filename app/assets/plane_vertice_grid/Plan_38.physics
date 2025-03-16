@@ -1,0 +1,10 @@
+{
+	"collision": {
+		"input": [{
+			"geometry": "plane_vertice_grid/Plan_38.geo",
+			"matrix": [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+			"type": "triangle"
+		}],
+		"type": "tree"
+	}
+}

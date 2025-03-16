@@ -1,0 +1,10 @@
+{
+	"collision": {
+		"input": [{
+			"geometry": "island_chain/island_chain.geo",
+			"matrix": [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+			"type": "triangle"
+		}],
+		"type": "tree"
+	}
+}

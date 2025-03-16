@@ -1,0 +1,432 @@
+{
+	"canvas": {
+		"clear_color": true,
+		"clear_z": true,
+		"color": [
+			0,
+			0,
+			0,
+			255
+		]
+	},
+	"environment": {
+		"ambient": [
+			0,
+			0,
+			0,
+			0
+		],
+		"brdf_map": "core/pbr/brdf.dds",
+		"current_camera": null,
+		"fog_color": [
+			0,
+			0,
+			0,
+			0
+		],
+		"fog_far": 0.0,
+		"fog_near": 0.0,
+		"probe": {
+			"irradiance_map": "core/pbr/probe.hdr.irradiance",
+			"parallax": 0.0,
+			"pos": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"radiance_map": "core/pbr/probe.hdr.radiance",
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"type": "sphere"
+		}
+	},
+	"instances": [
+		{
+			"name": "ring_static/ring.scn"
+		},
+		{
+			"name": "ring_dynamic/ring.scn"
+		},
+		{
+			"name": "ring_dynamic/ring.scn"
+		},
+		{
+			"name": "ring_dynamic/ring.scn"
+		},
+		{
+			"name": "ring_dynamic/ring.scn"
+		},
+		{
+			"name": "ring_dynamic/ring.scn"
+		},
+		{
+			"name": "ring_dynamic/ring.scn"
+		},
+		{
+			"name": "ring_dynamic/ring.scn"
+		},
+		{
+			"name": "ring_dynamic/ring.scn"
+		},
+		{
+			"name": "ring_dynamic/ring.scn"
+		},
+		{
+			"name": "ring_dynamic/ring.scn"
+		}
+	],
+	"key_values": null,
+	"nodes": [
+		{
+			"components": [
+				0,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 0,
+			"instance": 0,
+			"name": "ring_static"
+		},
+		{
+			"components": [
+				1,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 2,
+			"instance": 1,
+			"name": "ring_dynamic"
+		},
+		{
+			"components": [
+				2,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 4,
+			"instance": 2,
+			"name": "ring_dynamic"
+		},
+		{
+			"components": [
+				3,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 6,
+			"instance": 3,
+			"name": "ring_dynamic"
+		},
+		{
+			"components": [
+				4,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 8,
+			"instance": 4,
+			"name": "ring_dynamic"
+		},
+		{
+			"components": [
+				5,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 10,
+			"instance": 5,
+			"name": "ring_dynamic"
+		},
+		{
+			"components": [
+				6,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 12,
+			"instance": 6,
+			"name": "ring_dynamic"
+		},
+		{
+			"components": [
+				7,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 14,
+			"instance": 7,
+			"name": "ring_dynamic"
+		},
+		{
+			"components": [
+				8,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 16,
+			"instance": 8,
+			"name": "ring_dynamic"
+		},
+		{
+			"components": [
+				9,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 18,
+			"instance": 9,
+			"name": "ring_dynamic"
+		},
+		{
+			"components": [
+				10,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 20,
+			"instance": 10,
+			"name": "ring_dynamic_bottom"
+		}
+	],
+	"transforms": [
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				30.0,
+				0.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				27.0,
+				-1.0
+			],
+			"rot": [
+				-0.0,
+				90.0,
+				0.0
+			],
+			"scl": [
+				0.9999997615814209,
+				1.0,
+				0.9999997615814209
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				24.0,
+				-2.0
+			],
+			"rot": [
+				-0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				0.9999997019767761,
+				1.0,
+				0.9999997019767761
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				21.0,
+				-3.0
+			],
+			"rot": [
+				-0.0,
+				90.0,
+				0.0
+			],
+			"scl": [
+				0.9999996423721313,
+				1.0,
+				0.9999996423721313
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				18.0,
+				-4.0
+			],
+			"rot": [
+				-0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				0.9999995827674866,
+				1.0,
+				0.9999995827674866
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				15.0,
+				-5.0
+			],
+			"rot": [
+				-0.0,
+				90.0,
+				0.0
+			],
+			"scl": [
+				0.9999995231628418,
+				1.0,
+				0.9999995231628418
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				12.0,
+				-6.0
+			],
+			"rot": [
+				-0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				0.999999463558197,
+				1.0,
+				0.999999463558197
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				9.0,
+				-7.0
+			],
+			"rot": [
+				-0.0,
+				90.0,
+				0.0
+			],
+			"scl": [
+				0.9999994039535522,
+				1.0,
+				0.9999994039535522
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				6.0,
+				-8.0
+			],
+			"rot": [
+				-0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				0.9999993443489075,
+				1.0,
+				0.9999993443489075
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				3.0,
+				-9.0
+			],
+			"rot": [
+				-0.0,
+				90.0,
+				0.0
+			],
+			"scl": [
+				0.9999992847442627,
+				1.0,
+				0.9999992847442627
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				0.0,
+				-10.0
+			],
+			"rot": [
+				-0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				0.9999992251396179,
+				1.0,
+				0.9999992251396179
+			]
+		}
+	]
+}

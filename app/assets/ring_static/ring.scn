@@ -1,0 +1,249 @@
+{
+	"canvas": {
+		"clear_color": true,
+		"clear_z": true,
+		"color": [
+			0,
+			0,
+			0,
+			255
+		]
+	},
+	"collisions": [
+		{
+			"mass": 0.0,
+			"path": "",
+			"pos": [
+				0.0,
+				0.0,
+				-0.20000000298023224
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				0.4000000059604645,
+				4.0,
+				0.4000000059604645
+			],
+			"type": "cube"
+		},
+		{
+			"mass": 0.0,
+			"path": "",
+			"pos": [
+				0.0,
+				0.0,
+				-3.799999952316284
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				0.4000000059604645,
+				4.0,
+				0.4000000059604645
+			],
+			"type": "cube"
+		},
+		{
+			"mass": 0.0,
+			"path": "",
+			"pos": [
+				0.0,
+				1.7999999523162842,
+				-2.0
+			],
+			"rot": [
+				1.5707963705062866,
+				0.0,
+				0.0
+			],
+			"scl": [
+				0.4000000059604645,
+				3.200000047683716,
+				0.4000000059604645
+			],
+			"type": "cube"
+		},
+		{
+			"mass": 0.0,
+			"path": "",
+			"pos": [
+				0.0,
+				-1.7999999523162842,
+				-2.0
+			],
+			"rot": [
+				1.5707963705062866,
+				0.0,
+				0.0
+			],
+			"scl": [
+				0.4000000059604645,
+				3.200000047683716,
+				0.4000000059604645
+			],
+			"type": "cube"
+		}
+	],
+	"environment": {
+		"ambient": [
+			0,
+			0,
+			0,
+			255
+		],
+		"brdf_map": "core/pbr/brdf.dds",
+		"current_camera": null,
+		"fog_color": [
+			255,
+			255,
+			255,
+			255
+		],
+		"fog_far": 0.0,
+		"fog_near": 0.0,
+		"probe": {
+			"irradiance_map": "core/pbr/probe.hdr.irradiance",
+			"parallax": 0.0,
+			"pos": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"radiance_map": "core/pbr/probe.hdr.radiance",
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"type": "sphere"
+		}
+	},
+	"key_values": null,
+	"nodes": [
+		{
+			"collisions": [
+				{
+					"idx": 0
+				},
+				{
+					"idx": 1
+				},
+				{
+					"idx": 2
+				},
+				{
+					"idx": 3
+				}
+			],
+			"components": [
+				0,
+				4294967295,
+				0,
+				4294967295,
+				0
+			],
+			"disabled": false,
+			"idx": 0,
+			"name": "Cube"
+		}
+	],
+	"objects": [
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "Material"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.800000011920929,
+								0.800000011920929,
+								0.800000011920929,
+								1.0
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "ring_static/Cube_41.geo"
+		}
+	],
+	"rigid_bodies": [
+		{
+			"angular_damping": 0.0,
+			"friction": 0.49803924560546875,
+			"linear_damping": 0.0,
+			"restitution": 0.0,
+			"rolling_friction": 0.0,
+			"type": "dynamic"
+		}
+	],
+	"transforms": [
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"rot": [
+				89.9999771118164,
+				180.0,
+				180.0
+			],
+			"scl": [
+				1.0,
+				1.0,
+				1.0
+			]
+		}
+	]
+}
