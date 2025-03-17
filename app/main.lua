@@ -62,8 +62,11 @@ local lgt = hg.CreateLinearLight(scene, hg.TransformationMat4(hg.Vec3(0, 0, 0), 
 
 -- chair_node, _ = hg.CreateInstanceFromAssets(scene, hg.TranslationMat4(hg.Vec3(0, 1, 0)), "chair/chair.scn", res, hg.GetForwardPipelineInfo())
 
+local rb_nodes = {}
 for i = 1, 200 do
-    hg.CreateInstanceFromAssets(scene, hg.TranslationMat4(hg.Vec3(0, 1 + i * 5, 0)), "chair/chair.scn", res, hg.GetForwardPipelineInfo())
+    -- local _new_node, _ = hg.CreateInstanceFromAssets(scene, hg.TranslationMat4(hg.Vec3(0, 1 + i * 5, 0)), "chair/chair.scn", res, hg.GetForwardPipelineInfo())
+    local _new_node, _ = CreatePhysicCubeEx(scene, cube_size, hg.TranslationMat4(hg.Vec3(0, 1 + i * 5, 0)), cube_ref, {mat_grey}, hg.RBT_Dynamic, 1)
+    table.insert(rb_nodes, _new_node)
 end
 
 local floor, rb_floor = CreatePhysicCubeEx(scene, ground_size, hg.TranslationMat4(hg.Vec3(0, -0.005, 0)), ground_ref, {mat_grey}, hg.RBT_Static, 0)
@@ -84,13 +87,57 @@ print(">>> Description:\n>>> Drop vertically 200 chairs, made of 6 collision box
 -- main loop
 local keyboard = hg.Keyboard()
 
+local records = {}
+local state = "record"
+local record_frame = 1
+local replay_direction
+
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     keyboard:Update()
 
     -- physics:NodeWake(chair_node)
     local view_id = 0
     local pass_id
-    hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)
+
+    if state == "record" then
+        hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)
+
+        local node_idx
+        local frame_nodes = {}
+        for node_idx = 1, #rb_nodes do
+            table.insert(frame_nodes, rb_nodes[node_idx]:GetTransform():GetWorld())
+        end
+
+        hg.TickClock()
+        local current_clock = hg.GetClock()
+        table.insert(records, {t = current_clock, frame_nodes = frame_nodes})
+
+        if current_clock > hg.time_from_sec_f(5.0) then
+            state = "replay"
+            replay_direction = -1
+            record_frame = #records
+        end
+    elseif state == "replay" then
+        local dt = hg.TickClock()
+
+        for node_idx = 1, #rb_nodes do
+            physics:NodeTeleport(rb_nodes[node_idx], records[record_frame].frame_nodes[node_idx])
+            physics:NodeResetWorld(rb_nodes[node_idx], records[record_frame].frame_nodes[node_idx])
+        end
+
+        hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)
+
+        record_frame = record_frame + replay_direction
+        if replay_direction < 0 and record_frame < 1 then
+            record_frame = 1
+            replay_direction = 1
+        elseif replay_direction > 0 and record_frame > #records then
+            record_frame = #records
+            replay_direction = -1
+        end
+    end
+
+    -- rendering
     view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
 
     -- -- Debug physics display
