@@ -22,7 +22,7 @@ hg.AddAssetsFolder('assets_compiled')
 hg.InputInit()
 hg.WindowSystemInit()
 
-local res_x, res_y = 1280, 720
+local res_x, res_y = 720, 720
 local win = hg.RenderInit('Physics Test', res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X)
 
 local pipeline = hg.CreateForwardPipeline(2048)
@@ -49,6 +49,7 @@ local ground_ref = res:AddModel('ground', hg.CreateCubeModel(vtx_layout, ground_
 
 -- setup the scene
 local scene = hg.Scene()
+local blank_scene = hg.Scene()
 
 local cam_mat = hg.TransformationMat4(hg.Vec3(0, 6, -15.5) * 2.0, hg.Vec3(hg.Deg(15), 0, 0))
 local cam = hg.CreateCamera(scene, cam_mat, 0.01, 1000, hg.Deg(30))
@@ -95,13 +96,13 @@ local replay_direction
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     keyboard:Update()
 
+    hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)
+ 
     -- physics:NodeWake(chair_node)
     local view_id = 0
     local pass_id
 
     if state == "record" then
-        hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)
-
         local node_idx
         local frame_nodes = {}
         for node_idx = 1, #rb_nodes do
@@ -112,7 +113,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
         local current_clock = hg.GetClock()
         table.insert(records, {t = current_clock, frame_nodes = frame_nodes})
 
-        if current_clock > hg.time_from_sec_f(5.0) then
+        if current_clock > hg.time_from_sec_f(10.0) then
             state = "replay"
             replay_direction = -1
             record_frame = #records
@@ -125,8 +126,6 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
             physics:NodeResetWorld(rb_nodes[node_idx], records[record_frame].frame_nodes[node_idx])
         end
 
-        hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)
-
         record_frame = record_frame + replay_direction
         if replay_direction < 0 and record_frame < 1 then
             record_frame = 1
@@ -138,8 +137,11 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     end
 
     -- rendering
-    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
-
+    if state == "record" then
+        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, blank_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+    else
+        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+    end
     -- -- Debug physics display
     -- hg.SetViewClear(view_id, 0, 0, 1.0, 0)
     -- hg.SetViewRect(view_id, 0, 0, res_x, res_y)
