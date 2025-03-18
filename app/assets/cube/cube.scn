@@ -105,6 +105,23 @@
 					"face_culling": "cw",
 					"flags": [],
 					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "maps/indus_ground_color.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "maps/indus_ground_normal.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "maps/indus_ground_orm.png",
+							"stage": 1
+						}
+					],
 					"values": [
 						{
 							"name": "uBaseOpacityColor",
@@ -114,6 +131,16 @@
 								0.800000011920929,
 								0.800000011920929,
 								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.4705882668495178,
+								0.25882354378700256,
+								2.007843255996704
 							]
 						},
 						{
@@ -166,7 +193,7 @@
 				0.0
 			],
 			"rot": [
-				89.9999771118164,
+				89.99996185302734,
 				180.0,
 				180.0
 			],

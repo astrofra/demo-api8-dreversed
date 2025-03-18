@@ -7,6 +7,7 @@ $input vWorldPos, vNormal, vTangent, vBinormal, vTexCoord0, vTexCoord1, vLinearS
 uniform vec4 uBaseOpacityColor;
 uniform vec4 uOcclusionRoughnessMetalnessColor;
 uniform vec4 uSelfColor;
+uniform vec4 uORMPow;
 
 // Texture slots
 SAMPLER2D(uBaseOpacityMap, 0);
@@ -138,6 +139,10 @@ void main() {
 	vec4 occ_rough_metal = uOcclusionRoughnessMetalnessColor;
 #endif // USE_OCCLUSION_ROUGHNESS_METALNESS_MAP
 
+occ_rough_metal.x = pow(occ_rough_metal.x, uORMPow.x);
+occ_rough_metal.y = pow(occ_rough_metal.y, uORMPow.y);
+occ_rough_metal.z = pow(occ_rough_metal.z, uORMPow.z);
+
 	//
 #if USE_SELF_MAP
 	vec4 self = texture2D(uSelfMap, vTexCoord0);
@@ -157,7 +162,7 @@ void main() {
 
 	mat3 TBN = mtxFromRows(T, B, N);
 
-	N.xy = texture2D(uNormalMap, vTexCoord0).xy * 2.0 - 1.0;
+	N.xy = (texture2D(uNormalMap, vTexCoord0).xy * 2.0 - 1.0) * uORMPow.w;
 	N.z = sqrt(1.0 - dot(N.xy, N.xy));
 	N = normalize(mul(N, TBN));
 #endif // USE_NORMAL_MAP
