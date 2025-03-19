@@ -61,11 +61,11 @@ scene:SetCurrentCamera(cam)
 
 local lgt = hg.CreateLinearLight(scene, hg.TransformationMat4(hg.Vec3(0, 0, 0), hg.Vec3(hg.Deg(30), hg.Deg(30), 0)), hg.Color(1, 1, 1), hg.Color(1, 1, 1), 10, hg.LST_Map, 0.001, hg.Vec4(20, 34, 55, 70))
 
--- chair_node, _ = hg.CreateInstanceFromAssets(scene, hg.TranslationMat4(hg.Vec3(0, 1, 0)), "chair/chair.scn", res, hg.GetForwardPipelineInfo())
+-- chair_node, _ = hg.CreateInstanceFromAssets(scene, hg.TranslationMat4(hg.Vec3(0, 1, 0)), "common/chair/chair.scn", res, hg.GetForwardPipelineInfo())
 
 local rb_nodes = {}
 for i = 1, 200 do
-    -- local _new_node, _ = hg.CreateInstanceFromAssets(scene, hg.TranslationMat4(hg.Vec3(0, 1 + i * 5, 0)), "chair/chair.scn", res, hg.GetForwardPipelineInfo())
+    -- local _new_node, _ = hg.CreateInstanceFromAssets(scene, hg.TranslationMat4(hg.Vec3(0, 1 + i * 5, 0)), "common/chair/chair.scn", res, hg.GetForwardPipelineInfo())
     local _new_node, _ = CreatePhysicCubeEx(scene, cube_size, hg.TranslationMat4(hg.Vec3(0, 1 + i * 5, 0)), cube_ref, {mat_grey}, hg.RBT_Dynamic, 1)
     table.insert(rb_nodes, _new_node)
 end
