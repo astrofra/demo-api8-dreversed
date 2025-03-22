@@ -10,3 +10,8 @@
 
 ## 🚀 How to Run  
 Coming soon...
+
+## Credits
+
+- Fonts :
+  - CirrusCumulus by Clara Sambot. Distributed by velvetyne.fr.
