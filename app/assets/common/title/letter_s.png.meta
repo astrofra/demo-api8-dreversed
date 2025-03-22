@@ -1,0 +1,10 @@
+{
+	"profiles": {
+		"default": {
+			"compression": "BC7",
+			"type": "Standard",
+			"wrap-U": "Clamp",
+			"wrap-V": "Clamp"
+		}
+	}
+}
