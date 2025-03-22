@@ -2,7 +2,7 @@ import trimesh
 import numpy as np
 import os
 
-# load mesh
+# Object path
 obj_path = '../../../works/models/xi_jinping/xi_jinping.obj'
 obj_name = obj_path.split('/')[-1].split('.')[0]
 base = os.path.dirname(__file__)
@@ -12,10 +12,10 @@ lua_name = obj_name + '.lua'
 if not os.path.isfile(path):
     raise FileNotFoundError(f"OBJ not found: {path}")
 
-# Chargement
+# Loading
 mesh = trimesh.load(path, force='mesh')
 
-# Voxelisation
+# Voxelize
 voxel_size = 0.1
 min_bound, max_bound = mesh.bounds
 dims = ((max_bound - min_bound) / voxel_size).astype(int)
