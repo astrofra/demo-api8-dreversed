@@ -1,5 +1,6 @@
 hg = require("harfang")
 require("physics_utils")
+require("sequences/simple_cube_stack")
 
 hg.AddAssetsFolder('assets_compiled')
 
@@ -49,17 +50,8 @@ local lgt = hg.CreateLinearLight(scene, hg.TransformationMat4(hg.Vec3(0, 0, 0), 
 local floor, rb_floor = CreatePhysicCubeEx(scene, ground_size, hg.TranslationMat4(hg.Vec3(0, -0.005, 0)), ground_ref, {mat_grey}, hg.RBT_Static, 0)
 rb_floor:SetRestitution(1)
 
--- specific physics setup
-
-print(">>> Description:\n>>> Drop vertically 200 chairs, made of 6 collision boxes each")
--- chair_node, _ = hg.CreateInstanceFromAssets(scene, hg.TranslationMat4(hg.Vec3(0, 1, 0)), "common/chair/chair.scn", res, hg.GetForwardPipelineInfo())
-
-local rb_nodes = {}
-for i = 1, 200 do
-    -- local _new_node, _ = hg.CreateInstanceFromAssets(scene, hg.TranslationMat4(hg.Vec3(0, 1 + i * 5, 0)), "common/chair/chair.scn", res, hg.GetForwardPipelineInfo())
-    local _new_node, _ = CreatePhysicCubeEx(scene, cube_size, hg.TranslationMat4(hg.Vec3(0, 1 + i * 5, 0)), cube_ref, {mat_grey}, hg.RBT_Dynamic, 1)
-    table.insert(rb_nodes, _new_node)
-end
+--- call setup here
+local rb_nodes = SetupSimpleCubeStack(scene, cube_size, cube_ref, mat_grey)
 
 -- enable scene physics
 local physics = hg.SceneBullet3Physics()
