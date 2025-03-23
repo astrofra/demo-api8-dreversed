@@ -176,3 +176,4 @@ cython_debug/
 /app/assets_compiled
 .DS_Store
 *.editor
+/app/assets.meta
