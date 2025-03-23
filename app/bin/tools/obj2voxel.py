@@ -16,7 +16,7 @@ print("> Loading : " +path )
 if not os.path.isfile(path):
     raise FileNotFoundError(f"!> OBJ not found: {path}")
 
-# Chargement
+# Loading
 mesh = trimesh.load(path, force='mesh')
 
 print("> Mesh loaded...")
