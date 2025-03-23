@@ -67,5 +67,5 @@
 	"write_b": true,
 	"write_g": true,
 	"write_r": true,
-	"write_z": false
+	"write_z": true
 }
