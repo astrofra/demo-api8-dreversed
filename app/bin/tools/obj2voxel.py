@@ -22,7 +22,7 @@ mesh = trimesh.load(path, force='mesh')
 print("> Mesh loaded...")
 
 # Voxelisation
-voxel_size = 0.1
+voxel_size = 0.075
 min_bound, max_bound = mesh.bounds
 dims = ((max_bound - min_bound) / voxel_size).astype(int)
 
@@ -47,9 +47,10 @@ print("> Conversion done, now writing the Lua file...")
 
 # Export to Lua
 with open(os.path.join('app', 'voxels', lua_name), "w") as f:
-    f.write("voxels = {\n")
+    f.write("local voxels = {\n")
     for v in grid_indices:
         f.write(f"  {{x={v[0]}, y={v[1]}, z={v[2]}}},\n")
-    f.write("}\n")
+    f.write("}\n\n")
+    f.write("return voxels\n")
 
 print("> Generated a voxel of : " + str(len(grid_indices)) + " points for mesh '" + obj_name + ".lua'")
