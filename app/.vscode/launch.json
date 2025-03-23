@@ -6,23 +6,23 @@
     "configurations": [
 
 		{
-			"name": "No arg",
+			"name": "Demo AAA",
 			"type": "lua",
 			"request": "launch",
 			"stopOnEntry": false,
 			"program": "${file}",
 			"cwd": "${workspaceFolder}/",
-			"luaexe": "${workspaceFolder}/bin/lua.exe",
+			"luaexe": "${workspaceFolder}/bin/hg_lua-win-x64/lua.exe",
 		},
 		{
-			"name": "With arg",
+			"name": "Demo noAAA",
 			"type": "lua",
 			"request": "launch",
 			"stopOnEntry": false,
 			"program": "${file}",
 			"cwd": "${workspaceFolder}/",
-			"arg": [],
-			"luaexe": "${workspaceFolder}/bin/lua.exe",
+			"arg": ["--noAAA"],
+			"luaexe": "${workspaceFolder}/bin/hg_lua-win-x64/lua.exe",
 		}
     ]
 }
