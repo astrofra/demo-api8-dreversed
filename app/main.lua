@@ -1,20 +1,5 @@
 hg = require("harfang")
-
-function CreatePhysicCubeEx(scene, size, mtx, model_ref, materials, rb_type, mass)
-	local node = hg.CreateObject(scene, mtx, model_ref, materials)
-	node:SetName("Physic Cube")
-	local rb = scene:CreateRigidBody()
-	rb:SetType(rb_type)
-	node:SetRigidBody(rb)
-    -- create custom cube collision
-	local col = scene:CreateCollision()
-	col:SetType(hg.CT_Cube)
-	col:SetSize(size)
-	col:SetMass(mass)
-    -- set cube as collision shape
-	node:SetCollision(0, col)
-	return node, rb
-end
+require("physics_utils")
 
 hg.AddAssetsFolder('assets_compiled')
 
@@ -22,7 +7,7 @@ hg.AddAssetsFolder('assets_compiled')
 hg.InputInit()
 hg.WindowSystemInit()
 
-local res_x, res_y = 720, 720
+local res_x, res_y = 1280, 720
 local win = hg.RenderInit('Physics Test', res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X)
 
 local pipeline = hg.CreateForwardPipeline(2048)
@@ -49,7 +34,6 @@ local ground_ref = res:AddModel('ground', hg.CreateCubeModel(vtx_layout, ground_
 
 -- setup the scene
 local scene = hg.Scene()
-local blank_scene = hg.Scene()
 
 local cam_mat = hg.TransformationMat4(hg.Vec3(0, 6, -15.5) * 2.0, hg.Vec3(hg.Deg(15), 0, 0))
 local cam = hg.CreateCamera(scene, cam_mat, 0.01, 1000, hg.Deg(30))
@@ -137,11 +121,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     end
 
     -- rendering
-    if state == "record" then
-        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, blank_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
-    else
-        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
-    end
+    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
     -- -- Debug physics display
     -- hg.SetViewClear(view_id, 0, 0, 1.0, 0)
     -- hg.SetViewRect(view_id, 0, 0, res_x, res_y)
