@@ -17,10 +17,17 @@ local res = hg.PipelineResources()
 local pipeline_info = hg.GetForwardPipelineInfo()
 
 local pipeline_aaa_config = hg.ForwardPipelineAAAConfig()
-local pipeline_aaa = hg.CreateForwardPipelineAAAFromAssets("core", pipeline_aaa_config, hg.BR_Equal, hg.BR_Equal)
+local pipeline_aaa = hg.CreateForwardPipelineAAAFromAssets("core", pipeline_aaa_config, hg.BR_Half, hg.BR_Half)
+
+pipeline_aaa_config.motion_blur = 2.0
 pipeline_aaa_config.sample_count = 1
-pipeline_aaa_config.dof_focus_point = 3.5 -- Distance to the focus point (in meters)
-pipeline_aaa_config.dof_focus_length = 0.1 -- Depth of field (in meters); smaller values result in a narrower focused area.
+pipeline_aaa_config.z_thickness = 0.25
+pipeline_aaa_config.exposure = 1.2
+pipeline_aaa_config.gamma = 1.8
+pipeline_aaa_config.bloom_intensity	= 0.7500
+pipeline_aaa_config.bloom_threshold	= 0.5200
+-- pipeline_aaa_config.dof_focus_point = 3.85 -- Distance to the focus point (in meters)
+-- pipeline_aaa_config.dof_focus_length = 20.0 -- Depth of field (in meters); smaller values result in a narrower focused area.
 
 -- physics debug
 local vtx_line_layout = hg.VertexLayoutPosFloatColorUInt8()
@@ -99,7 +106,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     keyboard:Update()
 
     dt = hg.TickClock()
-    camera_root_rot.y = camera_root_rot.y + math.pi * hg.time_to_sec_f(dt) * 0.15
+    camera_root_rot.y = camera_root_rot.y - math.pi * hg.time_to_sec_f(dt) * 0.15
     camera_root:GetTransform():SetRot(camera_root_rot)
 
     hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)

@@ -246,7 +246,7 @@ occ_rough_metal.z = pow(occ_rough_metal.z, uORMPow.z);
 	float lod_level = log2(dd);
 #endif
 
-	float fake_horizon_based_boost = pow(clamp(map(vWorldPos.y, 0.0, 0.25, 0.0, 1.0), 0.2, 1.0), 2.0);
+	float fake_horizon_based_boost = pow(clamp(map(vWorldPos.y, 0.0, 0.25, 0.0, 1.0), 0.2, 1.0), 0.5);
 	// vec3 fake_horizon_based_boost_vec = vec3_splat(fake_horizon_based_boost);
 
 	vec3 irradiance = textureCube(uIrradianceMap, ReprojectProbe(P, N)).xyz * fake_horizon_based_boost;
