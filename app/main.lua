@@ -1,6 +1,7 @@
 hg = require("harfang")
 require("physics_utils")
 require("sequences/simple_cube_stack")
+require("sequences/xi_voxel")
 
 hg.AddAssetsFolder('assets_compiled')
 
@@ -51,7 +52,8 @@ local floor, rb_floor = CreatePhysicCubeEx(scene, ground_size, hg.TranslationMat
 rb_floor:SetRestitution(1)
 
 --- call setup here
-local rb_nodes = SetupSimpleCubeStack(scene, cube_size, cube_ref, mat_grey)
+-- local rb_nodes = SetupSimpleCubeStack(scene, cube_size, cube_ref, mat_grey)
+local rb_nodes = SetupXiVoxel(scene, res, vtx_layout, mat_grey)
 
 -- enable scene physics
 local physics = hg.SceneBullet3Physics()

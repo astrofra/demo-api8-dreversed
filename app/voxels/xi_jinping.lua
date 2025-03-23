@@ -1,4 +1,4 @@
-voxels = {
+local voxels = {
   {x=1, y=4, z=3},
   {x=1, y=4, z=4},
   {x=1, y=4, z=5},
@@ -283,3 +283,5 @@ voxels = {
   {x=9, y=5, z=5},
   {x=9, y=5, z=6},
 }
+
+return voxels
