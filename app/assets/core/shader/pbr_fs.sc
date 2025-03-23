@@ -15,6 +15,11 @@ SAMPLER2D(uOcclusionRoughnessMetalnessMap, 1);
 SAMPLER2D(uNormalMap, 2);
 SAMPLER2D(uSelfMap, 4);
 
+float map(float value, float min1, float max1, float min2, float max2) {
+  return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
+}
+
+
 //
 float LightAttenuation(vec3 L, vec3 D, float dist, float attn, float inner_rim, float outer_rim) {
 	float k = 1.0;
@@ -241,14 +246,17 @@ occ_rough_metal.z = pow(occ_rough_metal.z, uORMPow.z);
 	float lod_level = log2(dd);
 #endif
 
-	vec3 irradiance = textureCube(uIrradianceMap, ReprojectProbe(P, N)).xyz;
+	float fake_horizon_based_boost = pow(clamp(map(vWorldPos.y, 0.0, 0.25, 0.0, 1.0), 0.2, 1.0), 2.0);
+	// vec3 fake_horizon_based_boost_vec = vec3_splat(fake_horizon_based_boost);
+
+	vec3 irradiance = textureCube(uIrradianceMap, ReprojectProbe(P, N)).xyz * fake_horizon_based_boost;
 	vec3 radiance = textureCubeLod(uRadianceMap, ReprojectProbe(P, R), occ_rough_metal.y * MAX_REFLECTION_LOD).xyz;
 
 #if FORWARD_PIPELINE_AAA
 	vec4 ss_irradiance = texture2D(uSSIrradianceMap, gl_FragCoord.xy / uResolution.xy);
 	vec4 ss_radiance = texture2D(uSSRadianceMap, gl_FragCoord.xy / uResolution.xy);
 
-	irradiance = ss_irradiance.xyz; // mix(irradiance, ss_irradiance, ss_irradiance.w);
+	irradiance = ss_irradiance.xyz * fake_horizon_based_boost; // mix(irradiance, ss_irradiance, ss_irradiance.w);
 	radiance = mix(radiance, ss_radiance.xyz, ss_radiance.w);
 #endif
 
@@ -293,6 +301,7 @@ occ_rough_metal.z = pow(occ_rough_metal.z, uORMPow.z);
 	color = pow(color, vec3_splat(1. / gamma));
 #endif // FORWARD_PIPELINE_AAA != 1
 
+	// color = fake_horizon_based_boost_vec;
 	gl_FragColor = vec4(color, opacity);
 #endif // FORWARD_PIPELINE_AAA_PREPASS
 #else

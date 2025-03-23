@@ -1,7 +1,7 @@
 {
 	"bloom_bias": 0.5,
 	"bloom_intensity": 0.75,
-	"bloom_threshold": 3.5,
+	"bloom_threshold": 1.5199999809265137,
 	"exposure": 1.2000000476837158,
 	"gamma": 1.7999999523162842,
 	"max_distance": 100.0,
