@@ -35,6 +35,7 @@ local ground_ref = res:AddModel('ground', hg.CreateCubeModel(vtx_layout, ground_
 -- setup the scene
 local scene = hg.Scene()
 
+-- generic environment
 local cam_mat = hg.TransformationMat4(hg.Vec3(0, 6, -15.5) * 2.0, hg.Vec3(hg.Deg(15), 0, 0))
 local cam = hg.CreateCamera(scene, cam_mat, 0.01, 1000, hg.Deg(30))
 local view_matrix = hg.InverseFast(cam_mat)
@@ -45,6 +46,12 @@ scene:SetCurrentCamera(cam)
 
 local lgt = hg.CreateLinearLight(scene, hg.TransformationMat4(hg.Vec3(0, 0, 0), hg.Vec3(hg.Deg(30), hg.Deg(30), 0)), hg.Color(1, 1, 1), hg.Color(1, 1, 1), 10, hg.LST_Map, 0.001, hg.Vec4(20, 34, 55, 70))
 
+local floor, rb_floor = CreatePhysicCubeEx(scene, ground_size, hg.TranslationMat4(hg.Vec3(0, -0.005, 0)), ground_ref, {mat_grey}, hg.RBT_Static, 0)
+rb_floor:SetRestitution(1)
+
+-- specific physics setup
+
+print(">>> Description:\n>>> Drop vertically 200 chairs, made of 6 collision boxes each")
 -- chair_node, _ = hg.CreateInstanceFromAssets(scene, hg.TranslationMat4(hg.Vec3(0, 1, 0)), "common/chair/chair.scn", res, hg.GetForwardPipelineInfo())
 
 local rb_nodes = {}
@@ -54,10 +61,7 @@ for i = 1, 200 do
     table.insert(rb_nodes, _new_node)
 end
 
-local floor, rb_floor = CreatePhysicCubeEx(scene, ground_size, hg.TranslationMat4(hg.Vec3(0, -0.005, 0)), ground_ref, {mat_grey}, hg.RBT_Static, 0)
-rb_floor:SetRestitution(1)
-
--- scene physics
+-- enable scene physics
 local physics = hg.SceneBullet3Physics()
 physics:SceneCreatePhysicsFromAssets(scene)
 local physics_step = hg.time_from_sec_f(1 / 60)
@@ -67,7 +71,6 @@ local clocks = hg.SceneClocks()
 
 -- description
 hg.SetLogLevel(hg.LL_Normal)
-print(">>> Description:\n>>> Drop vertically 200 chairs, made of 6 collision boxes each")
 
 -- main loop
 local keyboard = hg.Keyboard()
