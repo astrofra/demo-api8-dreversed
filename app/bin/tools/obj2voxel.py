@@ -22,7 +22,7 @@ mesh = trimesh.load(path, force='mesh')
 print("> Mesh loaded...")
 
 # Voxelisation
-voxel_size = 0.075
+voxel_size = 0.07
 min_bound, max_bound = mesh.bounds
 dims = ((max_bound - min_bound) / voxel_size).astype(int)
 

@@ -11,7 +11,7 @@ function SetupXiVoxel(_scene, _res, _vtx_layout, _generic_material)
     local rb_nodes = {}
     for i = 1, #xi_voxels do
         local x, y, z = xi_voxels[i].z * _cube_size, xi_voxels[i].y * _cube_size, xi_voxels[i].x * _cube_size
-        local _new_node, _ = CreatePhysicCubeEx(_scene, hg.Vec3(_cube_size, _cube_size, _cube_size), hg.TranslationMat4(hg.Vec3(x, y, z)), _cube_ref, {_generic_material}, hg.RBT_Static, 1)
+        local _new_node, _ = CreatePhysicCubeEx(_scene, hg.Vec3(_cube_size, _cube_size, _cube_size), hg.TranslationMat4(hg.Vec3(x, y, z)), _cube_ref, {_generic_material}, hg.RBT_Dynamic, 1)
         table.insert(rb_nodes, _new_node)
     end
 

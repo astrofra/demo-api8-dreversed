@@ -14,6 +14,13 @@ local win = hg.RenderInit('Physics Test', res_x, res_y, hg.RF_VSync | hg.RF_MSAA
 
 local pipeline = hg.CreateForwardPipeline(2048)
 local res = hg.PipelineResources()
+local pipeline_info = hg.GetForwardPipelineInfo()
+
+local pipeline_aaa_config = hg.ForwardPipelineAAAConfig()
+local pipeline_aaa = hg.CreateForwardPipelineAAAFromAssets("core", pipeline_aaa_config, hg.BR_Equal, hg.BR_Equal)
+pipeline_aaa_config.sample_count = 1
+pipeline_aaa_config.dof_focus_point = 3.5 -- Distance to the focus point (in meters)
+pipeline_aaa_config.dof_focus_length = 0.1 -- Depth of field (in meters); smaller values result in a narrower focused area.
 
 -- physics debug
 local vtx_line_layout = hg.VertexLayoutPosFloatColorUInt8()
@@ -27,7 +34,7 @@ local mat_grey = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(1, 1
 local vtx_layout = hg.VertexLayoutPosFloatNormUInt8()
 
 -- cube
-local cube_size =  hg.Vec3(1, 1, 1)
+local cube_size =  hg.Vec3(0.5, 0.5, 0.5)
 local cube_ref = res:AddModel('cube', hg.CreateCubeModel(vtx_layout, cube_size.x, cube_size.y, cube_size.z))
 
 -- ground
@@ -37,29 +44,40 @@ local ground_ref = res:AddModel('ground', hg.CreateCubeModel(vtx_layout, ground_
 -- setup the scene
 local scene = hg.Scene()
 
--- generic environment
-local cam_mat = hg.TransformationMat4(hg.Vec3(0, 6, -15.5) * 2.0, hg.Vec3(hg.Deg(15), 0, 0))
-local cam = hg.CreateCamera(scene, cam_mat, 0.01, 1000, hg.Deg(30))
-local view_matrix = hg.InverseFast(cam_mat)
+hg.LoadSceneFromAssets("main_stage.scn", scene, res, pipeline_info)
+local cam = scene:GetNode("Camera")
+local view_matrix = hg.InverseFast(cam:GetTransform():GetWorld())
 local c = cam:GetCamera()
 local projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
+scene:SetCurrentCamera(cam)
 
-scene:SetCurrentCamera(cam)	
+local camera_root = scene:GetNode("camera_root")
+local camera_root_rot = camera_root:GetTransform():GetRot()
 
-local lgt = hg.CreateLinearLight(scene, hg.TransformationMat4(hg.Vec3(0, 0, 0), hg.Vec3(hg.Deg(30), hg.Deg(30), 0)), hg.Color(1, 1, 1), hg.Color(1, 1, 1), 10, hg.LST_Map, 0.001, hg.Vec4(20, 34, 55, 70))
+-- generic environment
+-- local cam_mat = hg.TransformationMat4(hg.Vec3(0, 6, -15.5) * 2.0, hg.Vec3(hg.Deg(15), 0, 0))
+-- local cam = hg.CreateCamera(scene, cam_mat, 0.01, 1000, hg.Deg(30))
+-- local view_matrix = hg.InverseFast(cam_mat)
+-- local c = cam:GetCamera()
+-- local projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
 
-local floor, rb_floor = CreatePhysicCubeEx(scene, ground_size, hg.TranslationMat4(hg.Vec3(0, -0.005, 0)), ground_ref, {mat_grey}, hg.RBT_Static, 0)
-rb_floor:SetRestitution(1)
+-- scene:SetCurrentCamera(cam)	
+
+-- local lgt = hg.CreateLinearLight(scene, hg.TransformationMat4(hg.Vec3(0, 0, 0), hg.Vec3(hg.Deg(30), hg.Deg(30), 0)), hg.Color(1, 1, 1), hg.Color(1, 1, 1), 10, hg.LST_Map, 0.001, hg.Vec4(20, 34, 55, 70))
+
+-- local floor, rb_floor = CreatePhysicCubeEx(scene, ground_size, hg.TranslationMat4(hg.Vec3(0, -0.005, 0)), ground_ref, {mat_grey}, hg.RBT_Static, 0)
+-- rb_floor:SetRestitution(1)
+
 
 --- call setup here
--- local rb_nodes = SetupSimpleCubeStack(scene, cube_size, cube_ref, mat_grey)
-local rb_nodes = SetupXiVoxel(scene, res, vtx_layout, mat_grey)
+local rb_nodes = SetupSimpleCubeStack(scene, cube_size, cube_ref, mat_grey)
+-- local rb_nodes = SetupXiVoxel(scene, res, vtx_layout, mat_grey)
 
 -- enable scene physics
 local physics = hg.SceneBullet3Physics()
 physics:SceneCreatePhysicsFromAssets(scene)
-local physics_step = hg.time_from_sec_f(1 / 60)
-local dt_frame_step = hg.time_from_sec_f(1 / 60)
+local physics_step = hg.time_from_sec_f(1 / 120)
+local dt_frame_step = hg.time_from_sec_f(1 / 120)
 
 local clocks = hg.SceneClocks()
 
@@ -74,8 +92,15 @@ local state = "record"
 local record_frame = 1
 local replay_direction
 
+local frame = 0
+local dt = hg.time_from_sec_f(1.0/60.0)
+
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     keyboard:Update()
+
+    dt = hg.TickClock()
+    camera_root_rot.y = camera_root_rot.y + math.pi * hg.time_to_sec_f(dt) * 0.15
+    camera_root:GetTransform():SetRot(camera_root_rot)
 
     hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)
  
@@ -100,8 +125,6 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
             record_frame = #records
         end
     elseif state == "replay" then
-        local dt = hg.TickClock()
-
         for node_idx = 1, #rb_nodes do
             physics:NodeTeleport(rb_nodes[node_idx], records[record_frame].frame_nodes[node_idx])
             physics:NodeResetWorld(rb_nodes[node_idx], records[record_frame].frame_nodes[node_idx])
@@ -118,7 +141,8 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     end
 
     -- rendering
-    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+
     -- -- Debug physics display
     -- hg.SetViewClear(view_id, 0, 0, 1.0, 0)
     -- hg.SetViewRect(view_id, 0, 0, res_x, res_y)
@@ -126,7 +150,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     -- rs = hg.ComputeRenderState(hg.BM_Opaque, hg.DT_Disabled, hg.FC_Disabled)
     -- physics:RenderCollision(view_id, vtx_line_layout, line_shader, rs, 0)
 
-    hg.Frame()
+    frame = hg.Frame()
     hg.UpdateWindow(win)
 end
 
