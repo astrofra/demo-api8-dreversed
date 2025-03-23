@@ -37,29 +37,26 @@ float SampleShadowPCF(sampler2DShadow map, vec4 coord, float inv_pixel_size, flo
 	float k_pixel_size = inv_pixel_size * coord.w;
 
 	float k = 0.0;
+	#define PCF_W 2.0
 
-#if FORWARD_PIPELINE_AAA
-	#define PCF_SAMPLE_COUNT 2 // 3x3
+	// // 2x2
+	// k += SampleHardShadow(map, coord + vec4(vec2(-PCF_W, -PCF_W) * k_pixel_size, 0.0, 0.0), bias);
+	// k += SampleHardShadow(map, coord + vec4(vec2( PCF_W, -PCF_W) * k_pixel_size, 0.0, 0.0), bias);
+	// k += SampleHardShadow(map, coord + vec4(vec2(-PCF_W,  PCF_W) * k_pixel_size, 0.0, 0.0), bias);
+	// k += SampleHardShadow(map, coord + vec4(vec2( PCF_W,  PCF_W) * k_pixel_size, 0.0, 0.0), bias);
 
-//	ARRAY_BEGIN(float, weights, 9) 0.024879, 0.107973, 0.024879, 0.107973, 0.468592, 0.107973, 0.024879, 0.107973, 0.024879 ARRAY_END();
-	ARRAY_BEGIN(float, weights, 9) 0.011147, 0.083286, 0.011147, 0.083286, 0.622269, 0.083286, 0.011147, 0.083286, 0.011147 ARRAY_END();
+	// k /= 4.0;
+	k += SampleHardShadow(map, coord + vec4(vec2(-PCF_W, 0.0) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2( PCF_W, 0.0) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2(0.0, -PCF_W) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2(0.0,  PCF_W) * k_pixel_size, 0.0, 0.0), bias);
 
-	for (int j = 0; j <= PCF_SAMPLE_COUNT; ++j) {
-		float v = 6.0 * (float(j) + jitter.y) / float(PCF_SAMPLE_COUNT) - 1.0;
-		for (int i = 0; i <= PCF_SAMPLE_COUNT; ++i) {
-			float u = 6.0 * (float(i) + jitter.x) / float(PCF_SAMPLE_COUNT) - 1.0;
-			k += SampleHardShadow(map, coord + vec4(vec2(u, v) * k_pixel_size, 0.0, 0.0), bias) * weights[j * 3 + i];
-		}
-	}
-#else // FORWARD_PIPELINE_AAA
-	// 2x2
-	k += SampleHardShadow(map, coord + vec4(vec2(-0.5, -0.5) * k_pixel_size, 0.0, 0.0), bias);
-	k += SampleHardShadow(map, coord + vec4(vec2( 0.5, -0.5) * k_pixel_size, 0.0, 0.0), bias);
-	k += SampleHardShadow(map, coord + vec4(vec2(-0.5,  0.5) * k_pixel_size, 0.0, 0.0), bias);
-	k += SampleHardShadow(map, coord + vec4(vec2( 0.5,  0.5) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2(-PCF_W, -PCF_W) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2( PCF_W, -PCF_W) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2(-PCF_W,  PCF_W) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2( PCF_W,  PCF_W) * k_pixel_size, 0.0, 0.0), bias);
 
-	k /= 4.0;
-#endif // FORWARD_PIPELINE_AAA
+	k /= 8.0;
 
 	return k;
 }
