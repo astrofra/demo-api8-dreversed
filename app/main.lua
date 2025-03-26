@@ -143,15 +143,15 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     -- rendering
     view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
 
-    -- Debug physics display
-    hg.SetViewClear(view_id, 0, 0, 1.0, 0)
-    hg.SetViewRect(view_id, 0, 0, res_x, res_y)
-    view_matrix = hg.InverseFast(cam:GetTransform():GetWorld())
-    c = cam:GetCamera()
-    projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
-    hg.SetViewTransform(view_id, view_matrix, projection_matrix)
-    rs = hg.ComputeRenderState(hg.BM_Opaque, hg.DT_Disabled, hg.FC_Disabled)
-    physics:RenderCollision(view_id, vtx_line_layout, line_shader, rs, 0)
+    -- -- Debug physics display
+    -- hg.SetViewClear(view_id, 0, 0, 1.0, 0)
+    -- hg.SetViewRect(view_id, 0, 0, res_x, res_y)
+    -- view_matrix = hg.InverseFast(cam:GetTransform():GetWorld())
+    -- c = cam:GetCamera()
+    -- projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
+    -- hg.SetViewTransform(view_id, view_matrix, projection_matrix)
+    -- rs = hg.ComputeRenderState(hg.BM_Opaque, hg.DT_Disabled, hg.FC_Disabled)
+    -- physics:RenderCollision(view_id, vtx_line_layout, line_shader, rs, 0)
 
     frame = hg.Frame()
     hg.UpdateWindow(win)
