@@ -5,6 +5,32 @@ require("sequences/simple_cube_stack")
 require("sequences/vertical_neon_chaos")
 require("sequences/xi_voxel")
 
+function SetupBackgroundEnvironment(_res, _pipeline_info)
+    local scene = hg.Scene()
+
+    hg.LoadSceneFromAssets("main_stage.scn", scene, _res, _pipeline_info)
+    local cam = scene:GetNode("Camera")
+    -- local view_matrix = hg.InverseFast(cam:GetTransform():GetWorld())
+    -- local c = cam:GetCamera()
+    -- local projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
+    scene:SetCurrentCamera(cam)
+    
+    local camera_root = scene:GetNode("camera_root")
+
+    return scene, cam, camera_root
+end
+
+function SetupScenePhysics(_scene, freq)
+    -- enable scene physics
+    freq = freq or 120.0
+    local physics = hg.SceneBullet3Physics()
+    physics:SceneCreatePhysicsFromAssets(_scene)
+    local physics_step = hg.time_from_sec_f(1.0 / freq)
+    local dt_frame_step = hg.time_from_sec_f(1.0 / freq)
+
+    return physics, physics_step, dt_frame_step
+end
+
 hg.AddAssetsFolder('assets_compiled')
 
 -- main window
@@ -12,7 +38,7 @@ hg.InputInit()
 hg.WindowSystemInit()
 
 local res_x, res_y = 1280, 720
-local win = hg.RenderInit('Physics Test', res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X)
+local win = hg.RenderInit('Dreversed', res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X)
 
 local pipeline = hg.CreateForwardPipeline(2048)
 local res = hg.PipelineResources()
@@ -55,29 +81,32 @@ local cube_size =  hg.Vec3(0.5, 0.5, 0.5)
 local cube_ref = res:AddModel('cube', hg.CreateCubeModel(vtx_layout, cube_size.x, cube_size.y, cube_size.z))
 
 -- setup the scene
-local scene = hg.Scene()
+-- local scene, cam, camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 
-hg.LoadSceneFromAssets("main_stage.scn", scene, res, pipeline_info)
-local cam = scene:GetNode("Camera")
-local view_matrix = hg.InverseFast(cam:GetTransform():GetWorld())
-local c = cam:GetCamera()
-local projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
-scene:SetCurrentCamera(cam)
-
-local camera_root = scene:GetNode("camera_root")
-local camera_root_rot = camera_root:GetTransform():GetRot()
+local camera_root_rot = hg.Vec3(0,0,0)
 
 --- call setup here
--- local rb_nodes = SetupSimpleCubeStack(scene, res, {model_size = cube_size, model_ref = cube_ref, materials = {grey = mat_grey}})
--- local rb_nodes = SetupXiVoxel(scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold}})
-local rb_nodes = SetupVerticalNeonChaos(scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, gold = mat_gold}})
--- local rb_nodes = SetupTitleScene(scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
+sequences = {}
 
--- enable scene physics
-local physics = hg.SceneBullet3Physics()
-physics:SceneCreatePhysicsFromAssets(scene)
-local physics_step = hg.time_from_sec_f(1 / 120)
-local dt_frame_step = hg.time_from_sec_f(1 / 120)
+-- setup each sequence separately
+-- {
+    local scene, cam, camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local rb_nodes = SetupSimpleCubeStack(scene, res, {model_size = cube_size, model_ref = cube_ref, materials = {grey = mat_grey}})
+    local physics, physics_step, dt_frame_step = SetupScenePhysics(scene)
+    table.insert(sequences, {scene = scene, camera = cam, camera_root = camera_root, nodes = rb_nodes, physics = physics, physics_step = physics_step, dt_frame_step = dt_frame_step})
+
+    local scene, cam, camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local rb_nodes = SetupXiVoxel(scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold}})
+    local physics, physics_step, dt_frame_step = SetupScenePhysics(scene)
+    table.insert(sequences, {scene = scene, camera = cam, camera_root = camera_root, nodes = rb_nodes, physics = physics, physics_step = physics_step, dt_frame_step = dt_frame_step})
+
+    local scene, cam, camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local rb_nodes = SetupVerticalNeonChaos(scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, gold = mat_gold}})
+    local physics, physics_step, dt_frame_step = SetupScenePhysics(scene)
+    table.insert(sequences, {scene = scene, camera = cam, camera_root = camera_root, nodes = rb_nodes, physics = physics, physics_step = physics_step, dt_frame_step = dt_frame_step})
+
+    -- local rb_nodes = SetupTitleScene(scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
+-- }
 
 local clocks = hg.SceneClocks()
 
