@@ -1,6 +1,7 @@
 hg = require("harfang")
 require("physics_utils")
 require("sequences/simple_cube_stack")
+require("sequences/vertical_neon_chaos")
 require("sequences/xi_voxel")
 
 hg.AddAssetsFolder('assets_compiled')
@@ -17,14 +18,14 @@ local res = hg.PipelineResources()
 local pipeline_info = hg.GetForwardPipelineInfo()
 
 local pipeline_aaa_config = hg.ForwardPipelineAAAConfig()
-local pipeline_aaa = hg.CreateForwardPipelineAAAFromAssets("core", pipeline_aaa_config, hg.BR_Half, hg.BR_Half)
+local pipeline_aaa = hg.CreateForwardPipelineAAAFromAssets("core", pipeline_aaa_config, hg.BR_Equal, hg.BR_Equal)
 
 pipeline_aaa_config.motion_blur = 2.0
 pipeline_aaa_config.sample_count = 1
 pipeline_aaa_config.z_thickness = 0.25
 pipeline_aaa_config.exposure = 1.2
 pipeline_aaa_config.gamma = 1.8
-pipeline_aaa_config.bloom_intensity	= 0.7500
+pipeline_aaa_config.bloom_intensity	= 0.2500
 pipeline_aaa_config.bloom_threshold	= 0.5200
 -- pipeline_aaa_config.dof_focus_point = 3.85 -- Distance to the focus point (in meters)
 -- pipeline_aaa_config.dof_focus_length = 20.0 -- Depth of field (in meters); smaller values result in a narrower focused area.
@@ -35,7 +36,15 @@ local line_shader = hg.LoadProgramFromAssets("shaders/pos_rgb")
 
 -- create material
 local pbr_shader = hg.LoadPipelineProgramRefFromAssets('core/shader/pbr.hps', res, hg.GetForwardPipelineInfo())
+
 local mat_grey = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(1, 1, 1), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.5, 0.05))
+hg.SetMaterialValue(mat_grey, 'uSelfColor', hg.Vec4(0, 0, 0))
+
+local mat_neon_red = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(1, 0.1, 0.1), 'uSelfColor', hg.Vec4(15.0, 0.2, 0.01))
+hg.SetMaterialValue(mat_neon_red, 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.5, 0.05))
+
+local mat_gold = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(1, 0.9, 0.0), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.35, 0.75))
+hg.SetMaterialValue(mat_gold, 'uSelfColor', hg.Vec4(0, 0, 0))
 
 -- create models
 local vtx_layout = hg.VertexLayoutPosFloatNormUInt8()
@@ -61,24 +70,10 @@ scene:SetCurrentCamera(cam)
 local camera_root = scene:GetNode("camera_root")
 local camera_root_rot = camera_root:GetTransform():GetRot()
 
--- generic environment
--- local cam_mat = hg.TransformationMat4(hg.Vec3(0, 6, -15.5) * 2.0, hg.Vec3(hg.Deg(15), 0, 0))
--- local cam = hg.CreateCamera(scene, cam_mat, 0.01, 1000, hg.Deg(30))
--- local view_matrix = hg.InverseFast(cam_mat)
--- local c = cam:GetCamera()
--- local projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
-
--- scene:SetCurrentCamera(cam)	
-
--- local lgt = hg.CreateLinearLight(scene, hg.TransformationMat4(hg.Vec3(0, 0, 0), hg.Vec3(hg.Deg(30), hg.Deg(30), 0)), hg.Color(1, 1, 1), hg.Color(1, 1, 1), 10, hg.LST_Map, 0.001, hg.Vec4(20, 34, 55, 70))
-
--- local floor, rb_floor = CreatePhysicCubeEx(scene, ground_size, hg.TranslationMat4(hg.Vec3(0, -0.005, 0)), ground_ref, {mat_grey}, hg.RBT_Static, 0)
--- rb_floor:SetRestitution(1)
-
-
 --- call setup here
-local rb_nodes = SetupSimpleCubeStack(scene, cube_size, cube_ref, mat_grey)
+-- local rb_nodes = SetupSimpleCubeStack(scene, cube_size, cube_ref, mat_grey)
 -- local rb_nodes = SetupXiVoxel(scene, res, vtx_layout, mat_grey)
+local rb_nodes = SetupVerticalNeonChaos(scene, res, vtx_layout, {neon = mat_neon_red, gold = mat_gold})
 
 -- enable scene physics
 local physics = hg.SceneBullet3Physics()
