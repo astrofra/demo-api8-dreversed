@@ -1,8 +1,10 @@
 hg = require("harfang")
 require("physics_utils")
 
-function SetupVerticalNeonChaos(_scene, _res, _vtx_layout, _materials)
+-- SetupVerticalNeonChaos(scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, gold = mat_gold}})
+function SetupVerticalNeonChaos(_scene, _res, params)
     -- specific physics setup
+    local _vtx_layout, _materials = params.vtx_layout, params.materials
     local _model_size = hg.Vec3(0.05, 3.0, 0.05)
     local _model_ref = _res:AddModel('vertical_neon_red', hg.CreateCubeModel(_vtx_layout, _model_size.x, _model_size.y, _model_size.z))
     local _grid_size = 5

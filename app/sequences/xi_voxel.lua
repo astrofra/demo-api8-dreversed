@@ -2,8 +2,11 @@ hg = require("harfang")
 require("physics_utils")
 local xi_voxels = require("voxels/xi_jinping")
 
-function SetupXiVoxel(_scene, _res, _vtx_layout, _generic_material)
+-- SetupXiVoxel(scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold}})
+function SetupXiVoxel(_scene, _res, params)
 -- specific physics setup
+
+    local _vtx_layout, _generic_material = params.vtx_layout, params.materials.gold
 
     local _cube_size = 0.15
     local _cube_ref = {}
