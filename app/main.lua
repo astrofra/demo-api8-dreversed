@@ -203,7 +203,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     local record_frame_f = record_frame * #previous_record
     local record_frame_int = math.max(1, math.floor(record_frame_f))
     local lerp_coef = record_frame_f - record_frame_int
-    local _mat, _pos0, _pos1, _rot0
+    local _mat
     local next_record_frame = math.max(1, record_frame_int + 1)
     for node_idx = 1, #previous_nodes do
         _mat = hg.LerpAsOrthonormalBase(previous_record[record_frame_int].frame_nodes[node_idx], previous_record[next_record_frame].frame_nodes[node_idx], lerp_coef)
