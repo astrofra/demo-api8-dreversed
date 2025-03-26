@@ -71,7 +71,7 @@ local camera_root_rot = camera_root:GetTransform():GetRot()
 -- local rb_nodes = SetupSimpleCubeStack(scene, cube_size, cube_ref, mat_grey)
 -- local rb_nodes = SetupXiVoxel(scene, res, vtx_layout, mat_gold)
 -- local rb_nodes = SetupVerticalNeonChaos(scene, res, vtx_layout, {neon = mat_neon_red, gold = mat_gold})
-local rb_nodes = SetupTitleScene(scene, res, pipeline_info)
+local rb_nodes = SetupTitleScene(scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
 
 -- enable scene physics
 local physics = hg.SceneBullet3Physics()

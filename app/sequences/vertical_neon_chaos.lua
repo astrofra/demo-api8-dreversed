@@ -12,8 +12,8 @@ function SetupVerticalNeonChaos(_scene, _res, _vtx_layout, _materials)
     local _pos, _rot
 
     local rb_nodes = {}
-        for i = -_grid_size, _grid_size do
-            for j  = -_grid_size, _grid_size do
+    for i = -_grid_size, _grid_size do
+        for j  = -_grid_size, _grid_size do
             local _phase0, _phase1 = math.sin((i + j) * 2.0 * math.pi / (_grid_size * 2)), math.cos((i + j) * 2.0 * math.pi / (_grid_size * 2))
             _pos = hg.Vec3(i * _padding_factor, _drop_height + _y_offset, j * _padding_factor)
             _rot = hg.Vec3(_phase0 * math.pi * 0.2, 0.0, _phase1 * math.pi * 0.1)
