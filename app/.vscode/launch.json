@@ -6,7 +6,7 @@
     "configurations": [
 
 		{
-			"name": "Demo AAA",
+			"name": "Lua No Console",
 			"type": "lua",
 			"request": "launch",
 			"stopOnEntry": false,
@@ -15,14 +15,14 @@
 			"luaexe": "${workspaceFolder}/bin/hg_lua-win-x64/lua.exe",
 		},
 		{
-			"name": "Demo noAAA",
+			"name": "Lua Console",
 			"type": "lua",
 			"request": "launch",
 			"stopOnEntry": false,
 			"program": "${file}",
 			"cwd": "${workspaceFolder}/",
 			"arg": ["--noAAA"],
-			"luaexe": "${workspaceFolder}/bin/hg_lua-win-x64/lua.exe",
+			"luaexe": "${workspaceFolder}/bin/hg_lua-win-x64/luad.exe",
 		}
     ]
 }

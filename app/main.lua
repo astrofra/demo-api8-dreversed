@@ -91,9 +91,9 @@ local sequences = {}
 -- blank scene
 local _scene = hg.Scene()
 local _cam = hg.CreateCamera(_scene, hg.TranslationMat4(hg.Vec3(0,0,0)), 0.1, 100.0)
-local _camera_root = _scene:CreateNode()
-_camera_root:SetName("camera_root")
-_camera_root:SetTransform(_scene:CreateTransform())
+-- local _camera_root = _scene:CreateNode()
+-- _camera_root:SetName("camera_root")
+-- _camera_root:SetTransform(_scene:CreateTransform())
 -- local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = {}
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
@@ -169,7 +169,9 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
 
     dt = hg.TickClock()
     camera_root_rot.y = camera_root_rot.y - math.pi * hg.time_to_sec_f(dt) * 0.15
-    p_camera_root:GetTransform():SetRot(camera_root_rot)
+    if p_camera_root then
+        p_camera_root:GetTransform():SetRot(camera_root_rot)
+    end
 
     hg.SceneUpdateSystems(p_scene, clocks, p_dt_frame_step, p_physics, p_physics_step, 3)
     if _cs then 
@@ -195,11 +197,19 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     local previous_physics = sequences[ps].physics
     local previous_dt_frame_step = sequences[ps].dt_frame_step
     local previous_physics_step = sequences[ps].physics_step
-    record_frame = map(hg.time_to_sec_f(frame_clock - sequence_start_clock), 0.0, sequence_duration_sec, 1.0, 0.0)
-    record_frame = math.max(1, math.floor(record_frame * #previous_record))
+    record_frame = map(hg.time_to_sec_f(frame_clock - sequence_start_clock), 0.0, sequence_duration_sec, 0.0, 1.0)
+    record_frame = map(record_frame, 0.0, 1.0, 0.45, 0.55)
+    record_frame = 1.0 - clamp(record_frame, 0.0, 1.0)
+    local record_frame_f = record_frame * #previous_record
+    local record_frame_int = math.max(1, math.floor(record_frame_f))
+    local lerp_coef = record_frame_f - record_frame_int
+    local _mat, _pos0, _pos1, _rot0
+    local next_record_frame = math.max(1, record_frame_int + 1)
     for node_idx = 1, #previous_nodes do
-        previous_physics:NodeTeleport(previous_nodes[node_idx], previous_record[record_frame].frame_nodes[node_idx])
-        previous_physics:NodeResetWorld(previous_nodes[node_idx], previous_record[record_frame].frame_nodes[node_idx])
+        _mat = hg.LerpAsOrthonormalBase(previous_record[record_frame_int].frame_nodes[node_idx], previous_record[next_record_frame].frame_nodes[node_idx], lerp_coef)
+        -- previous_physics:NodeTeleport(previous_nodes[node_idx], _mat)
+        -- previous_physics:NodeResetWorld(previous_nodes[node_idx], _mat)
+        previous_nodes[node_idx]:GetTransform():SetWorld(_mat)
     end
     
     -- rendering
