@@ -5,6 +5,8 @@ require("sequences/simple_cube_stack")
 require("sequences/vertical_neon_chaos")
 require("sequences/xi_voxel")
 
+local ENABLE_PHYSICS_DEBUG_DISPLAY = false
+
 function SetupBackgroundEnvironment(_res, _pipeline_info)
     local scene = hg.Scene()
 
@@ -85,28 +87,27 @@ local cube_ref = res:AddModel('cube', hg.CreateCubeModel(vtx_layout, cube_size.x
 
 local camera_root_rot = hg.Vec3(0,0,0)
 
---- call setup here
-sequences = {}
-
 -- setup each sequence separately
--- {
-    local scene, cam, camera_root = SetupBackgroundEnvironment(res, pipeline_info)
-    local rb_nodes = SetupSimpleCubeStack(scene, res, {model_size = cube_size, model_ref = cube_ref, materials = {grey = mat_grey}})
-    local physics, physics_step, dt_frame_step = SetupScenePhysics(scene)
-    table.insert(sequences, {scene = scene, camera = cam, camera_root = camera_root, nodes = rb_nodes, physics = physics, physics_step = physics_step, dt_frame_step = dt_frame_step})
+local sequences = {}
+local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local _rb_nodes = SetupSimpleCubeStack(_scene, res, {model_size = cube_size, model_ref = cube_ref, materials = {grey = mat_grey}})
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+table.insert(sequences, {scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
-    local scene, cam, camera_root = SetupBackgroundEnvironment(res, pipeline_info)
-    local rb_nodes = SetupXiVoxel(scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold}})
-    local physics, physics_step, dt_frame_step = SetupScenePhysics(scene)
-    table.insert(sequences, {scene = scene, camera = cam, camera_root = camera_root, nodes = rb_nodes, physics = physics, physics_step = physics_step, dt_frame_step = dt_frame_step})
+local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local _rb_nodes = SetupXiVoxel(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold}})
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+table.insert(sequences, {scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
-    local scene, cam, camera_root = SetupBackgroundEnvironment(res, pipeline_info)
-    local rb_nodes = SetupVerticalNeonChaos(scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, gold = mat_gold}})
-    local physics, physics_step, dt_frame_step = SetupScenePhysics(scene)
-    table.insert(sequences, {scene = scene, camera = cam, camera_root = camera_root, nodes = rb_nodes, physics = physics, physics_step = physics_step, dt_frame_step = dt_frame_step})
+local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local _rb_nodes = SetupVerticalNeonChaos(_scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, gold = mat_gold}})
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+table.insert(sequences, {scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
-    -- local rb_nodes = SetupTitleScene(scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
--- }
+local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local _rb_nodes = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+table.insert(sequences, {scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 local clocks = hg.SceneClocks()
 
@@ -123,6 +124,11 @@ local replay_direction
 
 local frame = 0
 local dt = hg.time_from_sec_f(1.0/60.0)
+
+local current_sequence = 1
+
+local _s = sequences[current_sequence]
+local scene, cam, camera_root, rb_nodes, physics, physics_step, dt_frame_step = _s.scene, _s.camera, _s.camera_root, _s.nodes, _s.physics, _s.physics_step, _s.dt_frame_step
 
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     keyboard:Update()
@@ -172,15 +178,17 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     -- rendering
     view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
 
-    -- -- Debug physics display
-    -- hg.SetViewClear(view_id, 0, 0, 1.0, 0)
-    -- hg.SetViewRect(view_id, 0, 0, res_x, res_y)
-    -- view_matrix = hg.InverseFast(cam:GetTransform():GetWorld())
-    -- c = cam:GetCamera()
-    -- projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
-    -- hg.SetViewTransform(view_id, view_matrix, projection_matrix)
-    -- rs = hg.ComputeRenderState(hg.BM_Opaque, hg.DT_Disabled, hg.FC_Disabled)
-    -- physics:RenderCollision(view_id, vtx_line_layout, line_shader, rs, 0)
+    -- Debug physics display
+    if ENABLE_PHYSICS_DEBUG_DISPLAY then
+        hg.SetViewClear(view_id, 0, 0, 1.0, 0)
+        hg.SetViewRect(view_id, 0, 0, res_x, res_y)
+        view_matrix = hg.InverseFast(cam:GetTransform():GetWorld())
+        c = cam:GetCamera()
+        projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
+        hg.SetViewTransform(view_id, view_matrix, projection_matrix)
+        rs = hg.ComputeRenderState(hg.BM_Opaque, hg.DT_Disabled, hg.FC_Disabled)
+        physics:RenderCollision(view_id, vtx_line_layout, line_shader, rs, 0)
+    end
 
     frame = hg.Frame()
     hg.UpdateWindow(win)
