@@ -1,5 +1,6 @@
 hg = require("harfang")
 require("physics_utils")
+require("sequences/title_scene")
 require("sequences/simple_cube_stack")
 require("sequences/vertical_neon_chaos")
 require("sequences/xi_voxel")
@@ -53,10 +54,6 @@ local vtx_layout = hg.VertexLayoutPosFloatNormUInt8()
 local cube_size =  hg.Vec3(0.5, 0.5, 0.5)
 local cube_ref = res:AddModel('cube', hg.CreateCubeModel(vtx_layout, cube_size.x, cube_size.y, cube_size.z))
 
--- ground
-local ground_size = hg.Vec3(50, 0.05, 50)
-local ground_ref = res:AddModel('ground', hg.CreateCubeModel(vtx_layout, ground_size.x, ground_size.y, ground_size.z))
-
 -- setup the scene
 local scene = hg.Scene()
 
@@ -72,8 +69,9 @@ local camera_root_rot = camera_root:GetTransform():GetRot()
 
 --- call setup here
 -- local rb_nodes = SetupSimpleCubeStack(scene, cube_size, cube_ref, mat_grey)
--- local rb_nodes = SetupXiVoxel(scene, res, vtx_layout, mat_grey)
-local rb_nodes = SetupVerticalNeonChaos(scene, res, vtx_layout, {neon = mat_neon_red, gold = mat_gold})
+-- local rb_nodes = SetupXiVoxel(scene, res, vtx_layout, mat_gold)
+-- local rb_nodes = SetupVerticalNeonChaos(scene, res, vtx_layout, {neon = mat_neon_red, gold = mat_gold})
+local rb_nodes = SetupTitleScene(scene, res, pipeline_info)
 
 -- enable scene physics
 local physics = hg.SceneBullet3Physics()
@@ -145,12 +143,15 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     -- rendering
     view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
 
-    -- -- Debug physics display
-    -- hg.SetViewClear(view_id, 0, 0, 1.0, 0)
-    -- hg.SetViewRect(view_id, 0, 0, res_x, res_y)
-    -- hg.SetViewTransform(view_id, view_matrix, projection_matrix)
-    -- rs = hg.ComputeRenderState(hg.BM_Opaque, hg.DT_Disabled, hg.FC_Disabled)
-    -- physics:RenderCollision(view_id, vtx_line_layout, line_shader, rs, 0)
+    -- Debug physics display
+    hg.SetViewClear(view_id, 0, 0, 1.0, 0)
+    hg.SetViewRect(view_id, 0, 0, res_x, res_y)
+    view_matrix = hg.InverseFast(cam:GetTransform():GetWorld())
+    c = cam:GetCamera()
+    projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
+    hg.SetViewTransform(view_id, view_matrix, projection_matrix)
+    rs = hg.ComputeRenderState(hg.BM_Opaque, hg.DT_Disabled, hg.FC_Disabled)
+    physics:RenderCollision(view_id, vtx_line_layout, line_shader, rs, 0)
 
     frame = hg.Frame()
     hg.UpdateWindow(win)
