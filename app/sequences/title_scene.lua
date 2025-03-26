@@ -20,10 +20,11 @@ function SetupTitleScene(_scene, _res, _pipeline_info, _vtx_layout, _materials)
 
     -- add golden cubes (why not ?)
     local _model_size = hg.Vec3(0.1, 0.1, 0.1)
-    local _model_ref = _res:AddModel('title_golden_cubes', hg.CreateCubeModel(_vtx_layout, _model_size.x, _model_size.y, _model_size.z))
-    local _grid_size = 5
-    local _padding_factor = 0.5
-    local _drop_height = 25
+    local _model_ref_1 = _res:AddModel('title_golden_cubes_1', hg.CreateCubeModel(_vtx_layout, _model_size.x, _model_size.y, _model_size.z))
+    local _model_ref_2 = _res:AddModel('title_golden_cubes_2', hg.CreateCubeModel(_vtx_layout, _model_size.x / 2, _model_size.y / 2, _model_size.z / 2))
+    local _grid_size = 7
+    local _padding_factor = 0.35
+    local _drop_height = 20
     local _y_offset = 0.0
     local _pos, _rot
 
@@ -35,9 +36,14 @@ function SetupTitleScene(_scene, _res, _pipeline_info, _vtx_layout, _materials)
             _pos.z = _pos.z + _phase1
             _rot = hg.Vec3(_phase0 * math.pi * 0.2, (_phase0 + _phase1) * 0.5, _phase1 * math.pi * 0.1)
             if hg.Dist(_pos * hg.Vec3(1, 0, 1), hg.Vec3(0, 0, 0)) < _grid_size * _padding_factor then
-                local _new_node, _ = CreatePhysicCubeEx(_scene, _model_size, hg.TransformationMat4(_pos, _rot), _model_ref, {_materials.gold}, hg.RBT_Dynamic, 1)
+                local _new_node
+                if (i + j) % 2 == 0 then
+                    _new_node, _ = CreatePhysicCubeEx(_scene, _model_size, hg.TransformationMat4(_pos, _rot), _model_ref_1, {_materials.gold}, hg.RBT_Dynamic, 0.25)
+                else
+                    _new_node, _ = CreatePhysicCubeEx(_scene, _model_size * 0.5, hg.TransformationMat4(_pos, _rot), _model_ref_2, {_materials.gold}, hg.RBT_Dynamic, 0.25 / 2)
+                end
                 table.insert(rb_nodes, _new_node)
-                _y_offset = _y_offset + 0.25
+                _y_offset = _y_offset + 0.35
             end
         end
     end
