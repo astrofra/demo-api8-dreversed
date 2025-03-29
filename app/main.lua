@@ -6,7 +6,16 @@ require("sequences/simple_cube_stack")
 require("sequences/vertical_neon_chaos")
 require("sequences/xi_voxel")
 
-local ENABLE_PHYSICS_DEBUG_DISPLAY = false
+function display_physics_debug(view_id, cam, res_x, res_y, vtx_line_layout, line_shader, physics)
+    hg.SetViewClear(view_id, 0, 0, 1.0, 0)
+    hg.SetViewRect(view_id, 0, 0, res_x, res_y)
+    local view_matrix = hg.InverseFast(cam:GetTransform():GetWorld())
+    local c = cam:GetCamera()
+    local projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
+    hg.SetViewTransform(view_id, view_matrix, projection_matrix)
+    local rs = hg.ComputeRenderState(hg.BM_Opaque, hg.DT_Disabled, hg.FC_Disabled)
+    physics:RenderCollision(view_id, vtx_line_layout, line_shader, rs, 0)
+end
 
 function SetupBackgroundEnvironment(_res, _pipeline_info)
     local scene = hg.Scene()
@@ -141,6 +150,7 @@ local dt = hg.time_from_sec_f(1.0/60.0)
 local ps, cs = 1, 2 -- previous sequence, current sequence -- actually starts at 2
 
 local sequence_start_clock = hg.GetClock()
+local rotation_speed_factor = 0.0
 
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     keyboard:Update()
@@ -168,7 +178,10 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     p_scene:SetCurrentCamera(p_cam)
 
     dt = hg.TickClock()
-    camera_root_rot.y = camera_root_rot.y - math.pi * hg.time_to_sec_f(dt) * 0.15
+    if cs > 2 then
+        rotation_speed_factor = math.min(1.0, rotation_speed_factor + hg.time_to_sec_f(dt) * 0.1)
+        camera_root_rot.y = camera_root_rot.y - math.pi * hg.time_to_sec_f(dt) * 0.15 * EaseInOutQuick(rotation_speed_factor)
+    end
     if p_camera_root then
         p_camera_root:GetTransform():SetRot(camera_root_rot)
     end
@@ -197,36 +210,31 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     local previous_physics = sequences[ps].physics
     local previous_dt_frame_step = sequences[ps].dt_frame_step
     local previous_physics_step = sequences[ps].physics_step
-    record_frame = map(hg.time_to_sec_f(frame_clock - sequence_start_clock), 0.0, sequence_duration_sec, 0.0, 1.0)
-    record_frame = map(record_frame, 0.0, 1.0, 0.45, 0.55)
+    record_frame = map(hg.time_to_sec_f(frame_clock - sequence_start_clock), 0.0, sequence_duration_sec, 0.0, 1.0) -- time remap
+    -- record_frame = map(record_frame, 0.0, 1.0, 0.45, 0.55) -- time remap
     record_frame = 1.0 - clamp(record_frame, 0.0, 1.0)
     local record_frame_f = record_frame * #previous_record
     local record_frame_int = math.max(1, math.floor(record_frame_f))
     local lerp_coef = record_frame_f - record_frame_int
     local _mat
-    local next_record_frame = math.max(1, record_frame_int + 1)
+    local next_record_frame = clamp(record_frame_int + 1, 1, #previous_record)
     for node_idx = 1, #previous_nodes do
         _mat = hg.LerpAsOrthonormalBase(previous_record[record_frame_int].frame_nodes[node_idx], previous_record[next_record_frame].frame_nodes[node_idx], lerp_coef)
-        -- previous_physics:NodeTeleport(previous_nodes[node_idx], _mat)
-        -- previous_physics:NodeResetWorld(previous_nodes[node_idx], _mat)
+        previous_physics:NodeTeleport(previous_nodes[node_idx], _mat)
+        previous_physics:NodeResetWorld(previous_nodes[node_idx], _mat)
         previous_nodes[node_idx]:GetTransform():SetWorld(_mat)
     end
     
     -- rendering
     -- the trick is that we always render the PREVIOUS scene
-    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    if cs == 2 then
+        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+    else
+        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    end
 
     -- Debug physics display
-    if ENABLE_PHYSICS_DEBUG_DISPLAY then
-        hg.SetViewClear(view_id, 0, 0, 1.0, 0)
-        hg.SetViewRect(view_id, 0, 0, res_x, res_y)
-        view_matrix = hg.InverseFast(cam:GetTransform():GetWorld())
-        c = cam:GetCamera()
-        projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
-        hg.SetViewTransform(view_id, view_matrix, projection_matrix)
-        rs = hg.ComputeRenderState(hg.BM_Opaque, hg.DT_Disabled, hg.FC_Disabled)
-        physics:RenderCollision(view_id, vtx_line_layout, line_shader, rs, 0)
-    end
+    -- display_physics_debug(view_id, cam, res_x, res_y, vtx_line_layout, line_shader, physics)
 
     frame = hg.Frame()
     hg.UpdateWindow(win)
