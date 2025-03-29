@@ -106,32 +106,32 @@ local _cam = hg.CreateCamera(_scene, hg.TranslationMat4(hg.Vec3(0,0,0)), 0.1, 10
 -- local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = {}
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 
 -- title screen
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "title screen", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 -- Simple cubes
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupSimpleCubeStack(_scene, res, {model_size = cube_size, model_ref = cube_ref, materials = {grey = mat_grey}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "Simple cubes", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 -- Voxel
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupXiVoxel(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "Voxel", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 -- Neons
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupVerticalNeonChaos(_scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, gold = mat_gold}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "Neons", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 local clocks = hg.SceneClocks()
 local sequence_duration_sec = 10.0
@@ -158,8 +158,20 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     local frame_clock = hg.GetClock()
 
     if frame_clock - sequence_start_clock > hg.time_from_sec_f(sequence_duration_sec) then
+        -- disable rigid bodies for all the nodes of this sequence
+        local node_idx
+        local frame_nodes = {}
+        local rb_nodes = sequences[cs].nodes
+        local _physics = sequences[cs].physics
+        for node_idx = 1, #rb_nodes do
+            _physics:NodeDestroyPhysics(rb_nodes[node_idx])
+        end
+    
+        -- next sequence
         cs = cs + 1
         ps = cs - 1
+
+        -- sequence timer
         sequence_start_clock = frame_clock
     end
 
@@ -220,8 +232,6 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     local next_record_frame = clamp(record_frame_int + 1, 1, #previous_record)
     for node_idx = 1, #previous_nodes do
         _mat = hg.LerpAsOrthonormalBase(previous_record[record_frame_int].frame_nodes[node_idx], previous_record[next_record_frame].frame_nodes[node_idx], lerp_coef)
-        previous_physics:NodeTeleport(previous_nodes[node_idx], _mat)
-        previous_physics:NodeResetWorld(previous_nodes[node_idx], _mat)
         previous_nodes[node_idx]:GetTransform():SetWorld(_mat)
     end
     
@@ -234,7 +244,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     end
 
     -- Debug physics display
-    -- display_physics_debug(view_id, cam, res_x, res_y, vtx_line_layout, line_shader, physics)
+    -- display_physics_debug(view_id, sequences[ps].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[ps].physics)
 
     frame = hg.Frame()
     hg.UpdateWindow(win)
