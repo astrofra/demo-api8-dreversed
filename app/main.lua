@@ -138,7 +138,7 @@ local replay_direction
 local frame = 0
 local dt = hg.time_from_sec_f(1.0/60.0)
 
-local ps, cs = 1, 2 -- previous sequence, current sequence
+local ps, cs = 1, 2 -- previous sequence, current sequence -- actually starts at 2
 
 local sequence_start_clock = hg.GetClock()
 
