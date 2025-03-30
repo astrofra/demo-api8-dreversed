@@ -22,9 +22,6 @@ function SetupBackgroundEnvironment(_res, _pipeline_info)
 
     hg.LoadSceneFromAssets("main_stage.scn", scene, _res, _pipeline_info)
     local cam = scene:GetNode("Camera")
-    -- local view_matrix = hg.InverseFast(cam:GetTransform():GetWorld())
-    -- local c = cam:GetCamera()
-    -- local projection_matrix = hg.ComputePerspectiveProjectionMatrix(c:GetZNear(), c:GetZFar(), hg.FovToZoomFactor(c:GetFov()), hg.Vec2(res_x / res_y, 1))
     scene:SetCurrentCamera(cam)
     
     local camera_root = scene:GetNode("camera_root")
@@ -66,8 +63,6 @@ pipeline_aaa_config.exposure = 1.2
 pipeline_aaa_config.gamma = 1.8
 pipeline_aaa_config.bloom_intensity	= 0.2500
 pipeline_aaa_config.bloom_threshold	= 0.5200
--- pipeline_aaa_config.dof_focus_point = 3.85 -- Distance to the focus point (in meters)
--- pipeline_aaa_config.dof_focus_length = 20.0 -- Depth of field (in meters); smaller values result in a narrower focused area.
 
 -- physics debug
 local vtx_line_layout = hg.VertexLayoutPosFloatColorUInt8()
@@ -100,10 +95,6 @@ local sequences = {}
 -- blank scene
 local _scene = hg.Scene()
 local _cam = hg.CreateCamera(_scene, hg.TranslationMat4(hg.Vec3(0,0,0)), 0.1, 100.0)
--- local _camera_root = _scene:CreateNode()
--- _camera_root:SetName("camera_root")
--- _camera_root:SetTransform(_scene:CreateTransform())
--- local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = {}
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
@@ -156,6 +147,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     keyboard:Update()
 
     local frame_clock = hg.GetClock()
+    dt = hg.TickClock()
 
     if frame_clock - sequence_start_clock > hg.time_from_sec_f(sequence_duration_sec) then
         -- disable rigid bodies for all the nodes of this sequence
@@ -189,7 +181,6 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
 
     p_scene:SetCurrentCamera(p_cam)
 
-    dt = hg.TickClock()
     if cs > 2 then
         rotation_speed_factor = math.min(1.0, rotation_speed_factor + hg.time_to_sec_f(dt) * 0.1)
         camera_root_rot.y = camera_root_rot.y - math.pi * hg.time_to_sec_f(dt) * 0.15 * EaseInOutQuick(rotation_speed_factor)
@@ -198,7 +189,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
         p_camera_root:GetTransform():SetRot(camera_root_rot)
     end
 
-    hg.SceneUpdateSystems(p_scene, clocks, p_dt_frame_step, p_physics, p_physics_step, 3)
+    -- Update the physics simulation
     if _cs then 
         hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)
 
@@ -211,9 +202,6 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
 
         table.insert(sequences[cs].record, {t = frame_clock, frame_nodes = frame_nodes})
     end
-
-    local view_id = 0
-    local pass_id
 
     -- replay previous sequence
     local previous_record = sequences[ps].record
@@ -234,13 +222,19 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
         _mat = hg.LerpAsOrthonormalBase(previous_record[record_frame_int].frame_nodes[node_idx], previous_record[next_record_frame].frame_nodes[node_idx], lerp_coef)
         previous_nodes[node_idx]:GetTransform():SetWorld(_mat)
     end
+
+    sequences[ps].scene:Update(dt)
     
     -- rendering
+    local view_id = 0
+    local pass_id
+
     -- the trick is that we always render the PREVIOUS scene
+    local scene_to_render = p_scene
     if cs == 2 then
-        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene_to_render, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
     else
-        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene_to_render, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
     end
 
     -- Debug physics display
