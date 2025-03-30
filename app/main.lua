@@ -94,11 +94,13 @@ local sequences = {}
 
 -- blank scene
 local _scene = hg.Scene()
-local _cam = hg.CreateCamera(_scene, hg.TranslationMat4(hg.Vec3(0,0,0)), 0.1, 100.0)
+hg.LoadSceneFromAssets("logo_rse/logo_rse.scn", _scene, res, hg.GetForwardPipelineInfo())
+-- local _cam = hg.CreateCamera(_scene, hg.TranslationMat4(hg.Vec3(0,0,0)), 0.1, 100.0)
+local _cam = _scene:GetNode("Camera")
+_scene:SetCurrentCamera(_cam)
 local _rb_nodes = {}
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+-- local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-
 
 -- title screen
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -142,6 +144,8 @@ local ps, cs = 1, 2 -- previous sequence, current sequence -- actually starts at
 
 local sequence_start_clock = hg.GetClock()
 local rotation_speed_factor = 0.0
+
+sequences[ps].scene:PlayAnim(sequences[ps].scene:GetSceneAnim("fadein"))
 
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     keyboard:Update()
@@ -230,12 +234,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     local pass_id
 
     -- the trick is that we always render the PREVIOUS scene
-    local scene_to_render = p_scene
-    if cs == 2 then
-        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene_to_render, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
-    else
-        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene_to_render, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
-    end
+    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
 
     -- Debug physics display
     -- display_physics_debug(view_id, sequences[ps].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[ps].physics)
@@ -243,9 +242,6 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     frame = hg.Frame()
     hg.UpdateWindow(win)
 end
-
-scene:Clear()
-scene:GarbageCollect()
 
 hg.RenderShutdown()
 hg.DestroyWindow(win)
