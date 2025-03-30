@@ -95,11 +95,9 @@ local sequences = {}
 -- blank scene
 local _scene = hg.Scene()
 hg.LoadSceneFromAssets("logo_rse/logo_rse.scn", _scene, res, hg.GetForwardPipelineInfo())
--- local _cam = hg.CreateCamera(_scene, hg.TranslationMat4(hg.Vec3(0,0,0)), 0.1, 100.0)
 local _cam = _scene:GetNode("Camera")
 _scene:SetCurrentCamera(_cam)
 local _rb_nodes = {}
--- local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 -- title screen
