@@ -38,28 +38,28 @@ float SampleHardShadow(sampler2DShadow map, vec4 coord, float bias) {
 	return shadow2D(map, vec3(uv.xy, uv.z - bias));
 }
 
-float SampleShadowPCF(sampler2DShadow map, vec4 coord, float inv_pixel_size, float bias, vec4 jitter) {
+float SampleShadowPCF(sampler2DShadow map, vec4 coord, float inv_pixel_size, float bias, vec4 jitter, float shadow_radius) {
 	float k_pixel_size = inv_pixel_size * coord.w;
 
 	float k = 0.0;
-	#define PCF_W 2.0
+	// #define PCF_W 2.0
 
 	// // 2x2
-	// k += SampleHardShadow(map, coord + vec4(vec2(-PCF_W, -PCF_W) * k_pixel_size, 0.0, 0.0), bias);
-	// k += SampleHardShadow(map, coord + vec4(vec2( PCF_W, -PCF_W) * k_pixel_size, 0.0, 0.0), bias);
-	// k += SampleHardShadow(map, coord + vec4(vec2(-PCF_W,  PCF_W) * k_pixel_size, 0.0, 0.0), bias);
-	// k += SampleHardShadow(map, coord + vec4(vec2( PCF_W,  PCF_W) * k_pixel_size, 0.0, 0.0), bias);
+	// k += SampleHardShadow(map, coord + vec4(vec2(-shadow_radius, -shadow_radius) * k_pixel_size, 0.0, 0.0), bias);
+	// k += SampleHardShadow(map, coord + vec4(vec2( shadow_radius, -shadow_radius) * k_pixel_size, 0.0, 0.0), bias);
+	// k += SampleHardShadow(map, coord + vec4(vec2(-shadow_radius,  shadow_radius) * k_pixel_size, 0.0, 0.0), bias);
+	// k += SampleHardShadow(map, coord + vec4(vec2( shadow_radius,  shadow_radius) * k_pixel_size, 0.0, 0.0), bias);
 
 	// k /= 4.0;
-	k += SampleHardShadow(map, coord + vec4(vec2(-PCF_W, 0.0) * k_pixel_size, 0.0, 0.0), bias);
-	k += SampleHardShadow(map, coord + vec4(vec2( PCF_W, 0.0) * k_pixel_size, 0.0, 0.0), bias);
-	k += SampleHardShadow(map, coord + vec4(vec2(0.0, -PCF_W) * k_pixel_size, 0.0, 0.0), bias);
-	k += SampleHardShadow(map, coord + vec4(vec2(0.0,  PCF_W) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2(-shadow_radius, 0.0) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2( shadow_radius, 0.0) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2(0.0, -shadow_radius) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2(0.0,  shadow_radius) * k_pixel_size, 0.0, 0.0), bias);
 
-	k += SampleHardShadow(map, coord + vec4(vec2(-PCF_W, -PCF_W) * k_pixel_size, 0.0, 0.0), bias);
-	k += SampleHardShadow(map, coord + vec4(vec2( PCF_W, -PCF_W) * k_pixel_size, 0.0, 0.0), bias);
-	k += SampleHardShadow(map, coord + vec4(vec2(-PCF_W,  PCF_W) * k_pixel_size, 0.0, 0.0), bias);
-	k += SampleHardShadow(map, coord + vec4(vec2( PCF_W,  PCF_W) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2(-shadow_radius, -shadow_radius) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2( shadow_radius, -shadow_radius) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2(-shadow_radius,  shadow_radius) * k_pixel_size, 0.0, 0.0), bias);
+	k += SampleHardShadow(map, coord + vec4(vec2( shadow_radius,  shadow_radius) * k_pixel_size, 0.0, 0.0), bias);
 
 	k /= 8.0;
 
@@ -192,16 +192,16 @@ occ_rough_metal.z = pow(occ_rough_metal.z, uORMPow.z);
 		float k_fade_split = 1.0 - jitter.z * 0.3;
 
 		if(view.z < uLinearShadowSlice.x * k_fade_split) {
-			k_shadow *= SampleShadowPCF(uLinearShadowMap, vLinearShadowCoord0, uShadowState.y * 0.5, uShadowState.z, jitter);
+			k_shadow *= SampleShadowPCF(uLinearShadowMap, vLinearShadowCoord0, uShadowState.y * 0.5, uShadowState.z, jitter, 2.0);
 		} else if(view.z < uLinearShadowSlice.y * k_fade_split) {
-			k_shadow *= SampleShadowPCF(uLinearShadowMap, vLinearShadowCoord1, uShadowState.y * 0.5, uShadowState.z, jitter);
+			k_shadow *= SampleShadowPCF(uLinearShadowMap, vLinearShadowCoord1, uShadowState.y * 0.5, uShadowState.z, jitter, 2.0);
 		} else if(view.z < uLinearShadowSlice.z * k_fade_split) {
-			k_shadow *= SampleShadowPCF(uLinearShadowMap, vLinearShadowCoord2, uShadowState.y * 0.5, uShadowState.z, jitter);
+			k_shadow *= SampleShadowPCF(uLinearShadowMap, vLinearShadowCoord2, uShadowState.y * 0.5, uShadowState.z, jitter, 2.0);
 		} else if(view.z < uLinearShadowSlice.w * k_fade_split) {
 #if FORWARD_PIPELINE_AAA
-			k_shadow *= SampleShadowPCF(uLinearShadowMap, vLinearShadowCoord3, uShadowState.y * 0.5, uShadowState.z, jitter);
+			k_shadow *= SampleShadowPCF(uLinearShadowMap, vLinearShadowCoord3, uShadowState.y * 0.5, uShadowState.z, jitter, 2.0);
 #else // FORWARD_PIPELINE_AAA
-			float pcf = SampleShadowPCF(uLinearShadowMap, vLinearShadowCoord3, uShadowState.y * 0.5, uShadowState.z, jitter);
+			float pcf = SampleShadowPCF(uLinearShadowMap, vLinearShadowCoord3, uShadowState.y * 0.5, uShadowState.z, jitter, 2.0);
 			float ramp_len = (uLinearShadowSlice.w - uLinearShadowSlice.z) * 0.25;
 			float ramp_k = clamp((view.z - (uLinearShadowSlice.w - ramp_len)) / max(ramp_len, 1e-8), 0.0, 1.0);
 			k_shadow *= pcf * (1.0 - ramp_k) + ramp_k; 
@@ -218,7 +218,8 @@ occ_rough_metal.z = pow(occ_rough_metal.z, uORMPow.z);
 		float attenuation = LightAttenuation(L, uLightDir[1].xyz, distance, uLightPos[1].w, uLightDir[1].w, uLightDiffuse[1].w);
 
 #if SLOT1_SHADOWS
-		attenuation *=SampleShadowPCF(uSpotShadowMap, vSpotShadowCoord, uShadowState.y, uShadowState.w, jitter);
+		float shadow_radius = 2.0 + length(vWorldPos.xz) * 4.0; // Fake area shadows
+		attenuation *=SampleShadowPCF(uSpotShadowMap, vSpotShadowCoord, uShadowState.y, uShadowState.w, jitter, shadow_radius);
 #endif // SLOT1_SHADOWS
 		color += GGX(V, N, NdotV, L, base_opacity.xyz, occ_rough_metal.g, occ_rough_metal.b, F0, uLightDiffuse[1].xyz * attenuation, uLightSpecular[1].xyz * attenuation);
 	}
