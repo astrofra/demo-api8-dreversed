@@ -1,6 +1,7 @@
 hg = require("harfang")
 require("utils")
 require("physics_utils")
+require("sequences/wave_grid")
 require("sequences/title_scene")
 require("sequences/simple_cube_stack")
 require("sequences/vertical_neon_chaos")
@@ -80,6 +81,9 @@ hg.SetMaterialValue(mat_neon_red, 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1
 local mat_gold = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(1, 0.9, 0.0), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.35, 0.75))
 hg.SetMaterialValue(mat_gold, 'uSelfColor', hg.Vec4(0, 0, 0))
 
+local mat_black = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(0.2, 0.2, 0.2), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.45, 0.85))
+hg.SetMaterialValue(mat_black, 'uSelfColor', hg.Vec4(0, 0, 0))
+
 -- create models
 local vtx_layout = hg.VertexLayoutPosFloatNormUInt8()
 
@@ -99,6 +103,12 @@ local _cam = _scene:GetNode("Camera")
 _scene:SetCurrentCamera(_cam)
 local _rb_nodes = {}
 table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+
+-- wave grid
+local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local _rb_nodes = SetupWaveGrid(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold, neon = mat_neon_red, black = mat_black}})
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+table.insert(sequences, {name = "wave grid", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 -- title screen
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -232,10 +242,11 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     local pass_id
 
     -- the trick is that we always render the PREVIOUS scene
+    -- view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
     view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
 
     -- Debug physics display
-    -- display_physics_debug(view_id, sequences[ps].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[ps].physics)
+    -- display_physics_debug(view_id, sequences[cs].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[cs].physics)
 
     frame = hg.Frame()
     hg.UpdateWindow(win)

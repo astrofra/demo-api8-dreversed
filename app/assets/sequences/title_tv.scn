@@ -1,4 +1,43 @@
 {
+	"anims": [
+		{
+			"anim": {
+				"flags": [],
+				"t_end": 0,
+				"t_start": 0,
+				"vec4": [
+					{
+						"keys": [
+							{
+								"bias": 0.0,
+								"t": 0,
+								"tension": 0.0,
+								"v": [
+									0.0,
+									10.0,
+									0.0,
+									0.0
+								]
+							},
+							{
+								"bias": 0.0,
+								"t": 10000000000,
+								"tension": 0.0,
+								"v": [
+									10.0,
+									10.0,
+									0.0,
+									0.0
+								]
+							}
+						],
+						"target": "Material.0.uTime"
+					}
+				]
+			},
+			"idx": 1
+		}
+	],
 	"canvas": {
 		"clear_color": true,
 		"clear_z": true,
@@ -53,6 +92,8 @@
 			"name": "props/cratesALL/crate_11b.scn"
 		},
 		{
+			"anim": "intro",
+			"loop_mode": "loop",
 			"name": "props/tv_vintage/tv_vintage.scn"
 		},
 		{
@@ -81,7 +122,7 @@
 			"disabled": false,
 			"idx": 0,
 			"instance": 1,
-			"name": "tv_vintage"
+			"name": "physics_tv_vintage"
 		},
 		{
 			"components": [
@@ -94,7 +135,7 @@
 			"disabled": false,
 			"idx": 1,
 			"instance": 4,
-			"name": "crate_11"
+			"name": "physics_crate_11"
 		},
 		{
 			"components": [
@@ -107,7 +148,7 @@
 			"disabled": false,
 			"idx": 2,
 			"instance": 3,
-			"name": "crate_4"
+			"name": "physics_crate_4"
 		},
 		{
 			"components": [
@@ -120,7 +161,7 @@
 			"disabled": false,
 			"idx": 3,
 			"instance": 2,
-			"name": "crate_3"
+			"name": "physics_crate_3"
 		},
 		{
 			"components": [
@@ -133,7 +174,7 @@
 			"disabled": false,
 			"idx": 4,
 			"instance": 0,
-			"name": "crate_11b"
+			"name": "physics_crate_11b"
 		},
 		{
 			"components": [
@@ -144,9 +185,24 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 14,
+			"idx": 5,
 			"instance": 5,
-			"name": "mug"
+			"name": "physics_mug"
+		}
+	],
+	"scene_anims": [
+		{
+			"anim": 4294967295,
+			"frame_duration": 50000000,
+			"name": "new_animation (0)",
+			"node_anims": [
+				{
+					"anim": 1,
+					"node": 6
+				}
+			],
+			"t_end": 10000000000,
+			"t_start": 0
 		}
 	],
 	"transforms": [
@@ -159,7 +215,7 @@
 			],
 			"rot": [
 				-2.4930951595306396,
-				25.870159149169922,
+				25.870155334472656,
 				5.125797748565674
 			],
 			"scl": [
@@ -177,7 +233,7 @@
 			],
 			"rot": [
 				-0.0,
-				-30.67441177368164,
+				-30.674406051635742,
 				0.0
 			],
 			"scl": [
@@ -194,7 +250,7 @@
 				0.6023731827735901
 			],
 			"rot": [
-				89.99996185302734,
+				89.99994659423828,
 				0.0,
 				-90.0
 			],

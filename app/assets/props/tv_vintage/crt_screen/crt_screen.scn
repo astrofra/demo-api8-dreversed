@@ -27,14 +27,14 @@
 		"fog_far": 0.0,
 		"fog_near": 0.0,
 		"probe": {
-			"irradiance_map": "probes/desk_3.hdr.irradiance",
+			"irradiance_map": "core/pbr/probe.hdr.irradiance",
 			"parallax": 0.0,
 			"pos": [
 				0.0,
 				0.0,
 				0.0
 			],
-			"radiance_map": "probes/desk_3.hdr.radiance",
+			"radiance_map": "core/pbr/probe.hdr.radiance",
 			"rot": [
 				0.0,
 				0.0,
@@ -60,7 +60,7 @@
 			],
 			"disabled": false,
 			"idx": 0,
-			"name": "xi_jinping_low"
+			"name": "crt_screen"
 		}
 	],
 	"objects": [
@@ -68,7 +68,7 @@
 			"bones": [],
 			"material_infos": [
 				{
-					"name": "01 - Default"
+					"name": "default"
 				}
 			],
 			"materials": [
@@ -78,41 +78,14 @@
 					"face_culling": "cw",
 					"flags": [],
 					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/xi_jinping/xi_Color.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/xi_jinping/xi_NormalDX.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/xi_jinping/xi_ORM.png",
-							"stage": 1
-						}
-					],
 					"values": [
 						{
 							"name": "uBaseOpacityColor",
 							"type": "vec4",
 							"value": [
-								1.0,
-								1.0,
-								1.0,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								4.015686511993408,
-								0.3529411852359772,
-								2.007843255996704,
+								0.5,
+								0.5,
+								0.5,
 								1.0
 							]
 						},
@@ -121,8 +94,8 @@
 							"type": "vec4",
 							"value": [
 								1.0,
-								0.05000000074505806,
-								1.0,
+								0.5,
+								0.25,
 								0.0
 							]
 						},
@@ -144,14 +117,14 @@
 					"write_z": true
 				}
 			],
-			"name": "props/xi_jinping/xi_jinping_low_44.geo"
+			"name": "props/tv_vintage/crt_screen/crt_screen_42.geo"
 		}
 	],
 	"scene_anims": [
 		{
 			"anim": 4294967295,
 			"frame_duration": 50000000,
-			"name": "Xi_Jinping_export_low",
+			"name": "crt_screen",
 			"node_anims": null,
 			"t_end": 3333000000,
 			"t_start": 0
@@ -166,14 +139,14 @@
 				0.0
 			],
 			"rot": [
-				1.1153862033097539e-05,
+				-7.0167091267055864e-15,
 				0.0,
-				2.1313596221261832e-07
+				0.0
 			],
 			"scl": [
-				0.9999999403953552,
 				1.0,
-				0.9999999403953552
+				1.0,
+				1.0
 			]
 		}
 	]

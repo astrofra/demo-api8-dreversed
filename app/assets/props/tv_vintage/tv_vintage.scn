@@ -1,4 +1,92 @@
 {
+	"anims": [
+		{
+			"anim": {
+				"flags": [],
+				"t_end": 0,
+				"t_start": 0,
+				"vec4": [
+					{
+						"keys": [
+							{
+								"bias": 0.0,
+								"t": 0,
+								"tension": 0.0,
+								"v": [
+									0.0,
+									10.0,
+									0.0,
+									0.0
+								]
+							},
+							{
+								"bias": 0.0,
+								"t": 10000000000,
+								"tension": 0.0,
+								"v": [
+									10.0,
+									10.0,
+									0.0,
+									0.0
+								]
+							}
+						],
+						"target": "Material.0.uTime"
+					},
+					{
+						"keys": [
+							{
+								"bias": 0.0,
+								"t": 0,
+								"tension": 0.0,
+								"v": [
+									0.5,
+									0.0,
+									0.0,
+									0.0
+								]
+							},
+							{
+								"bias": 0.0,
+								"t": 250000000,
+								"tension": 0.0,
+								"v": [
+									0.5,
+									0.5,
+									0.0,
+									0.0
+								]
+							},
+							{
+								"bias": 0.0,
+								"t": 9750000000,
+								"tension": 0.0,
+								"v": [
+									0.5,
+									0.5,
+									0.0,
+									0.0
+								]
+							},
+							{
+								"bias": 0.0,
+								"t": 10000000000,
+								"tension": 0.0,
+								"v": [
+									0.5,
+									0.0,
+									0.0,
+									0.0
+								]
+							}
+						],
+						"target": "Material.0.uFade"
+					}
+				]
+			},
+			"idx": 0
+		}
+	],
 	"canvas": {
 		"clear_color": true,
 		"clear_z": true,
@@ -169,6 +257,18 @@
 			"disabled": false,
 			"idx": 1,
 			"name": "model"
+		},
+		{
+			"components": [
+				2,
+				4294967295,
+				1,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 2,
+			"name": "crt_screen"
 		}
 	],
 	"objects": [
@@ -253,6 +353,78 @@
 				}
 			],
 			"name": "props/tv_vintage/SM_Television_02a_40.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "default"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "screen",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/zoetrope.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "common/image-sequences/intro-couchot-bw_seq.png",
+							"stage": 0
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.05063295364379883,
+								0.05063295364379883,
+								0.05063295364379883,
+								1.0
+							]
+						},
+						{
+							"name": "uCustom",
+							"type": "vec4",
+							"value": [
+								1.0,
+								1.0,
+								0.0,
+								0.0
+							]
+						},
+						{
+							"name": "uFade",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.0,
+								0.0,
+								0.0
+							]
+						},
+						{
+							"name": "uTime",
+							"type": "vec4",
+							"value": [
+								0.0,
+								10.0,
+								0.0,
+								0.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": false
+				}
+			],
+			"name": "props/tv_vintage/crt_screen/crt_screen_42.geo"
 		}
 	],
 	"rigid_bodies": [
@@ -269,9 +441,14 @@
 		{
 			"anim": 4294967295,
 			"frame_duration": 50000000,
-			"name": "Take 001",
-			"node_anims": null,
-			"t_end": 1000000000,
+			"name": "intro",
+			"node_anims": [
+				{
+					"anim": 0,
+					"node": 2
+				}
+			],
+			"t_end": 10000000000,
 			"t_start": 0
 		}
 	],
@@ -310,6 +487,24 @@
 				1.5,
 				1.5,
 				1.5
+			]
+		},
+		{
+			"parent": 0,
+			"pos": [
+				-0.09167104214429855,
+				0.015329793095588684,
+				-0.2618933320045471
+			],
+			"rot": [
+				-7.583031348124893e-22,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				1.0,
+				1.0
 			]
 		}
 	]

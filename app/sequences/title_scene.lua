@@ -2,7 +2,7 @@ hg = require("harfang")
 require("physics_utils")
 
 function SetupTitleScene(_scene, _res, _pipeline_info, _vtx_layout, _materials)
-    -- specific physics setup
+    -- -- specific physics setup
     local _flags = hg.LSSF_Nodes | hg.LSSF_Physics
     hg.LoadSceneFromAssets("sequences/title_tv.scn", _scene, _res, _pipeline_info, _flags)
 
@@ -12,7 +12,7 @@ function SetupTitleScene(_scene, _res, _pipeline_info, _vtx_layout, _materials)
     local i
     for i = 0, _nodes:size() - 1 do
         local _node = _nodes:at(i)
-        if _node:HasInstance() == true then
+        if _node:HasInstance() == true and string.sub(_node:GetName(), 1, 8) == 'physics_' then
             local _new_node = _node:GetInstanceSceneView():GetNode(_scene, "root")
             table.insert(rb_nodes, _new_node)
         end
