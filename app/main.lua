@@ -1,6 +1,7 @@
 hg = require("harfang")
 require("utils")
 require("physics_utils")
+require("sequences/flocks")
 require("sequences/rotating_plates")
 require("sequences/wave_grid")
 require("sequences/title_scene")
@@ -82,6 +83,9 @@ hg.SetMaterialValue(mat_neon_red, 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1
 local mat_gold = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(1, 0.9, 0.0), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.35, 0.75))
 hg.SetMaterialValue(mat_gold, 'uSelfColor', hg.Vec4(0, 0, 0))
 
+local mat_silver = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(0.8, 0.8, 0.8), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.45, 0.85))
+hg.SetMaterialValue(mat_gold, 'uSelfColor', hg.Vec4(0, 0, 0))
+
 local mat_black = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(0.2, 0.2, 0.2), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.45, 0.85))
 hg.SetMaterialValue(mat_black, 'uSelfColor', hg.Vec4(0, 0, 0))
 
@@ -105,6 +109,12 @@ _scene:SetCurrentCamera(_cam)
 local _rb_nodes = {}
 table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
+-- title screen
+local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local _rb_nodes = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+table.insert(sequences, {name = "title screen", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+
 -- rotating plates
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupRotatingPlates(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold, neon = mat_neon_red, black = mat_black}})
@@ -117,17 +127,18 @@ local _rb_nodes = SetupWaveGrid(_scene, res, {vtx_layout = vtx_layout, materials
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "wave grid", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
--- title screen
-local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
-local _rb_nodes = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {name = "title screen", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-
 -- Simple cubes
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupSimpleCubeStack(_scene, res, {model_size = cube_size, model_ref = cube_ref, materials = {grey = mat_grey}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "Simple cubes", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+
+-- flocks
+local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local _rb_nodes = SetupFlocks(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, neon = mat_neon_red, black = mat_black}})
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+ApplyPhysicsFlocks(_rb_nodes, _physics)
+table.insert(sequences, {name = "rotating plates", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 -- Voxel
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -231,6 +242,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     local previous_physics_step = sequences[ps].physics_step
     record_frame = map(hg.time_to_sec_f(frame_clock - sequence_start_clock), 0.0, sequence_duration_sec, 0.0, 1.0) -- time remap
     -- record_frame = map(record_frame, 0.0, 1.0, 0.45, 0.55) -- time remap
+    record_frame = map(record_frame, 0.0, 1.0, 0.2, 0.8) -- time remap
     record_frame = 1.0 - clamp(record_frame, 0.0, 1.0)
     local record_frame_f = record_frame * #previous_record
     local record_frame_int = math.max(1, math.floor(record_frame_f))
