@@ -1,6 +1,7 @@
 hg = require("harfang")
 require("utils")
 require("physics_utils")
+require("sequences/rotating_plates")
 require("sequences/wave_grid")
 require("sequences/title_scene")
 require("sequences/simple_cube_stack")
@@ -103,6 +104,12 @@ local _cam = _scene:GetNode("Camera")
 _scene:SetCurrentCamera(_cam)
 local _rb_nodes = {}
 table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+
+-- rotating plates
+local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local _rb_nodes = SetupRotatingPlates(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold, neon = mat_neon_red, black = mat_black}})
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+table.insert(sequences, {name = "rotating plates", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 -- wave grid
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
