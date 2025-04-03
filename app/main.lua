@@ -48,6 +48,7 @@ hg.AddAssetsFolder('assets_compiled')
 
 -- main window
 hg.InputInit()
+hg.AudioInit()
 hg.WindowSystemInit()
 
 local res_x, res_y = 1280, 720
@@ -184,6 +185,9 @@ local rotation_speed_factor = 0.0
 sequences[ps].scene:PlayAnim(sequences[ps].scene:GetSceneAnim("fadein"))
 
 collectgarbage("stop") -- avoid nasty drops all along the demo
+
+-- start music
+local player_rerf = hg.StreamOGGAssetStereo("audio/after-nothing-riddlemak.ogg", hg.StereoSourceState(1, hg.SR_Loop))
 
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     keyboard:Update()
