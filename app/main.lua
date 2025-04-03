@@ -1,6 +1,7 @@
 hg = require("harfang")
 require("utils")
 require("physics_utils")
+require("sequences/tornado")
 require("sequences/flocks")
 require("sequences/rotating_plates")
 require("sequences/wave_grid")
@@ -83,8 +84,11 @@ hg.SetMaterialValue(mat_neon_red, 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1
 local mat_gold = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(1, 0.9, 0.0), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.35, 0.75))
 hg.SetMaterialValue(mat_gold, 'uSelfColor', hg.Vec4(0, 0, 0))
 
-local mat_silver = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(0.8, 0.8, 0.8), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.45, 0.85))
-hg.SetMaterialValue(mat_gold, 'uSelfColor', hg.Vec4(0, 0, 0))
+local mat_silver = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(1.0, 1.0, 1.0), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.55, 0.75))
+hg.SetMaterialValue(mat_silver, 'uSelfColor', hg.Vec4(0, 0, 0))
+
+local mat_chrome = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(1.0, 1.0, 1.0), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.15, 0.75))
+hg.SetMaterialValue(mat_chrome, 'uSelfColor', hg.Vec4(0, 0, 0))
 
 local mat_black = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(0.2, 0.2, 0.2), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.45, 0.85))
 hg.SetMaterialValue(mat_black, 'uSelfColor', hg.Vec4(0, 0, 0))
@@ -114,6 +118,12 @@ local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info
 local _rb_nodes = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "title screen", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+
+-- tornado
+local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local _rb_nodes = SetupTornado(_scene, res, {vtx_layout = vtx_layout, materials = {chrome = mat_chrome, neon = mat_neon_red, black = mat_black}})
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+table.insert(sequences, {name = "tornado", apply_physics = ApplyPhysicsTornado, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 -- rotating plates
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -222,7 +232,10 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     end
 
     -- Update the physics simulation
-    if _cs then 
+    if _cs then
+        if _cs.apply_physics then
+            _cs.apply_physics(rb_nodes, physics)
+        end
         hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)
 
         -- record current sequence
@@ -247,7 +260,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     -- if record_frame > 0.7 and record_frame < 0.8 then
     --     record_frame = map(record_frame, 0.7, 0.8, 0.8, 0.6) -- time remap
     -- else
-        record_frame = map(record_frame, 0.0, 1.0, 0.2, 0.85) -- time remap
+        record_frame = map(record_frame, 0.0, 1.0, 0.5, 0.95) -- time remap
     -- end
     record_frame = 1.0 - clamp(record_frame, 0.0, 1.0)
     local record_frame_f = record_frame * #previous_record
@@ -267,8 +280,8 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     local pass_id
 
     -- the trick is that we always render the PREVIOUS scene
-    -- view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
     view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    -- view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
 
     -- Debug physics display
     -- display_physics_debug(view_id, sequences[cs].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[cs].physics)
