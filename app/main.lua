@@ -173,6 +173,8 @@ local rotation_speed_factor = 0.0
 
 sequences[ps].scene:PlayAnim(sequences[ps].scene:GetSceneAnim("fadein"))
 
+collectgarbage("stop") -- avoid nasty drops all along the demo
+
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     keyboard:Update()
 
@@ -242,7 +244,11 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     local previous_physics_step = sequences[ps].physics_step
     record_frame = map(hg.time_to_sec_f(frame_clock - sequence_start_clock), 0.0, sequence_duration_sec, 0.0, 1.0) -- time remap
     -- record_frame = map(record_frame, 0.0, 1.0, 0.45, 0.55) -- time remap
-    record_frame = map(record_frame, 0.0, 1.0, 0.2, 0.8) -- time remap
+    -- if record_frame > 0.7 and record_frame < 0.8 then
+    --     record_frame = map(record_frame, 0.7, 0.8, 0.8, 0.6) -- time remap
+    -- else
+        record_frame = map(record_frame, 0.0, 1.0, 0.2, 0.85) -- time remap
+    -- end
     record_frame = 1.0 - clamp(record_frame, 0.0, 1.0)
     local record_frame_f = record_frame * #previous_record
     local record_frame_int = math.max(1, math.floor(record_frame_f))
@@ -266,6 +272,8 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
 
     -- Debug physics display
     -- display_physics_debug(view_id, sequences[cs].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[cs].physics)
+
+    -- collectgarbage()
 
     frame = hg.Frame()
     hg.UpdateWindow(win)
