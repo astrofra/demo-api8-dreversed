@@ -33,7 +33,7 @@ function SetupTornado(_scene, _res, params)
     return rb_nodes
 end
 
-function ApplyPhysicsTornado(rb_nodes, physics)
+function ApplyPhysicsTornado(rb_nodes,  scene, physics, ctx)
 
     local center = hg.Vec3(0, 2.0, 0)
     local multiplier = hg.Vec3(2.5, 1.0, 2.5)
@@ -49,46 +49,6 @@ function ApplyPhysicsTornado(rb_nodes, physics)
         physics:NodeAddForce(node, (dir_to_center - vel) * multiplier)
     end
 
-    -- local center = hg.Vec3(0, 0, 0)
-    -- local min_radius = 2.0
-    -- local max_radius = 2.5
-    -- local intensity = 1.0
-    -- local twist_speed = 4.0
-    -- local updraft = 3.0
-    -- local correction_gain = 5.0 -- force radiale de recentrage
-
-    -- for i = 1, #rb_nodes do
-    --     local node = rb_nodes[i]
-    --     local pos = node:GetTransform():GetPos()
-    --     local to_center = center - pos
-    --     local dist = hg.Len(to_center)
-    --     local dir_to_center = hg.Normalize(to_center)
-
-    --     -- Tangente horizontale = rotation autour du centre
-    --     local tangent = hg.Vec3(-dir_to_center.z, 0, dir_to_center.x) * twist_speed
-    --     local upward = hg.Vec3(0, updraft, 0)
-
-    --     local force = tangent + upward
-
-    --     -- Correction radiale si en dehors de la bande
-    --     if dist < min_radius or dist > max_radius then
-    --         local correction_dir = dir_to_center
-    --         if (dist > min_radius) then 
-    --             correction_dir = -dir_to_center
-    --         end 
-    --         local radial_correction = correction_dir * correction_gain * math.abs(dist - ((min_radius + max_radius) / 2))
-    --         force = force + radial_correction
-    --     end
-
-    --     -- Compensation de la vitesse radiale
-    --     local vel = physics:NodeGetLinearVelocity(node)
-    --     local radial_vel = hg.Dot(vel, dir_to_center)
-    --     local damping_force = dir_to_center * radial_vel * 0.1 -- freine la dérive radiale
-    --     damping_force.y = 0.0
-
-    --     force = force + damping_force
-
-    --     physics:NodeAddForce(node, force * intensity)
-    -- end
+    return ctx
 end
 

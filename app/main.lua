@@ -1,6 +1,7 @@
 hg = require("harfang")
 require("utils")
 require("physics_utils")
+require("sequences/wall_of_bricks")
 require("sequences/tornado")
 require("sequences/flocks")
 require("sequences/rotating_plates")
@@ -120,11 +121,17 @@ local _rb_nodes = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold 
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "title screen", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
+-- wall of bricks
+local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local _rb_nodes, _ctx = SetupWallOfBricks(_scene, res, pipeline_info, vtx_layout, {neon = mat_neon_red})
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+table.insert(sequences, {name = "wall of bricks", apply_physics = ApplyPhysicsWallOfBricks, ctx = _ctx, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+
 -- tornado
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupTornado(_scene, res, {vtx_layout = vtx_layout, materials = {chrome = mat_chrome, neon = mat_neon_red, black = mat_black}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {name = "tornado", apply_physics = ApplyPhysicsTornado, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "tornado", apply_physics = ApplyPhysicsTornado, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 -- rotating plates
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -238,7 +245,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     -- Update the physics simulation
     if _cs then
         if _cs.apply_physics then
-            _cs.apply_physics(rb_nodes, physics)
+            _cs.ctx = _cs.apply_physics(rb_nodes, scene, physics, _cs.ctx)
         end
         hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)
 
@@ -264,7 +271,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     -- if record_frame > 0.7 and record_frame < 0.8 then
     --     record_frame = map(record_frame, 0.7, 0.8, 0.8, 0.6) -- time remap
     -- else
-        record_frame = map(record_frame, 0.0, 1.0, 0.5, 0.95) -- time remap
+        -- record_frame = map(record_frame, 0.0, 1.0, 0.25, 0.995) -- time remap
     -- end
     record_frame = 1.0 - clamp(record_frame, 0.0, 1.0)
     local record_frame_f = record_frame * #previous_record
