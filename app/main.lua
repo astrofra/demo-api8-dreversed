@@ -53,7 +53,10 @@ hg.AudioInit()
 hg.WindowSystemInit()
 
 local res_x, res_y = 1280, 720
-local win = hg.RenderInit('Dreversed', res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X)
+-- local win = hg.RenderInit('Dreversed', res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X)
+win = hg.NewWindow("Dreversed^Resistance(2025)", res_x, res_y, 32, hg.WV_Undecorated) --, hg.WV_Fullscreen)
+hg.RenderInit(win) --, hg.RT_OpenGL)
+hg.RenderReset(res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X | hg.RF_MaxAnisotropy)
 
 local pipeline = hg.CreateForwardPipeline(2048)
 local res = hg.PipelineResources()
