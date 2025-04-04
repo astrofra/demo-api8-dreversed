@@ -36,6 +36,25 @@ function SetupWallOfBricks(_scene, _res, _pipeline_info, _vtx_layout, _materials
             end
         end
     end
+
+    local _cube_size = 0.25
+    local width = 2
+    local _model_size = hg.Vec3(_cube_size, _cube_size, _cube_size)
+    local _model_ref = _res:AddModel('chrome_cube_wall_of_bricks', hg.CreateCubeModel(_vtx_layout,_cube_size, _cube_size, _cube_size))
+    local object_count = 1
+    for j = -width, width do
+        for i = -width, width do
+            local _mat = _materials.chrome
+            if math.fmod(object_count, 2) == 0 then
+                _mat = _materials.black
+            end
+            object_count = object_count + 1
+            local _pos = hg.Vec3(i * _cube_size, 15.0 + i + j / 2.0, j * _cube_size)
+            local _new_node, _rb = CreatePhysicCubeEx(_scene, _model_size, hg.TranslationMat4(_pos), _model_ref, {_mat}, hg.RBT_Dynamic, 20)
+            _rb:SetRestitution(10.0)
+            table.insert(rb_nodes, _new_node)
+        end
+    end
     
     return rb_nodes, {rb_nodes_neon = rb_nodes_neon, center = _center}
 end
@@ -44,7 +63,8 @@ function ApplyPhysicsWallOfBricks(rb_nodes, scene, physics, ctx)
 
     for i=1, #ctx.rb_nodes_neon do
         local _node = ctx.rb_nodes_neon[i]
-        local _dir = (_node:GetTransform():GetPos() - ctx.center) * 20.0 + (i / #ctx.rb_nodes_neon) * 5.0
+        local _dir = (_node:GetTransform():GetPos() - ctx.center) * 30.0 + (i / #ctx.rb_nodes_neon) * 5.0
+        _dir.y = _dir.y + 2.0
         physics:NodeAddImpulse(_node, _dir)
     end
 

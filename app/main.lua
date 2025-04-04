@@ -113,7 +113,7 @@ hg.LoadSceneFromAssets("logo_rse/logo_rse.scn", _scene, res, hg.GetForwardPipeli
 local _cam = _scene:GetNode("Camera")
 _scene:SetCurrentCamera(_cam)
 local _rb_nodes = {}
-table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _cam, camera_root = nil, nodes = _rb_nodes, physics = nil, physics_step = nil, dt_frame_step = nil})
 
 -- -- title screen
 -- local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -123,10 +123,10 @@ table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _
 
 -- wall of bricks
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
-local _rb_nodes, _ctx = SetupWallOfBricks(_scene, res, pipeline_info, vtx_layout, {neon = mat_neon_red})
+local _rb_nodes, _ctx = SetupWallOfBricks(_scene, res, pipeline_info, vtx_layout, {neon = mat_neon_red, chrome = mat_chrome, black = mat_black})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 ApplyPhysicsWallOfBricks(_rb_nodes, _scene, _physics, _ctx)
-table.insert(sequences, {name = "wall of bricks", ctx = _ctx, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "wall of bricks", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 -- tornado
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -235,6 +235,24 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
 
     p_scene:SetCurrentCamera(p_cam)
 
+    -- if _ps.name == "wall of bricks" then
+    --     -- print("wall of bricks")
+    --     -- if l == nil then
+    --     --     print("--------------------")
+    --         l = scene:GetAllNodes()
+    --         for i = 0, l:size()-1 do
+    --             local _n = l:at(i)
+    --             if _n:GetName() == "Camera" then
+    --                 print(_n:GetName() .. "(" .. tostring(i) ..")")
+    --                 p_scene:SetCurrentCamera(_n)
+    --                 _n:GetTransform():SetPos(_n:GetTransform():GetPos() + hg.Vec3(0.1, 0.1, 0.1))
+    --                 print(_n:GetTransform():GetPos().y)
+    --             end
+    --         end
+    --         -- print("--------------------")
+    --     -- end
+    -- end
+
     if cs > 2 then
         rotation_speed_factor = math.min(1.0, rotation_speed_factor + hg.time_to_sec_f(dt) * 0.1)
         camera_root_rot.y = camera_root_rot.y - math.pi * hg.time_to_sec_f(dt) * 0.15 * EaseInOutQuick(rotation_speed_factor)
@@ -292,8 +310,8 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     local pass_id
 
     -- the trick is that we always render the PREVIOUS scene
-    -- view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
-    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    -- view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
 
     -- Debug physics display
     -- display_physics_debug(view_id, sequences[cs].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[cs].physics)
