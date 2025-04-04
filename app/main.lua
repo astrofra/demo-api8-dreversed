@@ -115,11 +115,11 @@ _scene:SetCurrentCamera(_cam)
 local _rb_nodes = {}
 table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _cam, camera_root = nil, nodes = _rb_nodes, physics = nil, physics_step = nil, dt_frame_step = nil})
 
--- -- title screen
--- local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
--- local _rb_nodes = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
--- local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
--- table.insert(sequences, {name = "title screen", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+-- title screen
+local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local _rb_nodes = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+table.insert(sequences, {name = "title screen", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 -- wall of bricks
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -234,24 +234,6 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     end
 
     p_scene:SetCurrentCamera(p_cam)
-
-    -- if _ps.name == "wall of bricks" then
-    --     -- print("wall of bricks")
-    --     -- if l == nil then
-    --     --     print("--------------------")
-    --         l = scene:GetAllNodes()
-    --         for i = 0, l:size()-1 do
-    --             local _n = l:at(i)
-    --             if _n:GetName() == "Camera" then
-    --                 print(_n:GetName() .. "(" .. tostring(i) ..")")
-    --                 p_scene:SetCurrentCamera(_n)
-    --                 _n:GetTransform():SetPos(_n:GetTransform():GetPos() + hg.Vec3(0.1, 0.1, 0.1))
-    --                 print(_n:GetTransform():GetPos().y)
-    --             end
-    --         end
-    --         -- print("--------------------")
-    --     -- end
-    -- end
 
     if cs > 2 then
         rotation_speed_factor = math.min(1.0, rotation_speed_factor + hg.time_to_sec_f(dt) * 0.1)

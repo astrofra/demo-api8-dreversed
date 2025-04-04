@@ -14,7 +14,9 @@ function SetupWallOfBricks(_scene, _res, _pipeline_info, _vtx_layout, _materials
     local i
     for i = 0, _nodes:size() - 1 do
         local _node = _nodes:at(i)
-        table.insert(rb_nodes, _node)
+        if _node:HasRigidBody() then
+            table.insert(rb_nodes, _node)
+        end
     end
 
     local width = 2
