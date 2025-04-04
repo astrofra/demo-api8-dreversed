@@ -2946,7 +2946,7 @@
 				0
 			],
 			"disabled": false,
-			"idx": 1,
+			"idx": 0,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -2963,7 +2963,7 @@
 				1
 			],
 			"disabled": false,
-			"idx": 2,
+			"idx": 1,
 			"name": "bricks_var_01_02"
 		},
 		{
@@ -2980,7 +2980,7 @@
 				2
 			],
 			"disabled": false,
-			"idx": 3,
+			"idx": 2,
 			"name": "bricks_var_01_03"
 		},
 		{
@@ -2997,7 +2997,7 @@
 				3
 			],
 			"disabled": false,
-			"idx": 4,
+			"idx": 3,
 			"name": "bricks_var_01_04"
 		},
 		{
@@ -3014,7 +3014,7 @@
 				31
 			],
 			"disabled": false,
-			"idx": 5,
+			"idx": 4,
 			"name": "bricks_var_01_05"
 		},
 		{
@@ -3031,7 +3031,7 @@
 				4
 			],
 			"disabled": false,
-			"idx": 6,
+			"idx": 5,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -3048,7 +3048,7 @@
 				5
 			],
 			"disabled": false,
-			"idx": 7,
+			"idx": 6,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -3065,7 +3065,7 @@
 				6
 			],
 			"disabled": false,
-			"idx": 8,
+			"idx": 7,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -3082,7 +3082,7 @@
 				7
 			],
 			"disabled": false,
-			"idx": 9,
+			"idx": 8,
 			"name": "bricks_var_02_02"
 		},
 		{
@@ -3099,7 +3099,7 @@
 				8
 			],
 			"disabled": false,
-			"idx": 10,
+			"idx": 9,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -3116,7 +3116,7 @@
 				9
 			],
 			"disabled": false,
-			"idx": 11,
+			"idx": 10,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -3133,7 +3133,7 @@
 				10
 			],
 			"disabled": false,
-			"idx": 12,
+			"idx": 11,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -3150,7 +3150,7 @@
 				11
 			],
 			"disabled": false,
-			"idx": 13,
+			"idx": 12,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -3167,7 +3167,7 @@
 				12
 			],
 			"disabled": false,
-			"idx": 14,
+			"idx": 13,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -3184,7 +3184,7 @@
 				13
 			],
 			"disabled": false,
-			"idx": 15,
+			"idx": 14,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -3201,7 +3201,7 @@
 				14
 			],
 			"disabled": false,
-			"idx": 16,
+			"idx": 15,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -3218,7 +3218,7 @@
 				15
 			],
 			"disabled": false,
-			"idx": 17,
+			"idx": 16,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -3235,7 +3235,7 @@
 				16
 			],
 			"disabled": false,
-			"idx": 18,
+			"idx": 17,
 			"name": "bricks_var_01_02"
 		},
 		{
@@ -3252,7 +3252,7 @@
 				17
 			],
 			"disabled": false,
-			"idx": 19,
+			"idx": 18,
 			"name": "bricks_var_01_03"
 		},
 		{
@@ -3269,7 +3269,7 @@
 				18
 			],
 			"disabled": false,
-			"idx": 20,
+			"idx": 19,
 			"name": "bricks_var_01_04"
 		},
 		{
@@ -3286,7 +3286,7 @@
 				19
 			],
 			"disabled": false,
-			"idx": 21,
+			"idx": 20,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -3303,7 +3303,7 @@
 				22
 			],
 			"disabled": false,
-			"idx": 22,
+			"idx": 21,
 			"name": "bricks_var_01_05"
 		},
 		{
@@ -3320,7 +3320,7 @@
 				20
 			],
 			"disabled": false,
-			"idx": 23,
+			"idx": 22,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -3337,7 +3337,7 @@
 				21
 			],
 			"disabled": false,
-			"idx": 24,
+			"idx": 23,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -3354,7 +3354,7 @@
 				30
 			],
 			"disabled": false,
-			"idx": 25,
+			"idx": 24,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -3371,7 +3371,7 @@
 				29
 			],
 			"disabled": false,
-			"idx": 26,
+			"idx": 25,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -3388,7 +3388,7 @@
 				28
 			],
 			"disabled": false,
-			"idx": 27,
+			"idx": 26,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -3405,7 +3405,7 @@
 				27
 			],
 			"disabled": false,
-			"idx": 28,
+			"idx": 27,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -3422,7 +3422,7 @@
 				26
 			],
 			"disabled": false,
-			"idx": 29,
+			"idx": 28,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -3439,7 +3439,7 @@
 				25
 			],
 			"disabled": false,
-			"idx": 30,
+			"idx": 29,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -3456,7 +3456,7 @@
 				24
 			],
 			"disabled": false,
-			"idx": 31,
+			"idx": 30,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -3473,7 +3473,7 @@
 				23
 			],
 			"disabled": false,
-			"idx": 32,
+			"idx": 31,
 			"name": "bricks_var_02_02"
 		},
 		{
@@ -3490,7 +3490,7 @@
 				40
 			],
 			"disabled": false,
-			"idx": 33,
+			"idx": 32,
 			"name": "bricks_var_02_02"
 		},
 		{
@@ -3507,7 +3507,7 @@
 				41
 			],
 			"disabled": false,
-			"idx": 34,
+			"idx": 33,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -3524,7 +3524,7 @@
 				42
 			],
 			"disabled": false,
-			"idx": 35,
+			"idx": 34,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -3541,7 +3541,7 @@
 				43
 			],
 			"disabled": false,
-			"idx": 36,
+			"idx": 35,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -3558,7 +3558,7 @@
 				44
 			],
 			"disabled": false,
-			"idx": 37,
+			"idx": 36,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -3575,7 +3575,7 @@
 				45
 			],
 			"disabled": false,
-			"idx": 38,
+			"idx": 37,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -3592,7 +3592,7 @@
 				46
 			],
 			"disabled": false,
-			"idx": 39,
+			"idx": 38,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -3609,7 +3609,7 @@
 				47
 			],
 			"disabled": false,
-			"idx": 40,
+			"idx": 39,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -3626,7 +3626,7 @@
 				38
 			],
 			"disabled": false,
-			"idx": 41,
+			"idx": 40,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -3643,7 +3643,7 @@
 				37
 			],
 			"disabled": false,
-			"idx": 42,
+			"idx": 41,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -3660,7 +3660,7 @@
 				39
 			],
 			"disabled": false,
-			"idx": 43,
+			"idx": 42,
 			"name": "bricks_var_01_05"
 		},
 		{
@@ -3677,7 +3677,7 @@
 				36
 			],
 			"disabled": false,
-			"idx": 44,
+			"idx": 43,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -3694,7 +3694,7 @@
 				35
 			],
 			"disabled": false,
-			"idx": 45,
+			"idx": 44,
 			"name": "bricks_var_01_04"
 		},
 		{
@@ -3711,7 +3711,7 @@
 				34
 			],
 			"disabled": false,
-			"idx": 46,
+			"idx": 45,
 			"name": "bricks_var_01_03"
 		},
 		{
@@ -3728,7 +3728,7 @@
 				33
 			],
 			"disabled": false,
-			"idx": 47,
+			"idx": 46,
 			"name": "bricks_var_01_02"
 		},
 		{
@@ -3745,7 +3745,7 @@
 				32
 			],
 			"disabled": false,
-			"idx": 48,
+			"idx": 47,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -3762,7 +3762,7 @@
 				62
 			],
 			"disabled": false,
-			"idx": 49,
+			"idx": 48,
 			"name": "bricks_var_01_02"
 		},
 		{
@@ -3779,7 +3779,7 @@
 				61
 			],
 			"disabled": false,
-			"idx": 50,
+			"idx": 49,
 			"name": "bricks_var_01_03"
 		},
 		{
@@ -3796,7 +3796,7 @@
 				60
 			],
 			"disabled": false,
-			"idx": 51,
+			"idx": 50,
 			"name": "bricks_var_01_04"
 		},
 		{
@@ -3813,7 +3813,7 @@
 				59
 			],
 			"disabled": false,
-			"idx": 52,
+			"idx": 51,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -3830,7 +3830,7 @@
 				56
 			],
 			"disabled": false,
-			"idx": 53,
+			"idx": 52,
 			"name": "bricks_var_01_05"
 		},
 		{
@@ -3847,7 +3847,7 @@
 				58
 			],
 			"disabled": false,
-			"idx": 54,
+			"idx": 53,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -3864,7 +3864,7 @@
 				57
 			],
 			"disabled": false,
-			"idx": 55,
+			"idx": 54,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -3881,7 +3881,7 @@
 				48
 			],
 			"disabled": false,
-			"idx": 56,
+			"idx": 55,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -3898,7 +3898,7 @@
 				49
 			],
 			"disabled": false,
-			"idx": 57,
+			"idx": 56,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -3915,7 +3915,7 @@
 				50
 			],
 			"disabled": false,
-			"idx": 58,
+			"idx": 57,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -3932,7 +3932,7 @@
 				51
 			],
 			"disabled": false,
-			"idx": 59,
+			"idx": 58,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -3949,7 +3949,7 @@
 				52
 			],
 			"disabled": false,
-			"idx": 60,
+			"idx": 59,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -3966,7 +3966,7 @@
 				53
 			],
 			"disabled": false,
-			"idx": 61,
+			"idx": 60,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -3983,7 +3983,7 @@
 				54
 			],
 			"disabled": false,
-			"idx": 62,
+			"idx": 61,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -4000,7 +4000,7 @@
 				55
 			],
 			"disabled": false,
-			"idx": 63,
+			"idx": 62,
 			"name": "bricks_var_02_02"
 		},
 		{
@@ -4017,7 +4017,7 @@
 				72
 			],
 			"disabled": false,
-			"idx": 64,
+			"idx": 63,
 			"name": "bricks_var_02_02"
 		},
 		{
@@ -4034,7 +4034,7 @@
 				71
 			],
 			"disabled": false,
-			"idx": 65,
+			"idx": 64,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -4051,7 +4051,7 @@
 				70
 			],
 			"disabled": false,
-			"idx": 66,
+			"idx": 65,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -4068,7 +4068,7 @@
 				69
 			],
 			"disabled": false,
-			"idx": 67,
+			"idx": 66,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -4085,7 +4085,7 @@
 				68
 			],
 			"disabled": false,
-			"idx": 68,
+			"idx": 67,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4102,7 +4102,7 @@
 				67
 			],
 			"disabled": false,
-			"idx": 69,
+			"idx": 68,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -4119,7 +4119,7 @@
 				66
 			],
 			"disabled": false,
-			"idx": 70,
+			"idx": 69,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -4136,7 +4136,7 @@
 				65
 			],
 			"disabled": false,
-			"idx": 71,
+			"idx": 70,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4153,7 +4153,7 @@
 				74
 			],
 			"disabled": false,
-			"idx": 72,
+			"idx": 71,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -4170,7 +4170,7 @@
 				75
 			],
 			"disabled": false,
-			"idx": 73,
+			"idx": 72,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -4187,7 +4187,7 @@
 				73
 			],
 			"disabled": false,
-			"idx": 74,
+			"idx": 73,
 			"name": "bricks_var_01_05"
 		},
 		{
@@ -4204,7 +4204,7 @@
 				76
 			],
 			"disabled": false,
-			"idx": 75,
+			"idx": 74,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4221,7 +4221,7 @@
 				77
 			],
 			"disabled": false,
-			"idx": 76,
+			"idx": 75,
 			"name": "bricks_var_01_04"
 		},
 		{
@@ -4238,7 +4238,7 @@
 				78
 			],
 			"disabled": false,
-			"idx": 77,
+			"idx": 76,
 			"name": "bricks_var_01_03"
 		},
 		{
@@ -4255,7 +4255,7 @@
 				79
 			],
 			"disabled": false,
-			"idx": 78,
+			"idx": 77,
 			"name": "bricks_var_01_02"
 		},
 		{
@@ -4272,7 +4272,7 @@
 				80
 			],
 			"disabled": false,
-			"idx": 79,
+			"idx": 78,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -4289,7 +4289,7 @@
 				81
 			],
 			"disabled": false,
-			"idx": 80,
+			"idx": 79,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4306,7 +4306,7 @@
 				82
 			],
 			"disabled": false,
-			"idx": 81,
+			"idx": 80,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -4323,7 +4323,7 @@
 				83
 			],
 			"disabled": false,
-			"idx": 82,
+			"idx": 81,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -4340,7 +4340,7 @@
 				84
 			],
 			"disabled": false,
-			"idx": 83,
+			"idx": 82,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4357,7 +4357,7 @@
 				85
 			],
 			"disabled": false,
-			"idx": 84,
+			"idx": 83,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -4374,7 +4374,7 @@
 				86
 			],
 			"disabled": false,
-			"idx": 85,
+			"idx": 84,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -4391,7 +4391,7 @@
 				87
 			],
 			"disabled": false,
-			"idx": 86,
+			"idx": 85,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -4408,7 +4408,7 @@
 				88
 			],
 			"disabled": false,
-			"idx": 87,
+			"idx": 86,
 			"name": "bricks_var_02_02"
 		},
 		{
@@ -4425,7 +4425,7 @@
 				89
 			],
 			"disabled": false,
-			"idx": 88,
+			"idx": 87,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -4442,7 +4442,7 @@
 				90
 			],
 			"disabled": false,
-			"idx": 89,
+			"idx": 88,
 			"name": "bricks_var_02_04"
 		},
 		{
@@ -4459,7 +4459,7 @@
 				91
 			],
 			"disabled": false,
-			"idx": 90,
+			"idx": 89,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4476,7 +4476,7 @@
 				64
 			],
 			"disabled": false,
-			"idx": 91,
+			"idx": 90,
 			"name": "bricks_var_01_05"
 		},
 		{
@@ -4493,7 +4493,7 @@
 				92
 			],
 			"disabled": false,
-			"idx": 92,
+			"idx": 91,
 			"name": "bricks_var_01_04"
 		},
 		{
@@ -4510,7 +4510,7 @@
 				93
 			],
 			"disabled": false,
-			"idx": 93,
+			"idx": 92,
 			"name": "bricks_var_01_03"
 		},
 		{
@@ -4527,7 +4527,7 @@
 				94
 			],
 			"disabled": false,
-			"idx": 94,
+			"idx": 93,
 			"name": "bricks_var_01_02"
 		},
 		{
@@ -4544,7 +4544,7 @@
 				95
 			],
 			"disabled": false,
-			"idx": 95,
+			"idx": 94,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -4561,7 +4561,7 @@
 				133
 			],
 			"disabled": false,
-			"idx": 96,
+			"idx": 95,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -4578,7 +4578,7 @@
 				63
 			],
 			"disabled": false,
-			"idx": 97,
+			"idx": 96,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -4595,7 +4595,7 @@
 				143
 			],
 			"disabled": false,
-			"idx": 98,
+			"idx": 97,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4612,7 +4612,7 @@
 				134
 			],
 			"disabled": false,
-			"idx": 99,
+			"idx": 98,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -4629,7 +4629,7 @@
 				132
 			],
 			"disabled": false,
-			"idx": 100,
+			"idx": 99,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4646,7 +4646,7 @@
 				99
 			],
 			"disabled": false,
-			"idx": 101,
+			"idx": 100,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -4663,7 +4663,7 @@
 				96
 			],
 			"disabled": false,
-			"idx": 102,
+			"idx": 101,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4680,7 +4680,7 @@
 				98
 			],
 			"disabled": false,
-			"idx": 103,
+			"idx": 102,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -4697,7 +4697,7 @@
 				97
 			],
 			"disabled": false,
-			"idx": 104,
+			"idx": 103,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4714,7 +4714,7 @@
 				105
 			],
 			"disabled": false,
-			"idx": 105,
+			"idx": 104,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4731,7 +4731,7 @@
 				101
 			],
 			"disabled": false,
-			"idx": 106,
+			"idx": 105,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4748,7 +4748,7 @@
 				102
 			],
 			"disabled": false,
-			"idx": 107,
+			"idx": 106,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -4765,7 +4765,7 @@
 				100
 			],
 			"disabled": false,
-			"idx": 108,
+			"idx": 107,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4782,7 +4782,7 @@
 				104
 			],
 			"disabled": false,
-			"idx": 109,
+			"idx": 108,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4799,7 +4799,7 @@
 				103
 			],
 			"disabled": false,
-			"idx": 110,
+			"idx": 109,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -4816,7 +4816,7 @@
 				107
 			],
 			"disabled": false,
-			"idx": 111,
+			"idx": 110,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -4833,7 +4833,7 @@
 				106
 			],
 			"disabled": false,
-			"idx": 112,
+			"idx": 111,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -4850,7 +4850,7 @@
 				114
 			],
 			"disabled": false,
-			"idx": 113,
+			"idx": 112,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -4867,7 +4867,7 @@
 				115
 			],
 			"disabled": false,
-			"idx": 114,
+			"idx": 113,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -4884,7 +4884,7 @@
 				111
 			],
 			"disabled": false,
-			"idx": 115,
+			"idx": 114,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -4901,7 +4901,7 @@
 				112
 			],
 			"disabled": false,
-			"idx": 116,
+			"idx": 115,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4918,7 +4918,7 @@
 				108
 			],
 			"disabled": false,
-			"idx": 117,
+			"idx": 116,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4935,7 +4935,7 @@
 				110
 			],
 			"disabled": false,
-			"idx": 118,
+			"idx": 117,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -4952,7 +4952,7 @@
 				109
 			],
 			"disabled": false,
-			"idx": 119,
+			"idx": 118,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4969,7 +4969,7 @@
 				113
 			],
 			"disabled": false,
-			"idx": 120,
+			"idx": 119,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -4986,7 +4986,7 @@
 				121
 			],
 			"disabled": false,
-			"idx": 121,
+			"idx": 120,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -5003,7 +5003,7 @@
 				117
 			],
 			"disabled": false,
-			"idx": 122,
+			"idx": 121,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -5020,7 +5020,7 @@
 				118
 			],
 			"disabled": false,
-			"idx": 123,
+			"idx": 122,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -5037,7 +5037,7 @@
 				116
 			],
 			"disabled": false,
-			"idx": 124,
+			"idx": 123,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -5054,7 +5054,7 @@
 				120
 			],
 			"disabled": false,
-			"idx": 125,
+			"idx": 124,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -5071,7 +5071,7 @@
 				119
 			],
 			"disabled": false,
-			"idx": 126,
+			"idx": 125,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -5088,7 +5088,7 @@
 				123
 			],
 			"disabled": false,
-			"idx": 127,
+			"idx": 126,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -5105,7 +5105,7 @@
 				122
 			],
 			"disabled": false,
-			"idx": 128,
+			"idx": 127,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -5122,7 +5122,7 @@
 				130
 			],
 			"disabled": false,
-			"idx": 129,
+			"idx": 128,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -5139,7 +5139,7 @@
 				131
 			],
 			"disabled": false,
-			"idx": 130,
+			"idx": 129,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -5156,7 +5156,7 @@
 				127
 			],
 			"disabled": false,
-			"idx": 131,
+			"idx": 130,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -5173,7 +5173,7 @@
 				128
 			],
 			"disabled": false,
-			"idx": 132,
+			"idx": 131,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -5190,7 +5190,7 @@
 				124
 			],
 			"disabled": false,
-			"idx": 133,
+			"idx": 132,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -5207,7 +5207,7 @@
 				126
 			],
 			"disabled": false,
-			"idx": 134,
+			"idx": 133,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -5224,7 +5224,7 @@
 				125
 			],
 			"disabled": false,
-			"idx": 135,
+			"idx": 134,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -5241,7 +5241,7 @@
 				129
 			],
 			"disabled": false,
-			"idx": 136,
+			"idx": 135,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -5258,7 +5258,7 @@
 				135
 			],
 			"disabled": false,
-			"idx": 137,
+			"idx": 136,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -5275,7 +5275,7 @@
 				136
 			],
 			"disabled": false,
-			"idx": 138,
+			"idx": 137,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -5292,7 +5292,7 @@
 				137
 			],
 			"disabled": false,
-			"idx": 139,
+			"idx": 138,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -5309,7 +5309,7 @@
 				138
 			],
 			"disabled": false,
-			"idx": 140,
+			"idx": 139,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -5326,7 +5326,7 @@
 				139
 			],
 			"disabled": false,
-			"idx": 141,
+			"idx": 140,
 			"name": "bricks_var_02_05"
 		},
 		{
@@ -5343,7 +5343,7 @@
 				140
 			],
 			"disabled": false,
-			"idx": 142,
+			"idx": 141,
 			"name": "bricks_var_01_01"
 		},
 		{
@@ -5360,7 +5360,7 @@
 				141
 			],
 			"disabled": false,
-			"idx": 143,
+			"idx": 142,
 			"name": "bricks_var_02_03"
 		},
 		{
@@ -5377,7 +5377,7 @@
 				142
 			],
 			"disabled": false,
-			"idx": 144,
+			"idx": 143,
 			"name": "bricks_var_02_05"
 		}
 	],
@@ -5759,7 +5759,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -5923,7 +5923,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4941176772117615
 							]
 						},
 						{
@@ -6005,7 +6005,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -6169,7 +6169,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4941176772117615
 							]
 						},
 						{
@@ -6415,7 +6415,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -6579,7 +6579,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4941176772117615
 							]
 						},
 						{
@@ -6743,7 +6743,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4941176772117615
 							]
 						},
 						{
@@ -6989,7 +6989,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -7809,7 +7809,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -7973,7 +7973,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4941176772117615
 							]
 						},
 						{
@@ -8219,7 +8219,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -8629,7 +8629,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -8711,7 +8711,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -9531,7 +9531,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -9777,7 +9777,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -9859,7 +9859,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.41568630933761597
 							]
 						},
 						{
@@ -9941,7 +9941,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.6980392336845398
 							]
 						},
 						{
@@ -10105,7 +10105,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -10433,7 +10433,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -10843,7 +10843,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -11007,7 +11007,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.6980392336845398
 							]
 						},
 						{
@@ -11253,7 +11253,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -11417,7 +11417,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -11499,7 +11499,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.6980392336845398
 							]
 						},
 						{
@@ -11745,7 +11745,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.6980392336845398
 							]
 						},
 						{
@@ -11909,7 +11909,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.6980392336845398
 							]
 						},
 						{
@@ -12155,7 +12155,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.6980392336845398
 							]
 						},
 						{
@@ -12319,7 +12319,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.6980392336845398
 							]
 						},
 						{
@@ -13877,6 +13877,1974 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
+								0.6980392336845398
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_01_01_44.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.6980392336845398
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_05_49.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.3176470696926117
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_05_49.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.4901961088180542
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_03_51.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.3176470696926117
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_01_01_44.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.4901961088180542
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_05_49.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.3176470696926117
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_05_49.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.6980392336845398
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_03_51.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.3176470696926117
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_01_01_44.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.6980392336845398
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_05_49.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.4901961088180542
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_05_49.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.3176470696926117
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_03_51.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.6980392336845398
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_01_01_44.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.4901961088180542
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_05_49.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.6980392336845398
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_05_49.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.4901961088180542
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_03_51.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.6980392336845398
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_01_01_44.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.3176470696926117
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_05_49.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.3176470696926117
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_05_49.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.4901961088180542
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_03_51.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.3176470696926117
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_01_01_44.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.4901961088180542
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_05_49.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.3176470696926117
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_05_49.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.6980392336845398
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_03_51.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
 								0.3176470696926117
 							]
 						},
@@ -13991,6 +15959,252 @@
 				}
 			],
 			"name": "props/bricks/bricks_var_02_05_49.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.6980392336845398
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_05_49.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.6980392336845398
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_02_03_51.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "bricks_M"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "props/bricks/BC_bricks.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "props/bricks/N_bricks.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "props/bricks/ORM_bricks.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.5,
+								0.5,
+								0.5,
+								1.0
+							]
+						},
+						{
+							"name": "uORMPow",
+							"type": "vec4",
+							"value": [
+								2.007843255996704,
+								2.007843255996704,
+								1.003921627998352,
+								0.3176470696926117
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.5,
+								0.25,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "props/bricks/bricks_var_01_01_44.geo"
 		},
 		{
 			"bones": [],
@@ -14287,2221 +16501,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_05_49.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_05_49.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_03_51.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_01_01_44.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_05_49.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_05_49.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_03_51.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_01_01_44.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_05_49.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_05_49.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_03_51.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_01_01_44.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_05_49.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_05_49.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_03_51.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_01_01_44.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_05_49.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_05_49.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_03_51.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_01_01_44.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_05_49.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_05_49.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_03_51.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_01_01_44.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_05_49.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_02_03_51.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
-							]
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessColor",
-							"type": "vec4",
-							"value": [
-								1.0,
-								0.5,
-								0.25,
-								0.0
-							]
-						},
-						{
-							"name": "uSelfColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								-1.0
-							]
-						}
-					],
-					"write_a": true,
-					"write_b": true,
-					"write_g": true,
-					"write_r": true,
-					"write_z": true
-				}
-			],
-			"name": "props/bricks/bricks_var_01_01_44.geo"
-		},
-		{
-			"bones": [],
-			"material_infos": [
-				{
-					"name": "bricks_M"
-				}
-			],
-			"materials": [
-				{
-					"blend_mode": "opaque",
-					"depth_test": "less",
-					"face_culling": "cw",
-					"flags": [],
-					"program": "core/shader/pbr.hps",
-					"textures": [
-						{
-							"name": "uBaseOpacityMap",
-							"path": "props/bricks/BC_bricks.png",
-							"stage": 0
-						},
-						{
-							"name": "uNormalMap",
-							"path": "props/bricks/N_bricks.png",
-							"stage": 2
-						},
-						{
-							"name": "uOcclusionRoughnessMetalnessMap",
-							"path": "props/bricks/ORM_bricks.png",
-							"stage": 1
-						}
-					],
-					"values": [
-						{
-							"name": "uBaseOpacityColor",
-							"type": "vec4",
-							"value": [
-								0.5,
-								0.5,
-								0.5,
-								1.0
-							]
-						},
-						{
-							"name": "uORMPow",
-							"type": "vec4",
-							"value": [
-								2.007843255996704,
-								2.007843255996704,
-								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -16665,7 +16665,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -16747,7 +16747,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -16993,7 +16993,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.6980392336845398
 							]
 						},
 						{
@@ -17075,7 +17075,7 @@
 								2.007843255996704,
 								2.007843255996704,
 								1.003921627998352,
-								0.3176470696926117
+								0.4901961088180542
 							]
 						},
 						{
@@ -18347,7 +18347,7 @@
 	],
 	"transforms": [
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.06119073927402496,
@@ -18365,7 +18365,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.06119073927402496,
@@ -18383,7 +18383,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.38381731510162354,
 				0.06119073927402496,
@@ -18392,7 +18392,7 @@
 			"rot": [
 				-7.016715479452691e-15,
 				90.0,
-				-3.617076088711854e-29
+				-3.617075486858746e-29
 			],
 			"scl": [
 				0.9999995827674866,
@@ -18401,14 +18401,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				0.06119073927402496,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				90.0,
 				-6.328377093075561e-29
 			],
@@ -18419,7 +18419,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.061190858483314514,
@@ -18437,16 +18437,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.36618268489837646,
 				0.06119073927402496,
 				0.4869799017906189
 			],
 			"rot": [
-				-7.016709973738534e-15,
+				-7.016708279672639e-15,
 				90.0,
-				3.009225665336676e-30
+				3.0092251010993877e-30
 			],
 			"scl": [
 				0.9999997615814209,
@@ -18455,16 +18455,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				0.06119062006473541,
 				0.4869905710220337
 			],
 			"rot": [
-				-7.016709973738534e-15,
+				-7.016708279672639e-15,
 				90.0,
-				3.009225665336676e-30
+				3.0092251010993877e-30
 			],
 			"scl": [
 				0.9999997615814209,
@@ -18473,7 +18473,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.18119078874588013,
@@ -18491,16 +18491,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				0.18119072914123535,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				-90.0,
-				-1.5076164558335592e-29
+				-1.5076161549070054e-29
 			],
 			"scl": [
 				0.9999996423721313,
@@ -18509,14 +18509,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.36618244647979736,
 				0.18119072914123535,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				90.0,
 				-6.328377093075561e-29
 			],
@@ -18527,15 +18527,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.18119072914123535,
 				-0.13801999390125275
 			],
 			"rot": [
-				-7.016708279672639e-15,
-				-179.99996948242188,
+				-7.0167078561561656e-15,
+				-179.99993896484375,
 				0.0
 			],
 			"scl": [
@@ -18545,7 +18545,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.18119072914123535,
@@ -18563,14 +18563,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				0.18119072914123535,
 				0.4869799017906189
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				90.0,
 				-6.328377093075561e-29
 			],
@@ -18581,16 +18581,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.38381731510162354,
 				0.18119072914123535,
 				0.4869334101676941
 			],
 			"rot": [
-				-7.016713785386796e-15,
+				-7.016712091320902e-15,
 				-90.0,
-				-3.6170757877853e-29
+				-3.6170751859321924e-29
 			],
 			"scl": [
 				0.9999995827674866,
@@ -18599,7 +18599,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.18119072914123535,
@@ -18617,7 +18617,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.30119073390960693,
@@ -18635,7 +18635,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.30119073390960693,
@@ -18653,7 +18653,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.38381731510162354,
 				0.30119073390960693,
@@ -18662,7 +18662,7 @@
 			"rot": [
 				-7.016715479452691e-15,
 				90.0,
-				-3.6170763896384076e-29
+				-3.6170757877853e-29
 			],
 			"scl": [
 				0.9999995231628418,
@@ -18671,14 +18671,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				0.30119097232818604,
 				0.4869799017906189
 			],
 			"rot": [
-				-7.016716750002112e-15,
+				-7.016715479452691e-15,
 				90.0,
 				-1.4766216828294955e-28
 			],
@@ -18689,7 +18689,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.30119073390960693,
@@ -18707,7 +18707,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.36618268489837646,
 				0.30119073390960693,
@@ -18716,7 +18716,7 @@
 			"rot": [
 				-7.016711667804428e-15,
 				90.0,
-				3.0092260414948684e-30
+				3.009225289178484e-30
 			],
 			"scl": [
 				0.9999997019767761,
@@ -18725,16 +18725,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				0.30119073390960693,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.0167159029691645e-15,
+				-7.016715479452691e-15,
 				90.0,
-				-1.2066914066558226e-29
+				-1.2066913314241842e-29
 			],
 			"scl": [
 				0.9999995231628418,
@@ -18743,15 +18743,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.30119073390960693,
 				-0.3893410563468933
 			],
 			"rot": [
-				-7.016708279672639e-15,
-				-179.99996948242188,
+				-7.0167078561561656e-15,
+				-179.99993896484375,
 				0.0
 			],
 			"scl": [
@@ -18761,7 +18761,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.4211907386779785,
@@ -18779,14 +18779,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				0.4211907386779785,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016713785386796e-15,
+				-7.016712091320902e-15,
 				90.0,
 				-1.50761690722339e-29
 			],
@@ -18797,16 +18797,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.36618244647979736,
 				0.4211907386779785,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				90.0,
-				-6.328378898634884e-29
+				-6.328378296781776e-29
 			],
 			"scl": [
 				0.9999995827674866,
@@ -18815,7 +18815,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.4211907386779785,
@@ -18833,15 +18833,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.4211907386779785,
 				0.3619799017906189
 			],
 			"rot": [
-				-7.016708279672639e-15,
-				-179.99996948242188,
+				-7.0167078561561656e-15,
+				-179.99993896484375,
 				0.0
 			],
 			"scl": [
@@ -18851,16 +18851,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				0.4211907386779785,
 				0.4869799017906189
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				-90.0,
-				-6.328378898634884e-29
+				-6.328378296781776e-29
 			],
 			"scl": [
 				0.9999995827674866,
@@ -18869,16 +18869,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.38381731510162354,
 				0.4211907386779785,
 				0.4869334101676941
 			],
 			"rot": [
-				-5.008956577512436e-06,
-				-89.99998474121094,
-				-179.99998474121094
+				-5.008955668017734e-06,
+				-89.99996948242188,
+				-179.9999542236328
 			],
 			"scl": [
 				0.999999463558197,
@@ -18887,15 +18887,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.4211907386779785,
 				0.1119798868894577
 			],
 			"rot": [
-				-7.016708279672639e-15,
-				-179.99996948242188,
+				-7.0167078561561656e-15,
+				-179.99993896484375,
 				0.0
 			],
 			"scl": [
@@ -18905,7 +18905,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.06119067966938019,
@@ -18923,7 +18923,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.5411907434463501,
@@ -18941,15 +18941,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.5411907434463501,
 				0.3619799017906189
 			],
 			"rot": [
-				-7.016708279672639e-15,
-				-179.99998474121094,
+				-7.0167078561561656e-15,
+				-179.9999542236328,
 				0.0
 			],
 			"scl": [
@@ -18959,16 +18959,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.38381731510162354,
 				0.5411907434463501,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016716750002112e-15,
+				-7.016715479452691e-15,
 				90.0,
-				-3.617076991491515e-29
+				-3.6170763896384076e-29
 			],
 			"scl": [
 				0.999999463558197,
@@ -18977,16 +18977,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				0.5411907434463501,
 				0.4869799017906189
 			],
 			"rot": [
-				-7.016717597035059e-15,
+				-7.0167159029691645e-15,
 				90.0,
-				-1.476621803200117e-28
+				-1.4766216828294955e-28
 			],
 			"scl": [
 				0.9999994039535522,
@@ -18995,7 +18995,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.5411907434463501,
@@ -19013,7 +19013,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.36618268489837646,
 				0.5411907434463501,
@@ -19022,7 +19022,7 @@
 			"rot": [
 				-7.016711667804428e-15,
 				90.0,
-				3.0092260414948684e-30
+				3.009225289178484e-30
 			],
 			"scl": [
 				0.9999996423721313,
@@ -19031,16 +19031,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				0.5411907434463501,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016716750002112e-15,
+				-7.016715479452691e-15,
 				90.0,
-				-1.2066915571190995e-29
+				-1.2066913314241842e-29
 			],
 			"scl": [
 				0.999999463558197,
@@ -19049,15 +19049,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.5411907434463501,
 				-0.3893410563468933
 			],
 			"rot": [
-				-7.016708279672639e-15,
-				-179.99996948242188,
+				-7.0167078561561656e-15,
+				-179.99993896484375,
 				0.0
 			],
 			"scl": [
@@ -19067,7 +19067,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.6611907482147217,
@@ -19085,16 +19085,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				0.6611907482147217,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.0167159029691645e-15,
+				-7.016715479452691e-15,
 				90.0,
-				-1.5076170576866668e-29
+				-1.50761690722339e-29
 			],
 			"scl": [
 				0.999999463558197,
@@ -19103,16 +19103,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.36618244647979736,
 				0.6611907482147217,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				90.0,
-				-6.328379500487992e-29
+				-6.328378296781776e-29
 			],
 			"scl": [
 				0.9999995231628418,
@@ -19121,7 +19121,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.6611907482147217,
@@ -19139,15 +19139,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.6611907482147217,
 				0.3619799017906189
 			],
 			"rot": [
-				-7.016708279672639e-15,
-				-179.99996948242188,
+				-7.0167078561561656e-15,
+				-179.99993896484375,
 				0.0
 			],
 			"scl": [
@@ -19157,16 +19157,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				0.6611907482147217,
 				0.4869799017906189
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				-90.0,
-				-6.328379500487992e-29
+				-6.328378296781776e-29
 			],
 			"scl": [
 				0.9999995231628418,
@@ -19175,16 +19175,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.38381731510162354,
 				0.6611907482147217,
 				0.4869334101676941
 			],
 			"rot": [
-				-7.016717597035059e-15,
+				-7.0167159029691645e-15,
 				90.0,
-				-3.617077292418069e-29
+				-3.6170766905649614e-29
 			],
 			"scl": [
 				0.9999994039535522,
@@ -19193,15 +19193,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.6611907482147217,
 				0.1119798868894577
 			],
 			"rot": [
-				-7.016708279672639e-15,
-				-179.99996948242188,
+				-7.0167078561561656e-15,
+				-179.99993896484375,
 				0.0
 			],
 			"scl": [
@@ -19211,15 +19211,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				1.3811907768249512,
 				0.1119798868894577
 			],
 			"rot": [
-				-7.0167091267055864e-15,
-				-179.99996948242188,
+				-7.0167078561561656e-15,
+				-179.99993896484375,
 				0.0
 			],
 			"scl": [
@@ -19229,14 +19229,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.38381731510162354,
 				1.3811907768249512,
 				0.4869334101676941
 			],
 			"rot": [
-				-7.016717597035059e-15,
+				-7.0167159029691645e-15,
 				90.0,
 				-3.6170778942711767e-29
 			],
@@ -19247,16 +19247,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				1.3811907768249512,
 				0.4869799017906189
 			],
 			"rot": [
-				-7.016713785386796e-15,
+				-7.016712091320902e-15,
 				-90.0,
-				-6.328379500487992e-29
+				-6.328378296781776e-29
 			],
 			"scl": [
 				0.999999463558197,
@@ -19265,15 +19265,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				1.3811907768249512,
 				0.3619799017906189
 			],
 			"rot": [
-				-7.0167091267055864e-15,
-				-179.99996948242188,
+				-7.0167078561561656e-15,
+				-179.99993896484375,
 				0.0
 			],
 			"scl": [
@@ -19283,7 +19283,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				1.3811907768249512,
@@ -19301,16 +19301,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.36618244647979736,
 				1.3811907768249512,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016713785386796e-15,
+				-7.016712091320902e-15,
 				90.0,
-				-6.328379500487992e-29
+				-6.328378296781776e-29
 			],
 			"scl": [
 				0.999999463558197,
@@ -19319,16 +19319,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				1.3811907768249512,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016716750002112e-15,
+				-7.016715479452691e-15,
 				90.0,
-				-1.5076172081499437e-29
+				-1.50761690722339e-29
 			],
 			"scl": [
 				0.9999994039535522,
@@ -19337,7 +19337,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				1.3811907768249512,
@@ -19355,15 +19355,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				1.2611907720565796,
 				-0.3893410563468933
 			],
 			"rot": [
-				-7.0167091267055864e-15,
-				-179.99996948242188,
+				-7.0167078561561656e-15,
+				-179.99993896484375,
 				0.0
 			],
 			"scl": [
@@ -19373,16 +19373,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				1.2611907720565796,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016717597035059e-15,
+				-7.0167159029691645e-15,
 				90.0,
-				-1.2066915571190995e-29
+				-1.2066913314241842e-29
 			],
 			"scl": [
 				0.9999994039535522,
@@ -19391,14 +19391,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.36618268489837646,
 				1.2611907720565796,
 				0.4869799017906189
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				90.0,
 				3.009226793811253e-30
 			],
@@ -19409,7 +19409,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				1.2611907720565796,
@@ -19427,16 +19427,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				1.2611907720565796,
 				0.4869799017906189
 			],
 			"rot": [
-				-5.0089570322597865e-06,
-				-89.99998474121094,
-				-179.99998474121094
+				-5.008956122765085e-06,
+				-89.99996948242188,
+				-179.9999542236328
 			],
 			"scl": [
 				0.9999993443489075,
@@ -19445,16 +19445,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.38381731510162354,
 				1.2611907720565796,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016717597035059e-15,
+				-7.0167159029691645e-15,
 				90.0,
-				-3.617077292418069e-29
+				-3.6170766905649614e-29
 			],
 			"scl": [
 				0.9999994039535522,
@@ -19463,7 +19463,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				1.2611907720565796,
@@ -19481,7 +19481,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				1.2611907720565796,
@@ -19499,7 +19499,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.7811906933784485,
@@ -19517,15 +19517,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				1.141190767288208,
 				0.1119798868894577
 			],
 			"rot": [
-				-7.016708279672639e-15,
-				-179.99996948242188,
+				-7.0167078561561656e-15,
+				-179.99993896484375,
 				0.0
 			],
 			"scl": [
@@ -19535,16 +19535,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.38381731510162354,
 				1.141190767288208,
 				0.4869334101676941
 			],
 			"rot": [
-				-7.016717597035059e-15,
+				-7.0167159029691645e-15,
 				90.0,
-				-3.617077292418069e-29
+				-3.6170766905649614e-29
 			],
 			"scl": [
 				0.9999994039535522,
@@ -19553,16 +19553,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				1.141190767288208,
 				0.4869799017906189
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				-90.0,
-				-6.328379500487992e-29
+				-6.328378296781776e-29
 			],
 			"scl": [
 				0.9999995231628418,
@@ -19571,15 +19571,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				1.141190767288208,
 				0.3619799017906189
 			],
 			"rot": [
-				-7.016708279672639e-15,
-				-179.99996948242188,
+				-7.0167078561561656e-15,
+				-179.99993896484375,
 				0.0
 			],
 			"scl": [
@@ -19589,7 +19589,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				1.141190767288208,
@@ -19607,16 +19607,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.36618244647979736,
 				1.141190767288208,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				90.0,
-				-6.328379500487992e-29
+				-6.328378296781776e-29
 			],
 			"scl": [
 				0.9999995231628418,
@@ -19625,16 +19625,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				1.141190767288208,
 				-0.5122882723808289
 			],
 			"rot": [
-				-7.016716750002112e-15,
+				-7.016715479452691e-15,
 				90.0,
-				-1.5076172081499437e-29
+				-1.50761690722339e-29
 			],
 			"scl": [
 				0.9999994039535522,
@@ -19643,7 +19643,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				1.141190767288208,
@@ -19661,15 +19661,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				1.0211907625198364,
 				-0.3893410563468933
 			],
 			"rot": [
-				-7.016708279672639e-15,
-				-179.99996948242188,
+				-7.0167078561561656e-15,
+				-179.99993896484375,
 				0.0
 			],
 			"scl": [
@@ -19679,16 +19679,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				1.0211907625198364,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016716750002112e-15,
+				-7.016715479452691e-15,
 				90.0,
-				-1.2066915571190995e-29
+				-1.2066913314241842e-29
 			],
 			"scl": [
 				0.999999463558197,
@@ -19697,7 +19697,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.36618268489837646,
 				1.0211907625198364,
@@ -19706,7 +19706,7 @@
 			"rot": [
 				-7.016711667804428e-15,
 				90.0,
-				3.0092260414948684e-30
+				3.009225289178484e-30
 			],
 			"scl": [
 				0.9999996423721313,
@@ -19715,7 +19715,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				1.0211907625198364,
@@ -19733,16 +19733,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				1.0211910009384155,
 				0.4869799017906189
 			],
 			"rot": [
-				-7.016717597035059e-15,
+				-7.0167159029691645e-15,
 				90.0,
-				-1.476621803200117e-28
+				-1.4766216828294955e-28
 			],
 			"scl": [
 				0.9999994039535522,
@@ -19751,16 +19751,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.38381731510162354,
 				1.0211907625198364,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016716750002112e-15,
+				-7.016715479452691e-15,
 				90.0,
-				-3.617076991491515e-29
+				-3.6170763896384076e-29
 			],
 			"scl": [
 				0.999999463558197,
@@ -19769,16 +19769,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				1.0211907625198364,
 				0.3619799017906189
 			],
 			"rot": [
-				-5.008956122765085e-06,
-				-179.99998474121094,
-				-179.99998474121094
+				-5.008955668017734e-06,
+				-179.9999542236328,
+				-179.9999542236328
 			],
 			"scl": [
 				0.9999998807907104,
@@ -19787,7 +19787,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				1.0211907625198364,
@@ -19805,7 +19805,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.9011907577514648,
@@ -19823,16 +19823,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.38381731510162354,
 				0.9011907577514648,
 				0.4869334101676941
 			],
 			"rot": [
-				-7.016713785386796e-15,
+				-7.016712091320902e-15,
 				-90.0,
-				-3.6170757877853e-29
+				-3.6170751859321924e-29
 			],
 			"scl": [
 				0.9999995231628418,
@@ -19841,14 +19841,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				0.9011907577514648,
 				0.4869799017906189
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				90.0,
 				-6.328377694928669e-29
 			],
@@ -19859,7 +19859,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.9011907577514648,
@@ -19877,15 +19877,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.9011907577514648,
 				-0.13801999390125275
 			],
 			"rot": [
-				-7.016708279672639e-15,
-				-179.99996948242188,
+				-7.0167078561561656e-15,
+				-179.99993896484375,
 				0.0
 			],
 			"scl": [
@@ -19895,14 +19895,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.36618244647979736,
 				0.9011907577514648,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				90.0,
 				-6.328377694928669e-29
 			],
@@ -19913,14 +19913,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				0.9011907577514648,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016712938353849e-15,
+				-7.016711667804428e-15,
 				-90.0,
 				-1.507616606296836e-29
 			],
@@ -19931,7 +19931,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.9011908173561096,
@@ -19949,7 +19949,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				0.7811906337738037,
@@ -19958,7 +19958,7 @@
 			"rot": [
 				-7.016711667804428e-15,
 				90.0,
-				3.0092260414948684e-30
+				3.009225289178484e-30
 			],
 			"scl": [
 				0.9999997019767761,
@@ -19967,7 +19967,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.36618268489837646,
 				0.7811907529830933,
@@ -19976,7 +19976,7 @@
 			"rot": [
 				-7.016711667804428e-15,
 				90.0,
-				3.0092260414948684e-30
+				3.009225289178484e-30
 			],
 			"scl": [
 				0.9999997019767761,
@@ -19985,7 +19985,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.49118268489837646,
 				0.7811908721923828,
@@ -20003,14 +20003,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				0.7811907529830933,
 				-0.5130200982093811
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				90.0,
 				-6.328377694928669e-29
 			],
@@ -20021,7 +20021,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.38381731510162354,
 				0.7811907529830933,
@@ -20030,7 +20030,7 @@
 			"rot": [
 				-7.016715479452691e-15,
 				90.0,
-				-3.617076088711854e-29
+				-3.617075486858746e-29
 			],
 			"scl": [
 				0.9999995231628418,
@@ -20039,7 +20039,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.7811907529830933,
@@ -20057,7 +20057,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.5088173151016235,
 				0.7811907529830933,
@@ -20075,14 +20075,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13497257232666016,
 				0.18277111649513245,
 				-0.010520115494728088
 			],
 			"rot": [
-				-7.0167091267055864e-15,
+				-7.0167078561561656e-15,
 				90.0,
 				-1.3470175876445275e-36
 			],
@@ -20093,16 +20093,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				0.18119072914123535,
 				-0.2630200982093811
 			],
 			"rot": [
-				-7.016709973738534e-15,
+				-7.016708279672639e-15,
 				90.0,
-				-1.3470176773276292e-36
+				-1.3470175876445275e-36
 			],
 			"scl": [
 				0.9999997019767761,
@@ -20111,15 +20111,15 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.24118268489837646,
 				0.18119072914123535,
 				-0.1380201131105423
 			],
 			"rot": [
-				-7.016712938353849e-15,
-				-179.99998474121094,
+				-7.016711667804428e-15,
+				-179.9999542236328,
 				-6.328378296781776e-29
 			],
 			"scl": [
@@ -20129,16 +20129,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13497257232666016,
 				0.1827709972858429,
 				0.2369798868894577
 			],
 			"rot": [
-				-7.016716750002112e-15,
+				-7.016715479452691e-15,
 				90.0,
-				-1.8085406022316343e-29
+				-1.8085403013050805e-29
 			],
 			"scl": [
 				0.999999463558197,
@@ -20147,7 +20147,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13497257232666016,
 				0.4211907386779785,
@@ -20156,7 +20156,7 @@
 			"rot": [
 				-7.016710820771481e-15,
 				90.0,
-				-1.3470178566938327e-36
+				-1.3470175876445275e-36
 			],
 			"scl": [
 				0.9999995827674866,
@@ -20165,7 +20165,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				0.4211907386779785,
@@ -20174,7 +20174,7 @@
 			"rot": [
 				-7.016710820771481e-15,
 				90.0,
-				-1.3470178566938327e-36
+				-1.3470175876445275e-36
 			],
 			"scl": [
 				0.9999995231628418,
@@ -20183,7 +20183,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.24118268489837646,
 				0.4211907386779785,
@@ -20191,8 +20191,8 @@
 			],
 			"rot": [
 				-7.016715479452691e-15,
-				-179.99998474121094,
-				-6.328380102341099e-29
+				-179.9999542236328,
+				-6.328378898634884e-29
 			],
 			"scl": [
 				0.9999994039535522,
@@ -20201,16 +20201,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13497257232666016,
 				0.4211907386779785,
 				0.2369798868894577
 			],
 			"rot": [
-				-7.01671886758448e-15,
+				-7.016718444068006e-15,
 				90.0,
-				-1.808541204084742e-29
+				-1.808540903158188e-29
 			],
 			"scl": [
 				0.9999992847442627,
@@ -20219,7 +20219,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.008817315101623535,
 				0.30119073390960693,
@@ -20237,7 +20237,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.24118268489837646,
 				0.30119073390960693,
@@ -20255,14 +20255,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				0.30119073390960693,
 				0.2369798868894577
 			],
 			"rot": [
-				-7.016712938353849e-15,
+				-7.016711667804428e-15,
 				90.0,
 				-6.328378296781776e-29
 			],
@@ -20273,7 +20273,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.25881731510162354,
 				0.30119073390960693,
@@ -20291,7 +20291,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13497257232666016,
 				0.6611907482147217,
@@ -20300,7 +20300,7 @@
 			"rot": [
 				-7.016710820771481e-15,
 				90.0,
-				-1.3470178566938327e-36
+				-1.3470175876445275e-36
 			],
 			"scl": [
 				0.9999995231628418,
@@ -20309,14 +20309,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				0.6611907482147217,
 				-0.2630200982093811
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				90.0,
 				-1.3470180360600361e-36
 			],
@@ -20327,16 +20327,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.24118268489837646,
 				0.6611907482147217,
 				-0.1380201131105423
 			],
 			"rot": [
-				-7.0167159029691645e-15,
-				-179.99998474121094,
-				-6.328380704194207e-29
+				-7.016715479452691e-15,
+				-179.9999542236328,
+				-6.328379500487992e-29
 			],
 			"scl": [
 				0.9999993443489075,
@@ -20345,14 +20345,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13497257232666016,
 				0.6611907482147217,
 				0.2369798868894577
 			],
 			"rot": [
-				-7.016719714617427e-15,
+				-7.016718444068006e-15,
 				90.0,
 				-1.8085413545480188e-29
 			],
@@ -20363,7 +20363,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.008817315101623535,
 				0.5411907434463501,
@@ -20381,7 +20381,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.24118268489837646,
 				0.5411907434463501,
@@ -20399,14 +20399,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				0.5411907434463501,
 				0.2369798868894577
 			],
 			"rot": [
-				-7.016712938353849e-15,
+				-7.016711667804428e-15,
 				90.0,
 				-6.328378296781776e-29
 			],
@@ -20417,10 +20417,154 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.25881731510162354,
 				0.5411907434463501,
+				-0.1380201131105423
+			],
+			"rot": [
+				-7.0167146324197436e-15,
+				0.0,
+				-1.8085401508418036e-29
+			],
+			"scl": [
+				0.9999997019767761,
+				1.0,
+				0.9999997019767761
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				-0.13497257232666016,
+				0.9011906981468201,
+				-0.010520115494728088
+			],
+			"rot": [
+				-7.016711667804428e-15,
+				90.0,
+				-1.3470180360600361e-36
+			],
+			"scl": [
+				0.9999994039535522,
+				1.0,
+				0.9999994039535522
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				-0.13381731510162354,
+				0.9011906981468201,
+				-0.2630200982093811
+			],
+			"rot": [
+				-7.016712091320902e-15,
+				90.0,
+				-1.3470182154262395e-36
+			],
+			"scl": [
+				0.9999993443489075,
+				1.0,
+				0.9999993443489075
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.24118268489837646,
+				0.9011906981468201,
+				-0.1380201131105423
+			],
+			"rot": [
+				-7.0167159029691645e-15,
+				-179.9999542236328,
+				-6.328381907900422e-29
+			],
+			"scl": [
+				0.9999992251396179,
+				1.0,
+				0.9999992251396179
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				-0.13497257232666016,
+				0.9011906981468201,
+				0.2369798868894577
+			],
+			"rot": [
+				-7.016719714617427e-15,
+				90.0,
+				-1.8085415050112957e-29
+			],
+			"scl": [
+				0.9999991059303284,
+				1.0,
+				0.9999991059303284
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				-0.008817315101623535,
+				0.7811907529830933,
+				-0.1380201131105423
+			],
+			"rot": [
+				-7.0167078561561656e-15,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.24118268489837646,
+				0.7811907529830933,
+				-0.1380201131105423
+			],
+			"rot": [
+				-7.0167078561561656e-15,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.11618268489837646,
+				0.7811907529830933,
+				0.2369798868894577
+			],
+			"rot": [
+				-7.016715479452691e-15,
+				90.0,
+				-6.328378296781776e-29
+			],
+			"scl": [
+				0.9999994039535522,
+				1.0,
+				0.9999994039535522
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				-0.25881731510162354,
+				0.7811907529830933,
 				-0.1380201131105423
 			],
 			"rot": [
@@ -20435,158 +20579,14 @@
 			]
 		},
 		{
-			"parent": 145,
-			"pos": [
-				-0.13497257232666016,
-				0.9011906981468201,
-				-0.010520115494728088
-			],
-			"rot": [
-				-7.016712938353849e-15,
-				90.0,
-				-1.3470180360600361e-36
-			],
-			"scl": [
-				0.9999994039535522,
-				1.0,
-				0.9999994039535522
-			]
-		},
-		{
-			"parent": 145,
-			"pos": [
-				-0.13381731510162354,
-				0.9011906981468201,
-				-0.2630200982093811
-			],
-			"rot": [
-				-7.016713785386796e-15,
-				90.0,
-				-1.3470182154262395e-36
-			],
-			"scl": [
-				0.9999993443489075,
-				1.0,
-				0.9999993443489075
-			]
-		},
-		{
-			"parent": 145,
-			"pos": [
-				0.24118268489837646,
-				0.9011906981468201,
-				-0.1380201131105423
-			],
-			"rot": [
-				-7.016717597035059e-15,
-				-179.99998474121094,
-				-6.328381907900422e-29
-			],
-			"scl": [
-				0.9999992251396179,
-				1.0,
-				0.9999992251396179
-			]
-		},
-		{
-			"parent": 145,
-			"pos": [
-				-0.13497257232666016,
-				0.9011906981468201,
-				0.2369798868894577
-			],
-			"rot": [
-				-7.016721408683322e-15,
-				90.0,
-				-1.8085416554745726e-29
-			],
-			"scl": [
-				0.9999991059303284,
-				1.0,
-				0.9999991059303284
-			]
-		},
-		{
-			"parent": 145,
-			"pos": [
-				-0.008817315101623535,
-				0.7811907529830933,
-				-0.1380201131105423
-			],
-			"rot": [
-				-7.0167078561561656e-15,
-				0.0,
-				0.0
-			],
-			"scl": [
-				1.0,
-				1.0,
-				1.0
-			]
-		},
-		{
-			"parent": 145,
-			"pos": [
-				0.24118268489837646,
-				0.7811907529830933,
-				-0.1380201131105423
-			],
-			"rot": [
-				-7.0167078561561656e-15,
-				0.0,
-				0.0
-			],
-			"scl": [
-				1.0,
-				1.0,
-				1.0
-			]
-		},
-		{
-			"parent": 145,
-			"pos": [
-				0.11618268489837646,
-				0.7811907529830933,
-				0.2369798868894577
-			],
-			"rot": [
-				-7.016715479452691e-15,
-				90.0,
-				-6.328379500487992e-29
-			],
-			"scl": [
-				0.9999994039535522,
-				1.0,
-				0.9999994039535522
-			]
-		},
-		{
-			"parent": 145,
-			"pos": [
-				-0.25881731510162354,
-				0.7811907529830933,
-				-0.1380201131105423
-			],
-			"rot": [
-				-7.0167146324197436e-15,
-				0.0,
-				-1.8085406022316343e-29
-			],
-			"scl": [
-				0.9999997019767761,
-				1.0,
-				0.9999997019767761
-			]
-		},
-		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13497257232666016,
 				1.141190767288208,
 				-0.010520115494728088
 			],
 			"rot": [
-				-7.016713785386796e-15,
+				-7.016712091320902e-15,
 				90.0,
 				-1.3470182154262395e-36
 			],
@@ -20597,7 +20597,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13381731510162354,
 				1.141190767288208,
@@ -20615,7 +20615,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.24118268489837646,
 				1.141190767288208,
@@ -20623,7 +20623,7 @@
 			],
 			"rot": [
 				-7.016718444068006e-15,
-				-179.99998474121094,
+				-179.9999542236328,
 				-6.32838250975353e-29
 			],
 			"scl": [
@@ -20633,16 +20633,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.13497257232666016,
 				1.2611907720565796,
 				0.2369798868894577
 			],
 			"rot": [
-				-7.0167226792327425e-15,
+				-7.016722255716269e-15,
 				90.0,
-				-1.8085419564011264e-29
+				-1.8085416554745726e-29
 			],
 			"scl": [
 				0.9999989867210388,
@@ -20651,7 +20651,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.008817315101623535,
 				1.0211907625198364,
@@ -20669,7 +20669,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.24118268489837646,
 				1.0211907625198364,
@@ -20687,16 +20687,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				1.0211907625198364,
 				0.2369798868894577
 			],
 			"rot": [
-				-7.0167159029691645e-15,
+				-7.016715479452691e-15,
 				90.0,
-				-6.328380102341099e-29
+				-6.328378898634884e-29
 			],
 			"scl": [
 				0.9999993443489075,
@@ -20705,7 +20705,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.25881731510162354,
 				1.0211907625198364,
@@ -20714,7 +20714,7 @@
 			"rot": [
 				-7.0167146324197436e-15,
 				0.0,
-				-1.8085407526949112e-29
+				-1.8085404517683574e-29
 			],
 			"scl": [
 				0.9999997019767761,
@@ -20723,7 +20723,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.008817315101623535,
 				0.061190858483314514,
@@ -20741,7 +20741,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.24118268489837646,
 				0.06119073927402496,
@@ -20759,7 +20759,7 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				-0.25881731510162354,
 				0.06119073927402496,
@@ -20768,7 +20768,7 @@
 			"rot": [
 				-7.0167146324197436e-15,
 				0.0,
-				-1.8085398499152498e-29
+				-1.808539548988696e-29
 			],
 			"scl": [
 				0.9999997019767761,
@@ -20777,52 +20777,16 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
 				0.24118268489837646,
 				1.2611907720565796,
-				-0.1380201131105423
+				0.11296196281909943
 			],
 			"rot": [
-				-7.01671886758448e-15,
-				-179.99998474121094,
+				-7.016718444068006e-15,
+				-179.9999542236328,
 				-6.328383111606637e-29
-			],
-			"scl": [
-				0.9999991059303284,
-				1.0,
-				0.9999991059303284
-			]
-		},
-		{
-			"parent": 145,
-			"pos": [
-				-0.13381731510162354,
-				1.2611907720565796,
-				-0.2630200982093811
-			],
-			"rot": [
-				-7.016715479452691e-15,
-				90.0,
-				-1.347018394792443e-36
-			],
-			"scl": [
-				0.9999992251396179,
-				1.0,
-				0.9999992251396179
-			]
-		},
-		{
-			"parent": 145,
-			"pos": [
-				-0.13497257232666016,
-				1.141190767288208,
-				0.2369798868894577
-			],
-			"rot": [
-				-7.016722255716269e-15,
-				90.0,
-				-1.8085418059378495e-29
 			],
 			"scl": [
 				0.9999990463256836,
@@ -20831,86 +20795,14 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
 			"pos": [
-				-0.13497257232666016,
+				0.11696779727935791,
 				1.2611907720565796,
-				-0.010520115494728088
-			],
-			"rot": [
-				-7.0167146324197436e-15,
-				90.0,
-				-1.3470182154262395e-36
-			],
-			"scl": [
-				0.9999992847442627,
-				1.0,
-				0.9999992847442627
-			]
-		},
-		{
-			"parent": 145,
-			"pos": [
-				0.24118268489837646,
-				1.3811907768249512,
-				-0.1380201131105423
-			],
-			"rot": [
-				-7.016720561650374e-15,
-				-179.99998474121094,
-				-6.328383713459745e-29
-			],
-			"scl": [
-				0.9999989867210388,
-				1.0,
-				0.9999989867210388
-			]
-		},
-		{
-			"parent": 145,
-			"pos": [
-				-0.13381731510162354,
-				1.3811907768249512,
 				-0.2630200982093811
 			],
 			"rot": [
-				-7.016716750002112e-15,
-				90.0,
-				-1.3470184844755447e-36
-			],
-			"scl": [
-				0.9999991059303284,
-				1.0,
-				0.9999991059303284
-			]
-		},
-		{
-			"parent": 145,
-			"pos": [
-				-0.13497257232666016,
-				1.3811907768249512,
-				0.2369798868894577
-			],
-			"rot": [
-				-7.016724373298637e-15,
-				90.0,
-				-1.8085422573276802e-29
-			],
-			"scl": [
-				0.9999988675117493,
-				1.0,
-				0.9999988675117493
-			]
-		},
-		{
-			"parent": 145,
-			"pos": [
-				-0.13497257232666016,
-				1.3811907768249512,
-				-0.010520115494728088
-			],
-			"rot": [
-				-7.0167159029691645e-15,
+				-7.016715479452691e-15,
 				90.0,
 				-1.347018394792443e-36
 			],
@@ -20921,14 +20813,122 @@
 			]
 		},
 		{
-			"parent": 145,
+			"parent": null,
+			"pos": [
+				-0.13497257232666016,
+				1.141190767288208,
+				0.2369798868894577
+			],
+			"rot": [
+				-7.016722255716269e-15,
+				90.0,
+				-1.8085415050112957e-29
+			],
+			"scl": [
+				0.9999990463256836,
+				1.0,
+				0.9999990463256836
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				-0.25587618350982666,
+				1.2611907720565796,
+				-0.138765349984169
+			],
+			"rot": [
+				-7.0167146324197436e-15,
+				0.0,
+				-1.3470182154262395e-36
+			],
+			"scl": [
+				0.9999992847442627,
+				1.0,
+				0.9999992847442627
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.24118268489837646,
+				1.3811907768249512,
+				0.11123135685920715
+			],
+			"rot": [
+				-7.016719714617427e-15,
+				-179.9999542236328,
+				-6.328383111606637e-29
+			],
+			"scl": [
+				0.999998927116394,
+				1.0,
+				0.999998927116394
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				-0.13381731510162354,
+				1.3811907768249512,
+				-0.2630200982093811
+			],
+			"rot": [
+				-7.016715479452691e-15,
+				90.0,
+				-1.347018394792443e-36
+			],
+			"scl": [
+				0.9999991059303284,
+				1.0,
+				0.9999991059303284
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				-0.13497257232666016,
+				1.3811907768249512,
+				0.2369798868894577
+			],
+			"rot": [
+				-7.0167226792327425e-15,
+				90.0,
+				-1.8085419564011264e-29
+			],
+			"scl": [
+				0.9999988675117493,
+				1.0,
+				0.9999988675117493
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				-0.13497257232666016,
+				1.3811907768249512,
+				-0.010520115494728088
+			],
+			"rot": [
+				-7.016715479452691e-15,
+				90.0,
+				-1.347018394792443e-36
+			],
+			"scl": [
+				0.9999991655349731,
+				1.0,
+				0.9999991655349731
+			]
+		},
+		{
+			"parent": null,
 			"pos": [
 				0.11618268489837646,
 				0.061190858483314514,
 				0.2369798868894577
 			],
 			"rot": [
-				-7.016712091320902e-15,
+				-7.016711667804428e-15,
 				90.0,
 				-6.328377093075561e-29
 			],

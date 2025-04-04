@@ -115,17 +115,18 @@ _scene:SetCurrentCamera(_cam)
 local _rb_nodes = {}
 table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
--- title screen
-local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
-local _rb_nodes = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {name = "title screen", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+-- -- title screen
+-- local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+-- local _rb_nodes = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
+-- local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+-- table.insert(sequences, {name = "title screen", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 -- wall of bricks
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes, _ctx = SetupWallOfBricks(_scene, res, pipeline_info, vtx_layout, {neon = mat_neon_red})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {name = "wall of bricks", apply_physics = ApplyPhysicsWallOfBricks, ctx = _ctx, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+ApplyPhysicsWallOfBricks(_rb_nodes, _scene, _physics, _ctx)
+table.insert(sequences, {name = "wall of bricks", ctx = _ctx, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 -- tornado
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -291,8 +292,8 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     local pass_id
 
     -- the trick is that we always render the PREVIOUS scene
-    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
-    -- view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    -- view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
 
     -- Debug physics display
     -- display_physics_debug(view_id, sequences[cs].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[cs].physics)
