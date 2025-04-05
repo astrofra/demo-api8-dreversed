@@ -2,6 +2,17 @@
 	"anims": [
 		{
 			"anim": {
+				"bool": [
+					{
+						"keys": [
+							{
+								"t": 0,
+								"v": true
+							}
+						],
+						"target": "Enable"
+					}
+				],
 				"flags": [],
 				"t_end": 0,
 				"t_start": 0,
@@ -85,6 +96,43 @@
 				]
 			},
 			"idx": 0
+		},
+		{
+			"anim": {
+				"bool": [
+					{
+						"keys": [
+							{
+								"t": 0,
+								"v": false
+							}
+						],
+						"target": "Enable"
+					}
+				],
+				"flags": [],
+				"t_end": 0,
+				"t_start": 0,
+				"vec4": [
+					{
+						"keys": [
+							{
+								"bias": 0.0,
+								"t": 0,
+								"tension": 0.0,
+								"v": [
+									0.0,
+									10.0,
+									0.0,
+									0.0
+								]
+							}
+						],
+						"target": "Material.0.uTime"
+					}
+				]
+			},
+			"idx": 1
 		}
 	],
 	"canvas": {
@@ -450,6 +498,19 @@
 			],
 			"t_end": 10000000000,
 			"t_start": 0
+		},
+		{
+			"anim": 4294967295,
+			"frame_duration": 50000000,
+			"name": "init",
+			"node_anims": [
+				{
+					"anim": 1,
+					"node": 2
+				}
+			],
+			"t_end": 100000000,
+			"t_start": 0
 		}
 	],
 	"transforms": [
@@ -497,7 +558,7 @@
 				-0.2618933320045471
 			],
 			"rot": [
-				-7.5830308432539135e-22,
+				-7.583029833511955e-22,
 				0.0,
 				0.0
 			],

@@ -1,4 +1,259 @@
 {
+	"anims": [
+		{
+			"anim": {
+				"bool": [
+					{
+						"keys": [
+							{
+								"t": 0,
+								"v": true
+							}
+						],
+						"target": "Enable"
+					}
+				],
+				"flags": [],
+				"t_end": 0,
+				"t_start": 0
+			},
+			"idx": 125
+		},
+		{
+			"anim": {
+				"bool": [
+					{
+						"keys": [
+							{
+								"t": 0,
+								"v": false
+							}
+						],
+						"target": "Enable"
+					}
+				],
+				"flags": [],
+				"t_end": 0,
+				"t_start": 0
+			},
+			"idx": 126
+		},
+		{
+			"anim": {
+				"flags": [],
+				"instance_anim": {
+					"keys": [
+						{
+							"loop": "none",
+							"name": "typein",
+							"scale": 1.0,
+							"t": 0
+						}
+					]
+				},
+				"t_end": 0,
+				"t_start": 0
+			},
+			"idx": 127
+		},
+		{
+			"anim": {
+				"flags": [],
+				"instance_anim": {
+					"keys": [
+						{
+							"loop": "none",
+							"name": "",
+							"scale": 1.0,
+							"t": 0
+						}
+					]
+				},
+				"t_end": 0,
+				"t_start": 0
+			},
+			"idx": 128
+		},
+		{
+			"anim": {
+				"flags": [],
+				"instance_anim": {
+					"keys": [
+						{
+							"loop": "none",
+							"name": "",
+							"scale": 1.0,
+							"t": 0
+						}
+					]
+				},
+				"t_end": 0,
+				"t_start": 0
+			},
+			"idx": 129
+		},
+		{
+			"anim": {
+				"flags": [],
+				"instance_anim": {
+					"keys": [
+						{
+							"loop": "none",
+							"name": "",
+							"scale": 1.0,
+							"t": 0
+						}
+					]
+				},
+				"t_end": 0,
+				"t_start": 0
+			},
+			"idx": 130
+		},
+		{
+			"anim": {
+				"bool": [
+					{
+						"keys": [
+							{
+								"t": 0,
+								"v": false
+							},
+							{
+								"t": 500000000,
+								"v": true
+							}
+						],
+						"target": "Enable"
+					}
+				],
+				"flags": [],
+				"instance_anim": {
+					"keys": [
+						{
+							"loop": "none",
+							"name": "init",
+							"scale": 1.0,
+							"t": 0
+						},
+						{
+							"loop": "none",
+							"name": "type_in",
+							"scale": 1.0,
+							"t": 500000000
+						}
+					]
+				},
+				"t_end": 0,
+				"t_start": 0
+			},
+			"idx": 131
+		},
+		{
+			"anim": {
+				"flags": [],
+				"t_end": 0,
+				"t_start": 0,
+				"vec3": [
+					{
+						"keys": [
+							{
+								"bias": 0.0,
+								"t": 9800000000,
+								"tension": 0.0,
+								"v": [
+									1.0,
+									0.9999998211860657,
+									0.9999998807907104
+								]
+							},
+							{
+								"bias": 0.0,
+								"t": 9900000000,
+								"tension": 0.0,
+								"v": [
+									1.0,
+									0.0,
+									1.0
+								]
+							},
+							{
+								"bias": 0.0,
+								"t": 9950000000,
+								"tension": 0.0,
+								"v": [
+									0.0,
+									0.0,
+									1.0
+								]
+							}
+						],
+						"target": "Scale"
+					}
+				]
+			},
+			"idx": 132
+		},
+		{
+			"anim": {
+				"flags": [],
+				"instance_anim": {
+					"keys": [
+						{
+							"loop": "none",
+							"name": "init",
+							"scale": 1.0,
+							"t": 0
+						},
+						{
+							"loop": "none",
+							"name": "intro",
+							"scale": 1.0,
+							"t": 10000000000
+						}
+					]
+				},
+				"t_end": 0,
+				"t_start": 0
+			},
+			"idx": 133
+		},
+		{
+			"anim": {
+				"flags": [],
+				"t_end": 0,
+				"t_start": 0,
+				"vec3": [
+					{
+						"keys": [
+							{
+								"bias": 0.0,
+								"t": 0,
+								"tension": 0.0,
+								"v": [
+									0.0,
+									0.30000001192092896,
+									-1.2999999523162842
+								]
+							},
+							{
+								"bias": 0.0,
+								"t": 20000000000,
+								"tension": 0.0,
+								"v": [
+									0.0,
+									0.30000001192092896,
+									-1.0
+								]
+							}
+						],
+						"target": "Position"
+					}
+				]
+			},
+			"idx": 134
+		}
+	],
 	"cameras": [
 		{
 			"fov": 0.6981316804885864,
@@ -28,24 +283,24 @@
 			0
 		],
 		"brdf_map": "core/pbr/brdf.dds",
-		"current_camera": 15,
+		"current_camera": 3,
 		"fog_color": [
 			0,
 			0,
 			0,
 			0
 		],
-		"fog_far": 0.0,
-		"fog_near": 0.0,
+		"fog_far": 5.0,
+		"fog_near": 4.0,
 		"probe": {
-			"irradiance_map": "core/pbr/probe.hdr.irradiance",
+			"irradiance_map": "probes/cage.hdr.irradiance",
 			"parallax": 0.0,
 			"pos": [
 				0.0,
 				0.0,
 				0.0
 			],
-			"radiance_map": "core/pbr/probe.hdr.radiance",
+			"radiance_map": "probes/cage.hdr.radiance",
 			"rot": [
 				0.0,
 				0.0,
@@ -66,13 +321,44 @@
 			"name": "props/tv_vintage/tv_vintage.scn"
 		},
 		{
-			"name": "props/mug/mug.scn"
+			"name": "common/title/title_super_anim.scn"
 		},
 		{
-			"name": "common/title/title.scn"
+			"name": "props/mug/mug.scn"
 		}
 	],
 	"key_values": null,
+	"lights": [
+		{
+			"diffuse": [
+				255,
+				255,
+				255,
+				255
+			],
+			"diffuse_intensity": 5.0,
+			"inner_angle": 9.999999747378752e-05,
+			"outer_angle": 0.25132042169570923,
+			"priority": 0.0,
+			"pssm_split": [
+				10.0,
+				50.0,
+				100.0,
+				200.0
+			],
+			"radius": 0.0,
+			"shadow_bias": 9.999999747378752e-06,
+			"shadow_type": "map",
+			"specular": [
+				255,
+				255,
+				255,
+				255
+			],
+			"specular_intensity": 5.0,
+			"type": "spot"
+		}
+	],
 	"nodes": [
 		{
 			"components": [
@@ -96,8 +382,8 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 5,
-			"instance": 1,
+			"idx": 1,
+			"instance": 2,
 			"name": "physics_mug"
 		},
 		{
@@ -109,8 +395,8 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 14,
-			"instance": 2,
+			"idx": 2,
+			"instance": 1,
 			"name": "title"
 		},
 		{
@@ -122,8 +408,174 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 15,
+			"idx": 3,
 			"name": "Camera"
+		},
+		{
+			"components": [
+				5,
+				4294967295,
+				4294967295,
+				0,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 4,
+			"name": "Light"
+		},
+		{
+			"components": [
+				4,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 5,
+			"name": "pivot"
+		},
+		{
+			"components": [
+				6,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 6,
+			"name": "light_rotate_y"
+		},
+		{
+			"components": [
+				7,
+				4294967295,
+				0,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 7,
+			"name": "ground"
+		},
+		{
+			"components": [
+				8,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 8,
+			"name": "world_root"
+		},
+		{
+			"components": [
+				9,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 9,
+			"name": "scale"
+		}
+	],
+	"objects": [
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "default"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "opaque",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/pbr.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "common/maps/indus_ground_color.png",
+							"stage": 0
+						},
+						{
+							"name": "uNormalMap",
+							"path": "common/maps/indus_ground_normal.png",
+							"stage": 2
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessMap",
+							"path": "common/maps/indus_ground_orm.png",
+							"stage": 1
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.16877639293670654,
+								0.16877470910549164,
+								0.16877470910549164,
+								1.0
+							]
+						},
+						{
+							"name": "uDiffuseColor",
+							"type": "vec4",
+							"value": [
+								0.5882353186607361,
+								0.5882353186607361,
+								0.5882353186607361,
+								1.0
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.9459999799728394,
+								0.0,
+								1.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						},
+						{
+							"name": "uSpecularColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								0.03124999813735485
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": true
+				}
+			],
+			"name": "common/primitives/plane.geo"
 		}
 	],
 	"scene_anims": [
@@ -131,14 +583,55 @@
 			"anim": 4294967295,
 			"frame_duration": 50000000,
 			"name": "new_animation (0)",
-			"node_anims": null,
-			"t_end": 10000000000,
+			"node_anims": [
+				{
+					"anim": 131,
+					"node": 2
+				},
+				{
+					"anim": 130,
+					"node": 2
+				},
+				{
+					"anim": 129,
+					"node": 2
+				},
+				{
+					"anim": 128,
+					"node": 2
+				},
+				{
+					"anim": 127,
+					"node": 2
+				},
+				{
+					"anim": 126,
+					"node": 2
+				},
+				{
+					"anim": 125,
+					"node": 2
+				},
+				{
+					"anim": 132,
+					"node": 9
+				},
+				{
+					"anim": 133,
+					"node": 0
+				},
+				{
+					"anim": 134,
+					"node": 3
+				}
+			],
+			"t_end": 20000000000,
 			"t_start": 0
 		}
 	],
 	"transforms": [
 		{
-			"parent": null,
+			"parent": 8,
 			"pos": [
 				0.0950036346912384,
 				0.2934587895870209,
@@ -156,47 +649,47 @@
 			]
 		},
 		{
-			"parent": null,
+			"parent": 8,
 			"pos": [
-				-0.39436566829681396,
-				0.03891189768910408,
-				-0.1855776458978653
+				0.5925836563110352,
+				0.04678663611412048,
+				-0.18557769060134888
 			],
 			"rot": [
-				-0.0,
-				119.58861541748047,
+				-3.415095306991134e-06,
+				-190.0,
 				0.0
 			],
 			"scl": [
-				0.9999997615814209,
-				1.0,
+				0.9999998807907104,
+				1.0000003576278687,
 				0.9999997615814209
 			]
 		},
 		{
-			"parent": 0,
+			"parent": 9,
 			"pos": [
-				-0.09591080248355865,
-				0.029556065797805786,
-				-0.28566521406173706
+				0.0,
+				0.0,
+				0.0
 			],
 			"rot": [
-				-0.0,
+				19.99999237060547,
 				0.0,
 				0.0
 			],
 			"scl": [
-				0.07999999821186066,
-				0.07999999821186066,
-				0.07999999821186066
+				0.07000000029802322,
+				0.07000000774860382,
+				0.07000000774860382
 			]
 		},
 		{
-			"parent": null,
+			"parent": 8,
 			"pos": [
 				0.0,
 				0.30000001192092896,
-				-1.2000000476837158
+				-1.2999999523162842
 			],
 			"rot": [
 				-0.0,
@@ -207,6 +700,114 @@
 				1.0,
 				1.0,
 				1.0
+			]
+		},
+		{
+			"parent": 6,
+			"pos": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"rot": [
+				-0.0,
+				0.0,
+				-9.999996185302734
+			],
+			"scl": [
+				0.9999999403953552,
+				0.9999999403953552,
+				1.0
+			]
+		},
+		{
+			"parent": 5,
+			"pos": [
+				0.0,
+				3.595134735107422,
+				8.395994882448576e-06
+			],
+			"rot": [
+				89.99994659423828,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				0.9999999403953552,
+				0.9999999403953552
+			]
+		},
+		{
+			"parent": 8,
+			"pos": [
+				0.0,
+				0.8178430795669556,
+				0.0
+			],
+			"rot": [
+				24.90170669555664,
+				-133.04022216796875,
+				-2.325904369354248
+			],
+			"scl": [
+				1.0000001192092896,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"parent": 8,
+			"pos": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"rot": [
+				-7.0167078561561656e-15,
+				0.0,
+				0.0
+			],
+			"scl": [
+				10.0,
+				10.0,
+				10.0
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"rot": [
+				19.999996185302734,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"parent": 0,
+			"pos": [
+				-0.0950036346912384,
+				0.028817743062973022,
+				-0.2841683328151703
+			],
+			"rot": [
+				-19.99999237060547,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				0.9999998211860657,
+				0.9999998807907104
 			]
 		}
 	]

@@ -10,73 +10,97 @@
 							"name": "a0",
 							"scale": 1.0,
 							"t": 0
-						},
-						{
-							"loop": "none",
-							"name": "a1",
-							"scale": 1.0,
-							"t": 500000000
-						},
-						{
-							"loop": "none",
-							"name": "a2",
-							"scale": 1.0,
-							"t": 1000000000
-						},
-						{
-							"loop": "none",
-							"name": "a3",
-							"scale": 1.0,
-							"t": 1500000000
-						},
-						{
-							"loop": "none",
-							"name": "a4",
-							"scale": 1.0,
-							"t": 2000000000
-						},
-						{
-							"loop": "none",
-							"name": "a5",
-							"scale": 1.0,
-							"t": 2500000000
-						},
-						{
-							"loop": "none",
-							"name": "a6",
-							"scale": 1.0,
-							"t": 3000000000
-						},
-						{
-							"loop": "none",
-							"name": "a7",
-							"scale": 1.0,
-							"t": 3500000000
-						},
-						{
-							"loop": "none",
-							"name": "a8",
-							"scale": 1.0,
-							"t": 4000000000
-						},
-						{
-							"loop": "none",
-							"name": "a9",
-							"scale": 1.0,
-							"t": 4500000000
-						},
-						{
-							"loop": "none",
-							"name": "a10",
-							"scale": 1.0,
-							"t": 5000000000
 						}
 					]
 				},
 				"t_end": 0,
 				"t_start": 0
 			},
-			"idx": 123
+			"idx": 133
+		},
+		{
+			"anim": {
+				"flags": [],
+				"instance_anim": {
+					"keys": [
+						{
+							"loop": "none",
+							"name": "a11",
+							"scale": 1.0,
+							"t": 0
+						},
+						{
+							"loop": "none",
+							"name": "a0",
+							"scale": 1.0,
+							"t": 1000000000
+						},
+						{
+							"loop": "none",
+							"name": "a1",
+							"scale": 1.0,
+							"t": 1250000000
+						},
+						{
+							"loop": "none",
+							"name": "a2",
+							"scale": 1.0,
+							"t": 1900000000
+						},
+						{
+							"loop": "none",
+							"name": "a3",
+							"scale": 1.0,
+							"t": 2150000000
+						},
+						{
+							"loop": "none",
+							"name": "a4",
+							"scale": 1.0,
+							"t": 2900000000
+						},
+						{
+							"loop": "none",
+							"name": "a5",
+							"scale": 1.0,
+							"t": 3100000000
+						},
+						{
+							"loop": "none",
+							"name": "a6",
+							"scale": 1.0,
+							"t": 3500000000
+						},
+						{
+							"loop": "none",
+							"name": "a7",
+							"scale": 1.0,
+							"t": 4250000000
+						},
+						{
+							"loop": "none",
+							"name": "a8",
+							"scale": 1.0,
+							"t": 5150000000
+						},
+						{
+							"loop": "none",
+							"name": "a9",
+							"scale": 1.0,
+							"t": 5350000000
+						},
+						{
+							"loop": "none",
+							"name": "a10",
+							"scale": 1.0,
+							"t": 5950000000
+						}
+					]
+				},
+				"t_end": 0,
+				"t_start": 0
+			},
+			"idx": 134
 		}
 	],
 	"canvas": {
@@ -153,14 +177,27 @@
 		{
 			"anim": 4294967295,
 			"frame_duration": 50000000,
-			"name": "typein",
+			"name": "type_in",
 			"node_anims": [
 				{
-					"anim": 123,
+					"anim": 134,
 					"node": 0
 				}
 			],
 			"t_end": 10000000000,
+			"t_start": 0
+		},
+		{
+			"anim": 4294967295,
+			"frame_duration": 50000000,
+			"name": "init",
+			"node_anims": [
+				{
+					"anim": 133,
+					"node": 0
+				}
+			],
+			"t_end": 100000000,
 			"t_start": 0
 		}
 	],
