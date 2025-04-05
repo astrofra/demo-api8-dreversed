@@ -1,0 +1,213 @@
+{
+	"cameras": [
+		{
+			"fov": 0.6981316804885864,
+			"ortho": false,
+			"size": 1.0,
+			"zrange": {
+				"zfar": 1000.0,
+				"znear": 0.009999999776482582
+			}
+		}
+	],
+	"canvas": {
+		"clear_color": true,
+		"clear_z": true,
+		"color": [
+			0,
+			0,
+			0,
+			255
+		]
+	},
+	"environment": {
+		"ambient": [
+			0,
+			0,
+			0,
+			0
+		],
+		"brdf_map": "core/pbr/brdf.dds",
+		"current_camera": 15,
+		"fog_color": [
+			0,
+			0,
+			0,
+			0
+		],
+		"fog_far": 0.0,
+		"fog_near": 0.0,
+		"probe": {
+			"irradiance_map": "core/pbr/probe.hdr.irradiance",
+			"parallax": 0.0,
+			"pos": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"radiance_map": "core/pbr/probe.hdr.radiance",
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"type": "sphere"
+		}
+	},
+	"instances": [
+		{
+			"anim": "intro",
+			"loop_mode": "loop",
+			"name": "props/tv_vintage/tv_vintage.scn"
+		},
+		{
+			"name": "props/mug/mug.scn"
+		},
+		{
+			"name": "common/title/title.scn"
+		}
+	],
+	"key_values": null,
+	"nodes": [
+		{
+			"components": [
+				0,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 0,
+			"instance": 0,
+			"name": "physics_tv_vintage"
+		},
+		{
+			"components": [
+				1,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 5,
+			"instance": 1,
+			"name": "physics_mug"
+		},
+		{
+			"components": [
+				2,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 14,
+			"instance": 2,
+			"name": "title"
+		},
+		{
+			"components": [
+				3,
+				0,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 15,
+			"name": "Camera"
+		}
+	],
+	"scene_anims": [
+		{
+			"anim": 4294967295,
+			"frame_duration": 50000000,
+			"name": "new_animation (0)",
+			"node_anims": null,
+			"t_end": 10000000000,
+			"t_start": 0
+		}
+	],
+	"transforms": [
+		{
+			"parent": null,
+			"pos": [
+				0.0950036346912384,
+				0.2934587895870209,
+				0.14849382638931274
+			],
+			"rot": [
+				-0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				0.9999998807907104,
+				0.9999999403953552
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				-0.39436566829681396,
+				0.03891189768910408,
+				-0.1855776458978653
+			],
+			"rot": [
+				-0.0,
+				119.58861541748047,
+				0.0
+			],
+			"scl": [
+				0.9999997615814209,
+				1.0,
+				0.9999997615814209
+			]
+		},
+		{
+			"parent": 0,
+			"pos": [
+				-0.09591080248355865,
+				0.029556065797805786,
+				-0.28566521406173706
+			],
+			"rot": [
+				-0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				0.07999999821186066,
+				0.07999999821186066,
+				0.07999999821186066
+			]
+		},
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				0.30000001192092896,
+				-1.2000000476837158
+			],
+			"rot": [
+				-0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				1.0,
+				1.0
+			]
+		}
+	]
+}
