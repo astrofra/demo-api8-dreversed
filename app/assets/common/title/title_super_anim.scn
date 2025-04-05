@@ -1,0 +1,187 @@
+{
+	"anims": [
+		{
+			"anim": {
+				"flags": [],
+				"instance_anim": {
+					"keys": [
+						{
+							"loop": "none",
+							"name": "a0",
+							"scale": 1.0,
+							"t": 0
+						},
+						{
+							"loop": "none",
+							"name": "a1",
+							"scale": 1.0,
+							"t": 500000000
+						},
+						{
+							"loop": "none",
+							"name": "a2",
+							"scale": 1.0,
+							"t": 1000000000
+						},
+						{
+							"loop": "none",
+							"name": "a3",
+							"scale": 1.0,
+							"t": 1500000000
+						},
+						{
+							"loop": "none",
+							"name": "a4",
+							"scale": 1.0,
+							"t": 2000000000
+						},
+						{
+							"loop": "none",
+							"name": "a5",
+							"scale": 1.0,
+							"t": 2500000000
+						},
+						{
+							"loop": "none",
+							"name": "a6",
+							"scale": 1.0,
+							"t": 3000000000
+						},
+						{
+							"loop": "none",
+							"name": "a7",
+							"scale": 1.0,
+							"t": 3500000000
+						},
+						{
+							"loop": "none",
+							"name": "a8",
+							"scale": 1.0,
+							"t": 4000000000
+						},
+						{
+							"loop": "none",
+							"name": "a9",
+							"scale": 1.0,
+							"t": 4500000000
+						},
+						{
+							"loop": "none",
+							"name": "a10",
+							"scale": 1.0,
+							"t": 5000000000
+						}
+					]
+				},
+				"t_end": 0,
+				"t_start": 0
+			},
+			"idx": 123
+		}
+	],
+	"canvas": {
+		"clear_color": true,
+		"clear_z": true,
+		"color": [
+			0,
+			0,
+			0,
+			255
+		]
+	},
+	"environment": {
+		"ambient": [
+			0,
+			0,
+			0,
+			0
+		],
+		"brdf_map": "core/pbr/brdf.dds",
+		"current_camera": null,
+		"fog_color": [
+			0,
+			0,
+			0,
+			0
+		],
+		"fog_far": 0.0,
+		"fog_near": 0.0,
+		"probe": {
+			"irradiance_map": "core/pbr/probe.hdr.irradiance",
+			"parallax": 0.0,
+			"pos": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"radiance_map": "core/pbr/probe.hdr.radiance",
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"type": "sphere"
+		}
+	},
+	"instances": [
+		{
+			"name": "common/title/title.scn"
+		}
+	],
+	"key_values": null,
+	"nodes": [
+		{
+			"components": [
+				0,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 0,
+			"instance": 0,
+			"name": "title"
+		}
+	],
+	"scene_anims": [
+		{
+			"anim": 4294967295,
+			"frame_duration": 50000000,
+			"name": "typein",
+			"node_anims": [
+				{
+					"anim": 123,
+					"node": 0
+				}
+			],
+			"t_end": 10000000000,
+			"t_start": 0
+		}
+	],
+	"transforms": [
+		{
+			"parent": null,
+			"pos": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				1.0,
+				1.0
+			]
+		}
+	]
+}
