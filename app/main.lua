@@ -111,8 +111,9 @@ local camera_root_rot = hg.Vec3(0,0,0)
 local sequences = {}
 
 -- blank scene
+local couchot_intro_speech_ref = hg.LoadOGGSoundAsset("audio/intro-couchot-bw.ogg")
 local _scene = hg.Scene()
-hg.LoadSceneFromAssets("logo_rse/logo_rse.scn", _scene, res, hg.GetForwardPipelineInfo())
+hg.LoadSceneFromAssets("sequences/intro_seq.scn", _scene, res, hg.GetForwardPipelineInfo())
 local _cam = _scene:GetNode("Camera")
 _scene:SetCurrentCamera(_cam)
 local _rb_nodes = {}
@@ -193,12 +194,32 @@ local ps, cs = 1, 2 -- previous sequence, current sequence -- actually starts at
 local sequence_start_clock = hg.GetClock()
 local rotation_speed_factor = 0.0
 
-sequences[ps].scene:PlayAnim(sequences[ps].scene:GetSceneAnim("fadein"))
-
 collectgarbage("stop") -- avoid nasty drops all along the demo
 
+sequences[ps].scene:PlayAnim(sequences[ps].scene:GetSceneAnim("intro"))
+
+while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
+    keyboard:Update()
+    dt = hg.TickClock()
+
+    sequences[ps].scene:Update(dt)
+
+    -- rendering
+    local view_id = 0
+    local pass_id
+    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, sequences[ps].scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+
+    frame = hg.Frame()
+    hg.UpdateWindow(win)
+end
+
+-- play couchot sample
+local player_ref = hg.PlayStereo(couchot_intro_speech_ref, hg.StereoSourceState(1, hg.SR_Once))
+
 -- start music
-local player_rerf = hg.StreamOGGAssetStereo("audio/after-nothing-riddlemak.ogg", hg.StereoSourceState(1, hg.SR_Loop))
+local music_player_ref = nil -- hg.StreamOGGAssetStereo("audio/after-nothing-riddlemak.ogg", hg.StereoSourceState(1, hg.SR_Loop))
+
+sequence_start_clock = hg.GetClock()
 
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     keyboard:Update()
@@ -222,6 +243,11 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
 
         -- sequence timer
         sequence_start_clock = frame_clock
+
+        -- run music
+        if music_player_ref == nil then
+            music_player_ref = hg.StreamOGGAssetStereo("audio/after-nothing-riddlemak.ogg", hg.StereoSourceState(1, hg.SR_Once))
+        end
     end
 
     local p_scene, p_cam, p_camera_root, p_rb_nodes, p_physics, p_physics_step, p_dt_frame_step, p_record
