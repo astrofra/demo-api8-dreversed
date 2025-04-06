@@ -478,10 +478,10 @@
 	"rigid_bodies": [
 		{
 			"angular_damping": 0.0,
-			"friction": 0.501960813999176,
+			"friction": 0.7490196228027344,
 			"linear_damping": 0.0,
 			"restitution": 0.0,
-			"rolling_friction": 0.0,
+			"rolling_friction": 0.501960813999176,
 			"type": "dynamic"
 		}
 	],
@@ -558,7 +558,7 @@
 				-0.2618933320045471
 			],
 			"rot": [
-				-7.583029833511955e-22,
+				-7.5830293286409755e-22,
 				0.0,
 				0.0
 			],

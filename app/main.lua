@@ -121,9 +121,9 @@ table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _
 
 -- title screen
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
-local _rb_nodes = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
+local _rb_nodes, _camera_tv = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {name = "title screen", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "title screen", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, camera_tv = _camera_tv, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 -- wall of bricks
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)

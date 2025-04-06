@@ -6,6 +6,8 @@ function SetupTitleScene(_scene, _res, _pipeline_info, _vtx_layout, _materials)
     local _flags = hg.LSSF_Nodes | hg.LSSF_Physics
     hg.LoadSceneFromAssets("sequences/title_tv.scn", _scene, _res, _pipeline_info, _flags)
 
+    local camera_tv = _scene:GetNodeEx("physics_tv_vintage/CameraTV")
+
     -- automatically grab the physics nodes
     local rb_nodes = {}
     local _nodes = _scene:GetNodes()
@@ -48,5 +50,5 @@ function SetupTitleScene(_scene, _res, _pipeline_info, _vtx_layout, _materials)
         end
     end
     
-    return rb_nodes
+    return rb_nodes, camera_tv
 end 

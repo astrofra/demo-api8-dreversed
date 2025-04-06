@@ -1,41 +1,13 @@
 {
-	"anims": [
+	"cameras": [
 		{
-			"anim": {
-				"flags": [],
-				"t_end": 0,
-				"t_start": 0,
-				"vec4": [
-					{
-						"keys": [
-							{
-								"bias": 0.0,
-								"t": 0,
-								"tension": 0.0,
-								"v": [
-									0.0,
-									10.0,
-									0.0,
-									0.0
-								]
-							},
-							{
-								"bias": 0.0,
-								"t": 10000000000,
-								"tension": 0.0,
-								"v": [
-									10.0,
-									10.0,
-									0.0,
-									0.0
-								]
-							}
-						],
-						"target": "Material.0.uTime"
-					}
-				]
-			},
-			"idx": 1
+			"fov": 0.6981316804885864,
+			"ortho": false,
+			"size": 1.0,
+			"zrange": {
+				"zfar": 1000.0,
+				"znear": 0.009999999776482582
+			}
 		}
 	],
 	"canvas": {
@@ -56,7 +28,7 @@
 			0
 		],
 		"brdf_map": "core/pbr/brdf.dds",
-		"current_camera": null,
+		"current_camera": 18,
 		"fog_color": [
 			0,
 			0,
@@ -92,8 +64,8 @@
 			"name": "props/cratesALL/crate_11b.scn"
 		},
 		{
-			"anim": "intro",
-			"loop_mode": "loop",
+			"anim": "init",
+			"loop_mode": "none",
 			"name": "props/tv_vintage/tv_vintage.scn"
 		},
 		{
@@ -188,6 +160,18 @@
 			"idx": 5,
 			"instance": 5,
 			"name": "physics_mug"
+		},
+		{
+			"components": [
+				6,
+				0,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 18,
+			"name": "CameraTV"
 		}
 	],
 	"scene_anims": [
@@ -195,12 +179,7 @@
 			"anim": 4294967295,
 			"frame_duration": 50000000,
 			"name": "new_animation (0)",
-			"node_anims": [
-				{
-					"anim": 1,
-					"node": 6
-				}
-			],
+			"node_anims": null,
 			"t_end": 10000000000,
 			"t_start": 0
 		}
@@ -312,6 +291,24 @@
 				1.0,
 				1.0,
 				1.0
+			]
+		},
+		{
+			"parent": 0,
+			"pos": [
+				-0.0950036346912384,
+				0.006541192531585693,
+				-1.1484941244125366
+			],
+			"rot": [
+				-1.7075469713745406e-06,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				1.0000001192092896,
+				1.0000001192092896
 			]
 		}
 	]
