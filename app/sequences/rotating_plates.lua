@@ -7,26 +7,35 @@ function SetupRotatingPlates(_scene, _res, params)
 
     local _vtx_layout, _generic_material = params.vtx_layout, params.materials.gold
 
-    local radius = 5
-    local _cube_base_dimension = 0.5
-    local _cube_size = hg.Vec3(_cube_base_dimension, _cube_base_dimension / 10.0, _cube_base_dimension)
-    local _cube_ref
-    _cube_ref = _res:AddModel('rotating_plate_ref_1', hg.CreateCubeModel(_vtx_layout, _cube_size.x, _cube_size.y, _cube_size.z))
-
+    local radius, _cube_base_dimension, _cube_size, _cube_ref
     local rb_nodes = {}
-    local object_count = 0
-    for i = -radius, radius do
-        for j = -radius, radius do
-            object_count = object_count + 1
-            if object_count == 35 or object_count == 55 then
-                _generic_material = params.materials.neon
-            else
-                _generic_material = params.materials.gold
+
+    for j = 1,2 do
+        radius = 5
+        if j == 1 then
+            _cube_base_dimension = 0.5
+            _cube_size = hg.Vec3(_cube_base_dimension, _cube_base_dimension / 10.0, _cube_base_dimension)
+            _cube_ref = _res:AddModel('rotating_plate_ref_1', hg.CreateCubeModel(_vtx_layout, _cube_size.x, _cube_size.y, _cube_size.z))
+        else
+            _cube_base_dimension = 0.4
+            _cube_size = hg.Vec3(_cube_base_dimension, _cube_base_dimension / 20.0, _cube_base_dimension)
+            _cube_ref = _res:AddModel('rotating_plate_ref_2', hg.CreateCubeModel(_vtx_layout, _cube_size.x, _cube_size.y, _cube_size.z))
+        end
+
+        local object_count = 0
+        for i = -radius, radius do
+            for j = -radius, radius do
+                object_count = object_count + 1
+                if object_count == 35 or object_count == 55 then
+                    _generic_material = params.materials.neon
+                else
+                    _generic_material = params.materials.gold
+                end
+                local x, y, z = i * _cube_base_dimension * 0.9, i + j + radius * 2.0 + 2.0, j * _cube_base_dimension * 0.9
+                local _new_node, _rb = CreatePhysicCubeEx(_scene, _cube_size, hg.TranslationMat4(hg.Vec3(x, y, z)), _cube_ref, {_generic_material}, hg.RBT_Dynamic, 1)
+                _rb:SetRestitution(1.0)
+                table.insert(rb_nodes, _new_node)
             end
-            local x, y, z = i * _cube_base_dimension * 0.9, i + j + radius * 2.0 + 2.0, j * _cube_base_dimension * 0.9
-            local _new_node, _rb = CreatePhysicCubeEx(_scene, _cube_size, hg.TranslationMat4(hg.Vec3(x, y, z)), _cube_ref, {_generic_material}, hg.RBT_Dynamic, 1)
-            _rb:SetRestitution(1.0)
-            table.insert(rb_nodes, _new_node)
         end
     end
 
