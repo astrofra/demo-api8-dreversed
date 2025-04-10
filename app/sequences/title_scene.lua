@@ -7,6 +7,8 @@ function SetupTitleScene(_scene, _res, _pipeline_info, _vtx_layout, _materials)
     hg.LoadSceneFromAssets("sequences/title_tv.scn", _scene, _res, _pipeline_info, _flags)
 
     local camera_tv = _scene:GetNodeEx("physics_tv_vintage/CameraTV")
+    local tv_target_node = _scene:GetNode("tv_target_node")
+    local tv_target_mat = tv_target_node:GetTransform():GetWorld()
 
     -- automatically grab the physics nodes
     local rb_nodes = {}
@@ -49,6 +51,11 @@ function SetupTitleScene(_scene, _res, _pipeline_info, _vtx_layout, _materials)
             end
         end
     end
+
+    local ctx = {tv_target_node = tv_target_node, tv_target_mat = tv_target_mat, physics_tv = _scene:GetNode("physics_tv_vintage")}
     
-    return rb_nodes, camera_tv
-end 
+    return rb_nodes, camera_tv, ctx
+end
+
+function ApplyPhysicsTitleScreen(rb_nodes,  scene, physics, ctx)
+end
