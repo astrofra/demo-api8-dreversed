@@ -274,11 +274,10 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
 
     -- Update the physics simulation
     if _cs then
+        hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)
         if _cs.apply_physics then
             _cs.ctx = _cs.apply_physics(rb_nodes, scene, physics, _cs.ctx)
         end
-        hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)
-
         -- record current sequence
         local node_idx
         local frame_nodes = {}
@@ -321,8 +320,8 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     local pass_id
 
     -- the trick is that we always render the PREVIOUS scene
-    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
-    -- view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    -- view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
 
     -- Debug physics display
     -- display_physics_debug(view_id, sequences[cs].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[cs].physics)

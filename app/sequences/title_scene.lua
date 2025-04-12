@@ -5,10 +5,12 @@ function SetupTitleScene(_scene, _res, _pipeline_info, _vtx_layout, _materials)
     -- -- specific physics setup
     local _flags = hg.LSSF_Nodes | hg.LSSF_Physics
     hg.LoadSceneFromAssets("sequences/title_tv.scn", _scene, _res, _pipeline_info, _flags)
+    _scene:ReadyWorldMatrices()
 
     local camera_tv = _scene:GetNodeEx("physics_tv_vintage/CameraTV")
     local tv_target_node = _scene:GetNode("tv_target_node")
     local tv_target_mat = tv_target_node:GetTransform():GetWorld()
+    local _physics_tv
 
     -- automatically grab the physics nodes
     local rb_nodes = {}
@@ -19,6 +21,9 @@ function SetupTitleScene(_scene, _res, _pipeline_info, _vtx_layout, _materials)
         if _node:HasInstance() == true and string.sub(_node:GetName(), 1, 8) == 'physics_' then
             local _new_node = _node:GetInstanceSceneView():GetNode(_scene, "root")
             table.insert(rb_nodes, _new_node)
+            if _node:GetName() == "physics_tv_vintage" then
+                _physics_tv = _new_node
+            end
         end
     end
 
@@ -52,10 +57,16 @@ function SetupTitleScene(_scene, _res, _pipeline_info, _vtx_layout, _materials)
         end
     end
 
-    local ctx = {tv_target_node = tv_target_node, tv_target_mat = tv_target_mat, physics_tv = _scene:GetNode("physics_tv_vintage")}
+    local ctx = {tv_target_node = tv_target_node, tv_target_mat = tv_target_mat, physics_tv = _physics_tv}
     
     return rb_nodes, camera_tv, ctx
 end
 
-function ApplyPhysicsTitleScreen(rb_nodes,  scene, physics, ctx)
+function ApplyPhysicsTitleScreen(rb_nodes, scene, physics, ctx)
+    local dir = scene:GetNodeEx("physics_tv_vintage/CameraTV"):GetTransform():GetPos() - hg.GetTranslation(ctx.physics_tv:GetTransform():GetWorld())
+    dir.y = 0.0
+    -- dir = dir * 12.5 -- mass
+    -- print(hg.Len(dir))
+    -- physics:NodeAddForce(ctx.physics_tv, dir)
+    return ctx
 end
