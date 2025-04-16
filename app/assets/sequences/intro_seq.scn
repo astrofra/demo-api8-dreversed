@@ -339,7 +339,7 @@
 			"diffuse_intensity": 5.0,
 			"inner_angle": 9.999999747378752e-05,
 			"outer_angle": 0.25132042169570923,
-			"priority": 0.0,
+			"priority": 1.0,
 			"pssm_split": [
 				10.0,
 				50.0,

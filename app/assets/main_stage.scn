@@ -130,7 +130,7 @@
 			0
 		],
 		"brdf_map": "core/pbr/brdf.dds",
-		"current_camera": 14,
+		"current_camera": 13,
 		"fog_color": [
 			0,
 			0,
@@ -261,7 +261,7 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 4,
+			"idx": 3,
 			"name": "light_pannel"
 		},
 		{
@@ -273,7 +273,7 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 5,
+			"idx": 4,
 			"name": "light_pannel"
 		},
 		{
@@ -285,7 +285,7 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 6,
+			"idx": 5,
 			"name": "light_pannel"
 		},
 		{
@@ -297,7 +297,7 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 7,
+			"idx": 6,
 			"name": "light_pannel"
 		},
 		{
@@ -309,7 +309,7 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 8,
+			"idx": 7,
 			"name": "light_pannel"
 		},
 		{
@@ -321,7 +321,7 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 9,
+			"idx": 8,
 			"name": "light_pannel"
 		},
 		{
@@ -333,7 +333,7 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 10,
+			"idx": 9,
 			"name": "light_pannel_rig"
 		},
 		{
@@ -345,7 +345,7 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 11,
+			"idx": 10,
 			"name": "ground"
 		},
 		{
@@ -357,7 +357,7 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 12,
+			"idx": 11,
 			"instance": 0,
 			"name": "tarp_square"
 		},
@@ -370,7 +370,7 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 13,
+			"idx": 12,
 			"name": "camera_root"
 		},
 		{
@@ -382,7 +382,7 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 14,
+			"idx": 13,
 			"name": "Camera"
 		},
 		{
@@ -394,7 +394,7 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 15,
+			"idx": 14,
 			"name": "Light"
 		},
 		{
@@ -406,7 +406,7 @@
 				4294967295
 			],
 			"disabled": false,
-			"idx": 16,
+			"idx": 15,
 			"name": "pivot"
 		}
 	],
@@ -904,12 +904,12 @@
 							]
 						},
 						{
-							"name": "uDiffuseColor",
+							"name": "uORMPow",
 							"type": "vec4",
 							"value": [
-								0.5882353186607361,
-								0.5882353186607361,
-								0.5882353186607361,
+								1.0,
+								1.0,
+								1.0,
 								1.0
 							]
 						},
@@ -927,20 +927,10 @@
 							"name": "uSelfColor",
 							"type": "vec4",
 							"value": [
-								0.0,
-								0.0,
-								0.0,
+								5.960464477539063e-08,
+								5.960464477539063e-08,
+								5.960464477539063e-08,
 								-1.0
-							]
-						},
-						{
-							"name": "uSpecularColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								0.03124999813735485
 							]
 						}
 					],
@@ -1059,7 +1049,7 @@
 			]
 		},
 		{
-			"parent": 10,
+			"parent": 9,
 			"pos": [
 				0.0,
 				8.0,
@@ -1077,7 +1067,7 @@
 			]
 		},
 		{
-			"parent": 10,
+			"parent": 9,
 			"pos": [
 				0.0,
 				8.0,
@@ -1095,7 +1085,7 @@
 			]
 		},
 		{
-			"parent": 10,
+			"parent": 9,
 			"pos": [
 				0.0,
 				8.0,
@@ -1113,7 +1103,7 @@
 			]
 		},
 		{
-			"parent": 10,
+			"parent": 9,
 			"pos": [
 				0.0,
 				8.0,
@@ -1131,7 +1121,7 @@
 			]
 		},
 		{
-			"parent": 10,
+			"parent": 9,
 			"pos": [
 				0.0,
 				8.0,
@@ -1149,7 +1139,7 @@
 			]
 		},
 		{
-			"parent": 10,
+			"parent": 9,
 			"pos": [
 				0.0,
 				8.0,
@@ -1203,7 +1193,7 @@
 			]
 		},
 		{
-			"parent": 10,
+			"parent": 9,
 			"pos": [
 				0.0,
 				8.0,
@@ -1239,7 +1229,7 @@
 			]
 		},
 		{
-			"parent": 13,
+			"parent": 12,
 			"pos": [
 				0.0,
 				0.0,
@@ -1293,7 +1283,7 @@
 			]
 		},
 		{
-			"parent": 16,
+			"parent": 15,
 			"pos": [
 				0.0,
 				3.595134735107422,
@@ -1320,7 +1310,7 @@
 			"rot": [
 				-0.0,
 				0.0,
-				-9.999998092651367
+				-9.99999713897705
 			],
 			"scl": [
 				0.9999999403953552,

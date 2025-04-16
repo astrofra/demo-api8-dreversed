@@ -63,10 +63,12 @@ function SetupTitleScene(_scene, _res, _pipeline_info, _vtx_layout, _materials)
 end
 
 function ApplyPhysicsTitleScreen(rb_nodes, scene, physics, ctx)
-    local dir = scene:GetNodeEx("physics_tv_vintage/CameraTV"):GetTransform():GetPos() - hg.GetTranslation(ctx.physics_tv:GetTransform():GetWorld())
-    dir.y = 0.0
-    -- dir = dir * 12.5 -- mass
-    -- print(hg.Len(dir))
-    -- physics:NodeAddForce(ctx.physics_tv, dir)
+    local camera_tv = scene:GetNodeEx("physics_tv_vintage/CameraTV")
+    -- scene:SetCurrentCamera(camera_tv)
+    -- local dir = scene:GetNodeEx("physics_tv_vintage/CameraTV"):GetTransform():GetPos() - hg.GetTranslation(ctx.physics_tv:GetTransform():GetWorld())
+    -- dir.y = 0.0
+    -- -- dir = dir * 12.5 -- mass
+    -- -- print(hg.Len(dir))
+    -- -- physics:NodeAddForce(ctx.physics_tv, dir)
     return ctx
 end

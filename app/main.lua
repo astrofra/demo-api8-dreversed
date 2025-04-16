@@ -105,7 +105,8 @@ local vtx_layout = hg.VertexLayoutPosFloatNormUInt8()
 local cube_size =  hg.Vec3(0.5, 0.5, 0.5)
 local cube_ref = res:AddModel('cube', hg.CreateCubeModel(vtx_layout, cube_size.x, cube_size.y, cube_size.z))
 
-local camera_root_rot = hg.Vec3(0,0,0)
+local camera_root_rot = hg.Vec3(0,hg.DegreeToRadian(20.0),0)
+local camera_offset = hg.Vec3(0, 5.0, 0.0)
 
 -- setup each sequence separately
 local sequences = {}
@@ -121,6 +122,8 @@ table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _
 
 -- title screen
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local initial_cam_pos = nil -- _cam:GetTransform():GetPos()
+local title_cam_timing = nil
 local _rb_nodes, _camera_tv, _ctx = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "title screen", apply_physics = ApplyPhysicsTitleScreen, ctx = _ctx, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, camera_tv = _camera_tv, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
@@ -198,6 +201,8 @@ collectgarbage("stop") -- avoid nasty drops all along the demo
 
 sequences[ps].scene:PlayAnim(sequences[ps].scene:GetSceneAnim("intro"))
 
+tv_player_ref = hg.StreamOGGAssetStereo("audio/crt-tv-powering-up.ogg", hg.StereoSourceState(1, hg.SR_Once))
+
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
     keyboard:Update()
     dt = hg.TickClock()
@@ -270,6 +275,20 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     end
     if p_camera_root then
         p_camera_root:GetTransform():SetRot(camera_root_rot)
+        if cs == 3 then
+            if title_cam_timing == nil then
+                title_cam_timing = hg.GetClock()
+            end
+            if initial_cam_pos == nil then
+                initial_cam_pos = p_cam:GetTransform():GetPos()
+            end
+            local cam_anim_factor = map(hg.time_to_sec_f(hg.GetClock() - title_cam_timing), 0.0, 5.0, 0.0, 1.0)
+            cam_anim_factor = clamp(cam_anim_factor, 0.0, 1.0)
+            local cam_anim_factor_x = map(cam_anim_factor, 0.0, 1.25, -1.0, 0.0)
+            local cam_anim_factor_y = map(cam_anim_factor, 0.0, 1.10, -0.5, 0.0)
+            local cam_anim_factor_z = map(cam_anim_factor, 0.0, 1.0, 2.25, 0.0)
+            p_cam:GetTransform():SetPos(initial_cam_pos + hg.Vec3(cam_anim_factor_x, cam_anim_factor_y, cam_anim_factor_z))
+        end
     end
 
     -- Update the physics simulation
