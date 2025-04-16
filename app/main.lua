@@ -11,6 +11,8 @@ require("sequences/simple_cube_stack")
 require("sequences/vertical_neon_chaos")
 require("sequences/xi_voxel")
 
+local res_x, res_y = 1920, 1080
+
 function display_physics_debug(view_id, cam, res_x, res_y, vtx_line_layout, line_shader, physics)
     hg.SetViewClear(view_id, 0, 0, 1.0, 0)
     hg.SetViewRect(view_id, 0, 0, res_x, res_y)
@@ -52,7 +54,6 @@ hg.InputInit()
 hg.AudioInit()
 hg.WindowSystemInit()
 
-local res_x, res_y = 1280, 720
 -- local win = hg.RenderInit('Dreversed', res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X)
 win = hg.NewWindow("Dreversed^Resistance(2025)", res_x, res_y, 32, hg.WV_Undecorated) --, hg.WV_Fullscreen)
 hg.RenderInit(win) --, hg.RT_OpenGL)
@@ -110,6 +111,8 @@ local camera_offset = hg.Vec3(0, 5.0, 0.0)
 
 -- setup each sequence separately
 local sequences = {}
+local mapping_sequences = {    
+}
 
 -- blank scene
 local couchot_intro_speech_ref = hg.LoadOGGSoundAsset("audio/intro-couchot-bw.ogg")
@@ -126,57 +129,66 @@ local initial_cam_pos = nil -- _cam:GetTransform():GetPos()
 local title_cam_timing = nil
 local _rb_nodes, _camera_tv, _ctx = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {name = "title screen", apply_physics = ApplyPhysicsTitleScreen, ctx = _ctx, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, camera_tv = _camera_tv, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "title_screen", apply_physics = ApplyPhysicsTitleScreen, ctx = _ctx, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, camera_tv = _camera_tv, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+mapping_sequences.title_screen = {0.0, 0.8}
 
 -- wall of bricks
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes, _ctx = SetupWallOfBricks(_scene, res, pipeline_info, vtx_layout, {neon = mat_neon_red, chrome = mat_chrome, black = mat_black})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 ApplyPhysicsWallOfBricks(_rb_nodes, _scene, _physics, _ctx)
-table.insert(sequences, {name = "wall of bricks", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "wall_of_bricks", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+mapping_sequences.wall_of_bricks = {0.4, 1.0}
 
 -- tornado
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupTornado(_scene, res, {vtx_layout = vtx_layout, materials = {chrome = mat_chrome, neon = mat_neon_red, black = mat_black}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "tornado", apply_physics = ApplyPhysicsTornado, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+mapping_sequences.tornado = {0.2, 0.8}
 
 -- rotating plates
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupRotatingPlates(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold, neon = mat_neon_red, black = mat_black}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {name = "rotating plates", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "rotating_plates", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+mapping_sequences.rotating_plates = {0.2, 0.8}
 
 -- wave grid
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupWaveGrid(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold, neon = mat_neon_red, black = mat_black}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {name = "wave grid", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "wave_grid", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+mapping_sequences._dt_frame_step = {0.2, 0.8}
 
 -- Simple cubes
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupSimpleCubeStack(_scene, res, {model_size = cube_size, model_ref = cube_ref, materials = {grey = mat_grey}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {name = "Simple cubes", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "simple_cubes", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+mapping_sequences.simple_cubes = {0.1, 0.9}
 
 -- flocks
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupFlocks(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, neon = mat_neon_red, black = mat_black}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 ApplyPhysicsFlocks(_rb_nodes, _physics)
-table.insert(sequences, {name = "rotating plates", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "flocks", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+mapping_sequences.flocks = {0.2, 0.8}
 
 -- Voxel
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupXiVoxel(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {name = "Voxel", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "voxel", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+mapping_sequences.voxel = {0.2, 0.8}
 
 -- Neons
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupVerticalNeonChaos(_scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, gold = mat_gold}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {name = "Neons", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(sequences, {name = "neons", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+mapping_sequences.neons = {0.2, 0.8}
 
 local clocks = hg.SceneClocks()
 local sequence_duration_sec = 10.0
@@ -275,7 +287,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     end
     if p_camera_root then
         p_camera_root:GetTransform():SetRot(camera_root_rot)
-        if cs == 3 then
+        -- if cs == 3 then
             if title_cam_timing == nil then
                 title_cam_timing = hg.GetClock()
             end
@@ -288,7 +300,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
             local cam_anim_factor_y = map(cam_anim_factor, 0.0, 1.10, -0.5, 0.0)
             local cam_anim_factor_z = map(cam_anim_factor, 0.0, 1.0, 2.25, 0.0)
             p_cam:GetTransform():SetPos(initial_cam_pos + hg.Vec3(cam_anim_factor_x, cam_anim_factor_y, cam_anim_factor_z))
-        end
+        -- end
     end
 
     -- Update the physics simulation
@@ -321,6 +333,14 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
     -- else
         -- record_frame = map(record_frame, 0.0, 1.0, 0.25, 0.995) -- time remap
     -- end
+    local in_map, out_map -- tie remapping
+    local _mapping = mapping_sequences[sequences[ps].name]
+    if _mapping == nil then
+            in_map, out_map = 0.0, 1.0
+        else
+            in_map, out_map = _mapping[1], _mapping[2]
+    end
+    record_frame = map(record_frame, 0.0, 1.0, in_map, out_map)
     record_frame = 1.0 - clamp(record_frame, 0.0, 1.0)
     local record_frame_f = record_frame * #previous_record
     local record_frame_int = math.max(1, math.floor(record_frame_f))
