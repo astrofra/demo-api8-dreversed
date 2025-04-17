@@ -145,7 +145,7 @@ local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info
 local _rb_nodes = SetupTornado(_scene, res, {vtx_layout = vtx_layout, materials = {chrome = mat_chrome, neon = mat_neon_red, black = mat_black}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "tornado", apply_physics = ApplyPhysicsTornado, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-mapping_sequences.tornado = {0.2, 0.8}
+mapping_sequences.tornado = {0.1, 0.9}
 
 -- rotating plates
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -174,21 +174,21 @@ local _rb_nodes = SetupFlocks(_scene, res, {vtx_layout = vtx_layout, materials =
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 ApplyPhysicsFlocks(_rb_nodes, _physics)
 table.insert(sequences, {name = "flocks", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-mapping_sequences.flocks = {0.2, 0.8}
+mapping_sequences.flocks = {0.2, 0.9}
 
 -- Voxel
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupXiVoxel(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "voxel", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-mapping_sequences.voxel = {0.2, 0.8}
+mapping_sequences.voxel = {0.1, 0.9}
 
 -- Neons
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupVerticalNeonChaos(_scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, gold = mat_gold}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "neons", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-mapping_sequences.neons = {0.2, 0.8}
+mapping_sequences.neons = {0.1, 0.9}
 
 local clocks = hg.SceneClocks()
 local sequence_duration_sec = 10.0
