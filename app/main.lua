@@ -12,7 +12,15 @@ require("sequences/vertical_neon_chaos")
 require("sequences/xi_voxel")
 
 local virtual_res_x, virtual_res_y = 1280, 720
-local res_x, res_y = 1920, 1080
+local res_x, res_y = 1920, 1080 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
+
+function display_shadow_text(view_id, font_name, text_str, font_prg, text_pos, text_uniform_values, text_uniform_values_black, text_render_state)
+    hg.DrawText(view_id, font_name, text_str, font_prg, 'u_tex', 0, hg.Mat4.Identity,
+        text_pos +  hg.Vec3(2, 2, 0) * (res_y / virtual_res_y), hg.DTHA_Left, hg.DTVA_Center, text_uniform_values_black, {}, text_render_state)
+
+    hg.DrawText(view_id, font_name, text_str, font_prg, 'u_tex', 0, hg.Mat4.Identity,
+        text_pos, hg.DTHA_Left, hg.DTVA_Center, text_uniform_values, {}, text_render_state)    
+end
 
 function display_physics_debug(view_id, cam, res_x, res_y, vtx_line_layout, line_shader, physics)
     hg.SetViewClear(view_id, 0, 0, 1.0, 0)
@@ -288,12 +296,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
 
     local _seq_name = sim_seq.display_name
     local _text_pos = hg.Vec3(res_x * 0.05, res_y * 0.9, 0)
-    -- _text_pos.x = _text_pos.x + (res_x - (_text_pos.x + string.len(_seq_name) * 96)) * 0.5
-    hg.DrawText(view_id, font_sequence_name, _seq_name, font_prg, 'u_tex', 0, hg.Mat4.Identity,
-        _text_pos +  hg.Vec3(2, 2, 0) * (res_y / virtual_res_y), hg.DTHA_Left, hg.DTVA_Center, text_uniform_values_black, {}, text_render_state)
-
-    hg.DrawText(view_id, font_sequence_name, _seq_name, font_prg, 'u_tex', 0, hg.Mat4.Identity,
-        _text_pos, hg.DTHA_Left, hg.DTVA_Center, text_uniform_values, {}, text_render_state)    
+    display_shadow_text(view_id, font_sequence_name, _seq_name, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state) 
 
     frame = hg.Frame()
     hg.UpdateWindow(win)
