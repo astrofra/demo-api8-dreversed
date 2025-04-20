@@ -11,7 +11,7 @@ require("sequences/simple_cube_stack")
 require("sequences/vertical_neon_chaos")
 require("sequences/xi_voxel")
 
-local res_x, res_y = 1920, 1080
+local res_x, res_y = 1280, 720 -- 1920, 1080
 
 function display_physics_debug(view_id, cam, res_x, res_y, vtx_line_layout, line_shader, physics)
     hg.SetViewClear(view_id, 0, 0, 1.0, 0)
@@ -106,7 +106,7 @@ local vtx_layout = hg.VertexLayoutPosFloatNormUInt8()
 local cube_size =  hg.Vec3(0.5, 0.5, 0.5)
 local cube_ref = res:AddModel('cube', hg.CreateCubeModel(vtx_layout, cube_size.x, cube_size.y, cube_size.z))
 
-local camera_root_rot = hg.Vec3(0,hg.DegreeToRadian(20.0),0)
+local camera_root_rot = hg.Vec3(0,0,0) -- hg.Vec3(0,hg.DegreeToRadian(20.0),0)
 local camera_offset = hg.Vec3(0, 5.0, 0.0)
 
 -- setup each sequence separately
@@ -114,14 +114,14 @@ local sequences = {}
 local mapping_sequences = {    
 }
 
--- blank scene
-local couchot_intro_speech_ref = hg.LoadOGGSoundAsset("audio/intro-couchot-bw.ogg")
-local _scene = hg.Scene()
-hg.LoadSceneFromAssets("sequences/intro_seq.scn", _scene, res, hg.GetForwardPipelineInfo())
-local _cam = _scene:GetNode("Camera")
-_scene:SetCurrentCamera(_cam)
-local _rb_nodes = {}
-table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _cam, camera_root = nil, nodes = _rb_nodes, physics = nil, physics_step = nil, dt_frame_step = nil})
+-- -- blank scene
+-- local couchot_intro_speech_ref = hg.LoadOGGSoundAsset("audio/intro-couchot-bw.ogg")
+-- local _scene = hg.Scene()
+-- hg.LoadSceneFromAssets("sequences/intro_seq.scn", _scene, res, hg.GetForwardPipelineInfo())
+-- local _cam = _scene:GetNode("Camera")
+-- _scene:SetCurrentCamera(_cam)
+-- local _rb_nodes = {}
+-- table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _cam, camera_root = nil, nodes = _rb_nodes, physics = nil, physics_step = nil, dt_frame_step = nil})
 
 -- title screen
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -204,104 +204,36 @@ local replay_direction
 local frame = 0
 local dt = hg.time_from_sec_f(1.0/60.0)
 
-local ps, cs = 1, 2 -- previous sequence, current sequence -- actually starts at 2
+local cs = 1
 
 local sequence_start_clock = hg.GetClock()
 local rotation_speed_factor = 0.0
 
 collectgarbage("stop") -- avoid nasty drops all along the demo
 
-sequences[ps].scene:PlayAnim(sequences[ps].scene:GetSceneAnim("intro"))
-
-tv_player_ref = hg.StreamOGGAssetStereo("audio/crt-tv-powering-up.ogg", hg.StereoSourceState(1, hg.SR_Once))
-
-while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
-    keyboard:Update()
-    dt = hg.TickClock()
-
-    sequences[ps].scene:Update(dt)
-
-    -- rendering
-    local view_id = 0
-    local pass_id
-    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, sequences[ps].scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
-
-    frame = hg.Frame()
-    hg.UpdateWindow(win)
-end
-
--- play couchot sample
-local player_ref = hg.PlayStereo(couchot_intro_speech_ref, hg.StereoSourceState(1, hg.SR_Once))
-
 -- start music
 local music_player_ref = nil -- hg.StreamOGGAssetStereo("audio/after-nothing-riddlemak.ogg", hg.StereoSourceState(1, hg.SR_Loop))
 
 sequence_start_clock = hg.GetClock()
 
-while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
+while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and cs <= #sequences do
     keyboard:Update()
 
     local frame_clock = hg.GetClock()
     dt = hg.TickClock()
 
-    if frame_clock - sequence_start_clock > hg.time_from_sec_f(sequence_duration_sec) then
-        -- disable rigid bodies for all the nodes of this sequence
-        local node_idx
-        local frame_nodes = {}
-        local rb_nodes = sequences[cs].nodes
-        local _physics = sequences[cs].physics
-        for node_idx = 1, #rb_nodes do
-            _physics:NodeDestroyPhysics(rb_nodes[node_idx])
-        end
-    
-        -- next sequence
-        cs = cs + 1
-        ps = cs - 1
-
-        -- sequence timer
-        sequence_start_clock = frame_clock
-
-        -- run music
-        if music_player_ref == nil then
-            music_player_ref = hg.StreamOGGAssetStereo("audio/after-nothing-riddlemak.ogg", hg.StereoSourceState(1, hg.SR_Once))
-        end
-    end
-
-    local p_scene, p_cam, p_camera_root, p_rb_nodes, p_physics, p_physics_step, p_dt_frame_step, p_record
     local scene, cam, camera_root, rb_nodes, physics, physics_step, dt_frame_step, record
     local _ps, _cs
-
-    _ps = sequences[ps]
-    p_scene, p_cam, p_camera_root, p_rb_nodes, p_physics, p_physics_step, p_dt_frame_step, p_record = _ps.scene, _ps.camera, _ps.camera_root, _ps.nodes, _ps.physics, _ps.physics_step, _ps.dt_frame_step, _ps.record
     
     if cs <= #sequences then
         _cs = sequences[cs]
         scene, cam, camera_root, rb_nodes, physics, physics_step, dt_frame_step, record = _cs.scene, _cs.camera, _cs.camera_root, _cs.nodes, _cs.physics, _cs.physics_step, _cs.dt_frame_step, _cs.record
+        scene:SetCurrentCamera(cam)
     end
 
-    p_scene:SetCurrentCamera(p_cam)
-
-    if cs > 2 then
-        rotation_speed_factor = math.min(1.0, rotation_speed_factor + hg.time_to_sec_f(dt) * 0.1)
-        camera_root_rot.y = camera_root_rot.y - math.pi * hg.time_to_sec_f(dt) * 0.15 * EaseInOutQuick(rotation_speed_factor)
-    end
-    if p_camera_root then
-        p_camera_root:GetTransform():SetRot(camera_root_rot)
-        -- if cs == 3 then
-            if title_cam_timing == nil then
-                title_cam_timing = hg.GetClock()
-            end
-            if initial_cam_pos == nil then
-                initial_cam_pos = p_cam:GetTransform():GetPos()
-            end
-            local cam_anim_factor = map(hg.time_to_sec_f(hg.GetClock() - title_cam_timing), 0.0, 5.0, 0.0, 1.0)
-            cam_anim_factor = clamp(cam_anim_factor, 0.0, 1.0)
-            local cam_anim_factor_x = map(cam_anim_factor, 0.0, 1.25, -1.0, 0.0)
-            local cam_anim_factor_y = map(cam_anim_factor, 0.0, 1.10, -0.5, 0.0)
-            local cam_anim_factor_z = map(cam_anim_factor, 0.0, 1.0, 2.25, 0.0)
-            p_cam:GetTransform():SetPos(initial_cam_pos + hg.Vec3(cam_anim_factor_x, cam_anim_factor_y, cam_anim_factor_z))
-        -- end
-    end
+    rotation_speed_factor = math.min(1.0, rotation_speed_factor + hg.time_to_sec_f(dt) * 0.1)
+    camera_root_rot.y = camera_root_rot.y - math.pi * hg.time_to_sec_f(dt) * 0.15 * EaseInOutQuick(rotation_speed_factor)
+    camera_root:GetTransform():SetRot(camera_root_rot)
 
     -- Update the physics simulation
     if _cs then
@@ -318,49 +250,14 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
 
         table.insert(sequences[cs].record, {t = frame_clock, frame_nodes = frame_nodes})
     end
-
-    -- replay previous sequence
-    local previous_record = sequences[ps].record
-    local previous_nodes = sequences[ps].nodes
-    local previous_scene = sequences[ps].scene
-    local previous_physics = sequences[ps].physics
-    local previous_dt_frame_step = sequences[ps].dt_frame_step
-    local previous_physics_step = sequences[ps].physics_step
-    record_frame = map(hg.time_to_sec_f(frame_clock - sequence_start_clock), 0.0, sequence_duration_sec, 0.0, 1.0) -- time remap
-    -- record_frame = map(record_frame, 0.0, 1.0, 0.45, 0.55) -- time remap
-    -- if record_frame > 0.7 and record_frame < 0.8 then
-    --     record_frame = map(record_frame, 0.7, 0.8, 0.8, 0.6) -- time remap
-    -- else
-        -- record_frame = map(record_frame, 0.0, 1.0, 0.25, 0.995) -- time remap
-    -- end
-    local in_map, out_map -- tie remapping
-    local _mapping = mapping_sequences[sequences[ps].name]
-    if _mapping == nil then
-            in_map, out_map = 0.0, 1.0
-        else
-            in_map, out_map = _mapping[1], _mapping[2]
-    end
-    record_frame = map(record_frame, 0.0, 1.0, in_map, out_map)
-    record_frame = 1.0 - clamp(record_frame, 0.0, 1.0)
-    local record_frame_f = record_frame * #previous_record
-    local record_frame_int = math.max(1, math.floor(record_frame_f))
-    local lerp_coef = record_frame_f - record_frame_int
-    local _mat
-    local next_record_frame = clamp(record_frame_int + 1, 1, #previous_record)
-    for node_idx = 1, #previous_nodes do
-        _mat = hg.LerpAsOrthonormalBase(previous_record[record_frame_int].frame_nodes[node_idx], previous_record[next_record_frame].frame_nodes[node_idx], lerp_coef)
-        previous_nodes[node_idx]:GetTransform():SetWorld(_mat)
-    end
-
-    sequences[ps].scene:Update(dt)
     
     -- rendering
     local view_id = 0
     local pass_id
 
     -- the trick is that we always render the PREVIOUS scene
-    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
-    -- view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    -- view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
 
     -- Debug physics display
     -- display_physics_debug(view_id, sequences[cs].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[cs].physics)
@@ -369,6 +266,14 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) do
 
     frame = hg.Frame()
     hg.UpdateWindow(win)
+
+    if frame_clock - sequence_start_clock > hg.time_from_sec_f(sequence_duration_sec) then
+        -- next sequence
+        cs = cs + 1
+
+        -- sequence timer
+        sequence_start_clock = frame_clock
+    end
 end
 
 hg.RenderShutdown()
