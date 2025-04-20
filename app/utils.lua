@@ -211,3 +211,12 @@ function write_ini(file_path, config)
 
     file:close()
 end
+
+function format_time(seconds)
+    local hours = math.floor(seconds / 3600)
+    local minutes = math.floor((seconds % 3600) / 60)
+    local secs = math.floor(seconds % 60)
+    local millis = math.floor((seconds - math.floor(seconds)) * 1000)
+
+    return string.format("%02d:%02d:%02d:%03d", hours, minutes, secs, millis)
+end

@@ -15,12 +15,13 @@ local virtual_res_x, virtual_res_y = 1280, 720
 local res_x, res_y = 1920, 1080 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
 local enable_replay = false
 
-function display_shadow_text(view_id, font_name, text_str, font_prg, text_pos, text_uniform_values, text_uniform_values_black, text_render_state)
+function display_shadow_text(view_id, font_name, text_str, font_prg, text_pos, text_uniform_values, text_uniform_values_black, text_render_state, h_align)
+    h_align = h_align or hg.DTHA_Left
     hg.DrawText(view_id, font_name, text_str, font_prg, 'u_tex', 0, hg.Mat4.Identity,
-        text_pos +  hg.Vec3(2, 2, 0) * (res_y / virtual_res_y), hg.DTHA_Left, hg.DTVA_Center, text_uniform_values_black, {}, text_render_state)
+        text_pos +  hg.Vec3(2, 2, 0) * (res_y / virtual_res_y), h_align, hg.DTVA_Center, text_uniform_values_black, {}, text_render_state)
 
     hg.DrawText(view_id, font_name, text_str, font_prg, 'u_tex', 0, hg.Mat4.Identity,
-        text_pos, hg.DTHA_Left, hg.DTVA_Center, text_uniform_values, {}, text_render_state)    
+        text_pos, h_align, hg.DTVA_Center, text_uniform_values, {}, text_render_state)    
 end
 
 function display_physics_debug(view_id, cam, res_x, res_y, vtx_line_layout, line_shader, physics)
@@ -85,6 +86,7 @@ pipeline_aaa_config.bloom_intensity	= 0.2500
 pipeline_aaa_config.bloom_threshold	= 0.5200
 
 -- fonts
+local font_timer = hg.LoadFontFromAssets('fonts/spacemono-regular.ttf', math.floor(48 * (res_y / virtual_res_y)))
 local font_sequence_name = hg.LoadFontFromAssets('fonts/cirrus_cumulus.ttf', math.floor(96 * (res_y / virtual_res_y)))
 local font_prg = hg.LoadProgramFromAssets('core/shader/font')
 local text_uniform_values = {hg.MakeUniformSetValue('u_color', hg.Vec4(1, 1, 1))}
@@ -209,7 +211,9 @@ table.insert(mapping_sequences, {clock = {80.0, 90.0}, time_remap = {#sequences,
 
 -- cleanup sequence names
 for i = 1, #sequences do
-    sequences[i].display_name = string.gsub(sequences[i].name, "_", " ")
+    local _str = string.gsub(sequences[i].name, "_", " ")
+    -- _str = string.upper(string.sub(_str, 1, 1)) .. string.sub(_str, 2)
+    sequences[i].display_name = _str
 end
 
 local clocks = hg.SceneClocks()
@@ -230,14 +234,13 @@ local sim_seq_idx = 1 -- index of the simulation sequence
 local rep_seq_idx = 1 -- index of the replay sequence
 
 local simulation_start_clock = hg.GetClock()
+local demo_start_clock = simulation_start_clock
 local rotation_speed_factor = 0.0
 
 collectgarbage("stop") -- avoid nasty drops all along the demo
 
 -- start music
 local music_player_ref = nil -- hg.StreamOGGAssetStereo("audio/after-nothing-riddlemak.ogg", hg.StereoSourceState(1, hg.SR_Loop))
-
-simulation_start_clock = hg.GetClock()
 
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <= #sequences do
     keyboard:Update()
@@ -300,6 +303,10 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     local _seq_name = sim_seq.display_name
     local _text_pos = hg.Vec3(res_x * 0.05, res_y * 0.9, 0)
     display_shadow_text(view_id, font_sequence_name, _seq_name, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state) 
+
+    local _str_clock = format_time(hg.time_to_sec_f(frame_clock - demo_start_clock))
+    _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * 0.925, 0)
+    display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
 
     frame = hg.Frame()
     hg.UpdateWindow(win)
