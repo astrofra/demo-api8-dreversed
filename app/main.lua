@@ -191,7 +191,7 @@ table.insert(sequences, {name = "neons", record = {}, scene = _scene, camera = _
 mapping_sequences.neons = {0.1, 0.9}
 
 local clocks = hg.SceneClocks()
-local sequence_duration_sec = 10.0
+local simulation_duration_sec = 10.0
 
 -- main loop
 local keyboard = hg.Keyboard()
@@ -204,9 +204,9 @@ local replay_direction
 local frame = 0
 local dt = hg.time_from_sec_f(1.0/60.0)
 
-local cs = 1
+local sim_seq_idx = 1
 
-local sequence_start_clock = hg.GetClock()
+local simulation_start_clock = hg.GetClock()
 local rotation_speed_factor = 0.0
 
 collectgarbage("stop") -- avoid nasty drops all along the demo
@@ -214,65 +214,65 @@ collectgarbage("stop") -- avoid nasty drops all along the demo
 -- start music
 local music_player_ref = nil -- hg.StreamOGGAssetStereo("audio/after-nothing-riddlemak.ogg", hg.StereoSourceState(1, hg.SR_Loop))
 
-sequence_start_clock = hg.GetClock()
+simulation_start_clock = hg.GetClock()
 
-while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and cs <= #sequences do
+while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <= #sequences do
     keyboard:Update()
 
     local frame_clock = hg.GetClock()
     dt = hg.TickClock()
 
-    local scene, cam, camera_root, rb_nodes, physics, physics_step, dt_frame_step, record
-    local _ps, _cs
+    local sim_scene, sim_camera, sim_camera_root, sim_rb_nodes, sim_physics, physics_step, dt_frame_step, record
+    local rep_seq, sim_seq
     
-    if cs <= #sequences then
-        _cs = sequences[cs]
-        scene, cam, camera_root, rb_nodes, physics, physics_step, dt_frame_step, record = _cs.scene, _cs.camera, _cs.camera_root, _cs.nodes, _cs.physics, _cs.physics_step, _cs.dt_frame_step, _cs.record
-        scene:SetCurrentCamera(cam)
+    if sim_seq_idx <= #sequences then
+        sim_seq = sequences[sim_seq_idx]
+        sim_scene, sim_camera, sim_camera_root, sim_rb_nodes, sim_physics, physics_step, dt_frame_step, record = sim_seq.scene, sim_seq.camera, sim_seq.camera_root, sim_seq.nodes, sim_seq.physics, sim_seq.physics_step, sim_seq.dt_frame_step, sim_seq.record
+        sim_scene:SetCurrentCamera(sim_camera)
     end
 
     rotation_speed_factor = math.min(1.0, rotation_speed_factor + hg.time_to_sec_f(dt) * 0.1)
     camera_root_rot.y = camera_root_rot.y - math.pi * hg.time_to_sec_f(dt) * 0.15 * EaseInOutQuick(rotation_speed_factor)
-    camera_root:GetTransform():SetRot(camera_root_rot)
+    sim_camera_root:GetTransform():SetRot(camera_root_rot)
 
-    -- Update the physics simulation
-    if _cs then
-        hg.SceneUpdateSystems(scene, clocks, dt_frame_step, physics, physics_step, 3)
-        if _cs.apply_physics then
-            _cs.ctx = _cs.apply_physics(rb_nodes, scene, physics, _cs.ctx)
+    -- Update the sim_physics simulation
+    if sim_seq then
+        hg.SceneUpdateSystems(sim_scene, clocks, dt_frame_step, sim_physics, physics_step, 3)
+        if sim_seq.apply_physics then
+            sim_seq.ctx = sim_seq.apply_physics(sim_rb_nodes, sim_scene, sim_physics, sim_seq.ctx)
         end
         -- record current sequence
         local node_idx
         local frame_nodes = {}
-        for node_idx = 1, #rb_nodes do
-            table.insert(frame_nodes, rb_nodes[node_idx]:GetTransform():GetWorld())
+        for node_idx = 1, #sim_rb_nodes do
+            table.insert(frame_nodes, sim_rb_nodes[node_idx]:GetTransform():GetWorld())
         end
 
-        table.insert(sequences[cs].record, {t = frame_clock, frame_nodes = frame_nodes})
+        table.insert(sequences[sim_seq_idx].record, {t = frame_clock, frame_nodes = frame_nodes})
     end
     
     -- rendering
     local view_id = 0
     local pass_id
 
-    -- the trick is that we always render the PREVIOUS scene
+    -- the trick is that we always render the PREVIOUS sim_scene
     -- view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
-    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, sim_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
 
-    -- Debug physics display
-    -- display_physics_debug(view_id, sequences[cs].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[cs].physics)
+    -- Debug sim_physics display
+    -- display_physics_debug(view_id, sequences[sim_seq_idx].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[sim_seq_idx].sim_physics)
 
     -- collectgarbage()
 
     frame = hg.Frame()
     hg.UpdateWindow(win)
 
-    if frame_clock - sequence_start_clock > hg.time_from_sec_f(sequence_duration_sec) then
+    if frame_clock - simulation_start_clock > hg.time_from_sec_f(simulation_duration_sec) then
         -- next sequence
-        cs = cs + 1
+        sim_seq_idx = sim_seq_idx + 1
 
         -- sequence timer
-        sequence_start_clock = frame_clock
+        simulation_start_clock = frame_clock
     end
 end
 
