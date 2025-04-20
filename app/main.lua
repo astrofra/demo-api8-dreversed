@@ -209,6 +209,22 @@ local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "neons", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {clock = {80.0, 90.0}, time_remap = {#sequences, 0.1, 0.9}})
 
+local demo_duration = mapping_sequences[#mapping_sequences].clock[2]
+local replay_time_table = {}
+for i = 1, math.floor(demo_duration * 60) do
+    local _clock = (i / demo_duration) / 60.0
+    local _new_frame = {}
+    -- search for the proper sequence
+    for j = 1, #mapping_sequences do
+        if _clock >= mapping_sequences[j].clock[1] and _clock < mapping_sequences[j].clock[2] then
+            _new_frame.sequence_idx =  mapping_sequences[j].time_remap[1]
+            _new_frame.sequence_clock = _clock - mapping_sequences[j].clock[1]
+            break
+        end
+    end
+    table.insert(replay_time_table, _new_frame)
+end
+
 -- cleanup sequence names
 for i = 1, #sequences do
     local _str = string.gsub(sequences[i].name, "_", " ")
