@@ -11,7 +11,8 @@ require("sequences/simple_cube_stack")
 require("sequences/vertical_neon_chaos")
 require("sequences/xi_voxel")
 
-local res_x, res_y = 1280, 720 -- 1920, 1080
+local virtual_res_x, virtual_res_y = 1280, 720
+local res_x, res_y = 1920, 1080
 
 function display_physics_debug(view_id, cam, res_x, res_y, vtx_line_layout, line_shader, physics)
     hg.SetViewClear(view_id, 0, 0, 1.0, 0)
@@ -73,6 +74,13 @@ pipeline_aaa_config.exposure = 1.2
 pipeline_aaa_config.gamma = 1.8
 pipeline_aaa_config.bloom_intensity	= 0.2500
 pipeline_aaa_config.bloom_threshold	= 0.5200
+
+-- fonts
+local font_sequence_name = hg.LoadFontFromAssets('fonts/cirrus_cumulus.ttf', math.floor(96 * (res_y / virtual_res_y)))
+local font_prg = hg.LoadProgramFromAssets('core/shader/font')
+local text_uniform_values = {hg.MakeUniformSetValue('u_color', hg.Vec4(1, 1, 1))}
+local text_uniform_values_black = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.1, 0.1, 0.1))}
+local text_render_state = hg.ComputeRenderState(hg.BM_Alpha, hg.DT_Always, hg.FC_Disabled)
 
 -- physics debug
 local vtx_line_layout = hg.VertexLayoutPosFloatColorUInt8()
@@ -190,6 +198,11 @@ local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "neons", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {clock = {80.0, 90.0}, time_remap = {#sequences, 0.1, 0.9}})
 
+-- cleanup sequence names
+for i = 1, #sequences do
+    sequences[i].display_name = string.gsub(sequences[i].name, "_", " ")
+end
+
 local clocks = hg.SceneClocks()
 local simulation_duration_sec = 10.0
 
@@ -268,6 +281,19 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     -- display_physics_debug(view_id, sequences[sim_seq_idx].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[sim_seq_idx].sim_physics)
 
     -- collectgarbage()
+
+    -- write sequence name
+    view_id = view_id + 1
+    hg.SetView2D(view_id, 0, 0, res_x, res_y, -1, 1, hg.CF_Depth, hg.Color.White, 1, 0)
+
+    local _seq_name = sim_seq.display_name
+    local _text_pos = hg.Vec3(res_x * 0.05, res_y * 0.9, 0)
+    -- _text_pos.x = _text_pos.x + (res_x - (_text_pos.x + string.len(_seq_name) * 96)) * 0.5
+    hg.DrawText(view_id, font_sequence_name, _seq_name, font_prg, 'u_tex', 0, hg.Mat4.Identity,
+        _text_pos +  hg.Vec3(2, 2, 0) * (res_y / virtual_res_y), hg.DTHA_Left, hg.DTVA_Center, text_uniform_values_black, {}, text_render_state)
+
+    hg.DrawText(view_id, font_sequence_name, _seq_name, font_prg, 'u_tex', 0, hg.Mat4.Identity,
+        _text_pos, hg.DTHA_Left, hg.DTVA_Center, text_uniform_values, {}, text_render_state)    
 
     frame = hg.Frame()
     hg.UpdateWindow(win)
