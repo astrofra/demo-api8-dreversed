@@ -13,6 +13,7 @@ require("sequences/xi_voxel")
 
 local virtual_res_x, virtual_res_y = 1280, 720
 local res_x, res_y = 1920, 1080 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
+local enable_replay = false
 
 function display_shadow_text(view_id, font_name, text_str, font_prg, text_pos, text_uniform_values, text_uniform_values_black, text_render_state)
     hg.DrawText(view_id, font_name, text_str, font_prg, 'u_tex', 0, hg.Mat4.Identity,
@@ -282,9 +283,11 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     local pass_id
 
     -- the trick is that we always render the PREVIOUS sim_scene
-    -- view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
-    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, sim_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
-
+    if enable_replay then
+        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    else
+        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, sim_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    end
     -- Debug sim_physics display
     -- display_physics_debug(view_id, sequences[sim_seq_idx].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[sim_seq_idx].sim_physics)
 
@@ -302,6 +305,15 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     hg.UpdateWindow(win)
 
     if frame_clock - simulation_start_clock > hg.time_from_sec_f(simulation_duration_sec) then
+        -- disable rigid bodies for all the nodes of this sequence
+        local node_idx
+        local frame_nodes = {}
+        local rb_nodes = sequences[sim_seq_idx].nodes
+        local _physics = sequences[sim_seq_idx].physics
+        for node_idx = 1, #rb_nodes do
+            _physics:NodeDestroyPhysics(rb_nodes[node_idx])
+        end
+
         -- next sequence
         sim_seq_idx = sim_seq_idx + 1
 
