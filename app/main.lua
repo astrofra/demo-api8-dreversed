@@ -150,7 +150,8 @@ local title_cam_timing = nil
 local _rb_nodes, _camera_tv, _ctx = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "title_screen", apply_physics = ApplyPhysicsTitleScreen, ctx = _ctx, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, camera_tv = _camera_tv, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-table.insert(mapping_sequences, {clock = {0.0, 10.0}, time_remap = {#sequences, 0.0, 0.8}})
+table.insert(mapping_sequences, {clock = {0.0, 5.0}, time_remap = {#sequences, 1.0, 0.25}})
+table.insert(mapping_sequences, {clock = {5.0, 10.0}, time_remap = {#sequences, 0.25, 0.8}})
 
 -- wall of bricks
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -158,7 +159,8 @@ local _rb_nodes, _ctx = SetupWallOfBricks(_scene, res, pipeline_info, vtx_layout
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 ApplyPhysicsWallOfBricks(_rb_nodes, _scene, _physics, _ctx)
 table.insert(sequences, {name = "wall_of_bricks", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-table.insert(mapping_sequences, {clock = {10.0, 20.0}, time_remap = {#sequences, 0.4, 1.0}})
+table.insert(mapping_sequences, {clock = {10.0, 15.0}, time_remap = {#sequences, 0.0, 1.0}})
+table.insert(mapping_sequences, {clock = {15.0, 20.0}, time_remap = {#sequences, 1.0, 0.0}})
 
 -- tornado
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -220,7 +222,7 @@ for i = 0, math.floor(demo_duration * 60) do
     for j = 1, #mapping_sequences do
         if _clock >= mapping_sequences[j].clock[1] and _clock < mapping_sequences[j].clock[2] then
             _new_frame.sequence_idx =  mapping_sequences[j].time_remap[1]
-            _new_frame.remap_from = _clock - mapping_sequences[j].clock[1] -- from within the sequence's inner clock
+            _new_frame.remap_from = {mapping_sequences[j].clock[1], mapping_sequences[j].clock[2]}
             _new_frame.remap_to = {mapping_sequences[j].time_remap[2], mapping_sequences[j].time_remap[3]}
             break
         end
@@ -318,7 +320,8 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
         rep_camera = sequences[rep_seq_idx].camera
         rep_camera_root = sequences[rep_seq_idx].camera_root
 
-        record_frame = map(replay_time_table[time_remap_index].remap_from, 0.0, 10.0, 1.0, 0.0)
+        -- record_frame = map(replay_time_table[time_remap_index].remap_from, 0.0, 10.0, replay_time_table[time_remap_index].remap_to[1], replay_time_table[time_remap_index].remap_to[2])
+        record_frame = map(replay_clock_f, replay_time_table[time_remap_index].remap_from[1], replay_time_table[time_remap_index].remap_from[2], replay_time_table[time_remap_index].remap_to[1], replay_time_table[time_remap_index].remap_to[2])
         local record_frame_f = record_frame * #rep_record
         local record_frame_int = math.max(1, math.floor(record_frame_f))
         local lerp_coef = record_frame_f - record_frame_int
@@ -393,8 +396,8 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     end
     display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, timer_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
 
-    if replay_clock_f > 0.0 then
-        local _str_clock = tostring(time_remap_index) .. ":" .. replay_time_table[time_remap_index].sequence_idx .. ":" .. string.format("%2.2f", replay_time_table[time_remap_index].remap_from)
+    if sim_seq_idx > 1 then
+        local _str_clock = tostring(time_remap_index) .. ":" .. replay_time_table[time_remap_index].sequence_idx .. ":" .. string.format("%2.3f", record_frame)
         _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * (1.0 - 0.925), 0)
         display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
     end
