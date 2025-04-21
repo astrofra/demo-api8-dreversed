@@ -210,6 +210,7 @@ local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "neons", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {clock = {80.0, 90.0}, time_remap = {#sequences, 0.1, 0.9}})
 
+-- Prepare the time remapping table for the whole demo
 local demo_duration = mapping_sequences[#mapping_sequences].clock[2]
 local replay_time_table = {}
 for i = 0, math.floor(demo_duration * 60) do
@@ -249,10 +250,12 @@ local frame = 0
 local dt = hg.time_from_sec_f(1.0/60.0)
 
 local sim_seq_idx = 1 -- index of the simulation sequence
-local rep_seq_idx = 1 -- index of the replay sequence
+local rep_seq_idx = 0 -- index of the replay sequence
 
 local simulation_start_clock = hg.GetClock()
 local demo_start_clock = simulation_start_clock
+local demo_clock_f = nil
+local replay_clock_f =  nil
 local rotation_speed_factor = 0.0
 
 collectgarbage("stop") -- avoid nasty drops all along the demo
@@ -264,6 +267,8 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     keyboard:Update()
 
     local frame_clock = hg.GetClock()
+    demo_clock_f = hg.time_to_sec_f(frame_clock - demo_start_clock)
+    replay_clock_f =  demo_clock_f - 10.0
     dt = hg.TickClock()
 
     -- SIMULATION
@@ -274,7 +279,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     if sim_seq_idx <= #sequences then
         sim_seq = sequences[sim_seq_idx]
         sim_scene, sim_camera, sim_camera_root, sim_rb_nodes, sim_physics, physics_step, dt_frame_step, record = sim_seq.scene, sim_seq.camera, sim_seq.camera_root, sim_seq.nodes, sim_seq.physics, sim_seq.physics_step, sim_seq.dt_frame_step, sim_seq.record
-        sim_scene:SetCurrentCamera(sim_camera)
+        -- sim_scene:SetCurrentCamera(sim_camera)
     end
 
     rotation_speed_factor = math.min(1.0, rotation_speed_factor + hg.time_to_sec_f(dt) * 0.1)
@@ -301,39 +306,37 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
 
     -- REPLAY
     -- replay previous sequence
-    -- local previous_record = sequences[ps].record
-    -- local previous_nodes = sequences[ps].nodes
-    -- local previous_scene = sequences[ps].scene
-    -- local previous_physics = sequences[ps].physics
-    -- local previous_dt_frame_step = sequences[ps].dt_frame_step
-    -- local previous_physics_step = sequences[ps].physics_step
-    -- record_frame = map(hg.time_to_sec_f(frame_clock - sequence_start_clock), 0.0, sequence_duration_sec, 0.0, 1.0) -- time remap
-    -- -- record_frame = map(record_frame, 0.0, 1.0, 0.45, 0.55) -- time remap
-    -- -- if record_frame > 0.7 and record_frame < 0.8 then
-    -- --     record_frame = map(record_frame, 0.7, 0.8, 0.8, 0.6) -- time remap
-    -- -- else
-    --     -- record_frame = map(record_frame, 0.0, 1.0, 0.25, 0.995) -- time remap
-    -- -- end
-    -- local in_map, out_map -- tie remapping
-    -- local _mapping = mapping_sequences[sequences[ps].name]
-    -- if _mapping == nil then
-    --         in_map, out_map = 0.0, 1.0
-    --     else
-    --         in_map, out_map = _mapping[1], _mapping[2]
-    -- end
-    -- record_frame = map(record_frame, 0.0, 1.0, in_map, out_map)
-    -- record_frame = 1.0 - clamp(record_frame, 0.0, 1.0)
-    -- local record_frame_f = record_frame * #previous_record
-    -- local record_frame_int = math.max(1, math.floor(record_frame_f))
-    -- local lerp_coef = record_frame_f - record_frame_int
-    -- local _mat
-    -- local next_record_frame = clamp(record_frame_int + 1, 1, #previous_record)
-    -- for node_idx = 1, #previous_nodes do
-    --     _mat = hg.LerpAsOrthonormalBase(previous_record[record_frame_int].frame_nodes[node_idx], previous_record[next_record_frame].frame_nodes[node_idx], lerp_coef)
-    --     previous_nodes[node_idx]:GetTransform():SetWorld(_mat)
-    -- end
+    local rep_scene, rep_camera, rep_camera_root, rep_rb_nodes, rep_physics, rep_physics_step, rep_dt_frame_step, rep_record
+    -- if sim_seq_idx > 1 then
+    --     rep_seq_idx = remap
+    --     rep_record = sequences[rep_seq_idx].record
+    --     rep_rb_nodes = sequences[rep_seq_idx].nodes
+    --     rep_scene = sequences[rep_seq_idx].scene
+    --     rep_physics = sequences[rep_seq_idx].physics
+    --     rep_dt_frame_step = sequences[rep_seq_idx].dt_frame_step
+    --     rep_physics_step = sequences[rep_seq_idx].physics_step
+    --     -- record_frame = map(hg.time_to_sec_f(frame_clock - sequence_start_clock), 0.0, sequence_duration_sec, 0.0, 1.0) -- time remap
+    --     -- local in_map, out_map -- time remapping
+    --     -- local _mapping = mapping_sequences[sequences[rep_seq_idx].name]
+    --     -- if _mapping == nil then
+    --     --         in_map, out_map = 0.0, 1.0
+    --     --     else
+    --     --         in_map, out_map = _mapping[1], _mapping[2]
+    --     -- end
+    --     -- record_frame = map(record_frame, 0.0, 1.0, in_map, out_map)
+    --     -- record_frame = 1.0 - clamp(record_frame, 0.0, 1.0)
+    --     -- local record_frame_f = record_frame * #rep_record
+    --     local record_frame_int = math.max(1, math.floor(record_frame_f))
+    --     local lerp_coef = record_frame_f - record_frame_int
+    --     local _mat
+    --     local next_record_frame = clamp(record_frame_int + 1, 1, #rep_record)
+    --     for node_idx = 1, #rep_rb_nodes do
+    --         _mat = hg.LerpAsOrthonormalBase(rep_record[record_frame_int].frame_nodes[node_idx], rep_record[next_record_frame].frame_nodes[node_idx], lerp_coef)
+    --         rep_rb_nodes[node_idx]:GetTransform():SetWorld(_mat)
+    --     end
 
-    -- sequences[ps].scene:Update(dt)
+    --     sequences[rep_seq_idx].scene:Update(dt)
+    -- end
     -- END REPLAY
     
     -- rendering
@@ -341,9 +344,11 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     local pass_id
 
     -- the trick is that we always render the PREVIOUS sim_scene
-    if enable_replay then
-        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, p_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    if sim_seq_idx > 1 and enable_replay then
+        rep_scene:SetCurrentCamera(rep_camera)
+        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, rep_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
     else
+        sim_scene:SetCurrentCamera(sim_camera)
         view_id, pass_id = hg.SubmitSceneToPipeline(view_id, sim_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
     end
     -- Debug sim_physics display
@@ -360,8 +365,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     local _text_pos = hg.Vec3(res_x * 0.05, res_y * 0.9, 0)
     display_shadow_text(view_id, font_sequence_name, _seq_name, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state) 
 
-    local _demo_clock_f = hg.time_to_sec_f(frame_clock - demo_start_clock)
-    local _str_clock = format_time(_demo_clock_f)
+    local _str_clock = format_time(demo_clock_f)
     _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * 0.925, 0)
 
     local timer_uniform_values = text_uniform_values_red
@@ -370,10 +374,12 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     end
     display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, timer_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
 
-    local _time_remap_index = math.floor((_demo_clock_f * #replay_time_table) / demo_duration) + 1
-    local _str_clock = tostring(_time_remap_index) .. ":" .. replay_time_table[_time_remap_index].sequence_idx .. ":" .. string.format("%2.2f", replay_time_table[_time_remap_index].remap_from)
-    _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * (1.0 - 0.925), 0)
-    display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
+    if replay_clock_f > 0.0 then
+        local _time_remap_index = math.floor((replay_clock_f * #replay_time_table) / demo_duration) + 1
+        local _str_clock = tostring(_time_remap_index) .. ":" .. replay_time_table[_time_remap_index].sequence_idx .. ":" .. string.format("%2.2f", replay_time_table[_time_remap_index].remap_from)
+        _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * (1.0 - 0.925), 0)
+        display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
+    end
     -- END DEBUG INFOS
 
     frame = hg.Frame()
@@ -391,6 +397,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
 
         -- next sequence
         sim_seq_idx = sim_seq_idx + 1
+        -- rep_seq_idx = rep_seq_idx + 1
 
         -- sequence timer
         simulation_start_clock = frame_clock
