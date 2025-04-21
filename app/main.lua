@@ -13,7 +13,7 @@ require("sequences/xi_voxel")
 
 local virtual_res_x, virtual_res_y = 1280, 720
 local res_x, res_y = 1920, 1080 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
-local enable_replay = true
+local enable_replay = false
 
 function display_shadow_text(view_id, font_name, text_str, font_prg, text_pos, text_uniform_values, text_uniform_values_black, text_render_state, h_align)
     h_align = h_align or hg.DTHA_Left
@@ -387,8 +387,9 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     local _text_pos = hg.Vec3(res_x * 0.05, res_y * 0.9, 0)
     display_shadow_text(view_id, font_sequence_name, _seq_name, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state) 
 
+    -- Timecode
     local _str_clock = format_time(demo_clock_f)
-    _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * 0.925, 0)
+    _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * 0.9, 0)
 
     local timer_uniform_values = text_uniform_values_red
     if sim_seq_idx > 1 then
@@ -396,6 +397,13 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     end
     display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, timer_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
 
+    -- Raw clocks
+    local _str_clock = string.format("%3.5f", demo_clock_f) .. " / " .. string.format("%3.5f", demo_clock_f - (sim_seq_idx - 1.0) * 10.0)
+    _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * 0.95, 0)
+    display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
+
+
+    -- Time remap (time code)
     if sim_seq_idx > 1 then
         local _str_clock = tostring(time_remap_index) .. ":" .. replay_time_table[time_remap_index].sequence_idx .. ":" .. string.format("%2.3f", record_frame)
         _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * (1.0 - 0.925), 0)
