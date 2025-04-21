@@ -10,6 +10,8 @@ require("sequences/title_scene")
 require("sequences/simple_cube_stack")
 require("sequences/vertical_neon_chaos")
 require("sequences/xi_voxel")
+require("sequences/repulsion_core")
+require("sequences/oscillating_wall")
 
 local virtual_res_x, virtual_res_y = 1280, 720
 local res_x, res_y = 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
@@ -151,6 +153,20 @@ local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "title_screen", apply_physics = ApplyPhysicsTitleScreen, ctx = _ctx, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, camera_tv = _camera_tv, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {clock = {0.0, 5.0}, time_remap = {#sequences, 1.0, 0.25}})
 table.insert(mapping_sequences, {clock = {5.0, 10.0}, time_remap = {#sequences, 0.25, 0.8}})
+
+-- -- GPT 3
+-- local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+-- local _rb_nodes, _ctx = SetupOscillatingWall(_scene, res, {vtx_layout = vtx_layout, materials = {black = mat_black}})
+-- local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+-- table.insert(sequences, {name = "oscillating_wall", apply_physics = ApplyPhysicsOscillatingWall, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+-- table.insert(mapping_sequences, {clock = {0.0, 10.0}, time_remap = {#sequences, 0.0, 1.0}})
+
+-- -- GPT 4
+-- local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+-- local _rb_nodes, _ctx = SetupRepulsionCore(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver}})
+-- local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+-- table.insert(sequences, {name = "repulsion_core", apply_physics = ApplyPhysicsRepulsionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+-- table.insert(mapping_sequences, {clock = {0.0, 10.0}, time_remap = {#sequences, 0.0, 1.0}})
 
 -- wall of bricks
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
