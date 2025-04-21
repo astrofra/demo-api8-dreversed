@@ -90,6 +90,7 @@ local font_timer = hg.LoadFontFromAssets('fonts/spacemono-regular.ttf', math.flo
 local font_sequence_name = hg.LoadFontFromAssets('fonts/cirrus_cumulus.ttf', math.floor(96 * (res_y / virtual_res_y)))
 local font_prg = hg.LoadProgramFromAssets('core/shader/font')
 local text_uniform_values = {hg.MakeUniformSetValue('u_color', hg.Vec4(1, 1, 1))}
+local text_uniform_values_red = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.9, 0.2, 0.0))}
 local text_uniform_values_black = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.1, 0.1, 0.1))}
 local text_render_state = hg.ComputeRenderState(hg.BM_Alpha, hg.DT_Always, hg.FC_Disabled)
 
@@ -297,6 +298,43 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
         table.insert(sequences[sim_seq_idx].record, {t = frame_clock, frame_nodes = frame_nodes})
     end
     -- END SIMULATION
+
+    -- REPLAY
+    -- replay previous sequence
+    -- local previous_record = sequences[ps].record
+    -- local previous_nodes = sequences[ps].nodes
+    -- local previous_scene = sequences[ps].scene
+    -- local previous_physics = sequences[ps].physics
+    -- local previous_dt_frame_step = sequences[ps].dt_frame_step
+    -- local previous_physics_step = sequences[ps].physics_step
+    -- record_frame = map(hg.time_to_sec_f(frame_clock - sequence_start_clock), 0.0, sequence_duration_sec, 0.0, 1.0) -- time remap
+    -- -- record_frame = map(record_frame, 0.0, 1.0, 0.45, 0.55) -- time remap
+    -- -- if record_frame > 0.7 and record_frame < 0.8 then
+    -- --     record_frame = map(record_frame, 0.7, 0.8, 0.8, 0.6) -- time remap
+    -- -- else
+    --     -- record_frame = map(record_frame, 0.0, 1.0, 0.25, 0.995) -- time remap
+    -- -- end
+    -- local in_map, out_map -- tie remapping
+    -- local _mapping = mapping_sequences[sequences[ps].name]
+    -- if _mapping == nil then
+    --         in_map, out_map = 0.0, 1.0
+    --     else
+    --         in_map, out_map = _mapping[1], _mapping[2]
+    -- end
+    -- record_frame = map(record_frame, 0.0, 1.0, in_map, out_map)
+    -- record_frame = 1.0 - clamp(record_frame, 0.0, 1.0)
+    -- local record_frame_f = record_frame * #previous_record
+    -- local record_frame_int = math.max(1, math.floor(record_frame_f))
+    -- local lerp_coef = record_frame_f - record_frame_int
+    -- local _mat
+    -- local next_record_frame = clamp(record_frame_int + 1, 1, #previous_record)
+    -- for node_idx = 1, #previous_nodes do
+    --     _mat = hg.LerpAsOrthonormalBase(previous_record[record_frame_int].frame_nodes[node_idx], previous_record[next_record_frame].frame_nodes[node_idx], lerp_coef)
+    --     previous_nodes[node_idx]:GetTransform():SetWorld(_mat)
+    -- end
+
+    -- sequences[ps].scene:Update(dt)
+    -- END REPLAY
     
     -- rendering
     local view_id = 0
@@ -313,6 +351,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
 
     -- collectgarbage()
 
+    -- DEBUG INFOS
     -- write sequence name
     view_id = view_id + 1
     hg.SetView2D(view_id, 0, 0, res_x, res_y, -1, 1, hg.CF_Depth, hg.Color.White, 1, 0)
@@ -324,16 +363,18 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     local _demo_clock_f = hg.time_to_sec_f(frame_clock - demo_start_clock)
     local _str_clock = format_time(_demo_clock_f)
     _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * 0.925, 0)
-    display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
 
-    -- _new_frame.sequence_idx =  mapping_sequences[j].time_remap[1]
-    -- _new_frame.remap_from = _clock - mapping_sequences[j].clock[1] -- from within the sequence's inner clock
-    -- _new_frame.remap_to = {mapping_sequences[j].time_remap[2], mapping_sequences[j].time_remap[3]}
+    local timer_uniform_values = text_uniform_values_red
+    if sim_seq_idx > 1 then
+        timer_uniform_values = text_uniform_values
+    end
+    display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, timer_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
 
     local _time_remap_index = math.floor((_demo_clock_f * #replay_time_table) / demo_duration) + 1
     local _str_clock = tostring(_time_remap_index) .. ":" .. replay_time_table[_time_remap_index].sequence_idx .. ":" .. string.format("%2.2f", replay_time_table[_time_remap_index].remap_from)
     _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * (1.0 - 0.925), 0)
     display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
+    -- END DEBUG INFOS
 
     frame = hg.Frame()
     hg.UpdateWindow(win)
