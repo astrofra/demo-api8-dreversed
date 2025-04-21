@@ -13,8 +13,8 @@ require("sequences/xi_voxel")
 
 local virtual_res_x, virtual_res_y = 1280, 720
 local res_x, res_y = 1920, 1080 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
-local enable_replay = false
-local enable_rotation = false
+local enable_replay = true
+local enable_rotation = true
 
 function display_shadow_text(view_id, font_name, text_str, font_prg, text_pos, text_uniform_values, text_uniform_values_black, text_render_state, h_align)
     h_align = h_align or hg.DTHA_Left
@@ -135,14 +135,12 @@ local sequences = {}
 local mapping_sequences = {    
 }
 
--- -- blank scene
--- local couchot_intro_speech_ref = hg.LoadOGGSoundAsset("audio/intro-couchot-bw.ogg")
--- local _scene = hg.Scene()
--- hg.LoadSceneFromAssets("sequences/intro_seq.scn", _scene, res, hg.GetForwardPipelineInfo())
--- local _cam = _scene:GetNode("Camera")
--- _scene:SetCurrentCamera(_cam)
--- local _rb_nodes = {}
--- table.insert(sequences, {name = "blank", record = {}, scene = _scene, camera = _cam, camera_root = nil, nodes = _rb_nodes, physics = nil, physics_step = nil, dt_frame_step = nil})
+-- blank scene
+local couchot_intro_speech_ref = hg.LoadOGGSoundAsset("audio/intro-couchot-bw.ogg")
+local intro_scene = hg.Scene()
+hg.LoadSceneFromAssets("sequences/intro_seq.scn", intro_scene, res, hg.GetForwardPipelineInfo())
+local intro_camera = intro_scene:GetNode("Camera")
+intro_scene:SetCurrentCamera(intro_camera)
 
 -- title screen
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -266,6 +264,12 @@ collectgarbage("stop") -- avoid nasty drops all along the demo
 -- start music
 local music_player_ref = nil -- hg.StreamOGGAssetStereo("audio/after-nothing-riddlemak.ogg", hg.StereoSourceState(1, hg.SR_Loop))
 
+if enable_replay then
+    intro_scene:PlayAnim(intro_scene:GetSceneAnim("intro"))
+end
+
+-- tv_player_ref = hg.StreamOGGAssetStereo("audio/crt-tv-powering-up.ogg", hg.StereoSourceState(1, hg.SR_Once))
+
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <= #sequences do
     keyboard:Update()
 
@@ -285,7 +289,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
         -- sim_scene:SetCurrentCamera(sim_camera)
     end
 
-    if enable_rotation then
+    if enable_rotation and sim_seq_idx > 1 then
         rotation_speed_factor = math.min(1.0, rotation_speed_factor + hg.time_to_sec_f(dt) * 0.1)
         camera_root_rot.y = camera_root_rot.y - math.pi * hg.time_to_sec_f(dt) * 0.15 * EaseInOutQuick(rotation_speed_factor)
     end
@@ -338,6 +342,8 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
         rep_camera_root:GetTransform():SetRot(camera_root_rot)
 
         sequences[rep_seq_idx].scene:Update(dt)
+    else
+        intro_scene:Update(dt)
     end
     -- END REPLAY
     
@@ -346,13 +352,19 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     local pass_id
 
     -- the trick is that we always render the PREVIOUS sim_scene
-    if sim_seq_idx > 1 and enable_replay then
-        rep_scene:SetCurrentCamera(rep_camera)
-        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, rep_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+    if enable_replay then
+        if sim_seq_idx > 1 then
+            rep_scene:SetCurrentCamera(rep_camera)
+            view_id, pass_id = hg.SubmitSceneToPipeline(view_id, rep_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+        else
+            intro_scene:SetCurrentCamera(intro_camera)
+            view_id, pass_id = hg.SubmitSceneToPipeline(view_id, intro_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+        end
     else
         sim_scene:SetCurrentCamera(sim_camera)
         view_id, pass_id = hg.SubmitSceneToPipeline(view_id, sim_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
     end
+
     -- Debug sim_physics display
     -- display_physics_debug(view_id, sequences[sim_seq_idx].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[sim_seq_idx].sim_physics)
 
