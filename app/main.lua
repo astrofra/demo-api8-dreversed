@@ -14,6 +14,7 @@ require("sequences/xi_voxel")
 local virtual_res_x, virtual_res_y = 1280, 720
 local res_x, res_y = 1920, 1080 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
 local enable_replay = false
+local enable_rotation = false
 
 function display_shadow_text(view_id, font_name, text_str, font_prg, text_pos, text_uniform_values, text_uniform_values_black, text_render_state, h_align)
     h_align = h_align or hg.DTHA_Left
@@ -284,8 +285,10 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
         -- sim_scene:SetCurrentCamera(sim_camera)
     end
 
-    rotation_speed_factor = math.min(1.0, rotation_speed_factor + hg.time_to_sec_f(dt) * 0.1)
-    camera_root_rot.y = camera_root_rot.y - math.pi * hg.time_to_sec_f(dt) * 0.15 * EaseInOutQuick(rotation_speed_factor)
+    if enable_rotation then
+        rotation_speed_factor = math.min(1.0, rotation_speed_factor + hg.time_to_sec_f(dt) * 0.1)
+        camera_root_rot.y = camera_root_rot.y - math.pi * hg.time_to_sec_f(dt) * 0.15 * EaseInOutQuick(rotation_speed_factor)
+    end
     sim_camera_root:GetTransform():SetRot(camera_root_rot)
 
     -- Update the physics simulation
@@ -333,29 +336,6 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
         end
 
         rep_camera_root:GetTransform():SetRot(camera_root_rot)
-
-    --     rep_physics = sequences[rep_seq_idx].physics
-    --     rep_dt_frame_step = sequences[rep_seq_idx].dt_frame_step
-    --     rep_physics_step = sequences[rep_seq_idx].physics_step
-    --     -- record_frame = map(hg.time_to_sec_f(frame_clock - sequence_start_clock), 0.0, sequence_duration_sec, 0.0, 1.0) -- time remap
-    --     -- local in_map, out_map -- time remapping
-    --     -- local _mapping = mapping_sequences[sequences[rep_seq_idx].name]
-    --     -- if _mapping == nil then
-    --     --         in_map, out_map = 0.0, 1.0
-    --     --     else
-    --     --         in_map, out_map = _mapping[1], _mapping[2]
-    --     -- end
-    --     -- record_frame = map(record_frame, 0.0, 1.0, in_map, out_map)
-    --     -- record_frame = 1.0 - clamp(record_frame, 0.0, 1.0)
-    --     -- local record_frame_f = record_frame * #rep_record
-    --     local record_frame_int = math.max(1, math.floor(record_frame_f))
-    --     local lerp_coef = record_frame_f - record_frame_int
-    --     local _mat
-    --     local next_record_frame = clamp(record_frame_int + 1, 1, #rep_record)
-    --     for node_idx = 1, #rep_rb_nodes do
-    --         _mat = hg.LerpAsOrthonormalBase(rep_record[record_frame_int].frame_nodes[node_idx], rep_record[next_record_frame].frame_nodes[node_idx], lerp_coef)
-    --         rep_rb_nodes[node_idx]:GetTransform():SetWorld(_mat)
-    --     end
 
         sequences[rep_seq_idx].scene:Update(dt)
     end
@@ -405,7 +385,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
 
     -- Time remap (time code)
     if sim_seq_idx > 1 then
-        local _str_clock = tostring(time_remap_index) .. ":" .. replay_time_table[time_remap_index].sequence_idx .. ":" .. string.format("%2.3f", record_frame)
+        local _str_clock = "Time remap: " .. tostring(time_remap_index) .. ":" .. replay_time_table[time_remap_index].sequence_idx .. ":" .. string.format("%2.3f", record_frame)
         _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * (1.0 - 0.925), 0)
         display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
     end
