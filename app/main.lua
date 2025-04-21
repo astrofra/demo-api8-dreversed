@@ -12,7 +12,7 @@ require("sequences/vertical_neon_chaos")
 require("sequences/xi_voxel")
 
 local virtual_res_x, virtual_res_y = 1280, 720
-local res_x, res_y = 1920, 1080 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
+local res_x, res_y = 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
 local enable_replay = true
 local enable_rotation = true
 
@@ -212,10 +212,11 @@ table.insert(sequences, {name = "neons", record = {}, scene = _scene, camera = _
 table.insert(mapping_sequences, {clock = {80.0, 90.0}, time_remap = {#sequences, 0.1, 0.9}})
 
 -- Prepare the time remapping table for the whole demo
+local presampling_framerate = 60.0
 local demo_duration = mapping_sequences[#mapping_sequences].clock[2]
 local replay_time_table = {}
-for i = 0, math.floor(demo_duration * 60) do
-    local _clock = i / 60.0
+for i = 0, math.floor(demo_duration * presampling_framerate) do
+    local _clock = i / presampling_framerate
     local _new_frame = {}
     -- search for the proper sequence
     for j = 1, #mapping_sequences do
@@ -334,14 +335,16 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
         local lerp_coef = record_frame_f - record_frame_int
         local _mat
         local next_record_frame = clamp(record_frame_int + 1, 1, #rep_record)
-        for node_idx = 1, #rep_rb_nodes do
-            _mat = hg.LerpAsOrthonormalBase(rep_record[record_frame_int].frame_nodes[node_idx], rep_record[next_record_frame].frame_nodes[node_idx], lerp_coef)
-            rep_rb_nodes[node_idx]:GetTransform():SetWorld(_mat)
+        if enable_replay then
+            for node_idx = 1, #rep_rb_nodes do
+                _mat = hg.LerpAsOrthonormalBase(rep_record[record_frame_int].frame_nodes[node_idx], rep_record[next_record_frame].frame_nodes[node_idx], lerp_coef)
+                rep_rb_nodes[node_idx]:GetTransform():SetWorld(_mat)
+            end
+
+            rep_camera_root:GetTransform():SetRot(camera_root_rot)
+
+            sequences[rep_seq_idx].scene:Update(dt)
         end
-
-        rep_camera_root:GetTransform():SetRot(camera_root_rot)
-
-        sequences[rep_seq_idx].scene:Update(dt)
     else
         intro_scene:Update(dt)
     end
@@ -366,7 +369,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     end
 
     -- Debug sim_physics display
-    -- display_physics_debug(view_id, sequences[sim_seq_idx].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[sim_seq_idx].sim_physics)
+    -- display_physics_debug(view_id, sequences[sim_seq_idx].camera, res_x, res_y, vtx_line_layout, line_shader, sequences[sim_seq_idx].physics)
 
     -- collectgarbage()
 
@@ -375,9 +378,11 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     view_id = view_id + 1
     hg.SetView2D(view_id, 0, 0, res_x, res_y, -1, 1, hg.CF_Depth, hg.Color.White, 1, 0)
 
-    local _seq_name = sim_seq.display_name
-    local _text_pos = hg.Vec3(res_x * 0.05, res_y * 0.9, 0)
-    display_shadow_text(view_id, font_sequence_name, _seq_name, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state) 
+    if enable_replay == false then
+        local _seq_name = sim_seq.display_name
+        local _text_pos = hg.Vec3(res_x * 0.05, res_y * 0.9, 0)
+        display_shadow_text(view_id, font_sequence_name, _seq_name, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state) 
+    end
 
     -- Timecode
     local _str_clock = format_time(demo_clock_f)
