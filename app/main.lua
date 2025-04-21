@@ -13,7 +13,7 @@ require("sequences/xi_voxel")
 
 local virtual_res_x, virtual_res_y = 1280, 720
 local res_x, res_y = 1920, 1080 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
-local enable_replay = false
+local enable_replay = true
 
 function display_shadow_text(view_id, font_name, text_str, font_prg, text_pos, text_uniform_values, text_uniform_values_black, text_render_state, h_align)
     h_align = h_align or hg.DTHA_Left
@@ -307,11 +307,30 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     -- REPLAY
     -- replay previous sequence
     local rep_scene, rep_camera, rep_camera_root, rep_rb_nodes, rep_physics, rep_physics_step, rep_dt_frame_step, rep_record
-    -- if sim_seq_idx > 1 then
-    --     rep_seq_idx = remap
-    --     rep_record = sequences[rep_seq_idx].record
-    --     rep_rb_nodes = sequences[rep_seq_idx].nodes
-    --     rep_scene = sequences[rep_seq_idx].scene
+    local time_remap_index = math.floor((replay_clock_f * #replay_time_table) / demo_duration) + 1
+    -- tostring(time_remap_index) .. ":" .. replay_time_table[time_remap_index].sequence_idx .. ":" .. string.format("%2.2f", replay_time_table[time_remap_index].remap_from)
+
+    if sim_seq_idx > 1 then
+        rep_seq_idx = replay_time_table[time_remap_index].sequence_idx
+        rep_record = sequences[rep_seq_idx].record
+        rep_rb_nodes = sequences[rep_seq_idx].nodes
+        rep_scene = sequences[rep_seq_idx].scene
+        rep_camera = sequences[rep_seq_idx].camera
+        rep_camera_root = sequences[rep_seq_idx].camera_root
+
+        record_frame = map(replay_time_table[time_remap_index].remap_from, 0.0, 10.0, 1.0, 0.0)
+        local record_frame_f = record_frame * #rep_record
+        local record_frame_int = math.max(1, math.floor(record_frame_f))
+        local lerp_coef = record_frame_f - record_frame_int
+        local _mat
+        local next_record_frame = clamp(record_frame_int + 1, 1, #rep_record)
+        for node_idx = 1, #rep_rb_nodes do
+            _mat = hg.LerpAsOrthonormalBase(rep_record[record_frame_int].frame_nodes[node_idx], rep_record[next_record_frame].frame_nodes[node_idx], lerp_coef)
+            rep_rb_nodes[node_idx]:GetTransform():SetWorld(_mat)
+        end
+
+        rep_camera_root:GetTransform():SetRot(camera_root_rot)
+
     --     rep_physics = sequences[rep_seq_idx].physics
     --     rep_dt_frame_step = sequences[rep_seq_idx].dt_frame_step
     --     rep_physics_step = sequences[rep_seq_idx].physics_step
@@ -335,8 +354,8 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     --         rep_rb_nodes[node_idx]:GetTransform():SetWorld(_mat)
     --     end
 
-    --     sequences[rep_seq_idx].scene:Update(dt)
-    -- end
+        sequences[rep_seq_idx].scene:Update(dt)
+    end
     -- END REPLAY
     
     -- rendering
@@ -375,8 +394,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, timer_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
 
     if replay_clock_f > 0.0 then
-        local _time_remap_index = math.floor((replay_clock_f * #replay_time_table) / demo_duration) + 1
-        local _str_clock = tostring(_time_remap_index) .. ":" .. replay_time_table[_time_remap_index].sequence_idx .. ":" .. string.format("%2.2f", replay_time_table[_time_remap_index].remap_from)
+        local _str_clock = tostring(time_remap_index) .. ":" .. replay_time_table[time_remap_index].sequence_idx .. ":" .. string.format("%2.2f", replay_time_table[time_remap_index].remap_from)
         _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * (1.0 - 0.925), 0)
         display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
     end
