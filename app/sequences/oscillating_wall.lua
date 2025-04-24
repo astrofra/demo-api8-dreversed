@@ -10,11 +10,20 @@ function SetupOscillatingWall(_scene, _res, params)
     local rb_nodes = {}
     local width, height = 12, 8
     local spacing = 0.25 * _size
+    local mat_idx = 1
+    local mat
     for z = -width/4, width/4 do
         for x = -width/2, width/2 do
             for y = 0, height do
+                mat_idx = mat_idx + 1
+                if mat_idx > 20 then
+                    mat_idx = 1
+                    mat = params.materials.neon
+                else
+                    mat = params.materials.black
+                end
                 local pos = hg.Vec3(x * spacing, 4 + y * spacing * 2.0, z * spacing)
-                local node, rb = CreatePhysicCubeEx(_scene, _model_size, hg.TranslationMat4(pos), _model_ref, {_material}, hg.RBT_Dynamic, 1.0)
+                local node, rb = CreatePhysicCubeEx(_scene, _model_size, hg.TranslationMat4(pos), _model_ref, {mat}, hg.RBT_Dynamic, 1.0)
                 table.insert(rb_nodes, node)
             end
         end

@@ -16,7 +16,7 @@ require("sequences/attraction_core")
 
 local virtual_res_x, virtual_res_y = 1280, 720
 local res_x, res_y = 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
-local enable_replay = false
+local enable_replay = true
 local enable_rotation = true
 
 function display_shadow_text(view_id, font_name, text_str, font_prg, text_pos, text_uniform_values, text_uniform_values_black, text_render_state, h_align)
@@ -72,7 +72,7 @@ hg.WindowSystemInit()
 -- local win = hg.RenderInit('Dreversed', res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X)
 win = hg.NewWindow("Dreversed^Resistance(2025)", res_x, res_y, 32, hg.WV_Undecorated) --, hg.WV_Fullscreen)
 hg.RenderInit(win) --, hg.RT_OpenGL)
-hg.RenderReset(res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X | hg.RF_MaxAnisotropy)
+hg.RenderReset(res_x, res_y, hg.RF_VSync) -- | hg.RF_MSAA4X | hg.RF_MaxAnisotropy)
 
 local pipeline = hg.CreateForwardPipeline(2048)
 local res = hg.PipelineResources()
@@ -216,7 +216,7 @@ table.insert(mapping_sequences, {clock = {80.0, 90.0}, time_remap = {#sequences,
 
 -- GPT 3
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
-local _rb_nodes, _ctx = SetupOscillatingWall(_scene, res, {vtx_layout = vtx_layout, materials = {black = mat_black}})
+local _rb_nodes, _ctx = SetupOscillatingWall(_scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, black = mat_black}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "oscillating_wall", apply_physics = ApplyPhysicsOscillatingWall, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {clock = {90.0, 100.0}, time_remap = {#sequences, 0.0, 1.0}})
@@ -228,12 +228,12 @@ local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "repulsion_core", apply_physics = ApplyPhysicsRepulsionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {clock = {100.0, 110.0}, time_remap = {#sequences, 0.0, 1.0}})
 
--- GPT 4-ish #FIXME using 6DOF constraints
+-- GPT 4-ish
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes, _ctx = SetupAttractionCore(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "attraction_core", apply_physics = ApplyPhysicsAttractionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-table.insert(mapping_sequences, {clock = {0.0, 10.0}, time_remap = {#sequences, 0.0, 1.0}})
+table.insert(mapping_sequences, {clock = {110.0, 120.0}, time_remap = {#sequences, 0.3, 0.0}})
 
 -- Prepare the time remapping table for the whole demo
 local presampling_framerate = 60.0
