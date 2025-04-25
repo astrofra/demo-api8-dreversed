@@ -3,6 +3,18 @@ $input vWorldPos, vNormal, vTangent, vBinormal, vTexCoord0, vTexCoord1, vLinearS
 // HARFANG(R) Copyright (C) 2022 Emmanuel Julien, NWNC HARFANG. Released under GPL/LGPL/Commercial Licence, see licence.txt for details.
 #include <forward_pipeline.sh>
 
+// uAmbientColor.xyz, x = greyscale
+
+vec3 Greyscale(vec3 col, float amount) {
+	float luma = col.x * 0.2126 + col.y * 0.7152 + col.z * 0.0722;
+	return mix(col, vec3(luma, luma, luma), amount);
+}
+
+float Compress(float x, float amount) {
+    float centered = x - 0.5;
+    return 0.5 + centered * pow(2.0 * abs(centered), amount);
+}
+
 // Surface attributes
 uniform vec4 uBaseOpacityColor;
 uniform vec4 uOcclusionRoughnessMetalnessColor;
@@ -275,11 +287,12 @@ occ_rough_metal.z = pow(occ_rough_metal.z, uORMPow.z);
 
 	color += kD * diffuse;
 	color += specular;
-	color += uAmbientColor.xyz;
+	// color += uAmbientColor.xyz;
 	color *= occ_rough_metal.x;
 	color += self.xyz;
 
 	color = DistanceFog(view, color);
+
 #endif // DEPTH_ONLY != 1
 
 	float opacity = base_opacity.w;
@@ -303,6 +316,9 @@ occ_rough_metal.z = pow(occ_rough_metal.z, uORMPow.z);
 #endif // FORWARD_PIPELINE_AAA != 1
 
 	// color = fake_horizon_based_boost_vec;
+	color = Greyscale(color, uAmbientColor.x);
+	color = color * (0.5 + uAmbientColor.y) * 2.0;
+	color = vec3(Compress(color.x,  uAmbientColor.z), Compress(color.y,  uAmbientColor.z), Compress(color.z,  uAmbientColor.z));
 	gl_FragColor = vec4(color, opacity);
 #endif // FORWARD_PIPELINE_AAA_PREPASS
 #else

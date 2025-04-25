@@ -13,11 +13,20 @@ require("sequences/xi_voxel")
 require("sequences/repulsion_core")
 require("sequences/oscillating_wall")
 require("sequences/attraction_core")
+require("audio/bass_dynamics")
+require("audio/drums_dynamics")
+require("audio/audio_data")
 
 local virtual_res_x, virtual_res_y = 1280, 720
 local res_x, res_y = 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
-local enable_replay = true
+local enable_replay = false
 local enable_rotation = true
+
+function GetAudioDynamics(dynamics_table, clock, total_duration)
+    local idx = math.floor((clock * #dynamics_table) / total_duration) + 1
+    idx = math.min(idx, #dynamics_table)
+    return clamp(dynamics_table[idx], 0.0, 1.0)
+end
 
 function display_shadow_text(view_id, font_name, text_str, font_prg, text_pos, text_uniform_values, text_uniform_values_black, text_render_state, h_align)
     h_align = h_align or hg.DTHA_Left
@@ -287,7 +296,7 @@ local rotation_speed_factor = 0.0
 collectgarbage("stop") -- avoid nasty drops all along the demo
 
 -- start music
-local music_player_ref = nil -- hg.StreamOGGAssetStereo("audio/after-nothing-riddlemak.ogg", hg.StereoSourceState(1, hg.SR_Loop))
+local music_player_ref = hg.StreamOGGAssetStereo("audio/after-nothing-riddlemak.ogg", hg.StereoSourceState(1, hg.SR_Loop))
 
 if enable_replay then
     intro_scene:PlayAnim(intro_scene:GetSceneAnim("intro"))
@@ -302,6 +311,12 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     demo_clock_f = hg.time_to_sec_f(frame_clock - demo_start_clock)
     replay_clock_f =  demo_clock_f - 10.0
     dt = hg.TickClock()
+
+    local frame_clock_f = hg.time_to_sec_f(frame_clock)
+    local greyscale = 0.0 -- math.sin(frame_clock_f * math.pi)
+    local hilight = GetAudioDynamics(drums_dynamics, frame_clock_f, audio_metadata['after-nothing-riddlemak.ogg'].duration) -- math.cos(frame_clock_f * math.pi / 4)
+    local compress = GetAudioDynamics(bass_dynamics, frame_clock_f, audio_metadata['after-nothing-riddlemak.ogg'].duration) -- math.cos(frame_clock_f * math.pi * 2)
+    local ambient_control = hg.Color(greyscale, hilight, compress, 0.0)
 
     -- SIMULATION
     -- process & record simulation (realtime)
@@ -382,13 +397,16 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     if enable_replay then
         if sim_seq_idx > 1 then
             rep_scene:SetCurrentCamera(rep_camera)
+            rep_scene.environment.ambient = ambient_control
             view_id, pass_id = hg.SubmitSceneToPipeline(view_id, rep_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
         else
             intro_scene:SetCurrentCamera(intro_camera)
+            intro_scene.environment.ambient = ambient_control
             view_id, pass_id = hg.SubmitSceneToPipeline(view_id, intro_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
         end
     else
         sim_scene:SetCurrentCamera(sim_camera)
+        sim_scene.environment.ambient = ambient_control
         view_id, pass_id = hg.SubmitSceneToPipeline(view_id, sim_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
     end
 
