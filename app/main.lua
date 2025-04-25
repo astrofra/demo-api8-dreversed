@@ -19,7 +19,7 @@ require("audio/audio_data")
 
 local virtual_res_x, virtual_res_y = 1280, 720
 local res_x, res_y = 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
-local enable_replay = false
+local enable_replay = true
 local enable_rotation = true
 
 function GetAudioDynamics(dynamics_table, clock, total_duration)
@@ -147,8 +147,12 @@ local sequences = {}
 local mapping_sequences = {    
 }
 
+-- demo soundtrack
+local demo_soundtrack_sound = hg.LoadOGGSoundAsset("audio/after-nothing-riddlemak.ogg")
+local demo_soundtrack_ref = nil
+
 -- blank scene
-local couchot_intro_speech_ref = hg.LoadOGGSoundAsset("audio/intro-couchot-bw.ogg")
+-- local couchot_intro_speech_ref = hg.LoadOGGSoundAsset("audio/intro-couchot-bw.ogg")
 local intro_scene = hg.Scene()
 hg.LoadSceneFromAssets("sequences/intro_seq.scn", intro_scene, res, hg.GetForwardPipelineInfo())
 local intro_camera = intro_scene:GetNode("Camera")
@@ -244,6 +248,14 @@ local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "attraction_core", apply_physics = ApplyPhysicsAttractionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {clock = {110.0, 120.0}, time_remap = {#sequences, 0.3, 0.0}})
 
+-- last dummy sequence
+local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local _rb_nodes, _ctx = {}, {}
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+table.insert(sequences, {name = "dummy", ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+local _last_clock = mapping_sequences[#mapping_sequences].clock[2]
+table.insert(mapping_sequences, {clock = {_last_clock, _last_clock + 10.0}, time_remap = {#sequences, 0.0, 1.0}})
+
 -- Prepare the time remapping table for the whole demo
 local presampling_framerate = 60.0
 local demo_duration = mapping_sequences[#mapping_sequences].clock[2]
@@ -296,7 +308,7 @@ local rotation_speed_factor = 0.0
 collectgarbage("stop") -- avoid nasty drops all along the demo
 
 -- start music
-local music_player_ref = hg.StreamOGGAssetStereo("audio/after-nothing-riddlemak.ogg", hg.StereoSourceState(1, hg.SR_Loop))
+-- local music_player_ref = hg.StreamOGGAssetStereo("audio/after-nothing-riddlemak.ogg", hg.StereoSourceState(1, hg.SR_Loop))
 
 if enable_replay then
     intro_scene:PlayAnim(intro_scene:GetSceneAnim("intro"))
@@ -312,10 +324,9 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     replay_clock_f =  demo_clock_f - 10.0
     dt = hg.TickClock()
 
-    local frame_clock_f = hg.time_to_sec_f(frame_clock)
-    local greyscale = 0.0 -- math.sin(frame_clock_f * math.pi)
-    local hilight = GetAudioDynamics(drums_dynamics, frame_clock_f, audio_metadata['after-nothing-riddlemak.ogg'].duration) -- math.cos(frame_clock_f * math.pi / 4)
-    local compress = GetAudioDynamics(bass_dynamics, frame_clock_f, audio_metadata['after-nothing-riddlemak.ogg'].duration) -- math.cos(frame_clock_f * math.pi * 2)
+    local greyscale = 0.0 -- math.sin(replay_clock_f * math.pi)
+    local hilight = GetAudioDynamics(drums_dynamics, math.max(0.0, replay_clock_f), audio_metadata['after-nothing-riddlemak.ogg'].duration) -- math.cos(frame_clock_f * math.pi / 4)
+    local compress = GetAudioDynamics(bass_dynamics, math.max(0.0, replay_clock_f), audio_metadata['after-nothing-riddlemak.ogg'].duration) -- math.cos(frame_clock_f * math.pi * 2)
     local ambient_control = hg.Color(greyscale, hilight, compress, 0.0)
 
     -- SIMULATION
@@ -360,6 +371,11 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     -- tostring(time_remap_index) .. ":" .. replay_time_table[time_remap_index].sequence_idx .. ":" .. string.format("%2.2f", replay_time_table[time_remap_index].remap_from)
 
     if sim_seq_idx > 1 then
+        -- play music
+        if demo_soundtrack_ref == nil then
+            demo_soundtrack_ref = hg.PlayStereo(demo_soundtrack_sound, hg.StereoSourceState(1, hg.SR_Once))
+        end
+
         rep_seq_idx = replay_time_table[time_remap_index].sequence_idx
         rep_record = sequences[rep_seq_idx].record
         rep_rb_nodes = sequences[rep_seq_idx].nodes
