@@ -3,6 +3,7 @@ require("utils")
 require("physics_utils")
 require("sequences/wall_of_bricks")
 require("sequences/tornado")
+require("sequences/spiral_tornado")
 require("sequences/flocks")
 require("sequences/rotating_plates")
 require("sequences/wave_grid")
@@ -19,7 +20,7 @@ require("audio/audio_data")
 
 local virtual_res_x, virtual_res_y = 1280, 720
 local res_x, res_y = 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
-local enable_replay = true
+local enable_replay = false
 local enable_rotation = true
 
 function GetAudioDynamics(dynamics_table, clock, total_duration)
@@ -247,6 +248,13 @@ local _rb_nodes, _ctx = SetupAttractionCore(_scene, res, {vtx_layout = vtx_layou
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "attraction_core", apply_physics = ApplyPhysicsAttractionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {clock = {110.0, 120.0}, time_remap = {#sequences, 0.3, 0.0}})
+
+-- spiral tornado
+local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local _rb_nodes = SetupSpiralTornado(_scene, res, {vtx_layout = vtx_layout, materials = {chrome = mat_chrome, neon = mat_neon_red, black = mat_black}})
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+table.insert(sequences, {name = "tornado", apply_physics = ApplyPhysicsSpiralTornado, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(mapping_sequences, {clock = {120.0, 130.0}, time_remap = {#sequences, 0.0, 1.0}})
 
 -- last dummy sequence
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
