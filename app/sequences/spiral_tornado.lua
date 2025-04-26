@@ -19,9 +19,9 @@ function SetupSpiralTornado(_scene, _res, params)
         for j = -radius, radius do
             object_count = object_count + 1
             if math.fmod(object_count, 25) == 1 then
-                _generic_material = params.materials.neon
+                _generic_material = params.materials.black
             else
-                _generic_material = params.materials.chrome
+                _generic_material = params.materials.neon
             end
             local x, y, z = i * _cube_base_dimension * 0.9, ((i + math.fmod(j * i + j + i, radius * 2.0)) / (radius)) + radius * 0.1, j * _cube_base_dimension * 0.9
             local _new_node, _rb = CreatePhysicCubeEx(_scene, _cube_size * 2.0, hg.TranslationMat4(hg.Vec3(x, y, z)), _cube_ref, {_generic_material}, hg.RBT_Dynamic, 0.75)

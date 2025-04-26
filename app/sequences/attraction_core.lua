@@ -18,6 +18,7 @@ function SetupAttractionCore(_scene, _res, params)
     end
 
     local rb_nodes = {}
+    local _generic_material
 
     local idx = 1
     for i = 1, count do
@@ -27,7 +28,12 @@ function SetupAttractionCore(_scene, _res, params)
         if idx > #_models then
             idx = 1
         end
-        local node, _ = CreatePhysicCubeEx(_scene, _models[idx].size, hg.TransformationMat4(pos, rot), _models[idx].ref, {_material}, hg.RBT_Dynamic, 1.0)
+        if math.fmod(i, 11) == 1 then
+            _generic_material = params.materials.black
+        else
+            _generic_material = params.materials.silver
+        end
+        local node, _ = CreatePhysicCubeEx(_scene, _models[idx].size, hg.TransformationMat4(pos, rot), _models[idx].ref, {_generic_material}, hg.RBT_Dynamic, 1.0)
         table.insert(rb_nodes, node)
     end
     return rb_nodes

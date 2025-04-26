@@ -2,12 +2,13 @@ hg = require("harfang")
 require("physics_utils")
 
 function SetupRepulsionCore(_scene, _res, params)
-    local _vtx_layout, _material = params.vtx_layout, params.materials.silver
+    local _vtx_layout = params.vtx_layout
     local _model_size = hg.Vec3(0.15, 0.15, 0.15)
     local _model_ref = _res:AddModel("core_cube", hg.CreateCubeModel(_vtx_layout, _model_size.x / 2, _model_size.y / 2, _model_size.z / 2))
 
     local rb_nodes = {}
     local count = 250
+    local _generic_material
     for i = 1, count do
         local theta = math.random() * math.pi * 2
         local phi = math.acos(2 * math.random() - 1)
@@ -22,7 +23,12 @@ function SetupRepulsionCore(_scene, _res, params)
             r * math.cos(phi) * math.pi,
             r * math.sin(phi) * math.sin(theta) * math.pi
         )
-        local node, _ = CreatePhysicCubeEx(_scene, _model_size, hg.TransformationMat4(pos, rot), _model_ref, {_material}, hg.RBT_Dynamic, 1.0)
+        if math.fmod(i, 25) == 1 then
+            _generic_material = params.materials.silver
+        else
+            _generic_material = params.materials.black
+        end
+        local node, _ = CreatePhysicCubeEx(_scene, _model_size, hg.TransformationMat4(pos, rot), _model_ref, {_generic_material}, hg.RBT_Dynamic, 1.0)
         table.insert(rb_nodes, node)
     end
     return rb_nodes
