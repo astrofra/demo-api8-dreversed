@@ -13,7 +13,7 @@ function SetupAttractionCore(_scene, _res, params)
         local _size = hg.Vec3(_master_size, _master_size, _master_size)
         _models[i] = {
             size = _size,
-            ref = _res:AddModel("core_cube_" .. tostring(i), hg.CreateCubeModel(_vtx_layout, _size.x / 2, _size.y / 2, _size.z / 2))
+            ref = _res:AddModel("attraction_core_cube_" .. tostring(i), hg.CreateCubeModel(_vtx_layout, _size.x / 2, _size.y / 2, _size.z / 2))
         }
     end
 
@@ -28,7 +28,9 @@ function SetupAttractionCore(_scene, _res, params)
         if idx > #_models then
             idx = 1
         end
-        if math.fmod(i, 11) == 1 then
+        if math.fmod(i, 47) == 1 then
+            _generic_material = params.materials.neon
+        elseif math.fmod(i, 11) == 1 then
             _generic_material = params.materials.black
         else
             _generic_material = params.materials.silver
