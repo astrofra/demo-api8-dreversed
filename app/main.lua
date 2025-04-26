@@ -2,6 +2,7 @@ hg = require("harfang")
 require("utils")
 require("physics_utils")
 require("sequences/wall_of_bricks")
+
 require("sequences/tornado")
 require("sequences/spiral_tornado")
 require("sequences/flocks")
@@ -14,6 +15,8 @@ require("sequences/xi_voxel")
 require("sequences/repulsion_core")
 require("sequences/oscillating_wall")
 require("sequences/attraction_core")
+require("sequences/invisible_colliders")
+
 require("audio/bass_dynamics")
 require("audio/drums_dynamics")
 require("audio/audio_data")
@@ -257,6 +260,13 @@ local _rb_nodes = SetupSpiralTornado(_scene, res, {vtx_layout = vtx_layout, mate
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "spiral_tornado", apply_physics = ApplyPhysicsSpiralTornado, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {clock = {120.0, 130.0}, time_remap = {#sequences, 0.0, 1.0}})
+
+-- invisible colliders
+local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+local _rb_nodes = SetupInvisibleColliders(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, chrome = mat_chrome, black = mat_piano_black}})
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+table.insert(sequences, {name = "invisible_colliders", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+table.insert(mapping_sequences, {clock = {130.0, 140.0}, time_remap = {#sequences, 0.0, 1.0}})
 
 -- last dummy sequence
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
