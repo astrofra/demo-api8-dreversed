@@ -18,10 +18,10 @@ require("audio/bass_dynamics")
 require("audio/drums_dynamics")
 require("audio/audio_data")
 
-local virtual_res_x, virtual_res_y = 1280, 720
-local res_x, res_y = 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
-local enable_replay = false
-local enable_rotation = true
+virtual_res_x, virtual_res_y = 1280, 720
+res_x, res_y = 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
+enable_replay = false
+enable_rotation = true
 
 function GetAudioDynamics(dynamics_table, clock, total_duration)
     local idx = math.floor((clock * #dynamics_table) / total_duration) + 1
@@ -84,12 +84,11 @@ win = hg.NewWindow("Dreversed^Resistance(2025)", res_x, res_y, 32, hg.WV_Undecor
 hg.RenderInit(win) --, hg.RT_OpenGL)
 hg.RenderReset(res_x, res_y, hg.RF_VSync) -- | hg.RF_MSAA4X | hg.RF_MaxAnisotropy)
 
-local pipeline = hg.CreateForwardPipeline(2048)
-local res = hg.PipelineResources()
-local pipeline_info = hg.GetForwardPipelineInfo()
-
-local pipeline_aaa_config = hg.ForwardPipelineAAAConfig()
-local pipeline_aaa = hg.CreateForwardPipelineAAAFromAssets("core", pipeline_aaa_config, hg.BR_Equal, hg.BR_Equal)
+pipeline = hg.CreateForwardPipeline(2048)
+res = hg.PipelineResources()
+pipeline_info = hg.GetForwardPipelineInfo()
+pipeline_aaa_config = hg.ForwardPipelineAAAConfig()
+pipeline_aaa = hg.CreateForwardPipelineAAAFromAssets("core", pipeline_aaa_config, hg.BR_Equal, hg.BR_Equal)
 
 pipeline_aaa_config.motion_blur = 2.0
 pipeline_aaa_config.sample_count = 1
@@ -100,20 +99,20 @@ pipeline_aaa_config.bloom_intensity	= 0.2500
 pipeline_aaa_config.bloom_threshold	= 0.5200
 
 -- fonts
-local font_timer = hg.LoadFontFromAssets('fonts/spacemono-regular.ttf', math.floor(48 * (res_y / virtual_res_y)))
-local font_sequence_name = hg.LoadFontFromAssets('fonts/cirrus_cumulus.ttf', math.floor(96 * (res_y / virtual_res_y)))
-local font_prg = hg.LoadProgramFromAssets('core/shader/font')
-local text_uniform_values = {hg.MakeUniformSetValue('u_color', hg.Vec4(1, 1, 1))}
-local text_uniform_values_red = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.9, 0.2, 0.0))}
-local text_uniform_values_black = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.1, 0.1, 0.1))}
-local text_render_state = hg.ComputeRenderState(hg.BM_Alpha, hg.DT_Always, hg.FC_Disabled)
+font_timer = hg.LoadFontFromAssets('fonts/spacemono-regular.ttf', math.floor(48 * (res_y / virtual_res_y)))
+font_sequence_name = hg.LoadFontFromAssets('fonts/cirrus_cumulus.ttf', math.floor(96 * (res_y / virtual_res_y)))
+font_prg = hg.LoadProgramFromAssets('core/shader/font')
+text_uniform_values = {hg.MakeUniformSetValue('u_color', hg.Vec4(1, 1, 1))}
+text_uniform_values_red = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.9, 0.2, 0.0))}
+text_uniform_values_black = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.1, 0.1, 0.1))}
+text_render_state = hg.ComputeRenderState(hg.BM_Alpha, hg.DT_Always, hg.FC_Disabled)
 
 -- physics debug
-local vtx_line_layout = hg.VertexLayoutPosFloatColorUInt8()
-local line_shader = hg.LoadProgramFromAssets("shaders/pos_rgb")
+vtx_line_layout = hg.VertexLayoutPosFloatColorUInt8()
+line_shader = hg.LoadProgramFromAssets("shaders/pos_rgb")
 
 -- create material
-local pbr_shader = hg.LoadPipelineProgramRefFromAssets('core/shader/pbr.hps', res, hg.GetForwardPipelineInfo())
+pbr_shader = hg.LoadPipelineProgramRefFromAssets('core/shader/pbr.hps', res, hg.GetForwardPipelineInfo())
 
 local mat_grey = hg.CreateMaterial(pbr_shader, 'uBaseOpacityColor', hg.Vec4(1, 1, 1), 'uOcclusionRoughnessMetalnessColor', hg.Vec4(1, 0.5, 0.05))
 hg.SetMaterialValue(mat_grey, 'uSelfColor', hg.Vec4(0, 0, 0))
@@ -237,14 +236,14 @@ table.insert(mapping_sequences, {clock = {90.0, 100.0}, time_remap = {#sequences
 
 -- GPT 4
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
-local _rb_nodes, _ctx = SetupRepulsionCore(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver}})
+local _rb_nodes, _ctx = SetupRepulsionCore(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, gold = mat_gold}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "repulsion_core", apply_physics = ApplyPhysicsRepulsionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {clock = {100.0, 110.0}, time_remap = {#sequences, 0.0, 1.0}})
 
 -- GPT 4-ish
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
-local _rb_nodes, _ctx = SetupAttractionCore(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold}})
+local _rb_nodes, _ctx = SetupAttractionCore(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, gold = mat_gold}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "attraction_core", apply_physics = ApplyPhysicsAttractionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {clock = {110.0, 120.0}, time_remap = {#sequences, 0.3, 0.0}})
