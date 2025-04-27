@@ -21,6 +21,9 @@ require("audio/bass_dynamics")
 require("audio/drums_dynamics")
 require("audio/audio_data")
 
+-- greetings
+-- DrFlopine, NuSan, Stil
+
 virtual_res_x, virtual_res_y = 1280, 720
 res_x, res_y = 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
 enable_replay = true
@@ -190,8 +193,7 @@ local title_cam_timing = nil
 local _rb_nodes, _camera_tv, _ctx = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "title_screen", apply_physics = ApplyPhysicsTitleScreen, ctx = _ctx, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, camera_tv = _camera_tv, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
--- table.insert(mapping_sequences, {clock = {0.0, 5.0}, time_remap = {#sequences, 1.0, 0.25}})
--- table.insert(mapping_sequences, {clock = {5.0, 10.0}, time_remap = {#sequences, 0.25, 0.8}})
+
 table.insert(mapping_sequences, {frame = {0.0, 110}, time_remap = {seq_idx.title_screen, 0.814, 0.630}})
 table.insert(mapping_sequences, {frame = {110, 219}, time_remap = {seq_idx.title_screen, 0.814, 0.632}})
 table.insert(mapping_sequences, {frame = {219, 326}, time_remap = {seq_idx.title_screen, 0.702, 0.487}})
@@ -204,8 +206,6 @@ table.insert(mapping_sequences, {frame = {501, 543}, time_remap = {seq_idx.title
 table.insert(mapping_sequences, {frame = {543, 651}, time_remap = {seq_idx.title_screen, 0.244, 0.311}})
 
 -- rotating plates
-_last_clock = mapping_sequences[#mapping_sequences].clock[2]
-_last_clock = mapping_sequences[#mapping_sequences].clock[2]
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupRotatingPlates(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold, neon = mat_neon_red, black = mat_black}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
@@ -215,7 +215,7 @@ table.insert(mapping_sequences, {frame = {651, 868}, time_remap = {seq_idx.rotat
 table.insert(mapping_sequences, {frame = {868, 1193}, time_remap = {seq_idx.rotating_plates, 0.157, 0.698}})
 
 -- wave grid
-_last_clock = mapping_sequences[#mapping_sequences].clock[2]
+_last_clock = 1193 / 60.0 -- mapping_sequences[#mapping_sequences].clock[2]
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupWaveGrid(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold, neon = mat_neon_red, black = mat_black}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
