@@ -28,6 +28,7 @@ virtual_res_x, virtual_res_y = 1280, 720
 res_x, res_y = 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
 enable_replay = true
 enable_rotation = true
+enable_aaa = true
 
 function GetAudioDynamics(dynamics_table, clock, total_duration)
     local idx = math.floor((clock * #dynamics_table) / total_duration) + 1
@@ -174,6 +175,8 @@ seq_idx = {
 }
 
 -- demo soundtrack
+local crt_power_sound = hg.LoadOGGSoundAsset("audio/crt-tv-powering-up.ogg")
+local crt_power_ref = nil
 local demo_soundtrack_sound = hg.LoadOGGSoundAsset("audio/after-nothing-riddlemak.ogg")
 local demo_soundtrack_ref = nil
 
@@ -409,9 +412,8 @@ collectgarbage("stop") -- avoid nasty drops all along the demo
 
 if enable_replay then
     intro_scene:PlayAnim(intro_scene:GetSceneAnim("intro"))
+    crt_power_ref = hg.PlayStereo(crt_power_sound, hg.StereoSourceState(1, hg.SR_Once))
 end
-
--- tv_player_ref = hg.StreamOGGAssetStereo("audio/crt-tv-powering-up.ogg", hg.StereoSourceState(1, hg.SR_Once))
 
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <= #sequences do
     keyboard:Update()
@@ -511,16 +513,28 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
         if sim_seq_idx > 1 then
             rep_scene:SetCurrentCamera(rep_camera)
             rep_scene.environment.ambient = ambient_control
-            view_id, pass_id = hg.SubmitSceneToPipeline(view_id, rep_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+            if enable_aaa then
+                view_id, pass_id = hg.SubmitSceneToPipeline(view_id, rep_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+            else
+                view_id, pass_id = hg.SubmitSceneToPipeline(view_id, rep_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+            end
         else
             intro_scene:SetCurrentCamera(intro_camera)
             intro_scene.environment.ambient = ambient_control
-            view_id, pass_id = hg.SubmitSceneToPipeline(view_id, intro_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+            if enable_aaa then
+                view_id, pass_id = hg.SubmitSceneToPipeline(view_id, intro_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+            else
+                view_id, pass_id = hg.SubmitSceneToPipeline(view_id, intro_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+            end
         end
     else
         sim_scene:SetCurrentCamera(sim_camera)
         sim_scene.environment.ambient = ambient_control
-        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, sim_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+        if enable_aaa then
+            view_id, pass_id = hg.SubmitSceneToPipeline(view_id, sim_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+        else
+            view_id, pass_id = hg.SubmitSceneToPipeline(view_id, sim_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+        end
     end
 
     -- Debug sim_physics display
