@@ -398,9 +398,6 @@ local replay_direction
 local frame = 0
 local dt = hg.time_from_sec_f(1.0/60.0)
 
-local sim_seq_idx = 1 -- index of the simulation sequence
-local rep_seq_idx = 0 -- index of the replay sequence
-
 collectgarbage("stop") -- avoid nasty drops all along the demo
 
 local sequence_start_clock = hg.GetClock()
@@ -418,18 +415,28 @@ if enable_replay then
         -- rendering
         local view_id = 0
         local pass_id
-        view_id, pass_id = hg.SubmitSceneToPipeline(view_id, intro_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
-
+        if enable_aaa then
+            view_id, pass_id = hg.SubmitSceneToPipeline(view_id, intro_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+        else
+            view_id, pass_id = hg.SubmitSceneToPipeline(view_id, intro_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+        end
+ 
         frame = hg.Frame()
         hg.UpdateWindow(win)
     end
 end
+
+local sim_seq_idx = 1 -- index of the simulation sequence
+local rep_seq_idx = 0 -- index of the replay sequence
 
 local simulation_start_clock = hg.GetClock()
 local demo_start_clock = simulation_start_clock
 local demo_clock_f = nil
 local replay_clock_f =  nil
 local rotation_speed_factor = 0.0
+
+-- Couchot speech
+couchot_intro_speech_ref = hg.PlayStereo(couchot_intro_speech_sound, hg.StereoSourceState(1, hg.SR_Once))
 
 while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <= #sequences do
     keyboard:Update()
