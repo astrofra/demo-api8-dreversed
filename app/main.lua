@@ -177,6 +177,8 @@ seq_idx = {
 -- demo soundtrack
 local crt_power_sound = hg.LoadOGGSoundAsset("audio/crt-tv-powering-up.ogg")
 local crt_power_ref = nil
+local couchot_intro_speech_sound = hg.LoadOGGSoundAsset("audio/intro-couchot-bw.ogg")
+local couchot_intro_speech_ref = nil
 local demo_soundtrack_sound = hg.LoadOGGSoundAsset("audio/after-nothing-riddlemak.ogg")
 local demo_soundtrack_ref = nil
 
