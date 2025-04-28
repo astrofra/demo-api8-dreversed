@@ -332,7 +332,7 @@ table.insert(mapping_sequences, {frame = {7776, 8286}, time_remap = {seq_idx.spi
 
 if enable_replay then
     -- last dummy sequence
-    _last_clock = mapping_sequences[#mapping_sequences].clock[2]
+    _last_clock = mapping_sequences[#mapping_sequences].frame[2] / 60.0
     local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
     local _rb_nodes, _ctx = {}, {}
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
@@ -341,7 +341,7 @@ if enable_replay then
 end
 
 -- Prepare the time remapping table for the whole demo
-local presampling_framerate = 60.0 -- 59.94 -- 60.0
+local presampling_framerate = 59.94 -- 60.0
 local demo_duration = mapping_sequences[#mapping_sequences].clock[2]
 local replay_time_table = {}
 for i = 0, math.floor(demo_duration * presampling_framerate) do
