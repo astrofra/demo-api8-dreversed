@@ -292,28 +292,36 @@ local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info
 local _rb_nodes = SetupTornado(_scene, res, {vtx_layout = vtx_layout, materials = {chrome = mat_chrome, neon = mat_neon_red, black = mat_black}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "tornado", apply_physics = ApplyPhysicsTornado, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-table.insert(mapping_sequences, {frame = {5626, 6276}, time_remap = {seq_idx.tornado, 0.0, 1.0}}) -- temp
+table.insert(mapping_sequences, {frame = {5626, 6005}, time_remap = {seq_idx.tornado, 0.802, 0.227}})
+table.insert(mapping_sequences, {frame = {6005, 6062}, time_remap = {seq_idx.tornado, 0.209, 0.125}})
+table.insert(mapping_sequences, {frame = {6062, 6100}, time_remap = {seq_idx.tornado, 0.134, 0.189}})
+table.insert(mapping_sequences, {frame = {6100, 6276}, time_remap = {seq_idx.tornado, 0.199, 0.463}})
 
 -- Repulsion core
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes, _ctx = SetupRepulsionCore(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, black = mat_piano_black, neon = mat_neon_red}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "repulsion_core", apply_physics = ApplyPhysicsRepulsionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-table.insert(mapping_sequences, {frame = {6276, 6653}, time_remap = {seq_idx.repulsion_core, 0.0, 1.0}}) -- temp
+table.insert(mapping_sequences, {frame = {6276, 6322}, time_remap = {seq_idx.repulsion_core, 0.592, 0.669}})
+table.insert(mapping_sequences, {frame = {6322, 6654}, time_remap = {seq_idx.repulsion_core, 0.669, 0.118}})
 
 -- Attraction core
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes, _ctx = SetupAttractionCore(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, black = mat_piano_black, neon = mat_neon_red}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "attraction_core", apply_physics = ApplyPhysicsAttractionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-table.insert(mapping_sequences, {frame = {6653, 7128}, time_remap = {seq_idx.attraction_core, 0.0, 1.0}}) -- temp
+table.insert(mapping_sequences, {frame = {6654, 6815}, time_remap = {seq_idx.attraction_core, 0.013, 0.282}})
+table.insert(mapping_sequences, {frame = {6815, 7128}, time_remap = {seq_idx.tornado, 0.862, 0.339}})
 
 -- Voxel
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupXiVoxel(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "voxel", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-table.insert(mapping_sequences, {frame = {7128, 7464}, time_remap = {seq_idx.voxel, 0.0, 1.0}}) -- temp
+table.insert(mapping_sequences, {frame = {7128, 7235}, time_remap = {seq_idx.voxel, 0.167, 0.431}})
+table.insert(mapping_sequences, {frame = {7235, 7249}, time_remap = {seq_idx.voxel, 0.405, 0.439}})
+table.insert(mapping_sequences, {frame = {7249, 7364}, time_remap = {seq_idx.voxel, 0.416, 0.702}})
+table.insert(mapping_sequences, {frame = {7364, 7464}, time_remap = {seq_idx.voxel, 0.754, 0.507}})
 
 -- flocks
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
@@ -321,14 +329,16 @@ local _rb_nodes = SetupFlocks(_scene, res, {vtx_layout = vtx_layout, materials =
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 ApplyPhysicsFlocks(_rb_nodes, _physics)
 table.insert(sequences, {name = "flocks", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-table.insert(mapping_sequences, {frame = {7464, 7776}, time_remap = {seq_idx.flocks, 0.0, 1.0}}) -- temp
+table.insert(mapping_sequences, {frame = {7464, 7682}, time_remap = {seq_idx.flocks, 0.312, 0.048}})
+table.insert(mapping_sequences, {frame = {7682, 7776}, time_remap = {seq_idx.flocks, 0.125, 0.238}})
 
 -- spiral tornado
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupSpiralTornado(_scene, res, {vtx_layout = vtx_layout, materials = {chrome = mat_chrome, neon = mat_neon_red, black = mat_black}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "spiral_tornado", apply_physics = ApplyPhysicsSpiralTornado, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-table.insert(mapping_sequences, {frame = {7776, 8286}, time_remap = {seq_idx.spiral_tornado, 0.0, 1.0}}) -- temp
+table.insert(mapping_sequences, {frame = {7776, 7871}, time_remap = {seq_idx.spiral_tornado, 0.489, 0.147}})
+table.insert(mapping_sequences, {frame = {7871, 8286}, time_remap = {seq_idx.spiral_tornado, 0.143, 0.993}})
 
 if enable_replay then
     -- last dummy sequence
