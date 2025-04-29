@@ -89,7 +89,12 @@ hg.WindowSystemInit()
 -- local win = hg.RenderInit('Dreversed', res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X)
 win = hg.NewWindow("Dreversed^Resistance(2025)", res_x, res_y, 32, hg.WV_Undecorated) --, hg.WV_Fullscreen)
 hg.RenderInit(win) --, hg.RT_OpenGL)
-hg.RenderReset(res_x, res_y, hg.RF_VSync) -- | hg.RF_MSAA4X | hg.RF_MaxAnisotropy)
+
+if enable_aaa then
+    hg.RenderReset(res_x, res_y, hg.RF_VSync) -- | hg.RF_MSAA4X | hg.RF_MaxAnisotropy)
+else
+    hg.RenderReset(res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X | hg.RF_MaxAnisotropy)
+end
 
 pipeline = hg.CreateForwardPipeline(2048)
 res = hg.PipelineResources()
@@ -289,8 +294,8 @@ local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info
 local _rb_nodes = SetupInvisibleColliders(_scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, silver = mat_silver, chrome = mat_chrome, black = mat_piano_black}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "invisible_colliders", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
--- table.insert(mapping_sequences, {clock = {_last_clock, _last_clock + 10.0}, time_remap = {#sequences, 1.0, 0.0}})
-table.insert(mapping_sequences, {frame = {5072, 5626}, time_remap = {seq_idx.invisible_colliders, 0.0, 1.0}}) -- temp
+table.insert(mapping_sequences, {frame = {5072, 5360}, time_remap = {seq_idx.invisible_colliders, 0.240, 0.382}})
+table.insert(mapping_sequences, {frame = {5360, 5626}, time_remap = {seq_idx.invisible_colliders, 0.382, 0.252}})
 
 -- tornado
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
