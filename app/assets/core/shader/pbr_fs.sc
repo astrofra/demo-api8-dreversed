@@ -3,7 +3,7 @@ $input vWorldPos, vNormal, vTangent, vBinormal, vTexCoord0, vTexCoord1, vLinearS
 // HARFANG(R) Copyright (C) 2022 Emmanuel Julien, NWNC HARFANG. Released under GPL/LGPL/Commercial Licence, see licence.txt for details.
 #include <forward_pipeline.sh>
 
-// uAmbientColor.xyz, x = greyscale
+// uAmbientColor.xyz, xyzw = greyscale, hilight, fade
 
 vec3 Greyscale(vec3 col, float amount) {
 	float luma = col.x * 0.2126 + col.y * 0.7152 + col.z * 0.0722;
@@ -316,9 +316,10 @@ occ_rough_metal.z = pow(occ_rough_metal.z, uORMPow.z);
 #endif // FORWARD_PIPELINE_AAA != 1
 
 	// color = fake_horizon_based_boost_vec;
-	color = Greyscale(color, uAmbientColor.x);
-	color = color * (0.5 + uAmbientColor.y) * 2.0;
-	color = vec3(Compress(color.x,  uAmbientColor.z), Compress(color.y,  uAmbientColor.z), Compress(color.z,  uAmbientColor.z));
+	color = Greyscale(color, uAmbientColor.x); // Greyscale
+	color = color * (0.5 + uAmbientColor.y) * 2.0; // Hilight
+	color = color * (1.0 - uAmbientColor.z); // Fadeout
+	// color = vec3(Compress(color.x,  uAmbientColor.z), Compress(color.y,  uAmbientColor.z), Compress(color.z,  uAmbientColor.z));
 	gl_FragColor = vec4(color, opacity);
 #endif // FORWARD_PIPELINE_AAA_PREPASS
 #else

@@ -33,7 +33,7 @@ enable_aaa = true
 function GetAudioDynamics(dynamics_table, clock, total_duration)
     local idx = math.floor((clock * #dynamics_table) / total_duration) + 1
     idx = math.min(idx, #dynamics_table)
-    return clamp(dynamics_table[idx], 0.0, 1.0)
+    return clamp(dynamics_table[idx], 0.0, 0.975)
 end
 
 function display_shadow_text(view_id, font_name, text_str, font_prg, text_pos, text_uniform_values, text_uniform_values_black, text_render_state, h_align)
@@ -187,8 +187,13 @@ local couchot_intro_speech_ref = nil
 local demo_soundtrack_sound = hg.LoadOGGSoundAsset("audio/after-nothing-riddlemak.ogg")
 local demo_soundtrack_ref = nil
 
--- blank scene
--- local couchot_intro_speech_ref = hg.LoadOGGSoundAsset("audio/intro-couchot-bw.ogg")
+-- logo scene
+local logo_scene = hg.Scene()
+hg.LoadSceneFromAssets("logo_rse/logo_rse.scn", logo_scene, res, hg.GetForwardPipelineInfo())
+local logo_camera = logo_scene:GetNode("Camera")
+logo_scene:SetCurrentCamera(logo_camera)
+
+-- intro scene
 local intro_scene = hg.Scene()
 hg.LoadSceneFromAssets("sequences/intro_seq.scn", intro_scene, res, hg.GetForwardPipelineInfo())
 local intro_camera = intro_scene:GetNode("Camera")
@@ -409,8 +414,31 @@ collectgarbage("stop") -- avoid nasty drops all along the demo
 local sequence_start_clock = hg.GetClock()
 
 if enable_replay then
+    -- logo
+    logo_scene:PlayAnim(logo_scene:GetSceneAnim("fadein"))
+    while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
+        keyboard:Update()
+        dt = hg.TickClock()
+
+        logo_scene:Update(dt)
+
+        -- rendering
+        local view_id = 0
+        local pass_id
+        if enable_aaa then
+            view_id, pass_id = hg.SubmitSceneToPipeline(view_id, logo_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+        else
+            view_id, pass_id = hg.SubmitSceneToPipeline(view_id, logo_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+        end
+ 
+        frame = hg.Frame()
+        hg.UpdateWindow(win)
+    end
+
+    -- intro
+    sequence_start_clock = hg.GetClock()
     intro_scene:PlayAnim(intro_scene:GetSceneAnim("intro"))
-    crt_power_ref = hg.PlayStereo(crt_power_sound, hg.StereoSourceState(1, hg.SR_Once))
+    crt_power_ref = hg.PlayStereo(crt_power_sound, hg.StereoSourceState(0.35, hg.SR_Once))
 
     while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
         keyboard:Update()
@@ -441,6 +469,8 @@ local demo_clock_f = nil
 local replay_clock_f =  nil
 local rotation_speed_factor = 0.0
 
+music_duration = audio_metadata['after-nothing-riddlemak.ogg'].duration
+
 -- Couchot speech
 couchot_intro_speech_ref = hg.PlayStereo(couchot_intro_speech_sound, hg.StereoSourceState(1, hg.SR_Once))
 
@@ -453,9 +483,10 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     dt = hg.TickClock()
 
     local greyscale = 0.0 -- math.sin(replay_clock_f * math.pi)
-    local hilight = GetAudioDynamics(drums_dynamics, math.max(0.0, replay_clock_f), audio_metadata['after-nothing-riddlemak.ogg'].duration) -- math.cos(frame_clock_f * math.pi / 4)
-    local compress = GetAudioDynamics(bass_dynamics, math.max(0.0, replay_clock_f), audio_metadata['after-nothing-riddlemak.ogg'].duration) -- math.cos(frame_clock_f * math.pi * 2)
-    local ambient_control = hg.Color(greyscale, hilight, compress, 0.0)
+    local hilight = GetAudioDynamics(drums_dynamics, math.max(0.0, replay_clock_f), music_duration) -- math.cos(frame_clock_f * math.pi / 4)    
+    local post_fx_fade = map(replay_clock_f, music_duration - 3.0, music_duration, 0.0, 1.0)
+    post_fx_fade = clamp(post_fx_fade, 0.0, 1.0)
+    local ambient_control = hg.Color(greyscale, hilight, post_fx_fade, 0.0)
 
     -- SIMULATION
     -- process & record simulation (realtime)
