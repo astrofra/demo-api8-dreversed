@@ -312,15 +312,16 @@ local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info
 local _rb_nodes, _ctx = SetupRepulsionCore(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, black = mat_piano_black, neon = mat_neon_red}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "repulsion_core", apply_physics = ApplyPhysicsRepulsionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-table.insert(mapping_sequences, {frame = {6276, 6322}, time_remap = {seq_idx.repulsion_core, 0.592, 0.669}})
-table.insert(mapping_sequences, {frame = {6322, 6654}, time_remap = {seq_idx.repulsion_core, 0.669, 0.118}})
+table.insert(mapping_sequences, {frame = {6276, 6323}, time_remap = {seq_idx.repulsion_core, 0.072, 0.149}})
+table.insert(mapping_sequences, {frame = {6323, 6492}, time_remap = {seq_idx.repulsion_core, 0.398, 0.118}})
 
 -- Attraction core
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes, _ctx = SetupAttractionCore(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, black = mat_piano_black, neon = mat_neon_red}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "attraction_core", apply_physics = ApplyPhysicsAttractionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-table.insert(mapping_sequences, {frame = {6654, 6815}, time_remap = {seq_idx.attraction_core, 0.013, 0.282}})
+table.insert(mapping_sequences, {frame = {6492, 6708}, time_remap = {seq_idx.attraction_core, 0.013, 0.373}})
+table.insert(mapping_sequences, {frame = {6708, 6815}, time_remap = {seq_idx.attraction_core, 0.103, 0.282}})
 table.insert(mapping_sequences, {frame = {6815, 7128}, time_remap = {seq_idx.tornado, 0.862, 0.339}})
 
 -- Voxel
