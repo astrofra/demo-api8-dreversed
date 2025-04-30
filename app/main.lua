@@ -22,7 +22,7 @@ require("audio/drums_dynamics")
 require("audio/audio_data")
 
 -- greetings
--- DrFlopine, NuSan, Stil, Cicile, MO5.COM, 4play
+-- DrFlopine, NuSan, Stil, Cicile, MO5.COM, 4play, Mooz
 
 virtual_res_x, virtual_res_y = 1280, 720
 res_x, res_y = 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
@@ -607,9 +607,12 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     view_id = view_id + 1
     hg.SetView2D(view_id, 0, 0, res_x, res_y, -1, 1, hg.CF_Depth, hg.Color.White, 1, 0)
 
+    local _seq_name
+    local _text_pos = hg.Vec3(res_x * 0.05, res_y * 0.9, 0)
     if enable_replay == false then
-        local _seq_name = sim_seq.display_name
-        local _text_pos = hg.Vec3(res_x * 0.05, res_y * 0.9, 0)
+        _seq_name = sim_seq.display_name
+    elseif sim_seq_idx > 1 and time_remap_index and time_remap_index > 0 then
+        _seq_name = sequences[replay_time_table[time_remap_index].sequence_idx].display_name
         display_shadow_text(view_id, font_sequence_name, _seq_name, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state) 
     end
 
