@@ -25,10 +25,11 @@ require("audio/audio_data")
 -- Desire, Flush, Analogue, DrFlopine, NuSan, Stil, Cicile, MO5.COM, 4play, Mooz, Med, NoRecess
 
 virtual_res_x, virtual_res_y = 1280, 720
-res_x, res_y = 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
+res_x, res_y = 1920, 1200 -- 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
 enable_replay = true
 enable_rotation = true
 enable_aaa = true
+enable_debug_timers = false
 
 function GetAudioDynamics(dynamics_table, clock, total_duration)
     local idx = math.floor((clock * #dynamics_table) / total_duration) + 1
@@ -608,6 +609,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     view_id = view_id + 1
     hg.SetView2D(view_id, 0, 0, res_x, res_y, -1, 1, hg.CF_Depth, hg.Color.White, 1, 0)
 
+    -- sequence title/name
     local _seq_name
     local _text_pos = hg.Vec3(res_x * 0.05, res_y * 0.9, 0)
     if enable_replay == false then
@@ -618,28 +620,30 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     end
 
     -- Timecode
-    local _str_clock = format_time(demo_clock_f)
-    _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * 0.9, 0)
+    if enable_debug_timers then
+        local _str_clock = format_time(demo_clock_f)
+        _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * 0.9, 0)
 
-    local timer_uniform_values = text_uniform_values_red
-    if sim_seq_idx > 1 then
-        timer_uniform_values = text_uniform_values
-    end
-    display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, timer_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
+        local timer_uniform_values = text_uniform_values_red
+        if sim_seq_idx > 1 then
+            timer_uniform_values = text_uniform_values
+        end
+        display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, timer_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
 
-    -- Raw clocks
-    local _seq_clock_f = demo_clock_f - (sim_seq_idx - 1.0) * 10.0
-    local _seq_clock_normalized = _seq_clock_f / 10.0
-    local _str_clock = string.format("%3.5f", demo_clock_f) .. " / " .. string.format("%3.5f", _seq_clock_f) .. string.format(" (%2.3f)", _seq_clock_normalized)
-    _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * 0.95, 0)
-    display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
-
-
-    -- Time remap (time code)
-    if sim_seq_idx > 1 then
-        local _str_clock = "Time remap: " .. tostring(time_remap_index) .. ":" .. replay_time_table[time_remap_index].sequence_idx .. ":" .. string.format("%2.3f", record_frame)
-        _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * (1.0 - 0.925), 0)
+        -- Raw clocks
+        local _seq_clock_f = demo_clock_f - (sim_seq_idx - 1.0) * 10.0
+        local _seq_clock_normalized = _seq_clock_f / 10.0
+        local _str_clock = string.format("%3.5f", demo_clock_f) .. " / " .. string.format("%3.5f", _seq_clock_f) .. string.format(" (%2.3f)", _seq_clock_normalized)
+        _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * 0.95, 0)
         display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
+
+
+        -- Time remap (time code)
+        if sim_seq_idx > 1 then
+            local _str_clock = "Time remap: " .. tostring(time_remap_index) .. ":" .. replay_time_table[time_remap_index].sequence_idx .. ":" .. string.format("%2.3f", record_frame)
+            _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * (1.0 - 0.925), 0)
+            display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
+        end
     end
     -- END DEBUG INFOS
 
