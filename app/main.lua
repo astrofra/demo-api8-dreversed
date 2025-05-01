@@ -617,7 +617,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
 
     -- Edmond Couchot, subtitled
     if demo_clock_f > 0.0 and demo_clock_f < 10.0 then
-        local _subtitle_str = "."
+        local _subtitle_str = ""
         for i, sub in ipairs(subtitles) do
             if demo_clock_f >= sub.t_in and demo_clock_f <= sub.t_out then
                 _subtitle_str = sub.text
