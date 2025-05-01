@@ -1,6 +1,7 @@
 import os
 import subprocess
 import shutil
+import tarfile
 
 input_bin_path = "bin"
 input_lua_path = "hg_lua-ubuntu-x64"
@@ -10,6 +11,7 @@ input_nfo = "dreversed.nfo"
 input_shot = "screenshot.png"
 # input_start_bat_2 = "start-demo-low-specs.bat"
 
+additional_dirs = ["audio", "sequences", "voxels"]
 output_path = "../dreversed_resistance-2025-linux"
 output_lua_path = "engine"
 
@@ -43,6 +45,13 @@ for _file in files:
         if _file.find("package") <= 0:
             shutil.copy(_file, os.path.join(output_path, output_lua_path, _file))
 
+for d in additional_dirs:
+    src_dir = os.path.join(d)
+    dest_dir = os.path.join(output_path, output_lua_path, d)
+    if os.path.exists(dest_dir):
+        shutil.rmtree(dest_dir, ignore_errors=True)
+    shutil.copytree(src_dir, dest_dir)
+
 # copy assets
 try:
     shutil.rmtree(os.path.join(output_path, input_assets_path), ignore_errors=False, onerror=None)
@@ -70,4 +79,11 @@ try:
 except:
     print("nothing to cleanup")
 shutil.copy(input_shot, os.path.join(output_path, input_shot))
+
+# final tar.gz release
+archive_name = output_path + ".tar.gz"
+with tarfile.open(archive_name, "w:gz") as tar:
+    tar.add(output_path, arcname=os.path.basename(output_path))
+
+print("Archive created:", archive_name)
 
