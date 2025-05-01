@@ -21,6 +21,8 @@ require("audio/bass_dynamics")
 require("audio/drums_dynamics")
 require("audio/audio_data")
 
+require("audio/subtitles")
+
 -- greetings
 -- Desire, Flush, Analogue, DrFlopine, NuSan, Stil, Cicile, MO5.COM, 4play, Mooz, Med, NoRecess
 
@@ -30,6 +32,7 @@ enable_replay = true
 enable_rotation = true
 enable_aaa = true
 enable_debug_timers = false
+enable_logo = true
 
 function GetAudioDynamics(dynamics_table, clock, total_duration)
     local idx = math.floor((clock * #dynamics_table) / total_duration) + 1
@@ -116,6 +119,7 @@ font_timer = hg.LoadFontFromAssets('fonts/spacemono-regular.ttf', math.floor(48 
 font_sequence_name = hg.LoadFontFromAssets('fonts/cirrus_cumulus.ttf', math.floor(96 * (res_y / virtual_res_y)))
 font_prg = hg.LoadProgramFromAssets('core/shader/font')
 text_uniform_values = {hg.MakeUniformSetValue('u_color', hg.Vec4(1, 1, 1))}
+text_uniform_values_yellow = {hg.MakeUniformSetValue('u_color', hg.Vec4(1, 1, 0))}
 text_uniform_values_red = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.9, 0.2, 0.0))}
 text_uniform_values_black = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.1, 0.1, 0.1))}
 text_render_state = hg.ComputeRenderState(hg.BM_Alpha, hg.DT_Always, hg.FC_Disabled)
@@ -326,7 +330,7 @@ local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info
 local _rb_nodes, _ctx = SetupAttractionCore(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, black = mat_piano_black, neon = mat_neon_red}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "attraction_core", display_name = "repulsion core", apply_physics = ApplyPhysicsAttractionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-table.insert(mapping_sequences, {frame = {6492, 6708}, time_remap = {seq_idx.attraction_core, 0.013, 0.373}})
+table.insert(mapping_sequences, {frame = {6492, 6708}, time_remap = {seq_idx.attraction_core, 0.0, 0.373}})
 table.insert(mapping_sequences, {frame = {6708, 6815}, time_remap = {seq_idx.attraction_core, 0.103, 0.282}})
 table.insert(mapping_sequences, {frame = {6815, 7128}, time_remap = {seq_idx.tornado, 0.862, 0.339}})
 
@@ -417,24 +421,26 @@ local sequence_start_clock = hg.GetClock()
 
 if enable_replay then
     -- logo
-    logo_scene:PlayAnim(logo_scene:GetSceneAnim("fadein"))
-    while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
-        keyboard:Update()
-        dt = hg.TickClock()
+    if enable_logo then
+        logo_scene:PlayAnim(logo_scene:GetSceneAnim("fadein"))
+        while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
+            keyboard:Update()
+            dt = hg.TickClock()
 
-        logo_scene:Update(dt)
+            logo_scene:Update(dt)
 
-        -- rendering
-        local view_id = 0
-        local pass_id
-        if enable_aaa then
-            view_id, pass_id = hg.SubmitSceneToPipeline(view_id, logo_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
-        else
-            view_id, pass_id = hg.SubmitSceneToPipeline(view_id, logo_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+            -- rendering
+            local view_id = 0
+            local pass_id
+            if enable_aaa then
+                view_id, pass_id = hg.SubmitSceneToPipeline(view_id, logo_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+            else
+                view_id, pass_id = hg.SubmitSceneToPipeline(view_id, logo_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+            end
+    
+            frame = hg.Frame()
+            hg.UpdateWindow(win)
         end
- 
-        frame = hg.Frame()
-        hg.UpdateWindow(win)
     end
 
     -- intro
@@ -608,6 +614,20 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
     -- write sequence name
     view_id = view_id + 1
     hg.SetView2D(view_id, 0, 0, res_x, res_y, -1, 1, hg.CF_Depth, hg.Color.White, 1, 0)
+
+    -- Edmond Couchot, subtitled
+    if demo_clock_f > 0.0 and demo_clock_f < 10.0 then
+        local _subtitle_str = "."
+        for i, sub in ipairs(subtitles) do
+            if demo_clock_f >= sub.t_in and demo_clock_f <= sub.t_out then
+                _subtitle_str = sub.text
+                break
+            end
+        end    
+
+        local _text_pos = hg.Vec3(res_x * 0.5, res_y * 0.75, 0)
+        display_shadow_text(view_id, font_timer, _subtitle_str, font_prg, _text_pos, text_uniform_values_yellow, text_uniform_values_black, text_render_state, hg.DTHA_Center) 
+    end
 
     -- sequence title/name
     local _seq_name
