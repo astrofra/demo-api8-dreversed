@@ -421,7 +421,7 @@ local dt = hg.time_from_sec_f(1.0/60.0)
 collectgarbage("stop") -- avoid nasty drops all along the demo
 
 local sequence_start_clock = hg.GetClock()
-local url_fade = {fadein = 5.0, fadeout = 9.0}
+local url_fade = {fadein = 5.0, fadein_end = 6.0, fadeout = 9.75, fadeout_end = 10.0}
 
 if enable_replay then
     -- logo
@@ -450,8 +450,8 @@ if enable_replay then
 
             local _text_pos = hg.Vec3(res_x * 0.5, res_y * 0.68, 0)
             local _logo_clock_f = hg.time_to_sec_f(hg.GetClock() - sequence_start_clock)
-            local _text_fade = clamp(map(_logo_clock_f, url_fade.fadein, url_fade.fadein + 1.0, 0.0, 1.0), 0.0, 1.0)
-            _text_fade = _text_fade * clamp(map(_logo_clock_f, url_fade.fadeout, url_fade.fadeout + 1.0, 1.0, 0.0), 0.0, 1.0)
+            local _text_fade = clamp(map(_logo_clock_f, url_fade.fadein, url_fade.fadein_end, 0.0, 1.0), 0.0, 1.0)
+            _text_fade = _text_fade * clamp(map(_logo_clock_f, url_fade.fadeout, url_fade.fadeout_end, 1.0, 0.0), 0.0, 1.0)
             text_uniform_values_url = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.35 * _text_fade, 0.35 * _text_fade, 0.35 * _text_fade))}
             display_shadow_text(view_id, font_url, "H T T P S : / / W W W . R E S I S T A N C E . N O", font_prg, _text_pos, text_uniform_values_url, nil, text_render_state, hg.DTHA_Center)
     
