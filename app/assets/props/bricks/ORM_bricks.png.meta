@@ -1,0 +1,8 @@
+{
+	"profiles": {
+		"default": {
+			"compression": "BC3",
+			"max-size": 2048
+		}
+	}
+}
