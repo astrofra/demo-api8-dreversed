@@ -422,6 +422,7 @@ local sequence_start_clock = hg.GetClock()
 if enable_replay then
     -- logo
     if enable_logo then
+        logo_scene.environment.ambient = hg.Color(0.0, 1.0, 0.0, 0.0)
         logo_scene:PlayAnim(logo_scene:GetSceneAnim("fadein"))
         while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
             keyboard:Update()
