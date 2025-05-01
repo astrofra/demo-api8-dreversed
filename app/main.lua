@@ -42,8 +42,10 @@ end
 
 function display_shadow_text(view_id, font_name, text_str, font_prg, text_pos, text_uniform_values, text_uniform_values_black, text_render_state, h_align)
     h_align = h_align or hg.DTHA_Left
-    hg.DrawText(view_id, font_name, text_str, font_prg, 'u_tex', 0, hg.Mat4.Identity,
-        text_pos +  hg.Vec3(2, 2, 0) * (res_y / virtual_res_y), h_align, hg.DTVA_Center, text_uniform_values_black, {}, text_render_state)
+    if text_uniform_values_black then
+        hg.DrawText(view_id, font_name, text_str, font_prg, 'u_tex', 0, hg.Mat4.Identity,
+            text_pos +  hg.Vec3(2, 2, 0) * (res_y / virtual_res_y), h_align, hg.DTVA_Center, text_uniform_values_black, {}, text_render_state)
+    end
 
     hg.DrawText(view_id, font_name, text_str, font_prg, 'u_tex', 0, hg.Mat4.Identity,
         text_pos, h_align, hg.DTVA_Center, text_uniform_values, {}, text_render_state)    
@@ -116,6 +118,7 @@ pipeline_aaa_config.bloom_threshold	= 0.5200
 
 -- fonts
 font_timer = hg.LoadFontFromAssets('fonts/spacemono-regular.ttf', math.floor(48 * (res_y / virtual_res_y)))
+font_url = hg.LoadFontFromAssets('fonts/spacemono-regular.ttf', math.floor(50 * (res_y / virtual_res_y)))
 font_sequence_name = hg.LoadFontFromAssets('fonts/cirrus_cumulus.ttf', math.floor(96 * (res_y / virtual_res_y)))
 font_prg = hg.LoadProgramFromAssets('core/shader/font')
 text_uniform_values = {hg.MakeUniformSetValue('u_color', hg.Vec4(1, 1, 1))}
@@ -418,12 +421,14 @@ local dt = hg.time_from_sec_f(1.0/60.0)
 collectgarbage("stop") -- avoid nasty drops all along the demo
 
 local sequence_start_clock = hg.GetClock()
+local url_fade = {fadein = 5.0, fadeout = 9.0}
 
 if enable_replay then
     -- logo
     if enable_logo then
         logo_scene.environment.ambient = hg.Color(0.0, 1.0, 0.0, 0.0)
         logo_scene:PlayAnim(logo_scene:GetSceneAnim("fadein"))
+        local text_uniform_values_url
         while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
             keyboard:Update()
             dt = hg.TickClock()
@@ -438,6 +443,17 @@ if enable_replay then
             else
                 view_id, pass_id = hg.SubmitSceneToPipeline(view_id, logo_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
             end
+
+            -- write resistance website URL
+            view_id = view_id + 1
+            hg.SetView2D(view_id, 0, 0, res_x, res_y, -1, 1, hg.CF_Depth, hg.Color.White, 1, 0)
+
+            local _text_pos = hg.Vec3(res_x * 0.5, res_y * 0.68, 0)
+            local _logo_clock_f = hg.time_to_sec_f(hg.GetClock() - sequence_start_clock)
+            local _text_fade = clamp(map(_logo_clock_f, url_fade.fadein, url_fade.fadein + 1.0, 0.0, 1.0), 0.0, 1.0)
+            _text_fade = _text_fade * clamp(map(_logo_clock_f, url_fade.fadeout, url_fade.fadeout + 1.0, 1.0, 0.0), 0.0, 1.0)
+            text_uniform_values_url = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.35 * _text_fade, 0.35 * _text_fade, 0.35 * _text_fade))}
+            display_shadow_text(view_id, font_url, "H T T P S : / / W W W . R E S I S T A N C E . N O", font_prg, _text_pos, text_uniform_values_url, nil, text_render_state, hg.DTHA_Center)
     
             frame = hg.Frame()
             hg.UpdateWindow(win)
