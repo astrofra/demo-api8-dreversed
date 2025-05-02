@@ -97,7 +97,7 @@
 			],
 			"materials": [
 				{
-					"blend_mode": "opaque",
+					"blend_mode": "alpha",
 					"depth_test": "less",
 					"face_culling": "cw",
 					"flags": [],
@@ -105,12 +105,12 @@
 					"textures": [
 						{
 							"name": "uBaseOpacityMap",
-							"path": "common/title/letter_d.png",
+							"path": "props/greets/grtz_flush.png",
 							"stage": 0
 						},
 						{
 							"name": "uSelfMap",
-							"path": "common/title/letter_d.png",
+							"path": "props/greets/grtz_flush.png",
 							"stage": 4
 						}
 					],
@@ -119,19 +119,9 @@
 							"name": "uBaseOpacityColor",
 							"type": "vec4",
 							"value": [
-								0.16877639293670654,
-								0.16877470910549164,
-								0.16877470910549164,
-								1.0
-							]
-						},
-						{
-							"name": "uDiffuseColor",
-							"type": "vec4",
-							"value": [
-								0.5882353186607361,
-								0.5882353186607361,
-								0.5882353186607361,
+								1.0,
+								0.43037980794906616,
+								5.960464477539063e-08,
 								1.0
 							]
 						},
@@ -154,23 +144,13 @@
 								0.0,
 								-1.0
 							]
-						},
-						{
-							"name": "uSpecularColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								0.03124999813735485
-							]
 						}
 					],
 					"write_a": true,
 					"write_b": true,
 					"write_g": true,
 					"write_r": true,
-					"write_z": true
+					"write_z": false
 				}
 			],
 			"name": "common/primitives/plane.geo"
@@ -184,7 +164,7 @@
 			],
 			"materials": [
 				{
-					"blend_mode": "opaque",
+					"blend_mode": "alpha",
 					"depth_test": "less",
 					"face_culling": "cw",
 					"flags": [],
@@ -192,12 +172,12 @@
 					"textures": [
 						{
 							"name": "uBaseOpacityMap",
-							"path": "common/title/letter_d.png",
+							"path": "props/greets/grtz_flush.png",
 							"stage": 0
 						},
 						{
 							"name": "uSelfMap",
-							"path": "common/title/letter_d.png",
+							"path": "props/greets/grtz_flush.png",
 							"stage": 4
 						}
 					],
@@ -206,19 +186,9 @@
 							"name": "uBaseOpacityColor",
 							"type": "vec4",
 							"value": [
-								0.16877639293670654,
-								0.16877470910549164,
-								0.16877470910549164,
-								1.0
-							]
-						},
-						{
-							"name": "uDiffuseColor",
-							"type": "vec4",
-							"value": [
-								0.5882353186607361,
-								0.5882353186607361,
-								0.5882353186607361,
+								1.0,
+								0.43037980794906616,
+								5.960464477539063e-08,
 								1.0
 							]
 						},
@@ -241,23 +211,13 @@
 								0.0,
 								-1.0
 							]
-						},
-						{
-							"name": "uSpecularColor",
-							"type": "vec4",
-							"value": [
-								0.0,
-								0.0,
-								0.0,
-								0.03124999813735485
-							]
 						}
 					],
 					"write_a": true,
 					"write_b": true,
 					"write_g": true,
 					"write_r": true,
-					"write_z": true
+					"write_z": false
 				}
 			],
 			"name": "common/primitives/plane.geo"
@@ -279,7 +239,7 @@
 			"scl": [
 				0.9999999403953552,
 				0.9999998807907104,
-				0.3999999165534973
+				0.5
 			]
 		},
 		{
@@ -295,9 +255,9 @@
 				-90.0
 			],
 			"scl": [
-				0.9999997615814209,
-				0.9999997615814209,
-				0.39999985694885254
+				1.0,
+				1.0,
+				0.5
 			]
 		},
 		{

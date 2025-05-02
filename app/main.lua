@@ -24,7 +24,7 @@ require("audio/audio_data")
 require("audio/subtitles")
 
 -- greetings
--- Desire, Flush, Analogue, DrFlopine, NuSan, Stil, Cicile, MO5.COM, 4play, Mooz, Med, NoRecess
+-- Analogue, Desire, Flush, DrFlopine, NuSan, Cicile, Stil, MO5.COM, 4play, Mooz, Med, NoRecess
 
 virtual_res_x, virtual_res_y = 1280, 720
 res_x, res_y = 1920, 1200 -- 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
