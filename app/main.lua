@@ -85,7 +85,11 @@ function SetupScenePhysics(_scene, freq)
     return physics, physics_step, dt_frame_step
 end
 
-hg.AddAssetsFolder('assets_compiled')
+if IsLinux() then
+    hg.AddAssetsFolder("../assets_compiled")
+else
+    hg.AddAssetsFolder("assets_compiled")
+end
 
 -- main window
 hg.InputInit()
@@ -372,7 +376,7 @@ if enable_replay then
     local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
     local _rb_nodes, _ctx = {}, {}
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-    table.insert(sequences, {name = "dummy", display_name = "the end...", ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+    table.insert(sequences, {name = "dummy", display_name = "...and this will affect the demoscene.", ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
     table.insert(mapping_sequences, {clock = {_last_clock, _last_clock + 10.0}, time_remap = {#sequences, 0.0, 1.0}})
 end
 
