@@ -146,7 +146,7 @@ void main() {
 	vec4 self = uSelfColor;
 #endif // USE_SELF_MAP
 
-	self = pow(self, uSelf.x) * uSelf.y;
+	self = pow(self, uSelf.xxxx) * uSelf.y;
 
 	//
 	vec3 view = mul(u_view, vec4(vWorldPos, 1.0)).xyz;
