@@ -278,7 +278,7 @@ table.insert(mapping_sequences, {frame = {3465, 3469}, time_remap = {seq_idx.neo
 
 -- Simple cubes
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
-local _rb_nodes = SetupSimpleCubeStack(_scene, res, {model_size = cube_size, model_ref = cube_ref, materials = {grey = mat_grey}})
+local _rb_nodes = SetupSimpleCubeStack(_scene, res, pipeline_info, {model_size = cube_size, model_ref = cube_ref, materials = {grey = mat_grey}})
 local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
 table.insert(sequences, {name = "simple_cubes", display_name = "greetings", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 -- table.insert(mapping_sequences, {clock = {_last_clock, _last_clock + 10.0}, time_remap = {#sequences, 0.1, 0.9}})
