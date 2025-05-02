@@ -220,3 +220,17 @@ function format_time(seconds)
 
     return string.format("%02d:%02d:%02d:%03d", hours, minutes, secs, millis)
 end
+
+function insert_spaces_between_chars(str, n)
+    n = n or 1
+    local result = ""
+    local space = string.rep(" ", n)
+    local len = #str
+    for i = 1, len do
+        result = result .. str:sub(i, i)
+        if i < len then
+            result = result .. space
+        end
+    end
+    return result
+end

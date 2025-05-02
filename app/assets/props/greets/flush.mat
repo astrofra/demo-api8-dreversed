@@ -2,8 +2,10 @@
 	"blend_mode": "alpha",
 	"depth_test": "less",
 	"face_culling": "cw",
-	"flags": [],
-	"program": "core/shader/pbr.hps",
+	"flags": [
+		"EnableAlphaCut"
+	],
+	"program": "core/shader/neon.hps",
 	"textures": [
 		{
 			"name": "uBaseOpacityMap",
@@ -12,7 +14,6 @@
 		},
 		{
 			"name": "uSelfMap",
-			"path": "props/greets/grtz_flush.png",
 			"stage": 4
 		}
 	],
@@ -28,22 +29,32 @@
 			]
 		},
 		{
-			"name": "uOcclusionRoughnessMetalnessColor",
+			"name": "uCutoff",
 			"type": "vec4",
 			"value": [
-				1.0,
-				0.9459999799728394,
+				0.10000000149011612,
 				0.0,
-				1.0
+				0.0,
+				0.0
+			]
+		},
+		{
+			"name": "uSelf",
+			"type": "vec4",
+			"value": [
+				5.0,
+				20.0,
+				0.0,
+				0.0
 			]
 		},
 		{
 			"name": "uSelfColor",
 			"type": "vec4",
 			"value": [
-				0.0,
-				0.0,
-				0.0,
+				1.0,
+				0.43037980794906616,
+				5.960464477539063e-08,
 				-1.0
 			]
 		}
@@ -52,5 +63,5 @@
 	"write_b": true,
 	"write_g": true,
 	"write_r": true,
-	"write_z": false
+	"write_z": true
 }

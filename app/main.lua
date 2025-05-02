@@ -118,8 +118,10 @@ pipeline_aaa_config.bloom_threshold	= 0.5200
 
 -- fonts
 font_timer = hg.LoadFontFromAssets('fonts/spacemono-regular.ttf', math.floor(48 * (res_y / virtual_res_y)))
-font_url = hg.LoadFontFromAssets('fonts/spacemono-regular.ttf', math.floor(50 * (res_y / virtual_res_y)))
+font_url = hg.LoadFontFromAssets('fonts/barlow-medium.ttf', math.floor(42 * (res_y / virtual_res_y)))
 font_sequence_name = hg.LoadFontFromAssets('fonts/cirrus_cumulus.ttf', math.floor(96 * (res_y / virtual_res_y)))
+font_subtitle = hg.LoadFontFromAssets('fonts/barlow-medium.ttf', math.floor(50 * (res_y / virtual_res_y)))
+font_subtitle_42 = hg.LoadFontFromAssets('fonts/barlow-medium.ttf', (37.5 * (res_y / virtual_res_y)))
 font_prg = hg.LoadProgramFromAssets('core/shader/font')
 text_uniform_values = {hg.MakeUniformSetValue('u_color', hg.Vec4(1, 1, 1))}
 text_uniform_values_yellow = {hg.MakeUniformSetValue('u_color', hg.Vec4(1, 1, 0))}
@@ -421,11 +423,12 @@ local dt = hg.time_from_sec_f(1.0/60.0)
 collectgarbage("stop") -- avoid nasty drops all along the demo
 
 local sequence_start_clock = hg.GetClock()
-local url_fade = {fadein = 5.0, fadein_end = 6.0, fadeout = 9.75, fadeout_end = 10.0}
 
 if enable_replay then
     -- logo
     if enable_logo then
+        local url_str = insert_spaces_between_chars("HTTPS://WWW.RESISTANCE.NO", 3)
+        local url_fade = {fadein = 5.0, fadein_end = 6.0, fadeout = 9.75, fadeout_end = 10.0}
         logo_scene.environment.ambient = hg.Color(0.0, 1.0, 0.0, 0.0)
         logo_scene:PlayAnim(logo_scene:GetSceneAnim("fadein"))
         local text_uniform_values_url
@@ -452,8 +455,42 @@ if enable_replay then
             local _logo_clock_f = hg.time_to_sec_f(hg.GetClock() - sequence_start_clock)
             local _text_fade = clamp(map(_logo_clock_f, url_fade.fadein, url_fade.fadein_end, 0.0, 1.0), 0.0, 1.0)
             _text_fade = _text_fade * clamp(map(_logo_clock_f, url_fade.fadeout, url_fade.fadeout_end, 1.0, 0.0), 0.0, 1.0)
-            text_uniform_values_url = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.35 * _text_fade, 0.35 * _text_fade, 0.35 * _text_fade))}
-            display_shadow_text(view_id, font_url, "H T T P S : / / W W W . R E S I S T A N C E . N O", font_prg, _text_pos, text_uniform_values_url, nil, text_render_state, hg.DTHA_Center)
+            text_uniform_values_url = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.45 * _text_fade, 0.45 * _text_fade, 0.45 * _text_fade))}
+            display_shadow_text(view_id, font_url, url_str, font_prg, _text_pos, text_uniform_values_url, nil, text_render_state, hg.DTHA_Center)
+    
+            frame = hg.Frame()
+            hg.UpdateWindow(win)
+        end
+        
+        -- credits
+        
+        local _credits_str = { "A Demo presented at Paris 8 / API8 2025", "Fra (Code/Design) . Riddlemak (Music) . XBarr (Engine)" }
+        url_fade = {fadein = 0.0, fadein_end = 0.5, fadeout = 4.5, fadeout_end = 5.0}
+        sequence_start_clock = hg.GetClock()
+        while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(url_fade.fadeout_end) do
+            keyboard:Update()
+            dt = hg.TickClock()
+
+            -- rendering
+            local view_id = 0
+            local pass_id
+            if enable_aaa then
+                view_id, pass_id = hg.SubmitSceneToPipeline(view_id, logo_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+            else
+                view_id, pass_id = hg.SubmitSceneToPipeline(view_id, logo_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+            end
+
+            -- write credits
+            view_id = view_id + 1
+            hg.SetView2D(view_id, 0, 0, res_x, res_y, -1, 1, hg.CF_Depth, hg.Color.White, 1, 0)
+
+            local _text_pos = hg.Vec3(res_x * 0.5, res_y * 0.5, 0)
+            local _logo_clock_f = hg.time_to_sec_f(hg.GetClock() - sequence_start_clock)
+            local _text_fade = clamp(map(_logo_clock_f, url_fade.fadein, url_fade.fadein_end, 0.0, 1.0), 0.0, 1.0)
+            _text_fade = _text_fade * clamp(map(_logo_clock_f, url_fade.fadeout, url_fade.fadeout_end, 1.0, 0.0), 0.0, 1.0)
+            text_uniform_values_url = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.8 * _text_fade, 0.8 * _text_fade, 0.8 * _text_fade))}
+            display_shadow_text(view_id, font_subtitle, _credits_str[1], font_prg, _text_pos, text_uniform_values_url, nil, text_render_state, hg.DTHA_Center)
+            display_shadow_text(view_id, font_subtitle_42, _credits_str[2], font_prg, _text_pos + hg.Vec3(0, res_y * 0.075, 0), text_uniform_values_url, nil, text_render_state, hg.DTHA_Center)
     
             frame = hg.Frame()
             hg.UpdateWindow(win)
@@ -643,7 +680,7 @@ while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and sim_seq_idx <=
         end    
 
         local _text_pos = hg.Vec3(res_x * 0.5, res_y * 0.75, 0)
-        display_shadow_text(view_id, font_timer, _subtitle_str, font_prg, _text_pos, text_uniform_values_yellow, text_uniform_values_black, text_render_state, hg.DTHA_Center) 
+        display_shadow_text(view_id, font_subtitle, _subtitle_str, font_prg, _text_pos, text_uniform_values_yellow, text_uniform_values_black, text_render_state, hg.DTHA_Center) 
     end
 
     -- sequence title/name

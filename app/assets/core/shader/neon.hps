@@ -1,0 +1,9 @@
+{
+	"features": ["OptionalBaseColorOpacityMap", "OptionalSelfMap", "OptionalAlphaCut"],
+	"uniforms": [
+					{"name": "uCutoff", "type": "Vec4", "value": [0.5, 0.0, 0.0, 0.0]},
+					{"name": "uORM", "type": "Vec4", "value": [1.0, 0.5, 0.05, 1.0]},
+					{"name": "uSelf", "type": "Vec4", "value": [1.0, 1.0, 0.0, 0.0]}
+				]
+
+}
