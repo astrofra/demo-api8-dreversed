@@ -244,3 +244,18 @@ function insert_spaces_between_chars(str, n)
     end
     return result
 end
+
+function Median(t)
+    table.sort(t)
+
+    local n = #t
+    if n == 0 then
+        return nil -- No elements
+    elseif n % 2 == 1 then
+        return t[math.ceil(n / 2)]
+    else
+        local a = t[n / 2]
+        local b = t[n / 2 + 1]
+        return (a + b) / 2
+    end
+end
