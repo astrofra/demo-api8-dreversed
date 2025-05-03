@@ -212,6 +212,16 @@ function write_ini(file_path, config)
     file:close()
 end
 
+function file_exists(path)
+    local file = io.open(path, "r")
+    if file then
+        file:close()
+        return true
+    else
+        return false
+    end
+end
+
 function format_time(seconds)
     local hours = math.floor(seconds / 3600)
     local minutes = math.floor((seconds % 3600) / 60)

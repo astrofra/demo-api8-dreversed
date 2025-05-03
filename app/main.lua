@@ -91,7 +91,13 @@ end
 if IsLinux() then
     hg.AddAssetsFolder("../assets_compiled")
 else
-    hg.AddAssetsFolder("assets_compiled")
+    if file_exists("assets_compiled/project.prj") then
+        hg.AddAssetsFolder("assets_compiled")
+    elseif file_exists("../assets_compiled/project.prj") then
+        hg.AddAssetsFolder("../assets_compiled")
+    else
+        print("/!\\ Cannot locate the compiled assets!")
+    end
 end
 
 -- main window
