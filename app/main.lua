@@ -21,6 +21,7 @@ require("sequences/invisible_colliders")
 require("audio/bass_dynamics")
 require("audio/drums_dynamics")
 require("audio/audio_data")
+require("audio/keyboard")
 
 require("audio/subtitles")
 
@@ -228,12 +229,17 @@ if config_done == 1 then
     }
 
     -- demo soundtrack
-    local crt_power_sound = hg.LoadOGGSoundAsset("audio/crt-tv-powering-up.ogg")
-    local crt_power_ref = nil
-    local couchot_intro_speech_sound = hg.LoadOGGSoundAsset("audio/intro-couchot-bw.ogg")
-    local couchot_intro_speech_ref = nil
-    local demo_soundtrack_sound = hg.LoadOGGSoundAsset("audio/after-nothing-riddlemak.ogg")
-    local demo_soundtrack_ref = nil
+    crt_power_sound = hg.LoadOGGSoundAsset("audio/crt-tv-powering-up.ogg")
+    crt_power_ref = nil
+    couchot_intro_speech_sound = hg.LoadOGGSoundAsset("audio/intro-couchot-bw.ogg")
+    couchot_intro_speech_ref = nil
+    demo_soundtrack_sound = hg.LoadOGGSoundAsset("audio/after-nothing-riddlemak.ogg")
+    demo_soundtrack_ref = nil
+    keys_sound = {}
+    keys_ref = {}
+    for idx = 1, 6 do
+        keys_sound[idx] = hg.LoadOGGSoundAsset("audio/key_" .. tostring(idx) .. ".ogg")
+    end
 
     -- logo scene
     local logo_scene = hg.Scene()
@@ -554,12 +560,22 @@ if config_done == 1 then
         sequence_start_clock = hg.GetClock()
         intro_scene:PlayAnim(intro_scene:GetSceneAnim("intro"))
         crt_power_ref = hg.PlayStereo(crt_power_sound, hg.StereoSourceState(0.35, hg.SR_Once))
+        local key_sfx_idx = 1
 
         while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
             keyboard:Update()
             dt = hg.TickClock()
 
             intro_scene:Update(dt)
+
+            -- audio
+            if key_sfx_idx <= #keyboard_sfx.keys and keyboard_sfx.keys[key_sfx_idx] + keyboard_sfx.delay < hg.time_to_sec_f(hg.GetClock() - sequence_start_clock) then
+                if keys_ref[key_sfx_idx] == nil then
+                    keys_ref[key_sfx_idx] = hg.PlayStereo(keys_sound[math.fmod(key_sfx_idx, #keys_sound) + 1], hg.StereoSourceState(0.35, hg.SR_Once))
+                    print("play sfx " .. tostring(key_sfx_idx))
+                    key_sfx_idx = key_sfx_idx + 1
+                end
+            end
 
             -- rendering
             local view_id = 0
