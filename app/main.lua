@@ -1,8 +1,9 @@
 hg = require("harfang")
 require("utils")
 require("physics_utils")
-require("sequences/wall_of_bricks")
+require("config_gui")
 
+require("sequences/wall_of_bricks")
 require("sequences/tornado")
 require("sequences/spiral_tornado")
 require("sequences/flocks")
@@ -98,8 +99,24 @@ hg.InputInit()
 hg.AudioInit()
 hg.WindowSystemInit()
 
--- local win = hg.RenderInit('Dreversed', res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X)
-win = hg.NewWindow("Dreversed^Resistance(2025)", res_x, res_y, 32, hg.WV_Undecorated) --, hg.WV_Fullscreen)
+-- resolution selection --------------------------------------------------------------------------------
+local config_done = 1
+local default_fullscreen = hg.WV_Undecorated
+local full_aaa = false
+local low_aaa = true
+local no_aaa = false
+
+hg.ShowCursor()
+config_done, res_x, res_y, default_fullscreen, full_aaa, low_aaa, no_aaa, physics_freq = config_gui()
+
+if no_aaa then
+    enable_aaa = false 
+else
+    enable_aaa = true
+end
+-- end config ----------
+
+win = hg.NewWindow("Dreversed^Resistance(2025)", res_x, res_y, 32, default_fullscreen) -- hg.WV_Undecorated) --, hg.WV_Fullscreen)
 hg.RenderInit(win) --, hg.RT_OpenGL)
 
 if enable_aaa then
@@ -112,7 +129,11 @@ pipeline = hg.CreateForwardPipeline(2048)
 res = hg.PipelineResources()
 pipeline_info = hg.GetForwardPipelineInfo()
 pipeline_aaa_config = hg.ForwardPipelineAAAConfig()
-pipeline_aaa = hg.CreateForwardPipelineAAAFromAssets("core", pipeline_aaa_config, hg.BR_Half, hg.BR_Half)
+if low_aaa then
+    pipeline_aaa = hg.CreateForwardPipelineAAAFromAssets("core", pipeline_aaa_config, hg.BR_Half, hg.BR_Half)
+else
+    pipeline_aaa = hg.CreateForwardPipelineAAAFromAssets("core", pipeline_aaa_config, hg.BR_Equal, hg.BR_Equal)
+end
 
 pipeline_aaa_config.motion_blur = 2.0
 pipeline_aaa_config.sample_count = 1
