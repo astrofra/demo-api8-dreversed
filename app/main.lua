@@ -229,6 +229,7 @@ if config_done == 1 then
     }
 
     -- demo soundtrack
+    -- logo_sound = hg.LoadOGGSoundAsset("audio/logo.ogg")
     crt_power_sound = hg.LoadOGGSoundAsset("audio/crt-tv-powering-up.ogg")
     crt_power_ref = nil
     couchot_intro_speech_sound = hg.LoadOGGSoundAsset("audio/intro-couchot-bw.ogg")
@@ -280,6 +281,7 @@ if config_done == 1 then
             local url_fade = {fadein = 5.0, fadein_end = 6.0, fadeout = 9.75, fadeout_end = 10.0}
             logo_scene.environment.ambient = hg.Color(0.0, 1.0, 0.0, 0.0)
             logo_scene:PlayAnim(logo_scene:GetSceneAnim("fadein"))
+            -- logo_ref = hg.PlayStereo(logo_sound, hg.StereoSourceState(1.0, hg.SR_Once))
             local text_uniform_values_url
             while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
                 keyboard:Update()
@@ -559,7 +561,7 @@ if config_done == 1 then
         -- intro
         sequence_start_clock = hg.GetClock()
         intro_scene:PlayAnim(intro_scene:GetSceneAnim("intro"))
-        crt_power_ref = hg.PlayStereo(crt_power_sound, hg.StereoSourceState(0.35, hg.SR_Once))
+        crt_power_ref = hg.PlayStereo(crt_power_sound, hg.StereoSourceState(0.05, hg.SR_Once))
         local key_sfx_idx = 1
 
         while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
@@ -571,7 +573,7 @@ if config_done == 1 then
             -- audio
             if key_sfx_idx <= #keyboard_sfx.keys and keyboard_sfx.keys[key_sfx_idx] + keyboard_sfx.delay < hg.time_to_sec_f(hg.GetClock() - sequence_start_clock) then
                 if keys_ref[key_sfx_idx] == nil then
-                    keys_ref[key_sfx_idx] = hg.PlayStereo(keys_sound[math.fmod(key_sfx_idx, #keys_sound) + 1], hg.StereoSourceState(0.35, hg.SR_Once))
+                    keys_ref[key_sfx_idx] = hg.PlayStereo(keys_sound[math.fmod(key_sfx_idx, #keys_sound) + 1], hg.StereoSourceState(0.45, hg.SR_Once))
                     print("play sfx " .. tostring(key_sfx_idx))
                     key_sfx_idx = key_sfx_idx + 1
                 end
