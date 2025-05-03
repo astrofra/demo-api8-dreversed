@@ -91,7 +91,7 @@ def zipdir(path, ziph):
             rel_path = os.path.relpath(abs_file_path, os.path.dirname(output_path))
             ziph.write(abs_file_path, arcname=rel_path)
 
-with zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED) as zipf:
+with zipfile.ZipFile(zip_name, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zipf:
     zipdir(output_path, zipf)
 
 print("!Done")
