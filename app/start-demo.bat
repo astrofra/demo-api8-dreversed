@@ -1,2 +1,3 @@
-cd engine
-lua main.lua
+@engine\hidecon
+@cd engine
+lua.exe main.lua > NUL
