@@ -27,6 +27,11 @@ function config_gui()
     local low_aaa = true
     local no_aaa = false
 
+    local enable_replay, pressed_enable_replay = true, false
+    local enable_rotation, pressed_enable_rotation = true, false
+    local enable_debug_timers, pressed_enable_debug_timers = false, false
+    local enable_logo, pressed_enable_logo = true, false
+
     local config_done = 0 -- 0 = stay, 1 = play demo, 2 = exit without playing the demo
 
     local config_win = hg.NewWindow("Config", res_x, res_y, 32)
@@ -106,6 +111,18 @@ function config_gui()
                 default_freq = freq_list[freq_preset + 1]
             end
 
+            pressed_enable_logo, enable_logo = hg.ImGuiCheckbox("Show logo   ", enable_logo)
+            hg.ImGuiSameLine()
+            pressed_enable_replay, enable_replay = hg.ImGuiCheckbox("Replay mode   ", enable_replay)
+            hg.ImGuiSameLine()
+            pressed_enable_rotation, enable_rotation = hg.ImGuiCheckbox("Rotate camera   ", enable_rotation)
+            hg.ImGuiSameLine()
+            pressed_enable_debug_timers, enable_debug_timers = hg.ImGuiCheckbox("Show timers", enable_debug_timers)
+
+            if enable_replay == false then
+                enable_logo = false
+            end
+
             -- start demo
             hg.ImGuiSpacing()
             hg.ImGuiSeparator()
@@ -118,7 +135,7 @@ function config_gui()
             hg.ImGuiSpacing()
             hg.ImGuiSameLine()
             hg.ImGuiPushStyleColor(hg.ImGuiCol_Button, hg.Color(0.5, 0.2, 0.3, 1.0))
-            press_cancel = hg.ImGuiButton("Exit :(")
+            press_cancel = hg.ImGuiButton("Exit [ESC]")
             hg.ImGuiPopStyleColor()
 
             if press_play then
@@ -142,5 +159,5 @@ function config_gui()
     hg.RenderShutdown()
 	hg.DestroyWindow(config_win)
 
-    return config_done, default_res_x, default_res_y, default_fullscreen, full_aaa, low_aaa, no_aaa, default_freq
+    return config_done, default_res_x, default_res_y, default_fullscreen, full_aaa, low_aaa, no_aaa, default_freq, enable_logo, enable_replay, enable_rotation, enable_debug_timers
 end
