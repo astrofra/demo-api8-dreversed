@@ -7,11 +7,10 @@ function SetupWaveGrid(_scene, _res, params)
 
     local _vtx_layout, _generic_material = params.vtx_layout, params.materials.gold
 
-    local padding_factor = 1.55
-    local radius = 20 / padding_factor
-    local _cube_size = 0.1 * padding_factor
+    local radius = 20
+    local _cube_size = 0.1
     local _cube_ref
-    _cube_ref = _res:AddModel('sphere_wave_grid_ref_1', hg.CreateSphereModel(_vtx_layout, _cube_size * 0.85, 8, 8))
+    _cube_ref = _res:AddModel('sphere_wave_grid_ref_1', hg.CreateSphereModel(_vtx_layout, _cube_size, 8, 8))
 
     local rb_nodes = {}
     for i = -radius, radius do
@@ -20,7 +19,7 @@ function SetupWaveGrid(_scene, _res, params)
             local d = hg.Dist(hg.Vec3(x, 0, z), hg.Vec3(0,0,0))
             local h = map(d, 0.0, radius * _cube_size, 2.0, 0.0)
             local k = (math.sin(d * 5.0) + 1.0) * _cube_size * h * 10.0
-            k = k + 4.5
+            k = k + 3.0
             if math.fmod((k + j + radius) * k, 2) <= 1 then
                 if math.fmod((k + j + radius) * k, 5) <= 1 then
                     _generic_material = params.materials.neon
