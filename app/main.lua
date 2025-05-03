@@ -33,6 +33,7 @@ enable_rotation = true
 enable_aaa = true
 enable_debug_timers = false
 enable_logo = true
+physics_freq = 120.0
 
 function GetAudioDynamics(dynamics_table, clock, total_duration)
     local idx = math.floor((clock * #dynamics_table) / total_duration) + 1
@@ -74,13 +75,14 @@ function SetupBackgroundEnvironment(_res, _pipeline_info)
     return scene, cam, camera_root
 end
 
-function SetupScenePhysics(_scene, freq)
+function SetupScenePhysics(_scene, physic_freq, frame_freq)
     -- enable scene physics
-    freq = freq or 120.0
+    physic_freq = physic_freq or 120.0
+    frame_freq = frame_freq or 120.0
     local physics = hg.SceneBullet3Physics()
     physics:SceneCreatePhysicsFromAssets(_scene)
-    local physics_step = hg.time_from_sec_f(1.0 / freq)
-    local dt_frame_step = hg.time_from_sec_f(1.0 / freq)
+    local physics_step = hg.time_from_sec_f(1.0 / physic_freq)
+    local dt_frame_step = hg.time_from_sec_f(1.0 / frame_freq)
 
     return physics, physics_step, dt_frame_step
 end
@@ -220,7 +222,7 @@ local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info
 local initial_cam_pos = nil -- _cam:GetTransform():GetPos()
 local title_cam_timing = nil
 local _rb_nodes, _camera_tv, _ctx = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq)
 table.insert(sequences, {name = "title_screen", display_name = "ye olde crt", apply_physics = ApplyPhysicsTitleScreen, ctx = _ctx, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, camera_tv = _camera_tv, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 
 table.insert(mapping_sequences, {frame = {0.0, 110}, time_remap = {seq_idx.title_screen, 0.814, 0.630}})
@@ -237,7 +239,7 @@ table.insert(mapping_sequences, {frame = {543, 651}, time_remap = {seq_idx.title
 -- rotating plates
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupRotatingPlates(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold, neon = mat_neon_red, black = mat_black}})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq)
 table.insert(sequences, {name = "rotating_plates", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 -- table.insert(mapping_sequences, {clock = {_last_clock, _last_clock + 10.0}, time_remap = {#sequences, 0.2, 0.8}})
 table.insert(mapping_sequences, {frame = {651, 868}, time_remap = {seq_idx.rotating_plates, 0.620, 0.157}})
@@ -246,7 +248,7 @@ table.insert(mapping_sequences, {frame = {868, 1193}, time_remap = {seq_idx.rota
 -- wave grid
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupWaveGrid(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold, neon = mat_neon_red, black = mat_black}})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq)
 table.insert(sequences, {name = "wave_grid", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 -- table.insert(mapping_sequences, {clock = {_last_clock, _last_clock + 10.0}, time_remap = {#sequences, 0.2, 0.8}})
 table.insert(mapping_sequences, {frame = {1193, 1274}, time_remap = {seq_idx.wave_grid, 0.459, 0.361}})
@@ -260,7 +262,7 @@ table.insert(mapping_sequences, {frame = {1621, 1841}, time_remap = {seq_idx.wav
 -- wall of bricks
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes, _ctx = SetupWallOfBricks(_scene, res, pipeline_info, vtx_layout, {neon = mat_neon_red, chrome = mat_chrome, black = mat_black})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq)
 ApplyPhysicsWallOfBricks(_rb_nodes, _scene, _physics, _ctx)
 table.insert(sequences, {name = "wall_of_bricks",  display_name = "exploding furnace", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 -- table.insert(mapping_sequences, {clock = {_last_clock, _last_clock + 5.0}, time_remap = {#sequences, 0.0, 1.0}})
@@ -271,7 +273,7 @@ table.insert(mapping_sequences, {frame = {2162, 2599}, time_remap = {seq_idx.wal
 -- Neons
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupVerticalNeonChaos(_scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, gold = mat_gold}})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq)
 table.insert(sequences, {name = "neons", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 -- table.insert(mapping_sequences, {clock = {_last_clock, _last_clock + 10.0}, time_remap = {#sequences, 0.1, 0.9}})
 table.insert(mapping_sequences, {frame = {2599, 2762}, time_remap = {seq_idx.neons, 0.501, 0.772}})
@@ -285,7 +287,7 @@ table.insert(mapping_sequences, {frame = {3465, 3469}, time_remap = {seq_idx.neo
 -- Simple cubes
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupSimpleCubeStack(_scene, res, pipeline_info, {model_size = cube_size, model_ref = cube_ref, materials = {grey = mat_grey}})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq * 2.0)
 table.insert(sequences, {name = "simple_cubes", display_name = "greetings", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 -- table.insert(mapping_sequences, {clock = {_last_clock, _last_clock + 10.0}, time_remap = {#sequences, 0.1, 0.9}})
 table.insert(mapping_sequences, {frame = {3469, 3983}, time_remap = {seq_idx.simple_cubes, 0.149, 1.0}})
@@ -294,7 +296,7 @@ table.insert(mapping_sequences, {frame = {3983, 4331}, time_remap = {seq_idx.sim
 -- oscillating_wall
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes, _ctx = SetupOscillatingWall(_scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, black = mat_black}})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq)
 table.insert(sequences, {name = "oscillating_wall", display_name = "kubes vader", apply_physics = ApplyPhysicsOscillatingWall, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 -- table.insert(mapping_sequences, {clock = {_last_clock, _last_clock + 10.0}, time_remap = {#sequences, 0.0, 1.0}})
 table.insert(mapping_sequences, {frame = {4331, 4437}, time_remap = {seq_idx.oscillating_wall, 0.152, 0.328}})
@@ -311,15 +313,15 @@ table.insert(mapping_sequences, {frame = {4977, 5072}, time_remap = {seq_idx.osc
 -- (in)visible colliders
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupInvisibleColliders(_scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, silver = mat_silver, chrome = mat_chrome, black = mat_piano_black}})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-table.insert(sequences, {name = "invisible_colliders", display_name = "damping in the rain", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq)
+table.insert(sequences, {name = "invisible_colliders", display_name = "dear Yayoi", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {frame = {5072, 5360}, time_remap = {seq_idx.invisible_colliders, 0.240, 0.382}})
 table.insert(mapping_sequences, {frame = {5360, 5626}, time_remap = {seq_idx.invisible_colliders, 0.382, 0.252}})
 
 -- tornado
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupTornado(_scene, res, {vtx_layout = vtx_layout, materials = {chrome = mat_chrome, neon = mat_neon_red, black = mat_black}})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq)
 table.insert(sequences, {name = "tornado", display_name = "blobnado", apply_physics = ApplyPhysicsTornado, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {frame = {5626, 6005}, time_remap = {seq_idx.tornado, 0.802, 0.227}})
 table.insert(mapping_sequences, {frame = {6005, 6062}, time_remap = {seq_idx.tornado, 0.209, 0.125}})
@@ -329,7 +331,7 @@ table.insert(mapping_sequences, {frame = {6100, 6276}, time_remap = {seq_idx.tor
 -- Repulsion core
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes, _ctx = SetupRepulsionCore(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, black = mat_piano_black, neon = mat_neon_red}})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq)
 table.insert(sequences, {name = "repulsion_core", display_name = "attraction core", apply_physics = ApplyPhysicsRepulsionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {frame = {6276, 6323}, time_remap = {seq_idx.repulsion_core, 0.072, 0.149}})
 table.insert(mapping_sequences, {frame = {6323, 6492}, time_remap = {seq_idx.repulsion_core, 0.398, 0.118}})
@@ -337,7 +339,7 @@ table.insert(mapping_sequences, {frame = {6323, 6492}, time_remap = {seq_idx.rep
 -- Attraction core
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes, _ctx = SetupAttractionCore(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, black = mat_piano_black, neon = mat_neon_red}})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq)
 table.insert(sequences, {name = "attraction_core", display_name = "repulsion core", apply_physics = ApplyPhysicsAttractionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {frame = {6492, 6708}, time_remap = {seq_idx.attraction_core, 0.0, 0.373}})
 table.insert(mapping_sequences, {frame = {6708, 6815}, time_remap = {seq_idx.attraction_core, 0.103, 0.282}})
@@ -346,7 +348,7 @@ table.insert(mapping_sequences, {frame = {6815, 7128}, time_remap = {seq_idx.tor
 -- Voxel
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupXiVoxel(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold}})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq)
 table.insert(sequences, {name = "slices of voxel", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {frame = {7128, 7235}, time_remap = {seq_idx.voxel, 0.167, 0.431}})
 table.insert(mapping_sequences, {frame = {7235, 7249}, time_remap = {seq_idx.voxel, 0.405, 0.439}})
@@ -356,7 +358,7 @@ table.insert(mapping_sequences, {frame = {7364, 7464}, time_remap = {seq_idx.vox
 -- flocks
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupFlocks(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, neon = mat_neon_red, black = mat_black}})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq)
 ApplyPhysicsFlocks(_rb_nodes, _physics)
 table.insert(sequences, {name = "flocks", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {frame = {7464, 7682}, time_remap = {seq_idx.flocks, 0.312, 0.048}})
@@ -365,7 +367,7 @@ table.insert(mapping_sequences, {frame = {7682, 7776}, time_remap = {seq_idx.flo
 -- spiral tornado
 local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
 local _rb_nodes = SetupSpiralTornado(_scene, res, {vtx_layout = vtx_layout, materials = {chrome = mat_chrome, neon = mat_neon_red, black = mat_black}})
-local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
+local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq)
 table.insert(sequences, {name = "spiral_tornado", apply_physics = ApplyPhysicsSpiralTornado, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
 table.insert(mapping_sequences, {frame = {7776, 7871}, time_remap = {seq_idx.spiral_tornado, 0.489, 0.147}})
 table.insert(mapping_sequences, {frame = {7871, 8286}, time_remap = {seq_idx.spiral_tornado, 0.143, 0.993}})
@@ -375,8 +377,8 @@ if enable_replay then
     _last_clock = mapping_sequences[#mapping_sequences].frame[2] / 60.0
     local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
     local _rb_nodes, _ctx = {}, {}
-    local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene)
-    table.insert(sequences, {name = "dummy", display_name = "...and this will affect the demoscene.", ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
+    local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq)
+    table.insert(sequences, {name = "dummy", display_name = "...nd ths wll ffct th dmscn.", ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
     table.insert(mapping_sequences, {clock = {_last_clock, _last_clock + 10.0}, time_remap = {#sequences, 0.0, 1.0}})
 end
 

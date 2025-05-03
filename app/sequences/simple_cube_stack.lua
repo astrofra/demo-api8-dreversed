@@ -5,15 +5,15 @@ require("physics_utils")
 
 local grtz = {
     "grtz_analogue.scn",
-    "grtz_dbug.scn",
     "grtz_desire.scn",
     "grtz_drflopine.scn",
-    "grtz_flush.scn",
+    "grtz_dbug.scn",
     "grtz_gargaj.scn",
+    "grtz_flush.scn",
     "grtz_mankind.scn",
+    "grtz_nusan.scn",
     "grtz_mooz.scn",
-    "grtz_norecess.scn",
-    "grtz_nusan.scn"
+    "grtz_norecess.scn"
 }
 
 function SetupSimpleCubeStack(_scene, res, pipeline_info, params)
@@ -23,8 +23,9 @@ function SetupSimpleCubeStack(_scene, res, pipeline_info, params)
     local rb_nodes = {}
     for i = 1, 200 do
         local _new_node, _ = CreatePhysicCubeEx(_scene, _cube_size, hg.TranslationMat4(hg.Vec3(0, 1 + i * 5, 0)), _cube_ref, {_generic_material}, hg.RBT_Dynamic, 1)
-        if i <= #grtz then
-            local _greets, _ = hg.CreateInstanceFromAssets(_scene, hg.TranslationMat4(hg.Vec3(0, 0, 0)), "props/greets/" .. grtz[i], res, pipeline_info)
+        if i <= #grtz * 3 then
+            local j = math.fmod(i - 1, #grtz) + 1
+            local _greets, _ = hg.CreateInstanceFromAssets(_scene, hg.TranslationMat4(hg.Vec3(0, 0, 0)), "props/greets/" .. grtz[j], res, pipeline_info)
             _greets:GetTransform():SetParent(_new_node)
             _greets:GetTransform():SetRot(hg.Vec3(0, hg.DegreeToRadian(i * -15.0), 0))
         end
