@@ -133,7 +133,7 @@ if config_done == 1 then
     if enable_aaa then
         hg.RenderReset(res_x, res_y, hg.RF_VSync) -- | hg.RF_MSAA4X | hg.RF_MaxAnisotropy)
     else
-        hg.RenderReset(res_x, res_y, hg.RF_MSAA4X | hg.RF_MaxAnisotropy)
+        hg.RenderReset(res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X | hg.RF_MaxAnisotropy)
     end
 
     pipeline = hg.CreateForwardPipeline(2048)

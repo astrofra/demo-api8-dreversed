@@ -2,7 +2,7 @@ function config_gui()
     -- resolution selection
     local res_list = {{640, 360}, {768, 432}, {896, 504}, {1024, 576}, {1152, 648}, {1280, 720}, {1920, 1080}, {1920, 1200}, {2560, 1440}, {3840, 2160}, {5120, 2880}}
     local res_list_str = {}
-    local res_x, res_y = 600, 300
+    local res_x, res_y = 600, 400
     local default_res_x = 1920
     local default_res_y = 1080
     local mode_list = {hg.WV_Windowed, hg.WV_Fullscreen, hg.WV_Undecorated, hg.WV_FullscreenMonitor1, hg.WV_FullscreenMonitor2, hg.WV_FullscreenMonitor3}
@@ -51,6 +51,8 @@ function config_gui()
     -- main loop
     while not hg.ReadKeyboard():Key(hg.K_Escape) and hg.IsWindowOpen(config_win) and config_done == 0 do
         hg.ImGuiBeginFrame(res_x, res_y, hg.TickClock(), hg.ReadMouse(), hg.ReadKeyboard())
+
+        local expl_str = "- This demo is about physics and time."
 
         -- main window
         if hg.ImGuiBegin("Rendering Configuration", true, hg.ImGuiWindowFlags_NoMove | hg.ImGuiWindowFlags_NoResize) then
@@ -143,6 +145,49 @@ function config_gui()
             elseif press_cancel then
                 config_done = 2
             end
+
+            hg.ImGuiSpacing()
+            hg.ImGuiSeparator()
+            hg.ImGuiSpacing()
+
+            expl_str = expl_str .. "\n" .. "- The rendering will "
+            if no_aaa then
+                expl_str = expl_str .. "target low-end GPUs."
+            else
+                expl_str = expl_str .. "use SSGI and SSR in "
+                if full_aaa then
+                    expl_str = expl_str .. "full resolution sampling."
+                else
+                    expl_str = expl_str .. "half resolution sampling."
+                end
+            end
+
+            expl_str = expl_str .. "\n" .. "- Physics step frequency is set to " .. tostring(default_freq) .. "Hz."
+            if not(default_freq == 120) then
+                expl_str = expl_str .. "\n" .. "  (WARNING: changing this might desynchronize physics playback.)"
+            end
+
+            if enable_logo == false then
+                expl_str = expl_str .. "\n" .. "- Demo will skip the main logo screen."
+            end
+
+            if enable_replay == false then
+                expl_str = expl_str .. "\n" .. "- The realtime physics simulations will be shown directly, instead of being\n"
+                expl_str = expl_str .. "  computed in the background and replayed backward with a 10 seconds delay."
+            else
+                expl_str = expl_str .. "\n" .. "- The realtime physics simulations will computed in the background, 10 seconds\n"
+                expl_str = expl_str .. "  by 10 seconds, and replayed following a curated time-remap scenario."
+            end
+
+            if enable_rotation == false then
+                expl_str = expl_str .. "\n" .. "- The camera will remain static."
+            end
+            
+            if enable_debug_timers then
+                expl_str = expl_str .. "\n" .. "- Timer overlays will be shown on screen (for debugging purposes)."
+            end
+
+            hg.ImGuiText("Technical details:\n" .. expl_str)
         end
 
         hg.ImGuiEnd()
