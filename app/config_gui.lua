@@ -175,8 +175,8 @@ function config_gui()
                 expl_str = expl_str .. "\n" .. "- The realtime physics simulations will be shown directly, instead of being\n"
                 expl_str = expl_str .. "  computed in the background and replayed backward with a 10 seconds delay."
             else
-                expl_str = expl_str .. "\n" .. "- The realtime physics simulations will computed in the background, 10 seconds\n"
-                expl_str = expl_str .. "  by 10 seconds, and replayed following a curated time-remap scenario."
+                expl_str = expl_str .. "\n" .. "- Realtime physics simulations computes in the background, in 10-second blocks\n"
+                expl_str = expl_str .. "  and then replayed using a handcrafted time-remapping timeline."
             end
 
             if enable_rotation == false then
