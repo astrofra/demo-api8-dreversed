@@ -279,7 +279,7 @@ if config_done == 1 then
                 keyboard:Update()
                 dt = hg.TickClock()
 
-                table.insert(dt_collection, hg.time_to_sec_f(dt)) 
+                if math.random() > 0.8 then table.insert(dt_collection, hg.time_to_sec_f(dt)) end
 
                 logo_scene:Update(dt)
 
@@ -315,7 +315,7 @@ if config_done == 1 then
                 keyboard:Update()
                 dt = hg.TickClock()
 
-                table.insert(dt_collection, hg.time_to_sec_f(dt))
+                if math.random() > 0.8 then table.insert(dt_collection, hg.time_to_sec_f(dt)) end
 
                 -- rendering
                 local view_id = 0
@@ -343,35 +343,12 @@ if config_done == 1 then
             end
         end
 
-        -- intro
-        sequence_start_clock = hg.GetClock()
-        intro_scene:PlayAnim(intro_scene:GetSceneAnim("intro"))
-        crt_power_ref = hg.PlayStereo(crt_power_sound, hg.StereoSourceState(0.35, hg.SR_Once))
-
-        while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
-            keyboard:Update()
-            dt = hg.TickClock()
-
-            table.insert(dt_collection, hg.time_to_sec_f(dt))
-
-            intro_scene:Update(dt)
-
-            -- rendering
-            local view_id = 0
-            local pass_id
-            if enable_aaa then
-                view_id, pass_id = hg.SubmitSceneToPipeline(view_id, intro_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
-            else
-                view_id, pass_id = hg.SubmitSceneToPipeline(view_id, intro_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
-            end
-    
-            frame = hg.Frame()
-            hg.UpdateWindow(win)
-        end
-
         estimated_framerate = Median(dt_collection)
         if estimated_framerate > 0.0 then
             estimated_framerate = math.floor(1 / estimated_framerate)
+            if estimated_framerate == 59 or estimated_framerate == 61 then
+                estimated_framerate = 60
+            end
         else
             estimated_framerate = 60.0 -- fallback
         end
@@ -412,7 +389,7 @@ if config_done == 1 then
     local _rb_nodes = SetupWaveGrid(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold, neon = mat_neon_red, black = mat_black}})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq, estimated_framerate)
     table.insert(sequences, {name = "wave_grid", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
-    -- table.insert(mapping_sequences, {clock = {_last_clock, _last_clock + 10.0}, time_remap = {#sequences, 0.2, 0.8}})
+    -- table.insert(mapping_sequences, {frame = {1193, 1841}, time_remap = {seq_idx.wave_grid, 0.0, 1.0}})
     table.insert(mapping_sequences, {frame = {1193, 1274}, time_remap = {seq_idx.wave_grid, 0.459, 0.361}})
     table.insert(mapping_sequences, {frame = {1274, 1287}, time_remap = {seq_idx.wave_grid, 0.376, 0.356}})
     table.insert(mapping_sequences, {frame = {1287, 1353}, time_remap = {seq_idx.wave_grid, 0.371, 0.264}})
@@ -569,6 +546,32 @@ if config_done == 1 then
         if sequences[i].display_name == nil then
             local _str = string.gsub(sequences[i].name, "_", " ")
             sequences[i].display_name = _str
+        end
+    end
+
+    if enable_replay then
+        -- intro
+        sequence_start_clock = hg.GetClock()
+        intro_scene:PlayAnim(intro_scene:GetSceneAnim("intro"))
+        crt_power_ref = hg.PlayStereo(crt_power_sound, hg.StereoSourceState(0.35, hg.SR_Once))
+
+        while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
+            keyboard:Update()
+            dt = hg.TickClock()
+
+            intro_scene:Update(dt)
+
+            -- rendering
+            local view_id = 0
+            local pass_id
+            if enable_aaa then
+                view_id, pass_id = hg.SubmitSceneToPipeline(view_id, intro_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+            else
+                view_id, pass_id = hg.SubmitSceneToPipeline(view_id, intro_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+            end
+    
+            frame = hg.Frame()
+            hg.UpdateWindow(win)
         end
     end
 
