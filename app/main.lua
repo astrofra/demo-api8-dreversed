@@ -833,10 +833,10 @@ if config_done == 1 then
         dt = hg.TickClock()
 
         local view_id = 0
-        hg.SetViewClear(view_id, hg.CF_Color | hg.CF_Depth, hg.Color.Blue, 1, 0)
+        hg.SetViewClear(view_id, hg.CF_Color | hg.CF_Depth, hg.Color.Black, 1, 0)
         hg.SetViewRect(view_id, 0, 0, res_x, res_y)
     
-        hg.Touch(view_id)  -- force the view to be processed as it would be ignored since nothing is drawn to it (a clear does not count)
+        hg.Touch(view_id)
     
         hg.Frame()
         hg.UpdateWindow(win)
