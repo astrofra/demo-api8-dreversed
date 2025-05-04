@@ -317,6 +317,18 @@
 			"disabled": false,
 			"idx": 2,
 			"name": "crt_screen"
+		},
+		{
+			"components": [
+				3,
+				4294967295,
+				2,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 3,
+			"name": "api8_logo"
 		}
 	],
 	"objects": [
@@ -473,6 +485,113 @@
 				}
 			],
 			"name": "props/tv_vintage/crt_screen/crt_screen_42.geo"
+		},
+		{
+			"bones": [],
+			"material_infos": [
+				{
+					"name": "default"
+				}
+			],
+			"materials": [
+				{
+					"blend_mode": "add",
+					"depth_test": "less",
+					"face_culling": "cw",
+					"flags": [],
+					"program": "core/shader/neon.hps",
+					"textures": [
+						{
+							"name": "uBaseOpacityMap",
+							"path": "common/api8-dtl.png",
+							"stage": 0
+						},
+						{
+							"name": "uSelfMap",
+							"path": "common/api8-dtl.png",
+							"stage": 4
+						}
+					],
+					"values": [
+						{
+							"name": "uBaseOpacityColor",
+							"type": "vec4",
+							"value": [
+								0.16877639293670654,
+								0.16877470910549164,
+								0.16877470910549164,
+								1.0
+							]
+						},
+						{
+							"name": "uDiffuseColor",
+							"type": "vec4",
+							"value": [
+								0.5882353186607361,
+								0.5882353186607361,
+								0.5882353186607361,
+								1.0
+							]
+						},
+						{
+							"name": "uORM",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.5,
+								0.05000000074505806,
+								1.0
+							]
+						},
+						{
+							"name": "uOcclusionRoughnessMetalnessColor",
+							"type": "vec4",
+							"value": [
+								1.0,
+								0.9459999799728394,
+								0.0,
+								1.0
+							]
+						},
+						{
+							"name": "uSelf",
+							"type": "vec4",
+							"value": [
+								4.0,
+								4.0,
+								0.0,
+								0.0
+							]
+						},
+						{
+							"name": "uSelfColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								-1.0
+							]
+						},
+						{
+							"name": "uSpecularColor",
+							"type": "vec4",
+							"value": [
+								0.0,
+								0.0,
+								0.0,
+								0.03124999813735485
+							]
+						}
+					],
+					"write_a": true,
+					"write_b": true,
+					"write_g": true,
+					"write_r": true,
+					"write_z": false
+				}
+			],
+			"name": "common/primitives/plane.geo"
 		}
 	],
 	"rigid_bodies": [
@@ -558,7 +677,7 @@
 				-0.2618933320045471
 			],
 			"rot": [
-				-7.583028318899017e-22,
+				-7.583027309157058e-22,
 				0.0,
 				0.0
 			],
@@ -566,6 +685,24 @@
 				1.0,
 				1.0,
 				1.0
+			]
+		},
+		{
+			"parent": 0,
+			"pos": [
+				0.29548949003219604,
+				0.23900122940540314,
+				-0.2830410301685333
+			],
+			"rot": [
+				-89.99994659423828,
+				-0.24999988079071045,
+				5.449232531873349e-08
+			],
+			"scl": [
+				0.09642843157052994,
+				0.9999994039535522,
+				0.04821423813700676
 			]
 		}
 	]
