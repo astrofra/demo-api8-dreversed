@@ -17,7 +17,7 @@
 				"t_end": 0,
 				"t_start": 0
 			},
-			"idx": 125
+			"idx": 127
 		},
 		{
 			"anim": {
@@ -36,42 +36,6 @@
 				"t_end": 0,
 				"t_start": 0
 			},
-			"idx": 126
-		},
-		{
-			"anim": {
-				"flags": [],
-				"instance_anim": {
-					"keys": [
-						{
-							"loop": "none",
-							"name": "typein",
-							"scale": 1.0,
-							"t": 0
-						}
-					]
-				},
-				"t_end": 0,
-				"t_start": 0
-			},
-			"idx": 127
-		},
-		{
-			"anim": {
-				"flags": [],
-				"instance_anim": {
-					"keys": [
-						{
-							"loop": "none",
-							"name": "",
-							"scale": 1.0,
-							"t": 0
-						}
-					]
-				},
-				"t_end": 0,
-				"t_start": 0
-			},
 			"idx": 128
 		},
 		{
@@ -81,7 +45,7 @@
 					"keys": [
 						{
 							"loop": "none",
-							"name": "",
+							"name": "typein",
 							"scale": 1.0,
 							"t": 0
 						}
@@ -109,6 +73,42 @@
 				"t_start": 0
 			},
 			"idx": 130
+		},
+		{
+			"anim": {
+				"flags": [],
+				"instance_anim": {
+					"keys": [
+						{
+							"loop": "none",
+							"name": "",
+							"scale": 1.0,
+							"t": 0
+						}
+					]
+				},
+				"t_end": 0,
+				"t_start": 0
+			},
+			"idx": 131
+		},
+		{
+			"anim": {
+				"flags": [],
+				"instance_anim": {
+					"keys": [
+						{
+							"loop": "none",
+							"name": "",
+							"scale": 1.0,
+							"t": 0
+						}
+					]
+				},
+				"t_end": 0,
+				"t_start": 0
+			},
+			"idx": 132
 		},
 		{
 			"anim": {
@@ -147,7 +147,7 @@
 				"t_end": 0,
 				"t_start": 0
 			},
-			"idx": 131
+			"idx": 133
 		},
 		{
 			"anim": {
@@ -192,7 +192,7 @@
 					}
 				]
 			},
-			"idx": 132
+			"idx": 134
 		},
 		{
 			"anim": {
@@ -216,7 +216,7 @@
 				"t_end": 0,
 				"t_start": 0
 			},
-			"idx": 133
+			"idx": 135
 		},
 		{
 			"anim": {
@@ -251,7 +251,25 @@
 					}
 				]
 			},
-			"idx": 134
+			"idx": 136
+		},
+		{
+			"anim": {
+				"flags": [],
+				"instance_anim": {
+					"keys": [
+						{
+							"loop": "none",
+							"name": "static",
+							"scale": 1.0,
+							"t": 0
+						}
+					]
+				},
+				"t_end": 0,
+				"t_start": 0
+			},
+			"idx": 137
 		}
 	],
 	"cameras": [
@@ -316,6 +334,17 @@
 	},
 	"instances": [
 		{
+			"name": "common/title/title_super_anim.scn"
+		},
+		{
+			"name": "props/tv_vintage/flicker_fx.scn"
+		},
+		{
+			"anim": "init",
+			"loop_mode": "none",
+			"name": "props/tv_vintage/tv_vintage.scn"
+		},
+		{
 			"name": "props/square_shadow/round_shadow.scn"
 		},
 		{
@@ -350,14 +379,6 @@
 		},
 		{
 			"name": "props/mug/mug.scn"
-		},
-		{
-			"name": "common/title/title_super_anim.scn"
-		},
-		{
-			"anim": "init",
-			"loop_mode": "none",
-			"name": "props/tv_vintage/tv_vintage.scn"
 		}
 	],
 	"key_values": null,
@@ -403,7 +424,7 @@
 			],
 			"disabled": false,
 			"idx": 0,
-			"instance": 13,
+			"instance": 2,
 			"name": "physics_tv_vintage"
 		},
 		{
@@ -416,7 +437,7 @@
 			],
 			"disabled": false,
 			"idx": 1,
-			"instance": 11,
+			"instance": 14,
 			"name": "physics_mug"
 		},
 		{
@@ -429,7 +450,7 @@
 			],
 			"disabled": false,
 			"idx": 2,
-			"instance": 12,
+			"instance": 0,
 			"name": "title"
 		},
 		{
@@ -526,7 +547,7 @@
 			],
 			"disabled": false,
 			"idx": 10,
-			"instance": 10,
+			"instance": 13,
 			"name": "square_shadow"
 		},
 		{
@@ -539,7 +560,7 @@
 			],
 			"disabled": false,
 			"idx": 11,
-			"instance": 9,
+			"instance": 12,
 			"name": "round_shadow"
 		},
 		{
@@ -552,7 +573,7 @@
 			],
 			"disabled": false,
 			"idx": 12,
-			"instance": 8,
+			"instance": 11,
 			"name": "round_shadow"
 		},
 		{
@@ -565,7 +586,7 @@
 			],
 			"disabled": false,
 			"idx": 13,
-			"instance": 7,
+			"instance": 10,
 			"name": "round_shadow"
 		},
 		{
@@ -578,7 +599,7 @@
 			],
 			"disabled": false,
 			"idx": 14,
-			"instance": 6,
+			"instance": 9,
 			"name": "round_shadow"
 		},
 		{
@@ -591,7 +612,7 @@
 			],
 			"disabled": false,
 			"idx": 15,
-			"instance": 5,
+			"instance": 8,
 			"name": "round_shadow"
 		},
 		{
@@ -604,7 +625,7 @@
 			],
 			"disabled": false,
 			"idx": 16,
-			"instance": 4,
+			"instance": 7,
 			"name": "round_shadow"
 		},
 		{
@@ -617,7 +638,7 @@
 			],
 			"disabled": false,
 			"idx": 17,
-			"instance": 3,
+			"instance": 6,
 			"name": "round_shadow"
 		},
 		{
@@ -630,7 +651,7 @@
 			],
 			"disabled": false,
 			"idx": 18,
-			"instance": 2,
+			"instance": 5,
 			"name": "round_shadow"
 		},
 		{
@@ -643,7 +664,7 @@
 			],
 			"disabled": false,
 			"idx": 19,
-			"instance": 1,
+			"instance": 4,
 			"name": "round_shadow"
 		},
 		{
@@ -656,8 +677,21 @@
 			],
 			"disabled": false,
 			"idx": 20,
-			"instance": 0,
+			"instance": 3,
 			"name": "round_shadow"
+		},
+		{
+			"components": [
+				21,
+				4294967295,
+				4294967295,
+				4294967295,
+				4294967295
+			],
+			"disabled": false,
+			"idx": 21,
+			"instance": 1,
+			"name": "static"
 		}
 	],
 	"objects": [
@@ -761,6 +795,14 @@
 			"name": "intro",
 			"node_anims": [
 				{
+					"anim": 133,
+					"node": 2
+				},
+				{
+					"anim": 132,
+					"node": 2
+				},
+				{
 					"anim": 131,
 					"node": 2
 				},
@@ -781,24 +823,20 @@
 					"node": 2
 				},
 				{
-					"anim": 126,
-					"node": 2
-				},
-				{
-					"anim": 125,
-					"node": 2
-				},
-				{
-					"anim": 132,
+					"anim": 134,
 					"node": 9
 				},
 				{
-					"anim": 133,
+					"anim": 135,
 					"node": 0
 				},
 				{
-					"anim": 134,
+					"anim": 136,
 					"node": 3
+				},
+				{
+					"anim": 137,
+					"node": 21
 				}
 			],
 			"t_end": 20000000000,
@@ -1182,6 +1220,24 @@
 				2.0,
 				2.0,
 				2.0
+			]
+		},
+		{
+			"parent": 0,
+			"pos": [
+				-0.0917000025510788,
+				0.015300000086426735,
+				-0.26190000772476196
+			],
+			"rot": [
+				-3.415094852243783e-06,
+				0.0,
+				0.0
+			],
+			"scl": [
+				1.0,
+				0.9999998807907104,
+				0.9999998807907104
 			]
 		}
 	]

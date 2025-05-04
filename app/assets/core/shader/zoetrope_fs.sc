@@ -15,7 +15,8 @@ SAMPLER2D(uBaseOpacityMap, 0);
 
 // Function to compute the texture coordinates based on the frame index
 vec2 getFrameUV(vec2 baseTexCoord, float time) {
-    float frame_index = min(floor((uTime.x * 127.0)/ uTime.y), 127.0); // Current frame index (0-127)
+    float rolling_time = mod(uTime.x, uTime.y);
+    float frame_index = min(floor((rolling_time * 127.0)/ uTime.y), 127.0); // Current frame index (0-127)
 
     // Determine grid position
     vec2 grid_coord = vec2(mod(frame_index, 8.0), floor(frame_index / 8.0)); // 8 images per row, 16 rows
