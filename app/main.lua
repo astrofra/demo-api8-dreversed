@@ -277,12 +277,28 @@ if config_done == 1 then
     if enable_replay then
         -- logo
         if enable_logo then
+            -- pre-roll
+            sequence_start_clock = hg.GetClock()
+            while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(2.5) do
+                dt = hg.TickClock()
+
+                local view_id = 0
+                hg.SetViewClear(view_id, hg.CF_Color | hg.CF_Depth, hg.Color.Black, 1, 0)
+                hg.SetViewRect(view_id, 0, 0, res_x, res_y)
+            
+                hg.Touch(view_id)  -- force the view to be processed as it would be ignored since nothing is drawn to it (a clear does not count)
+            
+                hg.Frame()
+                hg.UpdateWindow(win)
+            end
+
             local url_str = insert_spaces_between_chars("HTTPS://WWW.RESISTANCE.NO", 3)
             local url_fade = {fadein = 5.0, fadein_end = 6.0, fadeout = 9.75, fadeout_end = 10.0}
             logo_scene.environment.ambient = hg.Color(0.0, 1.0, 0.0, 0.0)
             logo_scene:PlayAnim(logo_scene:GetSceneAnim("fadein"))
             -- logo_ref = hg.PlayStereo(logo_sound, hg.StereoSourceState(1.0, hg.SR_Once))
             local text_uniform_values_url
+            sequence_start_clock = hg.GetClock()
             while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(10.0) do
                 keyboard:Update()
                 dt = hg.TickClock()
@@ -782,7 +798,6 @@ if config_done == 1 then
             _text_pos = hg.Vec3(res_x * (1.0 - 0.05), res_y * 0.95, 0)
             display_shadow_text(view_id, font_timer, _str_clock, font_prg, _text_pos, text_uniform_values, text_uniform_values_black, text_render_state, hg.DTHA_Right)
 
-
             -- Time remap (time code)
             if sim_seq_idx > 1 then
                 local _str_clock = "Physics FPS: " .. tostring(estimated_framerate) .. " / Time remap: " .. tostring(time_remap_index) .. ":" .. replay_time_table[time_remap_index].sequence_idx .. ":" .. string.format("%2.3f", record_frame)
@@ -807,11 +822,24 @@ if config_done == 1 then
 
             -- next sequence
             sim_seq_idx = sim_seq_idx + 1
-            -- rep_seq_idx = rep_seq_idx + 1
 
             -- sequence timer
             simulation_start_clock = frame_clock
         end
+    end
+
+    sequence_start_clock = hg.GetClock()
+    while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(1.5) do
+        dt = hg.TickClock()
+
+        local view_id = 0
+        hg.SetViewClear(view_id, hg.CF_Color | hg.CF_Depth, hg.Color.Blue, 1, 0)
+        hg.SetViewRect(view_id, 0, 0, res_x, res_y)
+    
+        hg.Touch(view_id)  -- force the view to be processed as it would be ignored since nothing is drawn to it (a clear does not count)
+    
+        hg.Frame()
+        hg.UpdateWindow(win)
     end
 
     hg.RenderShutdown()
