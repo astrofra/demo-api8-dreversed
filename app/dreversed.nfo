@@ -12,8 +12,20 @@ This project use the following creative assets :
 - "Bricks" 3D model by Yuri3D (www.cgtrader.com/designers/yuri3designer)
 - "CRT TV" 3D model by Dekogon (https://www.cgtrader.com/designers/Dekogon)
 
- this demo is a reverse-physics narrative played back as a timeline wound
- through  memory, glitch and  constraint ? where  physical logic unravels
- into symbolic tension. nothing breaks. everything rewinds.
+Time-reversibility paradox: In classical mechanics, the fundamental
+laws of motion are time-symmetric, yet macroscopic physical processes
+exhibit a preferred direction of time, creating a contradiction between
+theory and observation.
+
+"The camera is trapped inside a cubic space — a box where light falls
+from above and shadows consume the edges. At its center, physical
+simulation sequences play out — all in reverse. Each rigid-body scene
+shown is actually a reversed replay of a simulation that was computed
+in the background during the previous sequence. (The first simulation
+runs while the intro is "loading".)"
+
+Is reversed replay a betrayal of realtime, or a creative use of simu-
+lation within technical constraints?
+
 
      *       watch it backwards. forward is a lie.      *
