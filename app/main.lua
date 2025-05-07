@@ -45,13 +45,16 @@ end
 
 function display_shadow_text(view_id, font_name, text_str, font_prg, text_pos, text_uniform_values, text_uniform_values_black, text_render_state, h_align)
     h_align = h_align or hg.DTHA_Left
+    local sc = res_y / virtual_res_y
+    local sc_mat = hg.TransformationMat4(text_pos +  hg.Vec3(2, 2, 0) * (res_y / virtual_res_y), hg.Vec3(0,0,0), hg.Vec3(sc,sc,sc))
     if text_uniform_values_black then
-        hg.DrawText(view_id, font_name, text_str, font_prg, 'u_tex', 0, hg.Mat4.Identity,
-            text_pos +  hg.Vec3(2, 2, 0) * (res_y / virtual_res_y), h_align, hg.DTVA_Center, text_uniform_values_black, {}, text_render_state)
+        hg.DrawText(view_id, font_name, text_str, font_prg, 'u_tex', 0, sc_mat,
+        hg.Vec3(0,0,0) , h_align, hg.DTVA_Center, text_uniform_values_black, {}, text_render_state)
     end
 
-    hg.DrawText(view_id, font_name, text_str, font_prg, 'u_tex', 0, hg.Mat4.Identity,
-        text_pos, h_align, hg.DTVA_Center, text_uniform_values, {}, text_render_state)    
+    sc_mat = hg.TransformationMat4(text_pos, hg.Vec3(0,0,0), hg.Vec3(sc,sc,sc))
+    hg.DrawText(view_id, font_name, text_str, font_prg, 'u_tex', 0, sc_mat,
+        hg.Vec3(0,0,0), h_align, hg.DTVA_Center, text_uniform_values, {}, text_render_state)    
 end
 
 function display_physics_debug(view_id, cam, res_x, res_y, vtx_line_layout, line_shader, physics)
@@ -156,11 +159,11 @@ if config_done == 1 then
     pipeline_aaa_config.bloom_threshold	= 0.5200
 
     -- fonts
-    font_timer = hg.LoadFontFromAssets('fonts/spacemono-regular.ttf', math.floor(48 * (res_y / virtual_res_y)))
-    font_url = hg.LoadFontFromAssets('fonts/barlow-medium.ttf', math.floor(42 * (res_y / virtual_res_y)))
-    font_sequence_name = hg.LoadFontFromAssets('fonts/cirrus_cumulus.ttf', math.floor(96 * (res_y / virtual_res_y)))
-    font_subtitle = hg.LoadFontFromAssets('fonts/barlow-medium.ttf', math.floor(50 * (res_y / virtual_res_y)))
-    font_subtitle_42 = hg.LoadFontFromAssets('fonts/barlow-medium.ttf', (37.5 * (res_y / virtual_res_y)))
+    font_timer = hg.LoadFontFromAssets('fonts/spacemono-regular.ttf', math.floor(48))-- * (res_y / virtual_res_y)))
+    font_url = hg.LoadFontFromAssets('fonts/barlow-medium.ttf', math.floor(42))-- * (res_y / virtual_res_y)))
+    font_sequence_name = hg.LoadFontFromAssets('fonts/cirrus_cumulus.ttf', math.floor(96))-- * (res_y / virtual_res_y)))
+    font_subtitle = hg.LoadFontFromAssets('fonts/barlow-medium.ttf', math.floor(50))-- * (res_y / virtual_res_y)))
+    font_subtitle_42 = hg.LoadFontFromAssets('fonts/barlow-medium.ttf', (37.5))-- * (res_y / virtual_res_y)))
     font_prg = hg.LoadProgramFromAssets('core/shader/font')
     text_uniform_values = {hg.MakeUniformSetValue('u_color', hg.Vec4(1, 1, 1))}
     text_uniform_values_yellow = {hg.MakeUniformSetValue('u_color', hg.Vec4(1, 1, 0))}
