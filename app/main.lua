@@ -117,7 +117,6 @@ local full_aaa = false
 local low_aaa = true
 local no_aaa = false
 
-hg.ShowCursor()
 config_done, res_x, res_y, default_fullscreen, full_aaa, low_aaa, no_aaa, physics_freq, enable_logo, enable_replay, enable_rotation, enable_debug_timers = config_gui()
 
 if config_done == 1 then
@@ -136,6 +135,8 @@ if config_done == 1 then
     else
         hg.RenderReset(res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X | hg.RF_MaxAnisotropy)
     end
+
+    hg.HideCursor()
 
     pipeline = hg.CreateForwardPipeline(2048)
     res = hg.PipelineResources()

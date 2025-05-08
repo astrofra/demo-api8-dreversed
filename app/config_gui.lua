@@ -37,6 +37,8 @@ function config_gui()
     local config_win = hg.NewWindow("Config", res_x, res_y, 32)
     hg.RenderInit(config_win) -- , hg.RT_OpenGL)
 
+    hg.ShowCursor()
+
     local imgui_prg = hg.LoadProgramFromAssets('core/shader/imgui')
     local imgui_img_prg = hg.LoadProgramFromAssets('core/shader/imgui_image')
 

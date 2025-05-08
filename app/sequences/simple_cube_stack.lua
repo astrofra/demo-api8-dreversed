@@ -9,6 +9,7 @@ local grtz = {
     "grtz_drflopine.scn",
     "grtz_dbug.scn",
     "grtz_gargaj.scn",
+    "grtz_peregrine.scn",
     "grtz_flush.scn",
     "grtz_mankind.scn",
     "grtz_nusan.scn",
@@ -23,7 +24,7 @@ function SetupSimpleCubeStack(_scene, res, pipeline_info, params)
     local rb_nodes = {}
     for i = 1, 200 do
         local _new_node, _rb = CreatePhysicCubeEx(_scene, _cube_size, hg.TranslationMat4(hg.Vec3(0, 1 + i * 5, 0)), _cube_ref, {_generic_material}, hg.RBT_Dynamic, 1)
-        if i <= #grtz * 3 then
+        if i <= #grtz * 4 then
             local j = math.fmod(i - 1, #grtz) + 1
             local _greets, _ = hg.CreateInstanceFromAssets(_scene, hg.TranslationMat4(hg.Vec3(0, 0, 0)), "props/greets/" .. grtz[j], res, pipeline_info)
             _greets:GetTransform():SetParent(_new_node)
