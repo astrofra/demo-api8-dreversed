@@ -264,7 +264,9 @@ void main() {
 #endif // DEPTH_ONLY != 1
 
 	float fake_horizon_based_blend = pow(clamp(map(vWorldPos.y, 0.0, 0.25, 0.0, 1.0), 0.0, 1.0), 0.5);
-	float opacity = base_opacity.w * fake_horizon_based_blend;
+	float sides_blend = pow(clamp(map(abs(vWorldPos.x), 3.5, 4.0, 1.0, 0.0), 0.0, 1.0), 0.5);
+	sides_blend *= pow(clamp(map(abs(vWorldPos.z), 3.5, 4.0, 1.0, 0.0), 0.0, 1.0), 0.5);
+	float opacity = base_opacity.w * fake_horizon_based_blend * sides_blend;
 
 #if ENABLE_ALPHA_CUT
 	if (opacity < uCutoff.x)

@@ -25,9 +25,6 @@ require("audio/keyboard")
 
 require("audio/subtitles")
 
--- greetings
--- Analogue, Gargaj, Desire, Flush, DrFlopine, NuSan, Cicile, 4play, Mooz
-
 virtual_res_x, virtual_res_y = 1280, 720
 res_x, res_y = 1920, 1200 -- 1280, 720 -- math.floor(1920 * 0.6), math.floor(1080 * 0.6) -- 1920, 1080
 enable_replay = true
@@ -450,9 +447,9 @@ if config_done == 1 then
     table.insert(mapping_sequences, {frame = {3455, 3465}, time_remap = {seq_idx.neons, 0.790, 0.802}})
     table.insert(mapping_sequences, {frame = {3465, 3469}, time_remap = {seq_idx.neons, 0.777, 0.782}})
 
-    -- Simple cubes
+    -- Simple cubes (greetings)
     local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
-    local _rb_nodes = SetupSimpleCubeStack(_scene, res, pipeline_info, {model_size = cube_size, model_ref = cube_ref, materials = {grey = mat_grey}})
+    local _rb_nodes = SetupSimpleCubeStack(_scene, res, pipeline_info, {model_size = cube_size, model_ref = cube_ref, materials = {grey = mat_grey, chrome = mat_chrome}})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq * 2.0, estimated_framerate)
     table.insert(sequences, {name = "simple_cubes", display_name = "greetings", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
     -- table.insert(mapping_sequences, {clock = {_last_clock, _last_clock + 10.0}, time_remap = {#sequences, 0.1, 0.9}})
