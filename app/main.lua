@@ -332,7 +332,11 @@ if config_done == 1 then
             end
             
             -- credits
-            local _credits_str = { "A Demo presented at Paris 8 / API8 2025", "Fra (Code/Design) . Riddlemak (Music) . XBarr (Engine)" }
+            local _credits_str = { 
+                "A Demo presented at Paris 8 / API8 2025", "Fra (Code/Design) . Riddlemak (Music) . XBarr (Engine)",
+                "CirrusCumulus font by Clara Sambot", "Additionnal 3D models by Jack-3D, Yuri3D and Dekogon",
+                "Interview with Edmond Couchot by Alain Longuet"
+            }
             url_fade = {fadein = 0.0, fadein_end = 0.5, fadeout = 4.5, fadeout_end = 5.0}
             sequence_start_clock = hg.GetClock()
             while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(url_fade.fadeout_end) do
@@ -361,6 +365,9 @@ if config_done == 1 then
                 text_uniform_values_url = {hg.MakeUniformSetValue('u_color', hg.Vec4(0.8 * _text_fade, 0.8 * _text_fade, 0.8 * _text_fade))}
                 display_shadow_text(view_id, font_subtitle, _credits_str[1], font_prg, _text_pos, text_uniform_values_url, nil, text_render_state, hg.DTHA_Center)
                 display_shadow_text(view_id, font_subtitle_42, _credits_str[2], font_prg, _text_pos + hg.Vec3(0, res_y * 0.075, 0), text_uniform_values_url, nil, text_render_state, hg.DTHA_Center)
+                display_shadow_text(view_id, font_subtitle_42, _credits_str[3], font_prg, _text_pos + hg.Vec3(0, res_y * 0.075 * 2.0, 0), text_uniform_values_url, nil, text_render_state, hg.DTHA_Center)
+                display_shadow_text(view_id, font_subtitle_42, _credits_str[4], font_prg, _text_pos + hg.Vec3(0, res_y * 0.075 * 2.6, 0), text_uniform_values_url, nil, text_render_state, hg.DTHA_Center)
+                display_shadow_text(view_id, font_subtitle_42, _credits_str[5], font_prg, _text_pos + hg.Vec3(0, res_y * 0.075 * 3.2, 0), text_uniform_values_url, nil, text_render_state, hg.DTHA_Center)
         
                 frame = hg.Frame()
                 hg.UpdateWindow(win)
