@@ -3,6 +3,8 @@ require("utils")
 require("physics_utils")
 require("config_gui")
 
+require("sequences/benchmark")
+
 require("sequences/wall_of_bricks")
 require("sequences/tornado")
 require("sequences/spiral_tornado")
@@ -333,27 +335,41 @@ if config_done == 1 then
             end
             
             -- credits
+            local bench = {scene, cam, camera_root, rb_nodes, physics, physics_step, dt_frame_step }
+            bench.scene, bench.cam, bench.camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+            bench.rb_nodes = SetupBenchmark(bench.scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold, neon = mat_neon_red, black = mat_black}})
+            bench.physics, bench.physics_step, bench.dt_frame_step = SetupScenePhysics(bench.scene, physics_freq, estimated_framerate)
+            bench.scene:SetCurrentCamera(bench.cam)
+
             local _credits_str = { 
                 "A Demo presented at Paris 8 / API8 2025", "Fra (Code/Design) . Riddlemak (Music) . XBarr (Engine)",
                 "CirrusCumulus font by Clara Sambot", "Additionnal 3D models by Jack-3D, Yuri3D and Dekogon",
                 "Interview with Edmond Couchot by Alain Longuet"
             }
-            url_fade = {fadein = 0.0, fadein_end = 0.5, fadeout = 4.5, fadeout_end = 5.0}
+            local credit_duration = 5.0
+            url_fade = {fadein = 0.0, fadein_end = 0.5, fadeout = credit_duration - 0.5, fadeout_end = credit_duration}
             sequence_start_clock = hg.GetClock()
-            while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(url_fade.fadeout_end) do
+            while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(credit_duration) do
                 keyboard:Update()
                 dt = hg.TickClock()
 
-                if math.random() > 0.8 then table.insert(dt_collection, hg.time_to_sec_f(dt)) end
+                if math.random() > 0.2 then table.insert(dt_collection, hg.time_to_sec_f(dt)) end
 
                 -- rendering
+                hg.SceneUpdateSystems(bench.scene, clocks, bench.dt_frame_step, bench.physics, bench.physics_step, 3)
+
                 local view_id = 0
                 local pass_id
                 if enable_aaa then
-                    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, logo_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
+                    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, bench.scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res, pipeline_aaa, pipeline_aaa_config, frame)
                 else
-                    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, logo_scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
+                    view_id, pass_id = hg.SubmitSceneToPipeline(view_id, bench.scene, hg.IntRect(0, 0, res_x, res_y), true, pipeline, res)
                 end
+
+                -- hide benchmark
+                view_id = view_id + 1
+                hg.SetViewClear(view_id, hg.CF_Color | hg.CF_Depth, hg.Color.Black, 1, 0)
+                hg.Touch(view_id)
 
                 -- write credits
                 view_id = view_id + 1
