@@ -67,7 +67,8 @@ function display_physics_debug(view_id, cam, res_x, res_y, vtx_line_layout, line
     physics:RenderCollision(view_id, vtx_line_layout, line_shader, rs, 0)
 end
 
-function SetupBackgroundEnvironment(_res, _pipeline_info)
+function SetupBackgroundEnvironment(_res, _pipeline_info, is_aaa_enabled)
+    is_aaa_enabled = is_aaa_enabled or false
     local scene = hg.Scene()
 
     hg.LoadSceneFromAssets("main_stage.scn", scene, _res, _pipeline_info)
@@ -75,6 +76,13 @@ function SetupBackgroundEnvironment(_res, _pipeline_info)
     scene:SetCurrentCamera(cam)
     
     local camera_root = scene:GetNode("camera_root")
+
+    if is_aaa_enabled == false then
+        local light = scene:GetNode("Light")
+        local light_c = light:GetLight()
+        light_c:SetDiffuseIntensity(light_c:GetDiffuseIntensity() / 2.0)
+        light_c:SetSpecularIntensity(light_c:GetSpecularIntensity() / 2.0)
+    end
 
     return scene, cam, camera_root
 end
@@ -336,7 +344,7 @@ if config_done == 1 then
             
             -- credits
             local bench = {scene, cam, camera_root, rb_nodes, physics, physics_step, dt_frame_step }
-            bench.scene, bench.cam, bench.camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+            bench.scene, bench.cam, bench.camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
             bench.rb_nodes = SetupBenchmark(bench.scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold, neon = mat_neon_red, black = mat_black}})
             bench.physics, bench.physics_step, bench.dt_frame_step = SetupScenePhysics(bench.scene, physics_freq, estimated_framerate)
             bench.scene:SetCurrentCamera(bench.cam)
@@ -405,7 +413,7 @@ if config_done == 1 then
     local _last_clock
 
     -- title screen
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local initial_cam_pos = nil -- _cam:GetTransform():GetPos()
     local title_cam_timing = nil
     local _rb_nodes, _camera_tv, _ctx = SetupTitleScene(_scene, res, pipeline_info, vtx_layout, {gold = mat_gold})
@@ -424,7 +432,7 @@ if config_done == 1 then
     table.insert(mapping_sequences, {frame = {543, 651}, time_remap = {seq_idx.title_screen, 0.244, 0.311}})
 
     -- rotating plates
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local _rb_nodes = SetupRotatingPlates(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold, neon = mat_neon_red, black = mat_black}})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq, estimated_framerate)
     table.insert(sequences, {name = "rotating_plates", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
@@ -433,7 +441,7 @@ if config_done == 1 then
     table.insert(mapping_sequences, {frame = {868, 1193}, time_remap = {seq_idx.rotating_plates, 0.157, 0.698}})
 
     -- wave grid
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local _rb_nodes = SetupWaveGrid(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold, neon = mat_neon_red, black = mat_black}})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq, estimated_framerate)
     table.insert(sequences, {name = "wave_grid", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
@@ -447,7 +455,7 @@ if config_done == 1 then
     table.insert(mapping_sequences, {frame = {1621, 1841}, time_remap = {seq_idx.wave_grid, 0.615, 0.228}})
 
     -- wall of bricks
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local _rb_nodes, _ctx = SetupWallOfBricks(_scene, res, pipeline_info, vtx_layout, {neon = mat_neon_red, chrome = mat_chrome, black = mat_black})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq, estimated_framerate)
     ApplyPhysicsWallOfBricks(_rb_nodes, _scene, _physics, _ctx)
@@ -458,7 +466,7 @@ if config_done == 1 then
     table.insert(mapping_sequences, {frame = {2162, 2599}, time_remap = {seq_idx.wall_of_bricks, 0.016, 0.716}})
 
     -- Neons
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local _rb_nodes = SetupVerticalNeonChaos(_scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, gold = mat_gold}})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq, estimated_framerate)
     table.insert(sequences, {name = "neons", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
@@ -472,7 +480,7 @@ if config_done == 1 then
     table.insert(mapping_sequences, {frame = {3465, 3469}, time_remap = {seq_idx.neons, 0.777, 0.782}})
 
     -- Simple cubes (greetings)
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local _rb_nodes = SetupSimpleCubeStack(_scene, res, pipeline_info, {model_size = cube_size, model_ref = cube_ref, materials = {grey = mat_grey, chrome = mat_chrome}})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq * 2.0, estimated_framerate)
     table.insert(sequences, {name = "simple_cubes", display_name = "greetings", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
@@ -481,7 +489,7 @@ if config_done == 1 then
     table.insert(mapping_sequences, {frame = {3983, 4331}, time_remap = {seq_idx.simple_cubes, 1.0, 0.415}})
 
     -- oscillating_wall
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local _rb_nodes, _ctx = SetupOscillatingWall(_scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, black = mat_black}})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq, estimated_framerate)
     table.insert(sequences, {name = "oscillating_wall", display_name = "kubes vader", apply_physics = ApplyPhysicsOscillatingWall, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
@@ -498,7 +506,7 @@ if config_done == 1 then
     table.insert(mapping_sequences, {frame = {4977, 5072}, time_remap = {seq_idx.oscillating_wall, 0.408, 0.316}})
 
     -- (in)visible colliders
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local _rb_nodes = SetupInvisibleColliders(_scene, res, {vtx_layout = vtx_layout, materials = {neon = mat_neon_red, silver = mat_silver, chrome = mat_chrome, black = mat_piano_black}})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq, estimated_framerate)
     table.insert(sequences, {name = "invisible_colliders", display_name = "dear Yayoi", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
@@ -506,7 +514,7 @@ if config_done == 1 then
     table.insert(mapping_sequences, {frame = {5360, 5626}, time_remap = {seq_idx.invisible_colliders, 0.382, 0.252}})
 
     -- tornado
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local _rb_nodes = SetupTornado(_scene, res, {vtx_layout = vtx_layout, materials = {chrome = mat_chrome, neon = mat_neon_red, black = mat_black}})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq, estimated_framerate)
     table.insert(sequences, {name = "tornado", display_name = "blobnado", apply_physics = ApplyPhysicsTornado, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
@@ -516,7 +524,7 @@ if config_done == 1 then
     table.insert(mapping_sequences, {frame = {6100, 6276}, time_remap = {seq_idx.tornado, 0.199, 0.463}})
 
     -- Repulsion core
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local _rb_nodes, _ctx = SetupRepulsionCore(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, black = mat_piano_black, neon = mat_neon_red}})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq, estimated_framerate)
     table.insert(sequences, {name = "repulsion_core", display_name = "attraction core", apply_physics = ApplyPhysicsRepulsionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
@@ -524,7 +532,7 @@ if config_done == 1 then
     table.insert(mapping_sequences, {frame = {6323, 6492}, time_remap = {seq_idx.repulsion_core, 0.398, 0.118}})
 
     -- Attraction core
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local _rb_nodes, _ctx = SetupAttractionCore(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, black = mat_piano_black, neon = mat_neon_red}})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq, estimated_framerate)
     table.insert(sequences, {name = "attraction_core", display_name = "repulsion core", apply_physics = ApplyPhysicsAttractionCore, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
@@ -533,7 +541,7 @@ if config_done == 1 then
     table.insert(mapping_sequences, {frame = {6815, 7128}, time_remap = {seq_idx.tornado, 0.862, 0.339}})
 
     -- Voxel
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local _rb_nodes = SetupXiVoxel(_scene, res, {vtx_layout = vtx_layout, materials = {gold = mat_gold}})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq, estimated_framerate)
     table.insert(sequences, {name = "slices of voxel", record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
@@ -543,7 +551,7 @@ if config_done == 1 then
     table.insert(mapping_sequences, {frame = {7364, 7464}, time_remap = {seq_idx.voxel, 0.754, 0.507}})
 
     -- flocks
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local _rb_nodes = SetupFlocks(_scene, res, {vtx_layout = vtx_layout, materials = {silver = mat_silver, neon = mat_neon_red, black = mat_black}})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq, estimated_framerate)
     ApplyPhysicsFlocks(_rb_nodes, _physics)
@@ -552,7 +560,7 @@ if config_done == 1 then
     table.insert(mapping_sequences, {frame = {7682, 7776}, time_remap = {seq_idx.flocks, 0.125, 0.238}})
 
     -- spiral tornado
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local _rb_nodes = SetupSpiralTornado(_scene, res, {vtx_layout = vtx_layout, materials = {chrome = mat_chrome, neon = mat_neon_red, black = mat_black}})
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq, estimated_framerate)
     table.insert(sequences, {name = "spiral_tornado", apply_physics = ApplyPhysicsSpiralTornado, ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
@@ -561,7 +569,7 @@ if config_done == 1 then
 
     -- last dummy sequence
     _last_clock = mapping_sequences[#mapping_sequences].frame[2] / 60.0
-    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info)
+    local _scene, _cam, _camera_root = SetupBackgroundEnvironment(res, pipeline_info, enable_aaa)
     local _rb_nodes, _ctx = {}, {}
     local _physics, _physics_step, _dt_frame_step = SetupScenePhysics(_scene, physics_freq, estimated_framerate)
     table.insert(sequences, {name = "dummy", display_name = "...nd ths wll ffct th dmscn.", ctx = {}, record = {}, scene = _scene, camera = _cam, camera_root = _camera_root, nodes = _rb_nodes, physics = _physics, physics_step = _physics_step, dt_frame_step = _dt_frame_step})
