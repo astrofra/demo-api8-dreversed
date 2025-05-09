@@ -133,7 +133,7 @@ if config_done == 1 then
     hg.RenderInit(win) --, hg.RT_OpenGL)
 
     if enable_aaa then
-        hg.RenderReset(res_x, res_y, hg.RF_VSync) -- | hg.RF_MSAA4X | hg.RF_MaxAnisotropy)
+        hg.RenderReset(res_x, res_y, hg.RF_VSync) -- hg.RF_VSync | hg.RF_MSAA4X | hg.RF_MaxAnisotropy)
     else
         hg.RenderReset(res_x, res_y, hg.RF_VSync | hg.RF_MSAA4X | hg.RF_MaxAnisotropy)
     end
@@ -306,7 +306,7 @@ if config_done == 1 then
                 keyboard:Update()
                 dt = hg.TickClock()
 
-                if math.random() > 0.8 then table.insert(dt_collection, hg.time_to_sec_f(dt)) end
+                -- if math.random() > 0.8 then table.insert(dt_collection, hg.time_to_sec_f(dt)) end
 
                 logo_scene:Update(dt)
 
@@ -346,14 +346,14 @@ if config_done == 1 then
                 "CirrusCumulus font by Clara Sambot", "Additionnal 3D models by Jack-3D, Yuri3D and Dekogon",
                 "Interview with Edmond Couchot by Alain Longuet"
             }
-            local credit_duration = 5.0
+            local credit_duration = 6.5
             url_fade = {fadein = 0.0, fadein_end = 0.5, fadeout = credit_duration - 0.5, fadeout_end = credit_duration}
             sequence_start_clock = hg.GetClock()
             while not keyboard:Down(hg.K_Escape) and hg.IsWindowOpen(win) and hg.GetClock() - sequence_start_clock < hg.time_from_sec_f(credit_duration) do
                 keyboard:Update()
                 dt = hg.TickClock()
 
-                if math.random() > 0.2 then table.insert(dt_collection, hg.time_to_sec_f(dt)) end
+                if hg.GetClock() - sequence_start_clock > hg.time_from_sec_f(1.0) then table.insert(dt_collection, hg.time_to_sec_f(dt)) end
 
                 -- rendering
                 hg.SceneUpdateSystems(bench.scene, clocks, bench.dt_frame_step, bench.physics, bench.physics_step, 3)
@@ -375,7 +375,7 @@ if config_done == 1 then
                 view_id = view_id + 1
                 hg.SetView2D(view_id, 0, 0, res_x, res_y, -1, 1, hg.CF_Depth, hg.Color.White, 1, 0)
 
-                local _text_pos = hg.Vec3(res_x * 0.5, res_y * 0.5, 0)
+                local _text_pos = hg.Vec3(res_x * 0.5, res_y * 0.425, 0)
                 local _logo_clock_f = hg.time_to_sec_f(hg.GetClock() - sequence_start_clock)
                 local _text_fade = clamp(map(_logo_clock_f, url_fade.fadein, url_fade.fadein_end, 0.0, 1.0), 0.0, 1.0)
                 _text_fade = _text_fade * clamp(map(_logo_clock_f, url_fade.fadeout, url_fade.fadeout_end, 1.0, 0.0), 0.0, 1.0)
