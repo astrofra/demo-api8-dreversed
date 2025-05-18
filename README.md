@@ -1,5 +1,7 @@
 # DREVERSED
 
+![hero image](img/hero-image.png)
+
 **DREVERSED** is an experimental demo about time, physics and simulation.  
 Each sequence is a reversed replay of a physics simulation computed in real time during the previous segment.  
 The project explores the **irreversibility of physical processes** - a direct echo to [Loschmidt’s paradox](https://en.wikipedia.org/wiki/Loschmidt%27s_paradox).
