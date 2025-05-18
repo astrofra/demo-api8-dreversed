@@ -4,13 +4,13 @@
 Each sequence is a reversed replay of a physics simulation computed in real time during the previous segment.  
 The project explores the **irreversibility of physical processes** - a direct echo to [Loschmidt’s paradox](https://en.wikipedia.org/wiki/Loschmidt%27s_paradox).
 
-DREVERSED was created for **API8**, a demoscene-inspired event at Paris 8 University blending research, real-time art and education.  
+DREVERSED was created for [**API8**](https://www.api8.fr/), a demoscene-inspired event at [Paris 8 University](https://www.univ-paris8.fr/) blending research, real-time art and education.  
 It was (semi) intentionally designed not to behave identically on every machine, embracing the *unstable identity* of digital time.
 
 ## 🎛️ Technical Details
 
 - Released at **API8 2025** (Université Paris 8) – not ranked
-- Written in **Lua**, using the **Harfang 3D engine**
+- Written in **Lua**, using the [**Harfang 3D engine**](https://github.com/harfang3d/harfang3d)
 - Runs on **Windows** (x64, DX11) and **Linux** (x64, OpenGL)
 
 ## 🧪 Runtime Behavior
